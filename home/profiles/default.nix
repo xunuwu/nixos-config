@@ -1,0 +1,36 @@
+{
+  self,
+  inputs,
+  ...
+}: let
+  # get these into the module system
+  extraSpecialArgs = {inherit inputs self;};
+  homeImports = {
+    "xun@nixdesk" = [
+      ../.
+      ./nixdesk
+      inputs.nix-index-database.hmModules.nix-index
+      {
+        programs.nix-index.enableZshIntegration = false;
+        programs.nix-index.enableBashIntegration = false;
+        programs.nix-index.enableFishIntegration = false;
+      }
+    ];
+  };
+
+  inherit (inputs.home-manager.lib) homeManagerConfiguration;
+
+  pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+in {
+  # we need to pass this to NixOS' HM module
+  _module.args = {inherit homeImports;};
+
+  flake = {
+    homeConfigurations = {
+      "xun@nixdesk" = homeManagerConfiguration {
+        modules = homeImports."xun@nixdesk";
+        inherit pkgs extraSpecialArgs;
+      };
+    };
+  };
+}

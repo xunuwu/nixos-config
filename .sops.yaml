@@ -1,0 +1,12 @@
+keys:
+  - &users:
+    - &xun age17pdqkpfh6kc6wm7gxzdnwf6vphlwddv9yfpdu3j76e24y3amd9tq3avfc8
+  - &hosts:
+    - &nixdesk age155sscpw0x36t6s9usdrz7relpxqrtqnk98mrc7s0qcv2n0v3zd7sfl2xn8
+
+creation_rules:
+  - path_regex: secrets/global
+    key_groups:
+      - age:
+        - *xun
+        - *nixdesk
