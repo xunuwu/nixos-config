@@ -21,6 +21,7 @@
         ++ [
           ./nixdesk
           "${mod}/programs/gamemode.nix"
+          "${mod}/services/syncthing.nix"
           "${self}/secrets"
           {
             home-manager = {
@@ -33,8 +34,36 @@
     hopper = nixosSystem {
       inherit specialArgs;
       modules = [
-        ./core
-        ./core/boot.nix
+        ./hopper
+
+        "${self}/secrets"
+
+        "${mod}/core"
+
+        "${mod}/programs/home-manager.nix"
+
+        "${mod}/desktop"
+        "${mod}/desktop/awesome.nix"
+
+        "${mod}/hardware/opengl.nix"
+        "${mod}/hardware/steam-hardware.nix"
+        "${mod}/hardware/bluetooth.nix"
+        "${mod}/hardware/qmk.nix"
+
+        "${mod}/network/avahi.nix"
+        "${mod}/network/networkd.nix"
+        "${mod}/network/tailscale.nix"
+
+        "${mod}/services"
+        "${mod}/services/pipewire.nix"
+        "${mod}/services/syncthing.nix"
+
+        {
+          home-manager = {
+            users.xun.imports = homeImports."xun@hopper";
+            extraSpecialArgs = specialArgs;
+          };
+        }
       ];
     };
   };

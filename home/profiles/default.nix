@@ -16,6 +16,10 @@
         programs.nix-index.enableFishIntegration = false;
       }
     ];
+    "xun@hopper" = [
+      ../.
+      ./hopper
+    ];
   };
 
   inherit (inputs.home-manager.lib) homeManagerConfiguration;
@@ -29,6 +33,10 @@ in {
     homeConfigurations = {
       "xun@nixdesk" = homeManagerConfiguration {
         modules = homeImports."xun@nixdesk";
+        inherit pkgs extraSpecialArgs;
+      };
+      "xun@hopper" = homeManagerConfiguration {
+        modules = homeImports."xun@hopper";
         inherit pkgs extraSpecialArgs;
       };
     };

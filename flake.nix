@@ -19,6 +19,7 @@
             alejandra
             nil
             git
+            just
             home-manager
             sops
           ];

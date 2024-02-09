@@ -13,6 +13,8 @@
 
   networking.hostName = "nixdesk";
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   swapDevices = [];
 
   system.stateVersion = "23.11";
