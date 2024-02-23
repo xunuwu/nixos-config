@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  lib,
   ...
 }: {
   imports = [
@@ -15,7 +16,13 @@
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  swapDevices = [];
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      randomEncryption.enable = true;
+      size = 16 * 1024;
+    }
+  ];
 
   system.stateVersion = "23.11";
 }

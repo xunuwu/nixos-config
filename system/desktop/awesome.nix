@@ -1,6 +1,6 @@
 {
   imports = [
-    ./x11.nix
+    ./x11
   ];
   services.xserver = {
     enable = true;

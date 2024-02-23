@@ -16,8 +16,22 @@
       ## KEYBINDS ##
       bindkey "^[[1;5D" backward-word
       bindkey "^[[1;5C" forward-word
-      WORDCHARS= # this makes ^w actually stop on directory delimiters etc
+
+      # improve ^w behaviour
+      WORDCHARS=
+
+      # shift-tab in completion menu
+      bindkey '^[[Z' reverse-menu-complete
+
       zstyle ':completion:*'  matcher-list 'm:{a-z}={A-Z}' # Case insensitive completion
+
+
+      bindkey '^[[Z' reverse-menu-complete # shift-tab in completion menu
+
+
+      ## MISC ##
+      # Show completion categories
+      zstyle ':completion:*:*:*:*:descriptions' format '%F{magenta}<-%d->%f'
 
 
       ## PROMPT ##

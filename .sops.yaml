@@ -12,3 +12,13 @@ creation_rules:
         - *xun
         - *nixdesk
         - *hopper
+  - path_regex: secrets/nixdesk
+    key_groups:
+      - age:
+        - *xun
+        - *nixdesk
+  - path_regex: secrets/hopper
+    key_groups:
+      - age:
+        - *xun
+        - *hopper

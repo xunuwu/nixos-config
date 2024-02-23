@@ -13,7 +13,7 @@
         config,
         pkgs,
         ...
-      }: {
+      }: rec {
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
             alejandra
@@ -25,6 +25,8 @@
           ];
           name = "dots";
         };
+
+        packages = import ./pkgs {inherit pkgs;};
 
         formatter = pkgs.alejandra;
       };

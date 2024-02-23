@@ -17,6 +17,7 @@ let
 
     ./services
     ./services/pipewire.nix
+    ./services/flatpak.nix
   ];
 in {
   inherit desktop;

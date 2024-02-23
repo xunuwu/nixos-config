@@ -26,6 +26,7 @@ in {
   home.packages = with pkgs; [
     steam-with-pkgs
     steam-run
+    steamtinkerlaunch
     protontricks
   ];
 }

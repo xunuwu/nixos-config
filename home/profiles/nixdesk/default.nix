@@ -16,8 +16,10 @@
     # programs
     ../../programs/misc/keepassxc.nix
     ../../programs/misc/discord.nix
+    ../../programs/misc/thunderbird.nix
     ../../programs/music
     ../../programs/music/yams.nix
+    ../../programs/music/spotify.nix
     ../../programs/media
     ../../programs/media/jellyfin.nix
     # gaming

@@ -16,7 +16,7 @@
       "en_US.UTF-8/UTF-8"
     ];
   };
-  services.xserver.layout = "eu";
+  services.xserver.xkb.layout = "eu";
 
   # don't touch this
   system.stateVersion = lib.mkDefault "23.11";

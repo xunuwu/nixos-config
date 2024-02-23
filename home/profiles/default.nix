@@ -1,6 +1,8 @@
 {
   self,
   inputs,
+  system,
+  pkgs,
   ...
 }: let
   # get these into the module system
@@ -24,7 +26,7 @@
 
   inherit (inputs.home-manager.lib) homeManagerConfiguration;
 
-  pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+  pkgs = inputs.nixpkgs.legacyPackages.${system};
 in {
   # we need to pass this to NixOS' HM module
   _module.args = {inherit homeImports;};

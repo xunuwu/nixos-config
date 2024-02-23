@@ -9,10 +9,12 @@
     mod = "${self}/system";
 
     # get the basic config to build on top of
-    inherit (import "${self}/system") desktop laptop;
+    inherit (import "${self}/system") desktop;
 
     # get these into the module system
-    specialArgs = {inherit inputs self;};
+    specialArgs = {
+      inherit inputs self;
+    };
   in {
     nixdesk = nixosSystem {
       inherit specialArgs;
@@ -20,9 +22,13 @@
         desktop
         ++ [
           ./nixdesk
-          "${mod}/programs/gamemode.nix"
-          "${mod}/services/syncthing.nix"
+
           "${self}/secrets"
+          "${self}/secrets/nixdesk"
+
+          "${mod}/services/syncthing.nix"
+          "${mod}/desktop/x11/nosleep.nix"
+
           {
             home-manager = {
               users.xun.imports = homeImports."xun@nixdesk";
@@ -37,6 +43,7 @@
         ./hopper
 
         "${self}/secrets"
+        "${self}/secrets/hopper"
 
         "${mod}/core"
 
@@ -57,6 +64,11 @@
         "${mod}/services"
         "${mod}/services/pipewire.nix"
         "${mod}/services/syncthing.nix"
+        "${mod}/services/containers/server"
+
+        #"${mod}/services/networkd-wireguard.nix"
+        #"${mod}/services/wireguard.nix"
+        #"${mod}/services/transmission.nix"
 
         {
           home-manager = {
