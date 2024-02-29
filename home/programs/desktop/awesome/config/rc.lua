@@ -132,8 +132,7 @@ local function set_wallpaper(s)
 		if type(wallpaper) == "function" then
 			wallpaper = wallpaper(s)
 		end
-	--	gears.wallpaper.maximized(wallpaper, s, true)
-		gears.wallpaper.maximized(os.getenv("HOME") .. "/Desktop/wallpaperflare.com_wallpaper.jpg", s, true)
+		gears.wallpaper.maximized(wallpaper, s, true)
 	end
 end
 

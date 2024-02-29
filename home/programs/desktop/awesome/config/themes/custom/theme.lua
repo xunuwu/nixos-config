@@ -35,7 +35,7 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 	taglist_square_size, theme.fg_normal
 )
 
-theme.wallpaper = os.getenv("HOME") .. "/Desktop/wallpaperflare.com_wallpaper.jpg"
+theme.wallpaper = os.getenv("HOME") .. "/wallpaper.png"
 
 theme.icon_theme = nil
 
