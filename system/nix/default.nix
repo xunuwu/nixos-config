@@ -21,7 +21,7 @@
     nixPath = lib.mapAttrsToList (key: _: "${key}=flake:${key}") config.nix.registry;
 
     settings = {
-      auto-optimise-store = true;
+      #auto-optimise-store = true;
       builders-use-substitutes = true;
       experimental-features = ["flakes" "nix-command"];
 

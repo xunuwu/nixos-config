@@ -8,10 +8,6 @@
 
   networking.hostName = "hopper";
 
-  #services.tailscale.extraUpFlags = [
-  #  "--ssh"
-  #];
-
   swapDevices = [];
 
   system.stateVersion = "23.11";

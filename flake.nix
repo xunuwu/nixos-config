@@ -22,6 +22,7 @@
             just
             home-manager
             sops
+            colmena
           ];
           name = "dots";
         };
@@ -61,6 +62,11 @@
 
     sops-nix.url = "github:Mic92/sops-nix";
 
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-index-database = {
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -68,6 +74,11 @@
 
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
+    };
+
+    arion = {
+      url = "github:hercules-ci/arion";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     #nur.url = "github:nix-community/NUR";

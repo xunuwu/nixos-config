@@ -25,5 +25,13 @@
       format = "binary";
       sopsFile = ./code-server;
     };
+    slskd = {
+      format = "binary";
+      sopsFile = ./slskd;
+    };
+    cloudflare = {
+      format = "binary";
+      sopsFile = ./cloudflare;
+    };
   };
 }

@@ -13,20 +13,14 @@ in {
     enableExtensionUpdateCheck = false;
     package = pkgs.vscodium;
 
-    mutableExtensionsDir = false;
+    mutableExtensionsDir = true;
     extensions = [
-      ovsx.rust-lang.rust-analyzer
-      ovsx.llvm-vs-code-extensions.vscode-clangd
       ovsx.vadimcn.vscode-lldb
       ovsx.mkhl.direnv
       ovsx.editorconfig.editorconfig
       ovsx.pkief.material-icon-theme
-      # ovsx.ms-azuretools.vscode-docker
       ovsx.eamodio.gitlens
-      ovsx.jnoortheen.nix-ide
       vsce.hediet.debug-visualizer
-      ovsx.haskell.haskell
-      ovsx.hoovercj.haskell-linter
     ];
   };
 }

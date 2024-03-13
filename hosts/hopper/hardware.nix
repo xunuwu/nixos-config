@@ -29,7 +29,7 @@
     "/" = {
       device = "/dev/disk/by-uuid/1297e638-f2ff-49a2-a362-314ac7eeaabc";
       fsType = "btrfs";
-      options = ["subvol=root" "compress=zstd"];
+      options = ["subvol=root" "compress=zstd" "autodefrag" "noatime"];
     };
     "/home" = {
       device = "/dev/disk/by-uuid/1297e638-f2ff-49a2-a362-314ac7eeaabc";

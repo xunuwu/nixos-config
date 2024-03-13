@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
-    busybox
     htop
+    btop
     wget
     ripgrep
     nethogs

@@ -3,22 +3,29 @@
   inputs,
   homeImports,
   ...
-}: {
-  flake.nixosConfigurations = let
-    inherit (inputs.nixpkgs.lib) nixosSystem;
+}: let
+  specialArgs = {
+    inherit inputs self;
+  };
+in {
+  flake.colmena = let
     mod = "${self}/system";
-
-    # get the basic config to build on top of
     inherit (import "${self}/system") desktop;
-
-    # get these into the module system
-    specialArgs = {
-      inherit inputs self;
-    };
   in {
-    nixdesk = nixosSystem {
+    meta = {
+      nixpkgs = import inputs.nixpkgs {
+        system = "x86_64-linux";
+        config.allowUnfree = true;
+      };
+
       inherit specialArgs;
-      modules =
+    };
+    nixdesk = {
+      deployment = {
+        allowLocalDeployment = true;
+        targetHost = null;
+      };
+      imports =
         desktop
         ++ [
           ./nixdesk
@@ -37,9 +44,11 @@
           }
         ];
     };
-    hopper = nixosSystem {
-      inherit specialArgs;
-      modules = [
+    hopper = {
+      deployment = {
+        targetUser = "xun";
+      };
+      imports = [
         ./hopper
 
         "${self}/secrets"
@@ -79,4 +88,11 @@
       ];
     };
   };
+  flake.nixosConfigurations = let
+    l = inputs.nixpkgs.lib;
+  in (builtins.mapAttrs (n: v:
+    l.nixosSystem {
+      inherit specialArgs;
+      modules = v.imports;
+    }) (l.filterAttrs (n: _: n != "meta") self.colmena));
 }

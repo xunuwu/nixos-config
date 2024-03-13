@@ -1,4 +1,6 @@
 {config, ...}: {
+  programs.fzf.enable = true;
+
   programs.zsh = {
     enable = true;
     autocd = true;
@@ -6,6 +8,7 @@
     enableAutosuggestions = true;
     dotDir = ".config/zsh";
     defaultKeymap = "emacs";
+
     history = {
       expireDuplicatesFirst = true;
       path = "${config.xdg.dataHome}/zsh_history";

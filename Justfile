@@ -1,8 +1,9 @@
 hostname := `hostname`
 
-local OPERATION:
+local OPERATION *FLAGS:
   sudo nixos-rebuild \
   --flake .#{{hostname}} \
+  {{FLAGS}} \
   {{OPERATION}}
 
 

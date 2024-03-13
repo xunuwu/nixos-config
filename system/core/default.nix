@@ -4,6 +4,7 @@
     ./users.nix
     ./tools.nix
     ./ssh.nix
+    ./compat.nix
     ../nix
     ../programs/zsh.nix
   ];

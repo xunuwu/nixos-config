@@ -4,8 +4,8 @@
     initialPassword = "nixos";
     shell = pkgs.zsh;
     extraGroups = [
-      "video"
       "wheel"
+      "video"
     ];
   };
 }

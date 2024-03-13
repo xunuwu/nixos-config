@@ -46,6 +46,21 @@
           }
         ];
       }
+      {
+        name = "Music";
+        items = [
+          {
+            title = "Betanin";
+            icon = "hl-betanin";
+            url = "http://${hostname}:9393";
+          }
+          {
+            title = "Slskd";
+            icon = "hl-soulseek";
+            url = "http://${hostname}:5030";
+          }
+        ];
+      }
     ];
   };
 in {
@@ -59,8 +74,8 @@ in {
   #};
 
   systemd.tmpfiles.rules = [
-    "d /var/lib/code-server 0770 root root -"
-    "d /var/lib/movie-db 0770 root root -"
+    "d /var/lib/code-server 0750 root root -"
+    "d /var/lib/slskd 0750 root root -"
   ];
 
   users.groups."media" = {}; # create media group
@@ -79,6 +94,15 @@ in {
     ];
   };
 
+  #security.acme = {
+  #  acceptTerms = true;
+  #  defaults.email = "xunuwu@gmail.com";
+  #  certs."air.xun.cam" = {
+  #    dnsProvider = "cloudflare";
+  #    credentialsFile = config.sops.secrets.cloudflare.path;
+  #  };
+  #};
+
   #systemd.services."${config.virtualisation.oci-containers.backend}-jellyfin".serviceConfig = {
   #  StateDirectory = [
   #    "${config.virtualisation.oci-containers.backend}/jellyfin/config"
@@ -87,11 +111,11 @@ in {
   #  ];
   #};
 
-  services.jellyfin = {
-    enable = true;
-    openFirewall = true;
-    group = "media";
-  };
+  #services.jellyfin = {
+  #  enable = true;
+  #  openFirewall = true;
+  #  group = "media";
+  #};
 
   #services.radarr = {
   #  enable = true;
@@ -113,6 +137,7 @@ in {
   virtualisation.podman = {
     enable = true;
     autoPrune.enable = true;
+    dockerSocket.enable = true;
   };
 
   virtualisation.oci-containers = {
@@ -120,7 +145,7 @@ in {
 
     containers = {
       gluetun = {
-        image = "qmcgaw/gluetun:latest";
+        image = "qmcgaw/gluetun:v3";
 
         volumes = [
           "${config.sops.secrets.wireguard.path}:/gluetun/wireguard/wg0.conf"
@@ -135,14 +160,17 @@ in {
           "9696:9696" # prowlarr
           "8989:8989" # sonarr
           "7878:7878" # radarr
-          "8443:8443" # code-server
+          #"8443:8443" # code-server
+          "5030:5030" # slskd
+          "5031:5031" # slskd https
+          "8096:8096" # jellyfin
         ];
 
         environment = {
           VPN_SERVICE_PROVIDER = "airvpn";
           VPN_TYPE = "wireguard";
           SERVER_COUNTRIES = "Netherlands";
-          FIREWALL_VPN_INPUT_PORTS = "11936,8443";
+          FIREWALL_VPN_INPUT_PORTS = "11936,8096,14795";
         };
 
         extraOptions = [
@@ -150,6 +178,290 @@ in {
           "--device=/dev/net/tun:/dev/net/tun"
         ];
       };
+
+      slskd = {
+        image = "slskd/slskd";
+        volumes = [
+          "/var/lib/slskd:/app"
+          "/media/slskd/downloads:/downloads"
+          "/media/slskd/incomplete:/incomplete"
+          "/media/library/music:/shares/music"
+          "${config.sops.secrets.slskd.path}:/app/slskd.yml"
+        ];
+        dependsOn = ["gluetun"];
+        extraOptions = [
+          "--network=container:gluetun"
+        ];
+      };
+
+      beets = {
+        image = "lscr.io/linuxserver/beets:latest";
+        volumes = [
+          "/media/config/beets:/config"
+          "/media/library/music:/music"
+          "/media/slskd/downloads:/downloads"
+        ];
+      };
+
+      jellyfin = {
+        image = "jellyfin/jellyfin";
+        volumes = [
+          "/media/config/jellyfin/config:/config"
+          "/media/config/jellyfin/cache:/cache"
+          "/media/library:/library"
+        ];
+        dependsOn = ["gluetun"];
+        extraOptions = [
+          "--network=container:gluetun"
+        ];
+      };
+
+      #betanin = {
+      #  image = "sentriz/betanin";
+      #  ports = [
+      #    "9393:9393"
+      #  ];
+      #  volumes = [
+      #    "/media/config/betanin/data:/b/.local/share/betanin"
+      #    "/media/config/betanin/config:/b/.config/betanin"
+      #    "/media/config/betanin/beets:/b/.config/beets/"
+      #    "${pkgs.writeText "config.yaml" ''
+      #      # --------------- Main ---------------
+      #
+      #      library: library.db
+      #      directory: /music
+      #      statefile: state.pickle
+      #
+      #      # --------------- Plugins ---------------
+      #
+      #      plugins: []
+      #      pluginpath: []
+      #
+      #      # --------------- Import ---------------
+      #
+      #      clutter: ["Thumbs.DB", ".DS_Store"]
+      #      ignore: [".*", "*~", "System Volume Information", "lost+found"]
+      #      ignore_hidden: yes
+      #
+      #      import:
+      #          # common options
+      #          write: yes
+      #          copy: yes
+      #          move: no
+      #          timid: no
+      #          quiet: no
+      #          log:
+      #          # other options
+      #          default_action: apply
+      #          languages: []
+      #          quiet_fallback: skip
+      #          none_rec_action: ask
+      #          # rare options
+      #          link: no
+      #          hardlink: no
+      #          reflink: no
+      #          delete: no
+      #          resume: ask
+      #          incremental: no
+      #          incremental_skip_later: no
+      #          from_scratch: no
+      #          autotag: yes
+      #          singletons: no
+      #          detail: no
+      #          flat: no
+      #          group_albums: no
+      #          pretend: false
+      #          search_ids: []
+      #          duplicate_keys:
+      #              album: albumartist album
+      #              item: artist title
+      #          duplicate_action: ask
+      #          duplicate_verbose_prompt: no
+      #          bell: no
+      #          set_fields: {}
+      #          ignored_alias_types: []
+      #          singleton_album_disambig: yes
+      #
+      #      # --------------- Paths ---------------
+      #
+      #      path_sep_replace: _
+      #      drive_sep_replace: _
+      #      asciify_paths: false
+      #      art_filename: cover
+      #      max_filename_length: 0
+      #      replace:
+      #          # Replace bad characters with _
+      #          # prohibited in many filesystem paths
+      #          '[<>:\?\*\|]': _
+      #          # double quotation mark "
+      #          '\"': _
+      #          # path separators: \ or /
+      #          '[\\/]': _
+      #          # starting and closing periods
+      #          '^\.': _
+      #          '\.$': _
+      #          # control characters
+      #          '[\x00-\x1f]': _
+      #          # dash at the start of a filename (causes command line ambiguity)
+      #          '^-': _
+      #          # Replace bad characters with nothing
+      #          # starting and closing whitespace
+      #          '\s+$': ''\'''\'
+      #          '^\s+': ''\'''\'
+      #
+      #      aunique:
+      #          keys: albumartist album
+      #          disambiguators: albumtype year label catalognum albumdisambig releasegroupdisambig
+      #          bracket: '[]'
+      #
+      #      sunique:
+      #          keys: artist title
+      #          disambiguators: year trackdisambig
+      #          bracket: '[]'
+      #
+      #      # --------------- Tagging ---------------
+      #
+      #      per_disc_numbering: no
+      #      original_date: no
+      #      artist_credit: no
+      #      id3v23: no
+      #      va_name: "Various Artists"
+      #      paths:
+      #          default: $albumartist/$album%aunique{}/$track $title
+      #          singleton: Non-Album/$artist/$title
+      #          comp: Compilations/$album%aunique{}/$track $title
+      #
+      #      # --------------- Performance ---------------
+      #
+      #      threaded: yes
+      #      timeout: 5.0
+      #
+      #      # --------------- UI ---------------
+      #
+      #      verbose: 0
+      #      terminal_encoding:
+      #
+      #      ui:
+      #          terminal_width: 80
+      #          length_diff_thresh: 10.0
+      #          color: yes
+      #          colors:
+      #              text_success: ['bold', 'green']
+      #              text_warning: ['bold', 'yellow']
+      #              text_error: ['bold', 'red']
+      #              text_highlight: ['bold', 'red']
+      #              text_highlight_minor: ['white']
+      #              action_default: ['bold', 'cyan']
+      #              action: ['bold', 'cyan']
+      #              # New Colors
+      #              text: ['normal']
+      #              text_faint: ['faint']
+      #              import_path: ['bold', 'blue']
+      #              import_path_items: ['bold', 'blue']
+      #              added:   ['green']
+      #              removed: ['red']
+      #              changed: ['yellow']
+      #              added_highlight:   ['bold', 'green']
+      #              removed_highlight: ['bold', 'red']
+      #              changed_highlight: ['bold', 'yellow']
+      #              text_diff_added:   ['bold', 'red']
+      #              text_diff_removed: ['bold', 'red']
+      #              text_diff_changed: ['bold', 'red']
+      #              action_description: ['white']
+      #          import:
+      #              indentation:
+      #                  match_header: 2
+      #                  match_details: 2
+      #                  match_tracklist: 5
+      #              layout: column
+      #
+      #      # --------------- Search ---------------
+      #
+      #      format_item: $artist - $album - $title
+      #      format_album: $albumartist - $album
+      #      time_format: '%Y-%m-%d %H:%M:%S'
+      #      format_raw_length: no
+      #
+      #      sort_album: albumartist+ album+
+      #      sort_item: artist+ album+ disc+ track+
+      #      sort_case_insensitive: yes
+      #
+      #      # --------------- Autotagger ---------------
+      #
+      #      overwrite_null:
+      #        album: []
+      #        track: []
+      #      musicbrainz:
+      #          enabled: yes
+      #          host: musicbrainz.org
+      #          https: no
+      #          ratelimit: 1
+      #          ratelimit_interval: 1.0
+      #          searchlimit: 5
+      #          extra_tags: []
+      #          genres: no
+      #          external_ids:
+      #              discogs: no
+      #              bandcamp: no
+      #              spotify: no
+      #              deezer: no
+      #              beatport: no
+      #              tidal: no
+      #
+      #      match:
+      #          strong_rec_thresh: 0.04
+      #          medium_rec_thresh: 0.25
+      #          rec_gap_thresh: 0.25
+      #          max_rec:
+      #              missing_tracks: medium
+      #              unmatched_tracks: medium
+      #          distance_weights:
+      #              source: 2.0
+      #              artist: 3.0
+      #              album: 3.0
+      #              media: 1.0
+      #              mediums: 1.0
+      #              year: 1.0
+      #              country: 0.5
+      #              label: 0.5
+      #              catalognum: 0.5
+      #              albumdisambig: 0.5
+      #              album_id: 5.0
+      #              tracks: 2.0
+      #              missing_tracks: 0.9
+      #              unmatched_tracks: 0.6
+      #              track_title: 3.0
+      #              track_artist: 2.0
+      #              track_index: 1.0
+      #              track_length: 2.0
+      #              track_id: 5.0
+      #          preferred:
+      #              countries: []
+      #              media: []
+      #              original_year: no
+      #          ignored: []
+      #          required: []
+      #          ignored_media: []
+      #          ignore_data_tracks: yes
+      #          ignore_video_tracks: yes
+      #          track_length_grace: 10
+      #          track_length_max: 30
+      #          album_disambig_fields: data_source media year country label catalognum albumdisambig
+      #          singleton_disambig_fields: data_source index track_alt album
+      #    ''}:/b/.config/beets/config.yaml"
+      #    "/media/music:/music"
+      #    "/media/slskd/downloads:/downloads"
+      #  ];
+      #};
+
+      #beets = {
+      #  image = "lscr.io/linuxserver/beets:latest";
+      #  volumes = [
+      #    "/media/config/beets:/config"
+      #    "/media/music:/music"
+      #    "/media/slskd/downloads:/downloads"
+      #  ];
+      #};
 
       code-server = {
         image = "lscr.io/linuxserver/code-server:latest";
@@ -159,23 +471,25 @@ in {
         environmentFiles = [
           config.sops.secrets.code-server.path
         ];
+        dependsOn = ["gluetun"];
         extraOptions = [
+          #"--group-add ${config.security.acme.defaults.group}"
           "--network=container:gluetun"
         ];
       };
 
-      jellyseerr = {
-        image = "fallenbagel/jellyseerr:latest";
-        ports = [
-          "5055:5055"
-        ];
-        volumes = [
-          "/media/config/jellyseerr:/app/config"
-        ];
-        extraOptions = [
-          "--network=host"
-        ];
-      };
+      #jellyseerr = {
+      #  image = "fallenbagel/jellyseerr:latest";
+      #  ports = [
+      #    "5055:5055"
+      #  ];
+      #  volumes = [
+      #    "/media/config/jellyseerr:/app/config"
+      #  ];
+      #  extraOptions = [
+      #    "--network=host"
+      #  ];
+      #};
 
       recyclarr = {
         image = "ghcr.io/recyclarr/recyclarr";
@@ -358,7 +672,7 @@ in {
         image = "lscr.io/linuxserver/sonarr:latest";
         volumes = [
           "/media/config/sonarr:/config"
-          "/media/tvseries:/tv"
+          "/media/library/tvseries:/tv"
           "/media/downloads:/downloads"
         ];
         environment = {
@@ -375,7 +689,7 @@ in {
         image = "lscr.io/linuxserver/radarr:latest";
         volumes = [
           "/media/config/radarr:/config"
-          "/media/movies:/movies"
+          "/media/library/movies:/movies"
           "/media/downloads:/downloads"
         ];
         environment = {
@@ -416,19 +730,6 @@ in {
         dependsOn = ["gluetun"];
         extraOptions = [
           "--network=container:gluetun"
-        ];
-      };
-
-      dashy = {
-        image = "lissy93/dashy";
-        ports = [
-          "8080:80"
-        ];
-        volumes = [
-          "${(pkgs.formats.yaml {}).generate "conf.yml" dashyConfig}:/app/public/conf.yml"
-        ];
-        extraOptions = [
-          "--network=host"
         ];
       };
     };
