@@ -6,5 +6,6 @@
     ripgrep
     nethogs
     ffmpeg
+    parted
   ];
 }
