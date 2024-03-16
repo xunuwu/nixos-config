@@ -29,9 +29,6 @@
       zstyle ':completion:*'  matcher-list 'm:{a-z}={A-Z}' # Case insensitive completion
 
 
-      bindkey '^[[Z' reverse-menu-complete # shift-tab in completion menu
-
-
       ## MISC ##
       # Show completion categories
       zstyle ':completion:*:*:*:*:descriptions' format '%F{magenta}<-%d->%f'
