@@ -87,6 +87,19 @@ in {
         }
       ];
     };
+    liveiso = {
+      deployment.targetHost = null;
+      imports = [
+        ./liveiso
+
+        "${mod}/nix"
+        "${mod}/core/security.nix"
+
+        "${mod}/services"
+
+        "${mod}/desktop"
+      ];
+    };
   };
   flake.nixosConfigurations = let
     l = inputs.nixpkgs.lib;
