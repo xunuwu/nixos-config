@@ -1,8 +1,4 @@
-{
-  pkgs,
-  config,
-  ...
-}: {
+{pkgs, ...}: {
   # authentication needs to be done manually once
   # TODO automatic authentication thing
   home.packages = with pkgs; [yams];

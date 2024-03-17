@@ -103,7 +103,7 @@ in {
   };
   flake.nixosConfigurations = let
     l = inputs.nixpkgs.lib;
-  in (builtins.mapAttrs (n: v:
+  in (builtins.mapAttrs (_n: v:
     l.nixosSystem {
       inherit specialArgs;
       modules = v.imports;

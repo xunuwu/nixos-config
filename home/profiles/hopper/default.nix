@@ -1,4 +1,4 @@
-{lib, ...}: {
+{...}: {
   imports = [
     ../../editors/nvim.nix
     ../../terminal/shell/zsh.nix

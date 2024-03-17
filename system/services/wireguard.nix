@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{...}: {
   #networking.wg-quick.interfaces."wg0".configFile = config.sops.secrets.wireguard.path;
 
   # Sets tailscale to a high priority, to make sure tailscale

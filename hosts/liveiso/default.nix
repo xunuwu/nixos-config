@@ -1,9 +1,4 @@
-{
-  inputs,
-  modulesPath,
-  lib,
-  ...
-}: {
+{...}: {
   imports = [
     ./tools.nix
     ./sway.nix

@@ -1,8 +1,4 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
+{pkgs, ...}: {
   environment.systemPackages = [pkgs.steam-run];
 
   programs.nix-ld.enable = true;

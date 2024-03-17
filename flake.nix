@@ -9,11 +9,7 @@
       ];
       flake = {
       };
-      perSystem = {
-        config,
-        pkgs,
-        ...
-      }: rec {
+      perSystem = {pkgs, ...}: rec {
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
             alejandra

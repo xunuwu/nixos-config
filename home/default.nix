@@ -1,9 +1,4 @@
 {
-  lib,
-  self,
-  inputs,
-  ...
-}: {
   imports = [
   ];
 

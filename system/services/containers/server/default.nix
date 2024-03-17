@@ -1,69 +1,8 @@
 {
-  lib,
   config,
   pkgs,
   ...
-}: let
-  hostname = config.networking.hostName;
-  dashyConfig = {
-    pageInfo = {
-      #title = "Home Lab";
-    };
-    sections = [
-      {
-        name = "*arr";
-        icon = "hl-servarr";
-        items = [
-          {
-            title = "Sonarr";
-            icon = "hl-sonarr";
-            url = "http://${hostname}:8989";
-          }
-          {
-            title = "Radarr";
-            icon = "hl-radarr";
-            url = "http://${hostname}:7878";
-          }
-          {
-            title = "Prowlarr";
-            icon = "hl-prowlarr";
-            url = "http://${hostname}:9696";
-          }
-        ];
-      }
-      {
-        name = "Management";
-        items = [
-          {
-            title = "Jellyseerr";
-            icon = "hl-jellyseerr";
-            url = "http://${hostname}:5055";
-          }
-          {
-            title = "Transmission";
-            icon = "hl-transmission";
-            url = "http://${hostname}:9091";
-          }
-        ];
-      }
-      {
-        name = "Music";
-        items = [
-          {
-            title = "Betanin";
-            icon = "hl-betanin";
-            url = "http://${hostname}:9393";
-          }
-          {
-            title = "Slskd";
-            icon = "hl-soulseek";
-            url = "http://${hostname}:5030";
-          }
-        ];
-      }
-    ];
-  };
-in {
+}: {
   imports = [
     #./statistics
   ];

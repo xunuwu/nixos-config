@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{...}: {
   boot = {
     initrd = {
       availableKernelModules = [
