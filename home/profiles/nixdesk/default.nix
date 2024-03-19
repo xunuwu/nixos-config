@@ -24,7 +24,6 @@
     ../../programs/media/jellyfin.nix
     # gaming
     ../../programs/games
-    ../../programs/games/steam.nix
 
     # media services
     ../../services/media/playerctl.nix

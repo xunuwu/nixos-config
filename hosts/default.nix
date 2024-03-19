@@ -36,6 +36,9 @@ in {
           "${mod}/services/syncthing.nix"
           "${mod}/desktop/x11/nosleep.nix"
 
+          "${mod}/programs/gamemode.nix"
+          "${mod}/programs/steam.nix"
+
           {
             home-manager = {
               users.xun.imports = homeImports."xun@nixdesk";
@@ -57,6 +60,7 @@ in {
         "${mod}/core"
 
         "${mod}/programs/home-manager.nix"
+        "${mod}/programs/steam.nix"
 
         "${mod}/desktop"
         "${mod}/desktop/awesome.nix"

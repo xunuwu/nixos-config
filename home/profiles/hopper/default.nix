@@ -7,7 +7,6 @@
     ../../programs/browsers/firefox.nix
 
     ../../programs/desktop/awesome
-    ../../programs/games/steam.nix
 
     ../../programs/media
     ../../programs/media/jellyfin.nix
