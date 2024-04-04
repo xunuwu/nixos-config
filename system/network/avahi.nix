@@ -8,5 +8,6 @@
       domain = true;
       userServices = true;
     };
+    openFirewall = true;
   };
 }

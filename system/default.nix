@@ -2,9 +2,12 @@ let
   desktop = [
     ./core
     ./core/boot.nix
+    ./core/gvfs.nix
 
     ./hardware/opengl.nix
+    ./hardware/steam-hardware.nix
     ./hardware/bluetooth.nix
+    ./hardware/qmk.nix
 
     ./network/networkd.nix
     ./network/avahi.nix
@@ -12,6 +15,8 @@ let
 
     ./desktop
     ./desktop/awesome.nix
+    ./desktop/sway.nix
+    ./desktop/hyprland.nix
 
     ./programs
 

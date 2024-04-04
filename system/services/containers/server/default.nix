@@ -6,6 +6,34 @@
   imports = [
     #./statistics
   ];
+
+  services.samba = {
+    enable = true;
+    package = pkgs.samba4Full;
+    openFirewall = true;
+    shares."torrent-downloads" = {
+      path = "/media/downloads/complete";
+      browseable = "yes";
+      "read only" = "yes";
+      "guest ok" = "no";
+    };
+    #shares."decky-cloud-save" = {
+    #  path = "/media/gamesaves";
+    #  browseable = "yes";
+    #  "read only" = "no";
+    #  "guest ok" = "no";
+    #};
+    extraConfig = ''
+      server smb encrypt = required
+      server min protocol = SMB3_00
+    '';
+  };
+  services.samba-wsdd = {
+    # This enables autodiscovery on windows since SMB1 (and thus netbios) support was discontinued
+    enable = true;
+    openFirewall = true;
+  };
+
   #virtualisation.docker = {
   #  enable = true;
   #  enableOnBoot = true;

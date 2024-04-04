@@ -14,12 +14,16 @@
         sponsorblock
         tridactyl
         translate-web-pages
+        cookie-quick-manager
+        istilldontcareaboutcookies
         (lib.mkIf (builtins.elem pkgs.keepassxc config.home.packages) keepassxc-browser)
       ];
       bookmarks = {};
       settings = {
+        "browser.tabs.inTitleBar" = "0"; # use system title bar (if you have one :))
         "browser.newtabpage.enabled" = false;
         "browser.newtab.url" = "about:blank";
+        "general.autoScroll" = "true"; # mmb scroll mode
 
         "browser.newtabpage.enhanced" = false;
         "browser.newtabpage.introShown" = true;

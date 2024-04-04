@@ -43,7 +43,6 @@ in
 
     preFixup = ''
       qtWrapperArgs+=("''${gappsWrapperArgs[@]}")
-      # You can manually patch scripts using: wrapQtApp "$out/bin/myapp". TODO: check when it's required.
     '';
 
     meta = with lib; {

@@ -6,6 +6,7 @@
 
     ../../programs/browsers/firefox.nix
 
+    ../../programs/desktop
     ../../programs/desktop/awesome
 
     ../../programs/media

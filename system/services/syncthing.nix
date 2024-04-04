@@ -1,4 +1,4 @@
-{
+{config, ...}: {
   services.syncthing = {
     enable = true;
     openDefaultPorts = true;
@@ -11,11 +11,11 @@
     settings = {
       devices = {
         "nixdesk" = {
-          id = "2WCEQPF-2J4U7IK-XRT25FV-NFT2JEM-AVOMDEK-FIJNZ24-7WCBZC2-57CX2AP";
+          id = "DZEIXRH-WBIEUUW-FFP2SLJ-BTIUPBE-YURLPN7-MUFOR6L-HS27D6G-I25XHQ3";
           autoAcceptFolders = true;
         };
         "redmi-note-10-pro" = {
-          id = "U6YYTHR-2ZXIEXQ-RNDERSF-CTVSP67-W24VK4Y-5EQRIV5-T7JJW2N-33L7XQV";
+          id = "MRAHIKH-TNHAKEG-OHMEFXI-BO54SXR-6IL2Y3B-3HVOWZF-ZGTS2OX-YSWTPQF";
           autoAcceptFolders = true;
         };
         "hopper" = {
@@ -25,12 +25,12 @@
       };
       folders = {
         "~/secrets" = {
-          devices = [
-            "nixdesk"
-            "redmi-note-10-pro"
-            "hopper"
-          ];
+          devices = builtins.attrNames config.services.syncthing.settings.devices;
           id = "sfw9y-yusup";
+        };
+        "~/docs/xun-megavault" = {
+          devices = builtins.attrNames config.services.syncthing.settings.devices;
+          id = "1zkf-wf5r";
         };
       };
     };

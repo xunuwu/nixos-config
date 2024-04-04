@@ -1,4 +1,9 @@
 {pkgs, ...}: {
+  services.picom = {
+    enable = true;
+    vSync = true;
+  };
+
   xsession.windowManager.awesome = {
     enable = true;
     noArgb = true;

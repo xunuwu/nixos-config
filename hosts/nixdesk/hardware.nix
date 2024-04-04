@@ -29,11 +29,22 @@
 
   fileSystems = {
     "/" = {
-      device = "/dev/disk/by-uuid/0c080ce8-26f0-454b-a100-1ca9d5308931";
-      fsType = "ext4";
+      device = "/dev/disk/by-uuid/d87276c0-ef9c-422e-b2de-effc1b47c654";
+      fsType = "btrfs";
+      options = ["subvol=root" "compress=zstd"];
+    };
+    "/home" = {
+      device = "/dev/disk/by-uuid/d87276c0-ef9c-422e-b2de-effc1b47c654";
+      fsType = "btrfs";
+      options = ["subvol=home" "compress=zstd"];
+    };
+    "/nix" = {
+      device = "/dev/disk/by-uuid/d87276c0-ef9c-422e-b2de-effc1b47c654";
+      fsType = "btrfs";
+      options = ["subvol=nix" "compress=zstd" "noatime"];
     };
     "/boot" = {
-      device = "/dev/disk/by-uuid/D23A-89BF";
+      device = "/dev/disk/by-uuid/588B-CB97";
       fsType = "vfat";
     };
   };

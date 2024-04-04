@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  environment.systemPackages = [pkgs.steam-run];
+  #environment.systemPackages = [pkgs.steam-run];
 
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
@@ -55,6 +55,4 @@
     xorg.libxshmfence
     zlib
   ];
-  # symlinks binaries to /bin, fixes hard coded shebangs
-  services.envfs.enable = true;
 }

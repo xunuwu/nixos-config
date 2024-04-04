@@ -1,7 +1,11 @@
-{...}: {
+{pkgs, ...}: {
   imports = [
     ./tools.nix
     ./sway.nix
+  ];
+
+  environment.systemPackages = with pkgs; [
+    firefox
   ];
 
   isoImage.edition = "sway-custom";

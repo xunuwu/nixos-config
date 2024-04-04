@@ -5,7 +5,10 @@
     shell = pkgs.zsh;
     extraGroups = [
       "wheel"
+      "input"
       "video"
+      "render"
+      "audio"
     ];
   };
 }

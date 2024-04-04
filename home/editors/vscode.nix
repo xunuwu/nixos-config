@@ -14,13 +14,13 @@ in {
     package = pkgs.vscodium;
 
     mutableExtensionsDir = true;
-    extensions = [
-      ovsx.vadimcn.vscode-lldb
-      ovsx.mkhl.direnv
-      ovsx.editorconfig.editorconfig
-      ovsx.pkief.material-icon-theme
-      ovsx.eamodio.gitlens
-      vsce.hediet.debug-visualizer
+    extensions = with vsce; [
+      vadimcn.vscode-lldb
+      mkhl.direnv
+      editorconfig.editorconfig
+      pkief.material-icon-theme
+      eamodio.gitlens
+      hediet.debug-visualizer
     ];
   };
 }
