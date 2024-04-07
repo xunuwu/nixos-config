@@ -2,11 +2,13 @@
   imports = [
     ./kanshi.nix
     ../../terminal
+    ../../terminal/programs/zellij.nix
     ../../editors/nvim.nix
     ../../editors/emacs.nix
     ../../editors/vscode.nix
     ../../programs/browsers/firefox.nix
     ../../terminal/emulator/wezterm.nix
+    ../../terminal/emulator/foot.nix
 
     # desktop
     ../../programs/desktop

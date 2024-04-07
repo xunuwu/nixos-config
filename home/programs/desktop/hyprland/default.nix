@@ -5,6 +5,86 @@
   config,
   ...
 }: {
+  home.packages = with pkgs; [
+    wl-clipboard
+  ];
+
+  services.cliphist = {
+    enable = true;
+    systemdTarget = "hyprland-session.target";
+  };
+  #systemd.user.services.cliphist = {
+  #  Unit = {
+  #    Description = "Wayland clipboard manager";
+  #    PartOf = ["hyprland-session.target"];
+  #    After = ["hyprland-session.target"];
+  #  };
+
+  #  Service = {
+  #    ExecStartPre = "${pkgs.wl-clipboard}/wl-paste --type text --watch ${lib.getExe pkgs.cliphist} store #Stores only text data";
+  #    ExecStart = "${pkgs.wl-clipboard}/wl-paste --type image --watch ${lib.getExe pkgs.cliphist} store #Stores only image data";
+  #    ExecReload = "${pkgs.coreutils}/bin/kill -SIGUSR2 $MAINPID";
+  #    Restart = "on-failure";
+  #  };
+
+  #  Install = {
+  #    WantedBy = ["hyprland-session.target"];
+  #  };
+  #};
+
+  programs.waybar = {
+    enable = true;
+    settings = [
+      {
+        "height" = 30;
+        "spacing" = 4;
+        "modules-left" = [
+          "hyprland/workspaces"
+          #"hyprland/mode"
+          #"hyprland/scratchpad"
+        ];
+        "modules-center" = [
+          "hyprland/window"
+        ];
+        "modules-right" = [
+          "pulseaudio"
+          "clock"
+          "tray"
+        ];
+
+        "tray" = {
+          "spacing" = 10;
+        };
+        "clock" = {
+          "tooltim-format" = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+          "format-alt" = "{:%Y-%m-%d}";
+        };
+        "pulseaudio" = {
+          "format" = "{volume}% {icon} {format_source}";
+          "format-bluetooth" = "{volume}% {icon} {format_source}";
+          "format-bluetooth-muted" = " {icon} {format_source}";
+          "format-muted" = " {format_source}";
+          "format-source" = "{volume}% ";
+          "format-source-muted" = "";
+          "format-icons" = {
+            "headphone" = "";
+            "hands-free" = "";
+            "headset" = "";
+            "phone" = "";
+            "portable" = "";
+            "car" = "";
+            "default" = ["" "" ""];
+          };
+          "on-click" = "${lib.getExe pkgs.pavucontrol}";
+        };
+      }
+    ];
+    systemd = {
+      enable = true;
+      target = "hyprland-session.target";
+    };
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
@@ -37,6 +117,7 @@
         "$mainMod, M, fullscreen, 1"
         "$mainMod SHIFT, F, fakefullscreen"
         "$mainMod, P, exec, ${pkgs.bemenu}/bin/bemenu-run"
+        "$mainMod, V, exec, ${lib.getExe pkgs.cliphist} list | ${lib.getExe pkgs.wofi} --dmenu | ${lib.getExe pkgs.cliphist} decode | ${pkgs.wl-clipboard}/bin/wl-copy"
 
         "$mainMod SHIFT, E, exec, ${lib.getExe pkgs.wlogout}"
         # focus with vim keys

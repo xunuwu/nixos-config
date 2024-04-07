@@ -10,12 +10,12 @@
   gtk = {
     enable = true;
     theme = {
-      package = pkgs.flat-remix-gtk;
-      name = "Flat-Remix-GTK-Grey-Darkest";
+      package = pkgs.gnome.gnome-themes-extra;
+      name = "Adwaita-dark";
     };
     iconTheme = {
       package = pkgs.gnome.adwaita-icon-theme;
-      name = "Adwaita";
+      name = "Adwaita-dark";
     };
     font = {
       name = "Sans";
@@ -27,7 +27,7 @@
     enable = true;
     platformTheme = "gtk3";
     style = {
-      name = "adwaita-dark";
+      name = "Adwaita-dark";
       package = pkgs.adwaita-qt;
     };
   };
