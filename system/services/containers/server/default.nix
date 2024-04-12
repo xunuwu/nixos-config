@@ -7,32 +7,33 @@
     #./statistics
   ];
 
-  services.samba = {
-    enable = true;
-    package = pkgs.samba4Full;
-    openFirewall = true;
-    shares."torrent-downloads" = {
-      path = "/media/downloads/complete";
-      browseable = "yes";
-      "read only" = "yes";
-      "guest ok" = "no";
-    };
-    #shares."decky-cloud-save" = {
-    #  path = "/media/gamesaves";
-    #  browseable = "yes";
-    #  "read only" = "no";
-    #  "guest ok" = "no";
-    #};
-    extraConfig = ''
-      server smb encrypt = required
-      server min protocol = SMB3_00
-    '';
-  };
-  services.samba-wsdd = {
-    # This enables autodiscovery on windows since SMB1 (and thus netbios) support was discontinued
-    enable = true;
-    openFirewall = true;
-  };
+  ### temp disabled
+  ###services.samba = {
+  ###  enable = true;
+  ###  package = pkgs.samba4Full;
+  ###  openFirewall = true;
+  ###  shares."torrent-downloads" = {
+  ###    path = "/media/downloads/complete";
+  ###    browseable = "yes";
+  ###    "read only" = "yes";
+  ###    "guest ok" = "no";
+  ###  };
+  ###  #shares."decky-cloud-save" = {
+  ###  #  path = "/media/gamesaves";
+  ###  #  browseable = "yes";
+  ###  #  "read only" = "no";
+  ###  #  "guest ok" = "no";
+  ###  #};
+  ###  extraConfig = ''
+  ###    server smb encrypt = required
+  ###    server min protocol = SMB3_00
+  ###  '';
+  ###};
+  ###services.samba-wsdd = {
+  ###  # This enables autodiscovery on windows since SMB1 (and thus netbios) support was discontinued
+  ###  enable = true;
+  ###  openFirewall = true;
+  ###};
 
   #virtualisation.docker = {
   #  enable = true;
@@ -131,6 +132,7 @@
           "5030:5030" # slskd
           "5031:5031" # slskd https
           "8096:8096" # jellyfin
+          "8080:8080" # qbittorrent webui
         ];
 
         environment = {

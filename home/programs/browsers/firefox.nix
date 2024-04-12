@@ -16,6 +16,7 @@
         translate-web-pages
         cookie-quick-manager
         istilldontcareaboutcookies
+        tree-style-tab
         (lib.mkIf (builtins.elem pkgs.keepassxc config.home.packages) keepassxc-browser)
       ];
       bookmarks = {};

@@ -12,6 +12,7 @@
 
     # desktop
     ../../programs/desktop
+    ../../programs/desktop/theme.nix
     ../../programs/desktop/awesome
     ../../programs/desktop/hyprland
 

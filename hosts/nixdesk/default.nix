@@ -22,5 +22,7 @@
     }
   ];
 
+  networking.interfaces.eno1.wakeOnLan.enable = true;
+
   system.stateVersion = "23.11";
 }

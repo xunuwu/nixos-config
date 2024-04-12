@@ -33,5 +33,15 @@
       format = "binary";
       sopsFile = ./cloudflare;
     };
+    jackett = {
+      format = "binary";
+      sopsFile = ./jackett;
+      restartUnits = ["podman-qbittorrent.service"];
+    };
+    betanin = {
+      format = "binary";
+      sopsFile = ./betanin;
+      restartUnits = ["podman-betanin.service"];
+    };
   };
 }

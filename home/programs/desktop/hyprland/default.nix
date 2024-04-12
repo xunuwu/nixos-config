@@ -31,12 +31,126 @@
   #    WantedBy = ["hyprland-session.target"];
   #  };
   #};
+  programs.fuzzel = {
+    enable = true;
+    settings = {
+      main = {
+        terminal = "${lib.getExe pkgs.foot}";
+        layer = "overlay";
+      };
+      colors = {
+        background = "#181818ff";
+        text = "#a4c6d9ff";
+        match = "#ae61b5ff";
+        border = "#feafffff";
+        selection = "#242424ff";
+        selection-text = "#ffffffff";
+        selection-match = "#fac1ffff";
+      };
+    };
+  };
 
   programs.waybar = {
     enable = true;
+    style = ''
+      * {
+        font-family: monospace;
+        font-size: 13px;
+      }
+
+      window#waybar {
+          background-color: #181818;
+          color: #ffffff;
+          transition-property: background-color;
+          transition-duration: .5s;
+      }
+
+      window#waybar.hidden {
+          opacity: 0.2;
+      }
+
+      button {
+          /* Avoid rounded borders under each button name */
+          border: none;
+          border-radius: 0;
+      }
+
+      /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+      button:hover {
+          background: inherit;
+      }
+
+      #workspaces button {
+          padding: 0 5px;
+          background-color: transparent;
+          color: #ffffff;
+      }
+
+      #workspaces button:hover {
+          background: rgba(255, 255, 255, 0.1);
+      }
+
+      #workspaces button.focused {
+          background-color: #64727D;
+      }
+
+      #workspaces button.urgent {
+          background-color: #eb4d4b;
+      }
+
+      #workspaces button.visible {
+        color: #fd4dff;
+        background-color: #202020;
+      }
+
+      #clock,
+      #network,
+      #pulseaudio,
+      #wireplumber,
+      #tray {
+          padding: 0 10px;
+          color: #ffffff;
+      }
+
+      #window,
+      #workspaces {
+          margin: 0 4px;
+      }
+      /* If workspaces is the leftmost module, omit left margin */
+      .modules-left > widget:first-child > #workspaces {
+          margin-left: 0;
+      }
+
+      /* If workspaces is the rightmost module, omit right margin */
+      .modules-right > widget:last-child > #workspaces {
+          margin-right: 0;
+      }
+      @keyframes blink {
+          to {
+              background-color: #ffffff;
+              color: #000000;
+          }
+      }
+      label:focus {
+          background-color: #000000;
+      }
+      #tray {
+          background-color: #242424;
+      }
+
+      #tray > .passive {
+          -gtk-icon-effect: dim;
+      }
+
+      #tray > .needs-attention {
+          -gtk-icon-effect: highlight;
+          background-color: #eb4d4b;
+      }
+
+    '';
     settings = [
       {
-        "height" = 30;
+        "height" = 24;
         "spacing" = 4;
         "modules-left" = [
           "hyprland/workspaces"
@@ -52,6 +166,19 @@
           "tray"
         ];
 
+        "hyprland/workspaces" = {
+          "format" = "[{icon} {windows}]";
+          "format-window-separator" = ",";
+          "window-rewrite-default" = "@";
+          "window-rewrite" = {
+            "title<.*youtube.*>" = "y";
+            "title<.*discord.*>" = "d";
+            "class<Sonixd>" = "m";
+            "class<firefox>" = "f";
+            "foot" = "t";
+          };
+        };
+
         "tray" = {
           "spacing" = 10;
         };
@@ -60,11 +187,8 @@
           "format-alt" = "{:%Y-%m-%d}";
         };
         "pulseaudio" = {
-          "format" = "{volume}% {icon} {format_source}";
-          "format-bluetooth" = "{volume}% {icon} {format_source}";
-          "format-bluetooth-muted" = " {icon} {format_source}";
-          "format-muted" = " {format_source}";
-          "format-source" = "{volume}% ";
+          "format" = "{volume}%";
+          "format-source" = "{volume}%";
           "format-source-muted" = "";
           "format-icons" = {
             "headphone" = "";
@@ -76,6 +200,7 @@
             "default" = ["" "" ""];
           };
           "on-click" = "${lib.getExe pkgs.pavucontrol}";
+          "on-click-middle" = "${lib.getExe pkgs.helvum}";
         };
       }
     ];
@@ -89,13 +214,9 @@
     enable = true;
     settings = {
       exec-once = [
-        "${lib.getExe pkgs.waybar}"
-        "${lib.getExe pkgs.xwaylandvideobridge}"
+        #"${lib.getExe pkgs.xwaylandvideobridge}"
         "${lib.getExe pkgs.swaybg} -i ${config.xdg.userDirs.pictures}/wallpaper.png"
       ];
-      input = {
-        kb_layout = "eu";
-      };
       env = [
         "NIXOS_OZONE_WL,1" # for any ozone-based browser & electron apps to run on wayland
         "MOZ_ENABLE_WAYLAND,1" # for firefox to run on wayland
@@ -108,18 +229,60 @@
         "GDK_BACKEND,wayland"
       ];
 
+      input = {
+        kb_layout = "eu";
+      };
+
+      general = {
+        gaps_out = 3;
+        gaps_in = 3;
+        "col.active_border" = "rgb(feafff) rgb(fd56ff)";
+      };
+
+      dwindle = {
+        preserve_split = true;
+      };
+
+      workspace = [
+        "3,monitor:DP-3"
+        "2,monitor:DP-3"
+        "3,monitor:DP-3"
+        "4,monitor:DP-3"
+        "5,monitor:DP-3"
+
+        "11,defaultName:q,monitor:HDMI-A-1"
+        "12,defaultName:w,monitor:HDMI-A-1"
+        "13,defaultName:e,monitor:HDMI-A-1"
+        "14,defaultName:r,monitor:HDMI-A-1"
+        "15,defaultName:t,monitor:HDMI-A-1"
+      ];
+
+      animation = [
+        "workspaces,1,3,default"
+        "windows,1,3,default"
+        "border,1,3,default"
+      ];
+
       "$mainMod" = "SUPER";
       bind = [
         "$mainMod, RETURN, exec, ${lib.getExe pkgs.foot}"
-        "$mainMod, Q, killactive"
+        "$mainMod, G, killactive"
         "$mainMod, SPACE, togglefloating"
         "$mainMod, F, fullscreen"
         "$mainMod, M, fullscreen, 1"
         "$mainMod SHIFT, F, fakefullscreen"
-        "$mainMod, P, exec, ${pkgs.bemenu}/bin/bemenu-run"
-        "$mainMod, V, exec, ${lib.getExe pkgs.cliphist} list | ${lib.getExe pkgs.wofi} --dmenu | ${lib.getExe pkgs.cliphist} decode | ${pkgs.wl-clipboard}/bin/wl-copy"
+        "$mainMod, P, exec, ${lib.getExe pkgs.fuzzel}"
+        "$mainMod SHIFT, V, exec, ${lib.getExe pkgs.cliphist} list | ${lib.getExe pkgs.wofi} --dmenu | ${lib.getExe pkgs.cliphist} decode | ${pkgs.wl-clipboard}/bin/wl-copy"
 
-        "$mainMod SHIFT, E, exec, ${lib.getExe pkgs.wlogout}"
+        "$mainMod, N, togglesplit"
+        "$mainMod SHIFT, N, swapsplit"
+        # preselect with mirrored vim keys, shifted down
+        "$mainMod, B, layoutmsg, preselect r"
+        "$mainMod, V, layoutmsg, preselect d"
+        "$mainMod, C, layoutmsg, preselect u"
+        "$mainMod, X, layoutmsg, preselect l"
+
+        "$mainMod SHIFT, O, exec, ${lib.getExe pkgs.wlogout}"
         # focus with vim keys
         "$mainMod, h, movefocus, l"
         "$mainMod, j, movefocus, d"
@@ -137,11 +300,12 @@
         "$mainMod, 3, workspace, 3"
         "$mainMod, 4, workspace, 4"
         "$mainMod, 5, workspace, 5"
-        "$mainMod, 6, workspace, 6"
-        "$mainMod, 7, workspace, 7"
-        "$mainMod, 8, workspace, 8"
-        "$mainMod, 9, workspace, 9"
-        "$mainMod, 0, workspace, 10"
+
+        "$mainMod, q, workspace, 11"
+        "$mainMod, w, workspace, 12"
+        "$mainMod, e, workspace, 13"
+        "$mainMod, r, workspace, 14"
+        "$mainMod, t, workspace, 15"
 
         # move window to workspace with mod+shift+[0-9]
         "$mainMod SHIFT, 1, movetoworkspace, 1"
@@ -149,11 +313,12 @@
         "$mainMod SHIFT, 3, movetoworkspace, 3"
         "$mainMod SHIFT, 4, movetoworkspace, 4"
         "$mainMod SHIFT, 5, movetoworkspace, 5"
-        "$mainMod SHIFT, 6, movetoworkspace, 6"
-        "$mainMod SHIFT, 7, movetoworkspace, 7"
-        "$mainMod SHIFT, 8, movetoworkspace, 8"
-        "$mainMod SHIFT, 9, movetoworkspace, 9"
-        "$mainMod SHIFT, 0, movetoworkspace, 10"
+
+        "$mainMod SHIFT, q, movetoworkspace, 11"
+        "$mainMod SHIFT, w, movetoworkspace, 12"
+        "$mainMod SHIFT, e, movetoworkspace, 13"
+        "$mainMod SHIFT, r, movetoworkspace, 14"
+        "$mainMod SHIFT, t, movetoworkspace, 15"
 
         # scroll through workspaces with mod+scroll
         "$mainMod, mouse_down, workspace, e+1"

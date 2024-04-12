@@ -63,7 +63,7 @@ in {
 
         "${mod}/core"
 
-        "${mod}/programs/home-manager.nix"
+        "${mod}/programs"
         "${mod}/programs/steam.nix"
 
         "${mod}/desktop"
@@ -81,7 +81,8 @@ in {
         "${mod}/services"
         "${mod}/services/pipewire.nix"
         "${mod}/services/syncthing.nix"
-        "${mod}/services/containers/server"
+        #"${mod}/services/containers/server"
+        "${mod}/services/containers/experimental"
 
         #"${mod}/services/networkd-wireguard.nix"
         #"${mod}/services/wireguard.nix"
