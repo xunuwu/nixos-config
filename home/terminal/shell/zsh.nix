@@ -30,6 +30,9 @@
 
 
       ## MISC ##
+      setopt extendedglob
+
+
       # Show completion categories
       zstyle ':completion:*:*:*:*:descriptions' format '%F{magenta}<-%d->%f'
 

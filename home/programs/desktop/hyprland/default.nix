@@ -171,7 +171,6 @@
           "format-window-separator" = ",";
           "window-rewrite-default" = "@";
           "window-rewrite" = {
-            "title<.*youtube.*>" = "y";
             "title<.*discord.*>" = "d";
             "class<Sonixd>" = "m";
             "class<firefox>" = "f";
@@ -244,7 +243,7 @@
       };
 
       workspace = [
-        "3,monitor:DP-3"
+        "1,monitor:DP-3"
         "2,monitor:DP-3"
         "3,monitor:DP-3"
         "4,monitor:DP-3"
@@ -345,11 +344,10 @@
         "maxsize 1 1,class:^(xwaylandvideobridge)$"
         "noblur,class:^(xwaylandvideobridge)$"
 
-        #"stayfocused,title:^(XtMapper)$"
         "noanim,title:^(XtMapper)$"
         "noblur,title:^(XtMapper)$"
         "float,title:^(XtMapper)$"
-        "move 0% 0%,title:^(XtMapper)$"
+        "move 0 0,title:^(XtMapper)$"
         "size 100%,title:^(XtMapper)$"
       ];
     };

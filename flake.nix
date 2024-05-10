@@ -9,7 +9,7 @@
       ];
       flake = {
       };
-      perSystem = {pkgs, ...}: rec {
+      perSystem = {pkgs, ...}: {
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
             alejandra
@@ -46,6 +46,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    small-nvim = {
+      url = "github:xunuwu/small-nvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -72,6 +77,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    #nur.url = "github:nix-community/NUR";
+    nur.url = "github:nix-community/NUR";
   };
 }

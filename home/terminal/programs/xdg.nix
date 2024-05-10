@@ -11,7 +11,6 @@ in {
 
     userDirs = {
       enable = true;
-      createDirectories = true;
       desktop = home + "/desktop";
       documents = home + "/docs";
       download = home + "/down";

@@ -1,4 +1,13 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  inputs,
+  ...
+}: {
+  environment.systemPackages = [
+    pkgs.protontricks
+  ];
+
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;

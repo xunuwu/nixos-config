@@ -2,6 +2,7 @@
   self,
   inputs,
   homeImports,
+  lib,
   ...
 }: let
   specialArgs = {
@@ -16,6 +17,16 @@ in {
       nixpkgs = import inputs.nixpkgs {
         system = "x86_64-linux";
         config.allowUnfree = true;
+      };
+
+      nodeNixpkgs = {
+        nixdesk = import inputs.nixpkgs {
+          system = "x86_64-linux";
+          config = {
+            allowUnfree = true;
+            rocmSupport = true;
+          };
+        };
       };
 
       inherit specialArgs;
@@ -37,7 +48,7 @@ in {
           "${mod}/services/virt/podman.nix"
           "${mod}/services/virt/waydroid.nix"
           "${mod}/services/virt/distrobox.nix"
-          "${mod}/services/ollama.nix"
+          #"${mod}/services/ollama.nix"
           "${mod}/desktop/x11/nosleep.nix"
 
           "${mod}/programs/gamemode.nix"
@@ -83,10 +94,6 @@ in {
         "${mod}/services/syncthing.nix"
         #"${mod}/services/containers/server"
         "${mod}/services/containers/experimental"
-
-        #"${mod}/services/networkd-wireguard.nix"
-        #"${mod}/services/wireguard.nix"
-        #"${mod}/services/transmission.nix"
 
         {
           home-manager = {

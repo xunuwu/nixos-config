@@ -7,14 +7,11 @@
     enable = true;
   };
 
-  services.xserver = {
-    enable = true;
-    displayManager = {
-      sddm.enable = true;
-      autoLogin = {
-        enable = true;
-        user = "nixos";
-      };
+  services.displayManager = {
+    sddm.enable = true;
+    autoLogin = {
+      enable = true;
+      user = "nixos";
     };
   };
 }

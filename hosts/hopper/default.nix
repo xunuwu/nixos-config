@@ -4,6 +4,7 @@
     common-pc-hdd
 
     ./hardware.nix
+    ./brawlstats.nix
   ];
 
   networking.hostName = "hopper";

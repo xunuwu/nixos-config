@@ -9,14 +9,14 @@
         browseable = "yes";
         "guest ok" = "yes";
         "read only" = "yes";
-        "write-list" = "xun";
+        "write list" = "xun";
       };
       "library" = {
         path = "/media/library";
         browseable = "yes";
         "guest ok" = "yes";
         "read only" = "yes";
-        "write-list" = "xun";
+        "write list" = "xun";
       };
     };
   };

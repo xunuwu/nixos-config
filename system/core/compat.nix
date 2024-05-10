@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   #environment.systemPackages = [pkgs.steam-run];
+  environment.systemPackages = [pkgs.appimage-run];
 
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [

@@ -6,7 +6,7 @@
     wget
     ripgrep
     nethogs
-    ffmpeg
+    ffmpeg-full
     parted
   ];
 }

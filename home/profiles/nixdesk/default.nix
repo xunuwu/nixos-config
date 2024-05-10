@@ -1,12 +1,14 @@
 {...}: {
   imports = [
     ./kanshi.nix
+    ./defaults.nix
     ../../terminal
     ../../terminal/programs/zellij.nix
     ../../editors/nvim.nix
     ../../editors/emacs.nix
     ../../editors/vscode.nix
     ../../programs/browsers/firefox.nix
+    ../../programs/browsers/chromium.nix
     ../../terminal/emulator/wezterm.nix
     ../../terminal/emulator/foot.nix
 
@@ -22,10 +24,11 @@
     # programs
     ../../programs/misc/keepassxc.nix
     ../../programs/misc/discord.nix
+    ../../programs/misc/foliate.nix
     ../../programs/misc/obsidian.nix
     ../../programs/misc/thunderbird.nix
-    ../../programs/music
-    ../../programs/music/yams.nix
+    #../../programs/music
+    #../../programs/music/yams.nix
     ../../programs/music/spotify.nix
     ../../programs/media
     ../../programs/media/jellyfin.nix

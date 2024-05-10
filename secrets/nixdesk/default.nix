@@ -13,5 +13,9 @@
       sopsFile = ./wireguard.yaml;
       key = "PrivateKey";
     };
+    cloudflare = {
+      format = "binary";
+      sopsFile = ./cloudflare;
+    };
   };
 }

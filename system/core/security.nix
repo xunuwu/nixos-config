@@ -55,5 +55,11 @@
 
     # don't ask for password for wheel group
     sudo.wheelNeedsPassword = false;
+
+    # allow running as any id without them being listed in /etc/passwd
+    # this might be a security problem but whatever
+    sudo.extraConfig = ''
+      Defaults runas_allow_unknown_id
+    '';
   };
 }
