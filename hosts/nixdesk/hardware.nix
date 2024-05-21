@@ -1,10 +1,16 @@
-{inputs, ...}: {
+{
+  inputs,
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-gpu-amd
     inputs.hardware.nixosModules.common-pc-ssd
     ./gigabyte-b550-fix.nix
   ];
+
   boot = {
     initrd = {
       availableKernelModules = [
@@ -18,6 +24,9 @@
       kernelModules = ["amdgpu"];
     };
     kernelModules = ["kvm-amd"];
+    extraModulePackages = with config.boot.kernelPackages; [
+      rtl88xxau-aircrack # usb wifi card
+    ];
     loader = {
       timeout = 10;
       systemd-boot = {

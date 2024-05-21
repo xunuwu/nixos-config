@@ -2,10 +2,13 @@
   imports = [
     ./kanshi.nix
     ./defaults.nix
+
+    ../../secrets
+
     ../../terminal
     ../../terminal/programs/zellij.nix
     ../../editors/nvim.nix
-    ../../editors/emacs.nix
+    #../../editors/emacs.nix
     ../../editors/vscode.nix
     ../../programs/browsers/firefox.nix
     ../../programs/browsers/chromium.nix
@@ -24,6 +27,7 @@
     # programs
     ../../programs/misc/keepassxc.nix
     ../../programs/misc/discord.nix
+    ../../programs/misc/ardour.nix
     ../../programs/misc/foliate.nix
     ../../programs/misc/obsidian.nix
     ../../programs/misc/thunderbird.nix

@@ -11,6 +11,7 @@
       ../.
       ./nixdesk
       inputs.nix-index-database.hmModules.nix-index
+      inputs.sops-nix.homeManagerModules.sops
       {
         programs.nix-index.enableZshIntegration = false;
         programs.nix-index.enableBashIntegration = false;
@@ -20,6 +21,7 @@
     "xun@hopper" = [
       ../.
       ./hopper
+      inputs.sops-nix.homeManagerModules.sops
     ];
   };
 

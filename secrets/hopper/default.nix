@@ -70,5 +70,10 @@
       format = "binary";
       sopsFile = ./brawlstars;
     };
+    wakapi = {
+      format = "binary";
+      sopsFile = ./wakapi;
+      mode = "004";
+    };
   };
 }

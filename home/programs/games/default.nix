@@ -1,9 +1,13 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  self,
+  ...
+}: {
   home.packages = with pkgs; [
     heroic
     lutris
     prismlauncher
-    gamescope
+    self.packages.${pkgs.system}.gamesand
   ];
   programs.mangohud.enable = true;
 }

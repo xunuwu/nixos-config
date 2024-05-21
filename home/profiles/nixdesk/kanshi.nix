@@ -2,17 +2,21 @@
   services.kanshi = {
     enable = true;
     systemdTarget = "hyprland-session.target";
-    profiles."default" = {
-      outputs = [
-        {
-          criteria = "DP-3";
-          mode = "1920x1080@165Hz";
-        }
-        {
-          criteria = "HDMI-A-1";
-          position = "1920,0";
-        }
-      ];
-    };
+    settings = [
+      {
+        profile.name = "default";
+        profile.outputs = [
+          {
+            criteria = "DP-3";
+            mode = "1920x1080@165Hz";
+            position = "0,0";
+          }
+          {
+            criteria = "HDMI-A-1";
+            position = "1920,0";
+          }
+        ];
+      }
+    ];
   };
 }

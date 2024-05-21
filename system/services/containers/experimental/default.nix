@@ -1,10 +1,12 @@
 {
   config,
   pkgs,
+  lib,
+  inputs,
   ...
 }: {
   imports = [
-    ./smbshare.nix
+    #./smbshare.nix
   ];
   virtualisation.podman = {
     enable = true;
@@ -26,6 +28,7 @@
         };
         extraDomainNames = [
           "jellyfin.xun.cam"
+          "wakapi.xun.cam"
         ];
       };
     };
@@ -150,6 +153,10 @@
               tls /etc/ssl/certs/xun.cam/cert.pem /etc/ssl/certs/xun.cam/key.pem
               reverse_proxy localhost:8096
             }
+            https://wakapi.xun.cam:8336 {
+              tls /etc/ssl/certs/xun.cam/cert.pem /etc/ssl/certs/xun.cam/key.pem
+              reverse_proxy localhost:3000
+            }
           ''}:/etc/caddy/Caddyfile"
           #tls /etc/ssl/certs/cloudflare/cert.pem /etc/ssl/certs/cloudflare/key.pem
           #"${config.sops.secrets.xun-cam-cert.path}:/etc/ssl/certs/cloudflare/cert.pem"
@@ -271,10 +278,113 @@
           "/media/config/betanin/data:/b/.local/share/betanin"
           "/media/config/betanin/config:/b/.config/betanin"
           "/media/config/betanin/beets:/b/.config/beets"
-          "${config.sops.secrets.betanin.path}:/b/.config/beets/config.yaml"
+          "${config.sops.secrets.betanin.path}:/b/.config/beets/secrets.yaml"
+          "${builtins.toFile "config.yaml" ''
+            include:
+              - secrets.yaml
+
+            library: library.db
+            directory: /music
+            statefile: state.pickle
+
+            threaded: yes
+
+            import:
+               write: yes
+               copy: yes
+               link: no
+               move: no
+               incremental: no
+
+            paths:
+               default: /$albumartist/$album %aunique{}/$track $title %aunique{}
+               singleton: /$albumartist/$artist %aunique{}/$track $title %aunique{}
+               comp: /Compilation/$album %aunique{}/$track $title %aunique{}
+               albumtype:soundtrack: Soundtracks/$album %aunique{}/$track $title %aunique{}
+
+            clutter: ["Thumbs.DB", ".DS_Store"]
+
+
+            plugins: [
+               embedart,
+               fetchart,
+               discogs,
+               advancedrewrite,
+               lyrics,
+               spotify,
+               scrub,
+            ]
+
+            genres: yes
+
+            spotify:
+              source_weight: 0.7
+
+            advancesrewrite:
+               artist GHOST: Ghost and Pals
+
+            embedart:
+               auto: yes
+               ifempty: no
+               remove_art_file: no
+
+            fetchart:
+               auto: yes
+               cautious: yes
+               minwidth: 500
+               maxwidth: 1200
+               cover_format: jpeg
+               sources:
+                  - coverart: release
+                  - coverart: releasegroup
+                  - albumart
+                  - amazon
+                  - google
+                  - itunes
+                  - fanarttv
+                  - lastfm
+                  - wikipedia
+
+            lyrics:
+               fallback: '''
+               sources: musixmatch google
+
+            replace:
+                '[\\]':         '''
+                '[_]':          '-'
+                '[/]':          '-'
+                '^\.':          '''
+                '[\x00-\x1f]':  '''
+                '[<>:"\?\*\|]': '''
+                '\.$':          '''
+                '\s+$':         '''
+                '^\s+':         '''
+                '^-':           '''
+                '’':            "'"
+                '′':            "'"
+                '″':            '''
+                '‐':            '-'
+
+            aunique:
+              keys: albumartist albumtype year album
+              disambuguators: format mastering media label albumdisambig releasegroupdisambig
+              bracket: '[]'
+          ''}:/b/.config/beets/config.yaml"
           "/media/library/music:/music"
           "/media/slskd/downloads:/downloads/slskd"
-          "/media/downloads/music:/downloads/misc"
+          "/media/downloads/music:/downloads/torrent"
+          "/media/config/betanin/import:/downloads/import"
+        ];
+      };
+      wakapi = {
+        image = "ghcr.io/muety/wakapi:latest";
+        volumes = [
+          "${config.sops.secrets.wakapi.path}:/app/config.yml"
+          "/media/config/wakapi:/data" # needs to be chown 1000:1000
+        ];
+        dependsOn = ["gluetun"];
+        extraOptions = [
+          "--network=container:gluetun"
         ];
       };
     };

@@ -4,7 +4,17 @@
   config,
   ...
 }: {
-  networking.firewall.allowedTCPPorts = [4444];
+  networking.firewall.allowedTCPPorts = [
+    4444
+  ];
+
+  systemd.services."static-web-server".after = ["brawlstats.timer"];
+
+  services.static-web-server = {
+    enable = true;
+    root = "/var/lib/brawlstats";
+    listen = "[::]:3434";
+  };
 
   systemd.sockets."brawlstats-web" = {
     wantedBy = ["sockets.target"];
@@ -31,7 +41,7 @@
           set xlabel 'Time'
           set ylabel 'Trophies'
           set term svg
-          plot "/dev/stdin" using 1:2 with linespoints title 'Data'
+          plot "/dev/stdin" using 1:2 with linespoints notitle
         ''} # 2>/dev/null
         }
 

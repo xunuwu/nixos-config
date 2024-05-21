@@ -6,6 +6,10 @@ keys:
     - &hopper age15mgf89h220puhz48rjpwxwu4n2h4edur60w6cd8gku2hh4e5kqpsghvnyw
 
 creation_rules:
+  - path_regex: home/secrets
+    key_groups:
+      - age:
+        - *xun
   - path_regex: secrets/global
     key_groups:
       - age:

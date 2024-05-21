@@ -44,6 +44,8 @@ in {
           "${self}/secrets"
           "${self}/secrets/nixdesk"
 
+          "${mod}/network/wifi.nix"
+
           "${mod}/services/syncthing.nix"
           "${mod}/services/virt/podman.nix"
           "${mod}/services/virt/waydroid.nix"
@@ -52,6 +54,7 @@ in {
           "${mod}/desktop/x11/nosleep.nix"
 
           "${mod}/programs/gamemode.nix"
+          "${mod}/programs/gamescope.nix"
           "${mod}/programs/steam.nix"
 
           {
@@ -65,6 +68,7 @@ in {
     hopper = {
       deployment = {
         targetUser = "xun";
+        targetHost = "hopper.local";
       };
       imports = [
         ./hopper

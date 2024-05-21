@@ -272,6 +272,7 @@
         "$mainMod SHIFT, F, fakefullscreen"
         "$mainMod, P, exec, ${lib.getExe pkgs.fuzzel}"
         "$mainMod SHIFT, V, exec, ${lib.getExe pkgs.cliphist} list | ${lib.getExe pkgs.wofi} --dmenu | ${lib.getExe pkgs.cliphist} decode | ${pkgs.wl-clipboard}/bin/wl-copy"
+        "$mainMod SHIFT, S, exec, ${lib.getExe pkgs.grimblast} --freeze copy area"
 
         "$mainMod, N, togglesplit"
         "$mainMod SHIFT, N, swapsplit"
