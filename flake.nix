@@ -23,7 +23,9 @@
           name = "dots";
         };
 
-        packages = import ./pkgs {inherit pkgs;};
+        packages = import ./pkgs {
+          inherit pkgs;
+        };
 
         formatter = pkgs.alejandra;
       };

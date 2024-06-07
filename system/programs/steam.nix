@@ -6,6 +6,7 @@
 }: {
   environment.systemPackages = [
     pkgs.protontricks
+    pkgs.steamtinkerlaunch
   ];
 
   programs.steam = {

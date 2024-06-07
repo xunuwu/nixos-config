@@ -11,6 +11,7 @@ let
 
     ./network/networkd.nix
     ./network/avahi.nix
+    ./network/localsend.nix
     ./network/tailscale.nix
 
     ./desktop

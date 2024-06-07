@@ -23,6 +23,9 @@
       # improve ^w behaviour
       WORDCHARS=
 
+      # pretty completion menu
+      zstyle ':completion:*' menu select
+
       # shift-tab in completion menu
       bindkey '^[[Z' reverse-menu-complete
 

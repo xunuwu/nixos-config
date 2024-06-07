@@ -7,6 +7,9 @@
     size = 16;
   };
 
+  # Also sets org.freedesktop.appearance color-scheme
+  dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
+
   gtk = {
     enable = true;
     theme = {
@@ -21,6 +24,9 @@
       name = "Sans";
       size = 11;
     };
+    gtk2.extraConfig = "gtk-application-prefer-dark-theme=1";
+    gtk3.extraConfig.gtk-application-prefer-dark-theme = 1;
+    gtk4.extraConfig.gtk-application-prefer-dark-theme = 1;
   };
 
   qt = {

@@ -7,6 +7,7 @@
 
     ../../terminal
     ../../terminal/programs/zellij.nix
+    ../../terminal/programs/beets.nix
     ../../editors/nvim.nix
     #../../editors/emacs.nix
     ../../editors/vscode.nix
@@ -19,7 +20,8 @@
     ../../programs/desktop
     ../../programs/desktop/theme.nix
     ../../programs/desktop/awesome
-    ../../programs/desktop/hyprland
+    #../../programs/desktop/hyprland
+    ../../programs/desktop/sway
 
     # development
     ../../develop

@@ -1,10 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  inputs,
-  ...
-}: {
+{config, ...}: {
   imports = [
     #./smbshare.nix
   ];
@@ -104,7 +98,7 @@
         ];
       };
       jellyfin = {
-        image = "jellyfin/jellyfin";
+        image = "jellyfin/jellyfin:2024052005";
         volumes = [
           "/media/config/jellyfin/config:/config"
           "/media/config/jellyfin/cache:/cache"
@@ -313,15 +307,14 @@
                lyrics,
                spotify,
                scrub,
+               duplicates,
+               unimported,
             ]
 
             genres: yes
 
             spotify:
               source_weight: 0.7
-
-            advancesrewrite:
-               artist GHOST: Ghost and Pals
 
             embedart:
                auto: yes

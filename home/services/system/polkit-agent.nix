@@ -1,3 +1,4 @@
+# TODO fix polkit, this dosent work
 {pkgs, ...}: {
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
     Unit.Description = "polkit-gnome-authentication-agent-1";

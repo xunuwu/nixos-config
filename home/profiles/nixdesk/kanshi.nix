@@ -1,7 +1,7 @@
 {
   services.kanshi = {
     enable = true;
-    systemdTarget = "hyprland-session.target";
+    # systemdTarget = "hyprland-session.target"; # default is sway
     settings = [
       {
         profile.name = "default";

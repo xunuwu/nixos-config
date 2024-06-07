@@ -30,7 +30,7 @@
     serviceConfig = {
       StandardInput = "socket";
       ExecStart = "${pkgs.writeShellScript "brawlstats-web.sh" ''
-        parameters=$(head -n1 | ${lib.getExe pkgs.gawk} '{print $2}' | ${lib.getExe pkgs.gnused} 's/%20/ /g')
+        parameters=$(head -n1 | ${lib.getExe pkgs.gawk} '{print $2}' | ${lib.getExe pkgs.gnused} 's/,/ /g')
         response=""
 
         tosvg() {

@@ -15,7 +15,7 @@
           autoAcceptFolders = true;
         };
         "redmi-note-10-pro" = {
-          id = "MRAHIKH-TNHAKEG-OHMEFXI-BO54SXR-6IL2Y3B-3HVOWZF-ZGTS2OX-YSWTPQF";
+          id = "WJPE56U-56LPOYB-IAENGSW-IFQ4A6J-66JX73I-ONXX4PY-QXJK6IF-UZHVWA7";
           autoAcceptFolders = true;
         };
         "hopper" = {
@@ -26,11 +26,19 @@
       folders = {
         "~/secrets" = {
           devices = builtins.attrNames config.services.syncthing.settings.devices;
+          versioning = {
+            type = "trashcan";
+            params.cleanoutDays = "180";
+          };
           id = "sfw9y-yusup";
         };
         "~/docs/xun-megavault" = {
           devices = builtins.attrNames config.services.syncthing.settings.devices;
           id = "1zkf-wf5r";
+          versioning = {
+            type = "simple";
+            params.keep = "15";
+          };
         };
       };
     };

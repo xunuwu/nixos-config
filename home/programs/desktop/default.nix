@@ -2,13 +2,14 @@
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [
-      xdg-desktop-portal-hyprland
-      xdg-desktop-portal-kde
+      xdg-desktop-portal-wlr
+      xdg-desktop-portal-gtk
     ];
     config = {
       preferred = {
-        default = "hyprland;gtk";
-        "org.freedesktop.impl.portal.FileChooser" = "kde";
+        default = "gtk";
+        "org.freedesktop.impl.portal.Screenshot" = "wlr";
+        "org.freedesktop.impl.portal.Screencast" = "wlr";
       };
     };
   };

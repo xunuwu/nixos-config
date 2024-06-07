@@ -1,7 +1,5 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    jellyfin-media-player
-    sonixd
-    feishin
+    wl-clipboard
   ];
 }

@@ -1,10 +1,14 @@
 {
   pkgs,
   lib,
-  inputs,
+  osConfig,
   config,
   ...
 }: {
+  imports = [
+    ../common/fuzzel.nix
+  ];
+
   home.packages = with pkgs; [
     wl-clipboard
   ];
@@ -12,6 +16,7 @@
   services.cliphist = {
     enable = true;
     systemdTarget = "hyprland-session.target";
+    extraOptions = ["-max-items" "150"];
   };
   #systemd.user.services.cliphist = {
   #  Unit = {
@@ -31,24 +36,6 @@
   #    WantedBy = ["hyprland-session.target"];
   #  };
   #};
-  programs.fuzzel = {
-    enable = true;
-    settings = {
-      main = {
-        terminal = "${lib.getExe pkgs.foot}";
-        layer = "overlay";
-      };
-      colors = {
-        background = "#181818ff";
-        text = "#a4c6d9ff";
-        match = "#ae61b5ff";
-        border = "#feafffff";
-        selection = "#242424ff";
-        selection-text = "#ffffffff";
-        selection-match = "#fac1ffff";
-      };
-    };
-  };
 
   programs.waybar = {
     enable = true;
@@ -183,7 +170,7 @@
         };
         "clock" = {
           "tooltim-format" = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-          "format-alt" = "{:%Y-%m-%d}";
+          "format-alt" = "{:%a %Y-%m-%d}";
         };
         "pulseaudio" = {
           "format" = "{volume}%";
@@ -214,7 +201,7 @@
     settings = {
       exec-once = [
         #"${lib.getExe pkgs.xwaylandvideobridge}"
-        "${lib.getExe pkgs.swaybg} -i ${config.xdg.userDirs.pictures}/wallpaper.png"
+        "${lib.getExe pkgs.swaybg} -i ${config.xdg.userDirs.pictures}/wallpaper"
       ];
       env = [
         "NIXOS_OZONE_WL,1" # for any ozone-based browser & electron apps to run on wayland
@@ -229,7 +216,7 @@
       ];
 
       input = {
-        kb_layout = "eu";
+        kb_layout = osConfig.services.xserver.xkb.layout;
       };
 
       general = {
@@ -273,6 +260,7 @@
         "$mainMod, P, exec, ${lib.getExe pkgs.fuzzel}"
         "$mainMod SHIFT, V, exec, ${lib.getExe pkgs.cliphist} list | ${lib.getExe pkgs.wofi} --dmenu | ${lib.getExe pkgs.cliphist} decode | ${pkgs.wl-clipboard}/bin/wl-copy"
         "$mainMod SHIFT, S, exec, ${lib.getExe pkgs.grimblast} --freeze copy area"
+        "$mainMod SHIFT, BACKSPACE, exec, systemctl suspend"
 
         "$mainMod, N, togglesplit"
         "$mainMod SHIFT, N, swapsplit"
