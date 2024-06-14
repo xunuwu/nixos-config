@@ -12,6 +12,7 @@
   ];
 
   boot = {
+    kernelPackages = pkgs.linuxPackages_latest;
     initrd = {
       availableKernelModules = [
         "nvme"
@@ -66,7 +67,14 @@
 
   hardware.enableAllFirmware = true;
 
-  services.xserver.videoDrivers = ["amdgpu"];
+  services.xserver.videoDrivers = [
+    "amdgpu"
+    #"nvidia"
+  ];
+  #hardware.nvidia = {
+  #  modesetting.enable = true;
+  #  package = config.boot.kernelPackages.nvidiaPackages.stable;
+  #};
 
   nixpkgs.hostPlatform.system = "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = true;

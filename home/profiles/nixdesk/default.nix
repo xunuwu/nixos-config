@@ -7,6 +7,7 @@
 
     ../../terminal
     ../../terminal/programs/zellij.nix
+    ../../terminal/programs/lazygit.nix
     ../../terminal/programs/beets.nix
     ../../editors/nvim.nix
     #../../editors/emacs.nix

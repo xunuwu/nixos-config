@@ -11,7 +11,7 @@
     settings = {
       devices = {
         "nixdesk" = {
-          id = "DZEIXRH-WBIEUUW-FFP2SLJ-BTIUPBE-YURLPN7-MUFOR6L-HS27D6G-I25XHQ3";
+          id = "XXABQZC-CO6OM2E-EMB3QIJ-NF5I3WU-CCQPPRY-7BX4ZSS-WIU4WW2-WXFWVQR";
           autoAcceptFolders = true;
         };
         "redmi-note-10-pro" = {

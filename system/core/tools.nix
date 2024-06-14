@@ -8,5 +8,7 @@
     nethogs
     ffmpeg-full
     parted
+    pciutils
+    usbutils
   ];
 }

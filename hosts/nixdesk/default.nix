@@ -1,16 +1,9 @@
 {
-  pkgs,
-  inputs,
-  lib,
-  ...
-}: {
   imports = [
     ./hardware.nix
   ];
 
   networking.hostName = "nixdesk";
-
-  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   swapDevices = [
     {

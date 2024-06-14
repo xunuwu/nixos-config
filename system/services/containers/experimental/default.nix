@@ -304,14 +304,18 @@
                fetchart,
                discogs,
                advancedrewrite,
-               lyrics,
+               #lyrics,
                spotify,
                scrub,
                duplicates,
                unimported,
+               missing,
             ]
 
             genres: yes
+
+            unimported:
+              ignore_extensions: jpg png
 
             spotify:
               source_weight: 0.7
@@ -338,9 +342,9 @@
                   - lastfm
                   - wikipedia
 
-            lyrics:
-               fallback: '''
-               sources: musixmatch google
+            #lyrics:
+            #   fallback: '''
+            #   sources: musixmatch google
 
             replace:
                 '[\\]':         '''

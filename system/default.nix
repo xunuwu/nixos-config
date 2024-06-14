@@ -17,7 +17,7 @@ let
     ./desktop
     ./desktop/awesome.nix
     ./desktop/sway.nix
-    ./desktop/hyprland.nix
+    #./desktop/hyprland.nix
 
     ./programs
 

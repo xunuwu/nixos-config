@@ -15,7 +15,7 @@ in {
         "fetchart"
         "discogs"
         #"advancedrewrite"
-        "lyrics"
+        #"lyrics"
         "spotify"
         "scrub"
         "duplicates"
@@ -30,6 +30,11 @@ in {
         auto = true;
         ifempty = false;
         remove_art_file = false;
+      };
+
+      unimported = {
+        ignore_extensions = ["jpg" "png"];
+        ignore_subdirectories = [];
       };
 
       fetchart = {
@@ -50,10 +55,10 @@ in {
           "wikipedia"
         ];
 
-        lyrics = {
-          fallback = "''";
-          sources = ["musicmatch" "google"];
-        };
+        #lyrics = {
+        #  fallback = "''";
+        #  sources = ["musicmatch" "google"];
+        #};
 
         replace = {
           "[\\\\]" = "'";
