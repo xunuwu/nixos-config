@@ -36,6 +36,7 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     hardware.url = "github:nixos/nixos-hardware";
+    #hardware.url = "github:xunuwu/nixos-hardware/gigabyte-b550-flake";
     #impermanence.url = "github:nix-community/impermanence";
 
     home-manager = {

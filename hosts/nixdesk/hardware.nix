@@ -8,7 +8,8 @@
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-gpu-amd
     inputs.hardware.nixosModules.common-pc-ssd
-    ./gigabyte-b550-fix.nix
+    inputs.hardware.nixosModules.gigabyte-b550
+    #./gigabyte-b550-fix.nix
   ];
 
   boot = {
