@@ -6,6 +6,8 @@
     extraGroups = [
       "wheel"
       "input"
+      "kvm"
+      "libvirt"
       "video"
       "render"
       "audio"

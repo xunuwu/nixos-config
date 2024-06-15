@@ -50,6 +50,7 @@ in {
           "${mod}/services/virt/podman.nix"
           "${mod}/services/virt/waydroid.nix"
           "${mod}/services/virt/distrobox.nix"
+          "${mod}/services/virt/virt-manager.nix"
           #"${mod}/services/ollama.nix"
           "${mod}/desktop/x11/nosleep.nix"
 
