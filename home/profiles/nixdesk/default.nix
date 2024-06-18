@@ -33,6 +33,7 @@
     ../../programs/misc/ardour.nix
     ../../programs/misc/foliate.nix
     ../../programs/misc/obsidian.nix
+    ../../programs/misc/pavucontrol.nix
     ../../programs/misc/thunderbird.nix
     #../../programs/music
     #../../programs/music/yams.nix

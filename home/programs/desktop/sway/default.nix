@@ -39,17 +39,6 @@
         wobVolume = "${pkgs.wireplumber}/bin/wpctl get-volume @DEFAULT_SINK@ | awk '{print $2*100}' > $XDG_RUNTIME_DIR/wob.sock";
         setVolume = limit: amount: "${pkgs.wireplumber}/bin/wpctl set-volume -l ${limit} @DEFAULT_AUDIO_SINK@ ${amount}";
         perMonitor = workspace: "\"$(swaymsg -t get_outputs | ${lib.getExe pkgs.jq} -r '.[] | select(.focused == true).name' | ${lib.getExe pkgs.perl} -ne '$s=0;for(split//){$s+=ord}print\"$s\"')${toString workspace}\"";
-        #perMonitor = workspace: "${lib.getExe (pkgs.writeShellScriptBin "perMonitor" ''
-        #  id=$( md5sum <<< ${config.wayland.windowManager.sway.package}/bin/swaymsg -t get_outputs | ${lib.getExe pkgs.jq} -r '.[] | select(.focused == true).id' )
-        #  echo $((0x''${id%% *}))
-        #'')} workspace";
-        #perMonitor = pkgs.writeShellScriptBin "perMonitor" ''
-        #  args=( "$@" )
-        #  id=$( ${config.wayland.windowManager.sway.package}/bin/swaymsg -t get_outputs | ${lib.getExe pkgs.jq} -r '.[] | select(.focused == true).id' )
-        #  # args[$#-1]=$(( ''${args[$#-1]} + $id * 10 ))
-        #  args[$#-1]="$id:''${args[$#-1]}"
-        #  swaymsg ''${args[@]}
-        #'';
         dir = with config.wayland.windowManager.sway.config; {
           inherit up down left right;
         };
@@ -79,14 +68,16 @@
             "XF86AudioPrev" = "exec ${lib.getExe pkgs.playerctl} previous";
           }
           // builtins.listToAttrs (lib.flatten
-            (builtins.map (x: [
+            (builtins.map (x: let
+              x' = toString x;
+            in [
               {
-                name = "${mod}+${toString x}";
-                value = "exec swaymsg workspace number ${perMonitor x}:${toString x}";
+                name = "${mod}+${x'}";
+                value = "exec swaymsg workspace number ${perMonitor x'}:${x'}";
               }
               {
-                name = "${mod}+Shift+${toString x}";
-                value = "exec swaymsg move container to workspace number ${perMonitor x}:${toString x}";
+                name = "${mod}+Shift+${toString x'}";
+                value = "exec swaymsg move container to workspace number ${perMonitor x'}:${x'}";
               }
             ]) (lib.range 0 9)))
         );

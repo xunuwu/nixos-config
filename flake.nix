@@ -1,6 +1,8 @@
 {
   outputs = inputs:
-    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
+    inputs.flake-parts.lib.mkFlake {
+      inherit inputs;
+    } {
       systems = ["x86_64-linux"];
       imports = [
         ./home/profiles
@@ -9,7 +11,11 @@
       ];
       flake = {
       };
-      perSystem = {pkgs, ...}: {
+      perSystem = {
+        pkgs,
+        system,
+        ...
+      }: {
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
             alejandra
