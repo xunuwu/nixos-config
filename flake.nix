@@ -42,16 +42,9 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     hardware.url = "github:nixos/nixos-hardware";
-    #hardware.url = "github:xunuwu/nixos-hardware/gigabyte-b550-flake";
-    #impermanence.url = "github:nix-community/impermanence";
 
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    neovim-config = {
-      url = "github:xunuwu/neovim-config";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -67,11 +60,6 @@
 
     sops-nix.url = "github:Mic92/sops-nix";
 
-    agenix = {
-      url = "github:ryantm/agenix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nix-index-database = {
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -80,12 +68,5 @@
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
     };
-
-    arion = {
-      url = "github:hercules-ci/arion";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nur.url = "github:nix-community/NUR";
   };
 }
