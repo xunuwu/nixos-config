@@ -5,7 +5,7 @@
 symlinkJoin {
   name = "gamesand";
   paths = [
-    ((steamPackages.steam-fhsenv-without-steam.override
+    (steamPackages.steam-fhsenv-without-steam.override
       {
         extraBwrapArgs = [
           "--ro-bind ./files /game/files"
@@ -15,7 +15,7 @@ symlinkJoin {
           "--cap-add ALL"
         ];
       })
-    .run)
+    .run
   ];
   postBuild = ''
     mv $out/bin/steam-run $out/bin/gamesand

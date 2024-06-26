@@ -13,9 +13,11 @@
       inputs.nix-index-database.hmModules.nix-index
       inputs.sops-nix.homeManagerModules.sops
       {
-        programs.nix-index.enableZshIntegration = false;
-        programs.nix-index.enableBashIntegration = false;
-        programs.nix-index.enableFishIntegration = false;
+        programs.nix-index = {
+          enableBashIntegration = false;
+          enableFishIntegration = false;
+          enableZshIntegration = false;
+        };
       }
     ];
     "xun@hopper" = [

@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
+{pkgs, ...}: {
   programs.foot = {
     enable = true;
     settings = {
@@ -10,6 +6,7 @@
         include = "${pkgs.foot.themes}/share/foot/themes/moonfly";
         font = "monospace:size=9";
       };
+      mouse.hide-when-typing = true;
     };
   };
 }

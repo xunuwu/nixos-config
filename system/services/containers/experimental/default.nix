@@ -15,14 +15,14 @@
       reloadServices = ["podman-caddy.service"];
     };
     certs = {
-      "xun.cam" = {
+      "xunuwu.xyz" = {
         dnsProvider = "cloudflare";
         credentialFiles = {
           CF_DNS_API_TOKEN_FILE = config.sops.secrets.cloudflare.path;
         };
         extraDomainNames = [
-          "jellyfin.xun.cam"
-          "wakapi.xun.cam"
+          "jellyfin.xunuwu.xyz"
+          "wakapi.xunuwu.xyz"
         ];
       };
     };
@@ -137,25 +137,25 @@
       caddy = {
         image = "caddy";
         volumes = [
-          #alt.xun.cam:8336 {
+          #alt.xunuwu.xyz:8336 {
           #tls internal
           #reverse_proxy
           #localhost:5030
           #}
           "${builtins.toFile "Caddyfile" ''
-            https://jellyfin.xun.cam:8336 {
-              tls /etc/ssl/certs/xun.cam/cert.pem /etc/ssl/certs/xun.cam/key.pem
+            https://jellyfin.xunuwu.xyz:8336 {
+              tls /etc/ssl/certs/xunuwu.xyz/cert.pem /etc/ssl/certs/xunuwu.xyz/key.pem
               reverse_proxy localhost:8096
             }
-            https://wakapi.xun.cam:8336 {
-              tls /etc/ssl/certs/xun.cam/cert.pem /etc/ssl/certs/xun.cam/key.pem
+            https://wakapi.xunuwu.xyz:8336 {
+              tls /etc/ssl/certs/xunuwu.xyz/cert.pem /etc/ssl/certs/xunuwu.xyz/key.pem
               reverse_proxy localhost:3000
             }
           ''}:/etc/caddy/Caddyfile"
           #tls /etc/ssl/certs/cloudflare/cert.pem /etc/ssl/certs/cloudflare/key.pem
-          #"${config.sops.secrets.xun-cam-cert.path}:/etc/ssl/certs/cloudflare/cert.pem"
-          #"${config.sops.secrets.xun-cam-key.path}:/etc/ssl/certs/cloudflare/key.pem"
-          "/var/lib/acme/xun.cam:/etc/ssl/certs/xun.cam"
+          #"${config.sops.secrets.xunuwu.xyz-cert.path}:/etc/ssl/certs/cloudflare/cert.pem"
+          #"${config.sops.secrets.xunuwu.xyz-key.path}:/etc/ssl/certs/cloudflare/key.pem"
+          "/var/lib/acme/xunuwu.xyz:/etc/ssl/certs/xunuwu.xyz"
           "/media/config/caddy/data:/data"
           "/media/config/caddy/config:/config"
         ];
@@ -192,7 +192,7 @@
       #    "${config.sops.secrets.authelia_encryption_key.path}:/secrets/STORAGE_ENCRYPTION_KEY"
       #    "${builtins.toFile "users_database.yml" ''
       #      them: auto
-      #      default_redirection_url: https://auth.xun.cam:8336
+      #      default_redirection_url: https://auth.xunuwu.xyz:8336
 
       #      authentication_backend:
       #        ldap:
@@ -215,14 +215,14 @@
 
       #      notifier:
       #        smtp:
-      #          host: smtp.xun.cam
+      #          host: smtp.xunuwu.xyz
       #          port: 8336
-      #          username: auth@xun.cam
-      #          sender: "Authelia <auth@xun.cam"
+      #          username: auth@xunuwu.xyz
+      #          sender: "Authelia <auth@xunuwu.xyz"
       #    ''}:/config/configuration.yml"
       #    "${builtins.toFile "configuration.yml" ''
       #      them: auto
-      #      default_redirection_url: https://auth.xun.cam:8336
+      #      default_redirection_url: https://auth.xunuwu.xyz:8336
 
       #      authentication_backend:
       #        file:
@@ -248,10 +248,10 @@
 
       #      notifier:
       #        smtp:
-      #          host: smtp.xun.cam
+      #          host: smtp.xunuwu.xyz
       #          port: 8336
-      #          username: auth@xun.cam
-      #          sender: "Authelia <auth@xun.cam"
+      #          username: auth@xunuwu.xyz
+      #          sender: "Authelia <auth@xunuwu.xyz"
       #    ''}:/config/configuration.yml"
       #  ];
       #  dependsOn = ["gluetun"];

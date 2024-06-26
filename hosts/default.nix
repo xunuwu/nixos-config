@@ -2,7 +2,6 @@
   self,
   inputs,
   homeImports,
-  lib,
   ...
 }: let
   specialArgs = {
@@ -34,7 +33,8 @@ in {
     nixdesk = {
       deployment = {
         allowLocalDeployment = true;
-        targetHost = null;
+        targetUser = "xun";
+        targetHost = "nixdesk.local";
       };
       imports =
         desktop
@@ -44,12 +44,11 @@ in {
           "${self}/secrets"
           "${self}/secrets/nixdesk"
 
-          "${mod}/network/wifi.nix"
+          #"${mod}/network/wifi.nix"
 
           "${mod}/services/syncthing.nix"
-          "${mod}/services/virt/podman.nix"
+          #"${mod}/services/virt/podman.nix"
           "${mod}/services/virt/waydroid.nix"
-          "${mod}/services/virt/distrobox.nix"
           "${mod}/services/virt/virt-manager.nix"
           #"${mod}/services/ollama.nix"
           "${mod}/desktop/x11/nosleep.nix"
@@ -79,33 +78,33 @@ in {
 
         "${mod}/core"
 
-        "${mod}/programs"
-        "${mod}/programs/steam.nix"
+        #"${mod}/programs"
+        #"${mod}/programs/steam.nix"
 
-        "${mod}/desktop"
-        "${mod}/desktop/awesome.nix"
+        #"${mod}/desktop"
+        #"${mod}/desktop/awesome.nix"
 
-        "${mod}/hardware/opengl.nix"
-        "${mod}/hardware/steam-hardware.nix"
-        "${mod}/hardware/bluetooth.nix"
-        "${mod}/hardware/qmk.nix"
+        #"${mod}/hardware/opengl.nix"
+        #"${mod}/hardware/steam-hardware.nix"
+        #"${mod}/hardware/bluetooth.nix"
+        #"${mod}/hardware/qmk.nix"
 
         "${mod}/network/avahi.nix"
         "${mod}/network/networkd.nix"
         "${mod}/network/tailscale.nix"
 
-        "${mod}/services"
-        "${mod}/services/pipewire.nix"
+        #"${mod}/services"
+        #"${mod}/services/pipewire.nix"
         "${mod}/services/syncthing.nix"
         #"${mod}/services/containers/server"
         "${mod}/services/containers/experimental"
 
-        {
-          home-manager = {
-            users.xun.imports = homeImports."xun@hopper";
-            extraSpecialArgs = specialArgs;
-          };
-        }
+        #{
+        #  home-manager = {
+        #    users.xun.imports = homeImports."xun@hopper";
+        #    extraSpecialArgs = specialArgs;
+        #  };
+        #}
       ];
     };
     liveiso = {
@@ -124,9 +123,10 @@ in {
   };
   flake.nixosConfigurations = let
     l = inputs.nixpkgs.lib;
-  in (builtins.mapAttrs (_n: v:
-    l.nixosSystem {
-      inherit specialArgs;
-      modules = v.imports;
-    }) (l.filterAttrs (n: _: n != "meta") self.colmena));
+  in
+    builtins.mapAttrs (_: v:
+      l.nixosSystem {
+        inherit specialArgs;
+        modules = v.imports;
+      }) (l.filterAttrs (n: _: n != "meta") self.colmena);
 }

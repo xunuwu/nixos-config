@@ -21,7 +21,7 @@
       ];
       bookmarks = {};
       settings = {
-        "browser.tabs.inTitleBar" = "0"; # use system title bar (if you have one :))
+        "browser.tabs.inTitleBar" = "0"; # use system title bar
         "browser.newtabpage.enabled" = false;
         "browser.newtab.url" = "about:blank";
         "general.autoScroll" = "true"; # mmb scroll mode

@@ -1,7 +1,9 @@
 let
   desktop = [
     ./core
+    ./core/compat.nix
     ./core/boot.nix
+    ./core/docs.nix
     ./core/gvfs.nix
 
     ./hardware/opengl.nix
@@ -13,6 +15,7 @@ let
     ./network/avahi.nix
     ./network/localsend.nix
     ./network/tailscale.nix
+    ./network/goldberg.nix
 
     ./desktop
     ./desktop/awesome.nix
@@ -20,6 +23,7 @@ let
     #./desktop/hyprland.nix
 
     ./programs
+    ./programs/tools.nix
 
     ./services
     ./services/pipewire.nix

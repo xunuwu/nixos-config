@@ -34,6 +34,10 @@
           statusCommand = "${lib.getExe pkgs.i3status}";
         }
       ];
+      window = {
+        titlebar = false;
+      };
+      menu = "${lib.getExe pkgs.fuzzel}";
       keybindings = let
         mod = config.wayland.windowManager.sway.config.modifier;
         wobVolume = "${pkgs.wireplumber}/bin/wpctl get-volume @DEFAULT_SINK@ | awk '{print $2*100}' > $XDG_RUNTIME_DIR/wob.sock";
@@ -56,7 +60,6 @@
             "${mod}+Ctrl+Shift+${dir.up}" = "move output up";
             "${mod}+Ctrl+Shift+${dir.down}" = "move output down";
 
-            "${mod}+d" = "exec ${lib.getExe pkgs.fuzzel}";
             "${mod}+Shift+Backspace" = "exec systemctl suspend";
             "${mod}+Shift+s" = "exec ${lib.getExe pkgs.grimblast} copy area";
 

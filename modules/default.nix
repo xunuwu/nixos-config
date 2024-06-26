@@ -1,5 +1,5 @@
 {
   flake.nixosModules = {
-    # name = import ./name
+    #name = import ./name;
   };
 }

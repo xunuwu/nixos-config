@@ -7,10 +7,6 @@
     ./brawlstats.nix
   ];
 
-  services.tailscale.extraUpFlags = [
-    "--ssh"
-  ];
-
   networking.hostName = "hopper";
 
   swapDevices = [];

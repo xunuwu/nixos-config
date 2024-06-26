@@ -1,4 +1,4 @@
-{...}: {
+{
   imports = [
     ./kanshi.nix
     ./defaults.nix
@@ -7,6 +7,7 @@
 
     ../../terminal
     ../../terminal/programs/zellij.nix
+    ../../terminal/programs/irssi.nix
     ../../terminal/programs/lazygit.nix
     ../../terminal/programs/beets.nix
     ../../editors/nvim.nix

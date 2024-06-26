@@ -1,4 +1,4 @@
-{...}: {
+{
   services = {
     dbus.implementation = "broker";
 

@@ -3,7 +3,10 @@
   environment.pathsToLink = ["/share/zsh"];
 
   programs = {
-    less.enable = true;
+    less = {
+      enable = true;
+      envVariables.LESS = "--mouse";
+    };
 
     zsh = {
       enable = true;
