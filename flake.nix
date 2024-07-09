@@ -38,31 +38,29 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     hardware.url = "github:nixos/nixos-hardware";
-
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    small-nvim = {
-      url = "github:xunuwu/small-nvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    firefox-addons = {
-      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
+    home-manager.url = "github:nix-community/home-manager";
+    small-nvim.url = "github:xunuwu/small-nvim";
+    firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
     sops-nix.url = "github:Mic92/sops-nix";
+    nix-index-database.url = "github:Mic92/nix-index-database";
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 
-    nix-index-database = {
-      url = "github:Mic92/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
+    ## deduplication
+    flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
+
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    small-nvim.inputs.nixpkgs.follows = "nixpkgs";
+
+    firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
+
+    sops-nix.inputs = {
+      nixpkgs.follows = "nixpkgs";
+      nixpkgs-stable.follows = "nixpkgs";
     };
 
-    nix-vscode-extensions = {
-      url = "github:nix-community/nix-vscode-extensions";
-    };
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+
+    nix-vscode-extensions.inputs.nixpkgs.follows = "nixpkgs";
   };
 }

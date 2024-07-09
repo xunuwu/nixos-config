@@ -18,6 +18,9 @@ in {
       pictures = home + "/pics";
       publicShare = home + "/share";
       videos = home + "/vids";
+      extraConfig = {
+        XDG_SCREENSHOTS_DIR = config.xdg.userDirs.pictures + "/screenshots";
+      };
     };
   };
 

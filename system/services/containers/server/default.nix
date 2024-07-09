@@ -132,6 +132,7 @@
           "5030:5030" # slskd
           "5031:5031" # slskd https
           "8096:8096" # jellyfin
+          "8920:8920" # jellyfin https
           "8080:8080" # qbittorrent webui
         ];
 

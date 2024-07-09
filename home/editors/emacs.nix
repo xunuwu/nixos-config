@@ -1,21 +1,6 @@
 {pkgs, ...}: {
   programs.emacs = {
     enable = true;
-    extraPackages = _:
-      with pkgs; [
-        graphviz # org-roam graph
-      ];
-  };
-
-  home.packages = with pkgs; [
-    cmake
-    gnumake
-    gcc
-    gdb
-    libtool
-  ];
-
-  services.emacs = {
-    enable = true;
+    package = pkgs.emacs-gtk; # uses xwayland, use pgtk for native wayland or pkgs.emacs if using daemon
   };
 }

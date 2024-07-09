@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   environment.systemPackages = with pkgs; [
     vim
     htop
@@ -8,7 +12,12 @@
     nethogs
     ffmpeg-full
     parted
-    pciutils
-    usbutils
+    busybox
+    (
+      if config.nixpkgs.config.allowUnfree
+      then p7zip-rar
+      else p7zip
+    )
+    unar
   ];
 }

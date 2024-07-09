@@ -1,9 +1,5 @@
-{pkgs, ...}: {
-  #environment.systemPackages = [pkgs.steam-run];
-  environment.systemPackages = [pkgs.appimage-run];
-
-  programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
+{pkgs, ...}: let
+  list-of-libraries = with pkgs; [
     alsa-lib
     at-spi2-atk
     at-spi2-core
@@ -56,4 +52,14 @@
     xorg.libxshmfence
     zlib
   ];
+in {
+  programs.appimage = {
+    enable = true;
+    package = pkgs.appimage-run.override {
+      extraPkgs = p: list-of-libraries;
+    };
+  };
+
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = list-of-libraries;
 }

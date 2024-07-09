@@ -1,12 +1,15 @@
 let
   desktop = [
     ./core
+    ./core/tools.nix
     ./core/compat.nix
     ./core/boot.nix
     ./core/docs.nix
     ./core/gvfs.nix
 
-    ./hardware/opengl.nix
+    ./nix/gc.nix
+
+    ./hardware/graphics.nix
     ./hardware/steam-hardware.nix
     ./hardware/bluetooth.nix
     ./hardware/qmk.nix

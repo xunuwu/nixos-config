@@ -2,16 +2,20 @@
   self,
   inputs,
   homeImports,
+  lib,
+  pkgs,
   ...
 }: let
   specialArgs = {
     inherit inputs self;
   };
+  prependAll = a: b: map (x: a + x) b;
+  rootPaths = prependAll "${self}/";
+  modulePaths = prependAll "${self}/system/";
+
+  inherit (import "${self}/system") desktop;
 in {
-  flake.colmena = let
-    mod = "${self}/system";
-    inherit (import "${self}/system") desktop;
-  in {
+  flake.colmena = {
     meta = {
       nixpkgs = import inputs.nixpkgs {
         system = "x86_64-linux";
@@ -38,24 +42,26 @@ in {
       };
       imports =
         desktop
-        ++ [
+        ++ lib.flatten [
           ./nixdesk
 
-          "${self}/secrets"
-          "${self}/secrets/nixdesk"
+          (rootPaths [
+            "secrets"
+            "secrets/nixdesk"
+          ])
 
-          #"${mod}/network/wifi.nix"
+          (modulePaths [
+            "services/syncthing.nix"
+            "services/virt/waydroid.nix"
+            "services/virt/virt-manager.nix"
+            #"network/wifi.nix"
+            #"services/ollama.nix"
+            "desktop/x11/nosleep.nix"
 
-          "${mod}/services/syncthing.nix"
-          #"${mod}/services/virt/podman.nix"
-          "${mod}/services/virt/waydroid.nix"
-          "${mod}/services/virt/virt-manager.nix"
-          #"${mod}/services/ollama.nix"
-          "${mod}/desktop/x11/nosleep.nix"
-
-          "${mod}/programs/gamemode.nix"
-          "${mod}/programs/gamescope.nix"
-          "${mod}/programs/steam.nix"
+            "programs/gamemode.nix"
+            "programs/gamescope.nix"
+            "programs/steam.nix"
+          ])
 
           {
             home-manager = {
@@ -70,34 +76,38 @@ in {
         targetUser = "xun";
         targetHost = "hopper.local";
       };
-      imports = [
+      imports = lib.flatten [
         ./hopper
 
-        "${self}/secrets"
-        "${self}/secrets/hopper"
+        (rootPaths [
+          "secrets"
+          "secrets/hopper"
+        ])
 
-        "${mod}/core"
+        (modulePaths [
+          "core"
 
-        #"${mod}/programs"
-        #"${mod}/programs/steam.nix"
+          #"programs"
+          #"programs/steam.nix"
 
-        #"${mod}/desktop"
-        #"${mod}/desktop/awesome.nix"
+          #"desktop"
+          #"desktop/awesome.nix"
 
-        #"${mod}/hardware/opengl.nix"
-        #"${mod}/hardware/steam-hardware.nix"
-        #"${mod}/hardware/bluetooth.nix"
-        #"${mod}/hardware/qmk.nix"
+          #"hardware/graphics.nix"
+          #"hardware/steam-hardware.nix"
+          #"hardware/bluetooth.nix"
+          #"hardware/qmk.nix"
 
-        "${mod}/network/avahi.nix"
-        "${mod}/network/networkd.nix"
-        "${mod}/network/tailscale.nix"
+          "network/avahi.nix"
+          "network/networkd.nix"
+          "network/tailscale.nix"
 
-        #"${mod}/services"
-        #"${mod}/services/pipewire.nix"
-        "${mod}/services/syncthing.nix"
-        #"${mod}/services/containers/server"
-        "${mod}/services/containers/experimental"
+          #"services"
+          #"services/pipewire.nix"
+          "services/syncthing.nix"
+          #"services/containers/server"
+          "services/containers/experimental"
+        ])
 
         #{
         #  home-manager = {
@@ -109,15 +119,15 @@ in {
     };
     liveiso = {
       deployment.targetHost = null;
-      imports = [
+      imports = lib.flatten [
         ./liveiso
 
-        "${mod}/nix"
-        "${mod}/core/security.nix"
-
-        "${mod}/services"
-
-        "${mod}/desktop"
+        (modulePaths [
+          "/nix"
+          "/core/security.nix"
+          "/services"
+          "/desktop"
+        ])
       ];
     };
   };

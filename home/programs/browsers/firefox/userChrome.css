@@ -1,0 +1,19 @@
+/* Hide sidebar header */
+#sidebar-header {
+  display: none;
+}
+
+/* Hide tab bar */
+#TabsToolbar {
+  display: none;
+}
+
+/* urlbar same color as background */
+#urlbar-background, #searchbar {
+  background-color: var(--toolbar-bgcolor) !important;
+}
+
+/* Hide tiny strip below the main top bar */
+#navigator-toolbox {
+  border-bottom: none !important;
+}

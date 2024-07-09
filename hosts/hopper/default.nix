@@ -1,7 +1,6 @@
 {inputs, ...}: {
   imports = with inputs.hardware.nixosModules; [
     common-cpu-intel
-    common-pc-hdd
 
     ./hardware.nix
     ./brawlstats.nix

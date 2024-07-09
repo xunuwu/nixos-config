@@ -4,7 +4,7 @@
     ../../terminal/shell/zsh.nix
     ../../terminal/emulator/wezterm.nix
 
-    ../../programs/browsers/firefox.nix
+    ../../programs/browsers/firefox
 
     ../../programs/desktop
     ../../programs/desktop/awesome

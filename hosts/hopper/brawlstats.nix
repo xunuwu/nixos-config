@@ -37,12 +37,12 @@
           ${lib.getExe pkgs.gnuplot} -c ${pkgs.writeText "gnuplotcmds" ''
           set xdata time
           set timefmt '%Y%m%dT%H%M%S.000Z'
-          set format x '%H:%M'
+          set format x '%m/%d-%H:%M'
           set xlabel 'Time'
           set ylabel 'Trophies'
           set term svg
-          plot "/dev/stdin" using 1:2 with linespoints notitle
-        ''} # 2>/dev/null
+          plot "/dev/stdin" u 1:2 w lines notitle
+        ''}
         }
 
         case ''${parameters:1} in
@@ -59,41 +59,23 @@
             ;;
           brawler*)
             id=$(echo $parameters | ${lib.getExe pkgs.gawk} '{print $2}')
-            brawler=$(echo $parameters | ${lib.getExe pkgs.gawk} '{print $3}')
+            brawler=$(echo $parameters | ${lib.getExe pkgs.gawk} '{print $3}' | ${lib.getExe pkgs.gnused} 's/%20/ /g')
             response=$(${lib.getExe pkgs.jq} -r \
               "sort_by(.battleTime)
               | reverse
               | map (select (.. | .tag? == \"#$id\" and .brawler.name == \"$brawler\")).[]
+              | select (.battle.type == \"ranked\")
               | .battleTime,
               (.battle | (.teams[]?,.players) | select(.)[] | select(.tag == \"#$id\") | .brawler.trophies) + .battle.trophyChange" "/var/lib/brawlstats/$id-log.json" \
               | paste - - \
               | tosvg)
-            #reponse=$(${lib.getExe pkgs.jq} -r \
-            #  "sort_by(.battleTime)
-            #  | reverse
-            #  | map (select (.. | .tag? == \"#$id\" and .brawler.name == \"$brawler\")).[]
-            #  | .battleTime,
-            #  (.battle | (.teams[]?,.players) | select(.)[] | select(.tag == \"#$id\") | .brawler.trophies) + .battle.trophyChange" \
-            #    "/var/lib/brawlstats/$id-log.json" \
-            #    | paste - - \
-            #    | tosvg)
-            #echo $response
            ;;
           *)
             response="parameters: $parameters | firstparam: $(echo "$parameters" | ${lib.getExe pkgs.gawk} '{print $1}')"
             ;;
         esac
 
-        #file="/var/lib/brawlstats/output.svg"
         echo -e "HTTP/1.1 200 OK\r\nContent-Length: $(echo "$response" | wc -c)\r\nContent-Type: text/html\r\n\r\n$response"
-        #echo $endpoint
-        #cat "$file"
-        #while read -r LINE
-        #do
-        #    echo "$LINE"
-        #    [ -z "$LINE" ] && break
-        #done
-
       ''}";
     };
   };
@@ -119,7 +101,7 @@
       LoadCredential = "apitoken:${config.sops.secrets.brawlstars-api-key.path}";
       Environment = "TOKEN=%d/apitoken";
 
-      ExecStart = "${pkgs.writeShellScript "brawlstats.sh" ''
+      ExecStart = pkgs.writers.writeBash "brawlstats.sh" ''
         TOKEN=$(cat $TOKEN)
 
         cd "$STATE_DIRECTORY"
@@ -160,7 +142,7 @@
            # remove old backups
            find . -type f -name "$id-log-*.json" | sort | head -n -5 | xargs -r rm
         done
-      ''}";
+      '';
     };
   };
 }

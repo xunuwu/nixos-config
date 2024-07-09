@@ -11,9 +11,10 @@
     ../../terminal/programs/lazygit.nix
     ../../terminal/programs/beets.nix
     ../../editors/nvim.nix
-    #../../editors/emacs.nix
+    ../../editors/emacs.nix
     ../../editors/vscode.nix
-    ../../programs/browsers/firefox.nix
+    ../../programs/browsers/firefox
+    ../../programs/browsers/tor.nix
     ../../programs/browsers/chromium.nix
     ../../terminal/emulator/wezterm.nix
     ../../terminal/emulator/foot.nix
@@ -31,10 +32,10 @@
     # programs
     ../../programs/misc/keepassxc.nix
     ../../programs/misc/discord.nix
-    ../../programs/misc/ardour.nix
+    #../../programs/misc/ardour.nix
     ../../programs/misc/foliate.nix
     ../../programs/misc/obsidian.nix
-    ../../programs/misc/pavucontrol.nix
+    ../../programs/misc/pwvucontrol.nix
     ../../programs/misc/thunderbird.nix
     #../../programs/music
     #../../programs/music/yams.nix
