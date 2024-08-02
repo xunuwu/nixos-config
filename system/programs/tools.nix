@@ -13,6 +13,7 @@
     ffmpeg-full
     parted
     busybox
+    fd # find replacement
     (
       if config.nixpkgs.config.allowUnfree
       then p7zip-rar

@@ -169,7 +169,7 @@
         "browser.aboutConfig.showWarning" = false; # Warning when opening about:config
         "media.videocontrols.picture-in-picture.video-toggle.enabled" = false;
         "extensions.autoDisableScopes" = "0"; # Automatically enable extensions
-        "extensions.pocket.enabled" = false;
+        "extensions.pocket.enabled" = true; # i actually use pocket
         "extensions.shield-recipe-client.enabled" = false;
         #"reader.parse-on-load.enabled" = false; # "reader view"
 

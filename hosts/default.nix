@@ -53,7 +53,7 @@ in {
           (modulePaths [
             "services/syncthing.nix"
             "services/virt/waydroid.nix"
-            "services/virt/virt-manager.nix"
+            #"services/virt/virt-manager.nix"
             #"network/wifi.nix"
             #"services/ollama.nix"
             "desktop/x11/nosleep.nix"
@@ -61,6 +61,7 @@ in {
             "programs/gamemode.nix"
             "programs/gamescope.nix"
             "programs/steam.nix"
+            "programs/RE"
           ])
 
           {
@@ -86,6 +87,7 @@ in {
 
         (modulePaths [
           "core"
+          "core/tools.nix"
 
           #"programs"
           #"programs/steam.nix"

@@ -44,12 +44,12 @@
     ../../programs/media/jellyfin.nix
     # gaming
     ../../programs/games
-    ../../programs/games/ludusavi.nix
+    #../../programs/games/ludusavi.nix
 
     # media services
     ../../services/media/playerctl.nix
     # system services
     ../../services/system/polkit-agent.nix
-    ../../services/system/udiskie.nix
+    ../../services/system/udiskie.nix # although i dont need this for usb memory, it is quite convenient for flashing qmk
   ];
 }

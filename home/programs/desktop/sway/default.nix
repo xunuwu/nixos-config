@@ -17,6 +17,28 @@
     extraOptions = ["-max-items" "150"];
   };
 
+  # notification center
+  services.swaync = {
+    enable = true;
+    settings = {
+      positionX = "right";
+      positionY = "top";
+      layer = "overlay";
+      control-center-layer = "top";
+      layer-shell = true;
+      cssPriority = "application";
+      control-center-margin-top = 0;
+      control-center-margin-bottom = 0;
+      control-center-margin-right = 0;
+      control-center-margin-left = 0;
+      notification-2fa-action = true;
+      notification-inline-replies = false;
+      notification-icon-size = 64;
+      notification-body-image-height = 100;
+      notification-body-image-width = 200;
+    };
+  };
+
   wayland.windowManager.sway = {
     enable = true;
     checkConfig = false; # doesnt work with custom wallpaper
@@ -59,12 +81,13 @@
             kill -s SIGSTOP $pid
           fi
         '';
-        dir = with config.wayland.windowManager.sway.config; {
-          inherit up down left right;
+        dir = {
+          inherit (config.wayland.windowManager.sway.config) up down left right;
         };
       in
         lib.mkOptionDefault (
           {
+            "${mod}+n" = "exec ${pkgs.swaynotificationcenter}/bin/swaync-client -t";
             "${mod}+Shift+v" = "exec ${lib.getExe pkgs.cliphist} list | ${lib.getExe pkgs.wofi} --dmenu | ${lib.getExe pkgs.cliphist} decode | ${pkgs.wl-clipboard}/bin/wl-copy";
             "${mod}+Ctrl+${dir.left}" = "focus output left";
             "${mod}+Ctrl+${dir.right}" = "focus output right";
@@ -78,7 +101,7 @@
 
             "${mod}+Shift+Backspace" = "exec systemctl suspend";
             "${mod}+Shift+s" = "exec ${lib.getExe pkgs.sway-contrib.grimshot} copy anything";
-            "${mod}+Ctrl+Shift+s" = "exec XDG_PICTURES_DIR=$XDG_PICTURES_DIR/screenshots ${lib.getExe pkgs.sway-contrib.grimshot} savecopy anything";
+            "${mod}+Ctrl+Shift+s" = "exec ${lib.getExe pkgs.sway-contrib.grimshot} savecopy anything";
 
             "${mod}+Shift+p" = "exec ${pauseApp}";
 

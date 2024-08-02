@@ -19,8 +19,4 @@
 
     plymouth.enable = true;
   };
-
-  environment.systemPackages = [
-    config.boot.kernelPackages.cpupower
-  ];
 }

@@ -400,11 +400,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1719854753,
-        "narHash": "sha256-ms8pMyIK4FGV8UaPrZP7CWNrEGJlcKnQcUPONglz3Zg=",
+        "lastModified": 1720880509,
+        "narHash": "sha256-e0MTMRyoIT3J2AlszL4QPYPQgyoHtD0ymIjAWt9Q0KM=",
         "owner": "xunuwu",
         "repo": "small-nvim",
-        "rev": "02f87ed2eff21db2ef7b672e4e89638643d0b0cd",
+        "rev": "40999310f248b58022bc4ca12e9dff48ff4ce4a0",
         "type": "github"
       },
       "original": {

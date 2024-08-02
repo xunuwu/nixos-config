@@ -2,6 +2,7 @@
   inputs,
   config,
   pkgs,
+  lib,
   ...
 }: {
   imports = [
@@ -59,10 +60,23 @@
       fsType = "btrfs";
       options = ["subvol=nix" "compress=zstd" "noatime"];
     };
+    "/.swapvol" = {
+      device = "/dev/disk/by-uuid/d87276c0-ef9c-422e-b2de-effc1b47c654";
+      fsType = "btrfs";
+      options = ["subvol=swap" "noatime"];
+    };
     "/boot" = {
       device = "/dev/disk/by-uuid/588B-CB97";
       fsType = "vfat";
     };
+  };
+
+  boot.resumeDevice = "/dev/disk/by-uuid/d87276c0-ef9c-422e-b2de-effc1b47c654";
+  # btrfs inspect-internal map-swapfile -r /.swapvol/swapfile
+  boot.kernelParams = ["resume_offset=76293376"];
+
+  swapDevices = lib.singleton {
+    device = "/.swapvol/swapfile";
   };
 
   hardware.enableAllFirmware = true;
