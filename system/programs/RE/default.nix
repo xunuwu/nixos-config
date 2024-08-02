@@ -21,8 +21,8 @@
         ]))
 
       self.packages.${pkgs.system}.binaryninja-personal
-      il2cppdumper
-      ilspy
+      # il2cppdumper
+      # ilspy
       gdb
     ];
 

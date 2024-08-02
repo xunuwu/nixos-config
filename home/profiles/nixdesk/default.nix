@@ -44,6 +44,7 @@
     ../../programs/media/jellyfin.nix
     # gaming
     ../../programs/games
+    ../../programs/games/roblox.nix
     #../../programs/games/ludusavi.nix
 
     # media services

@@ -31,17 +31,6 @@
     message = "add cracked libbinaryninjacore.so.1 to the nix store with command \"nix-store --add-fixed sha256 libbinaryninjacore.so.1\"";
   };
 in
-  # (stdenv.mkDerivation {
-  #   name = "binaryninja-crack";
-  #   src = requireFile {
-  #     name = "libbinaryninjacore.so.1";
-  #     sha256 = "6bff56e25e55eb701f00ba294f8d5f0cd169d350412bcbfe4fea7a8feb1b3022";
-  #     message = "add cracked libbinaryninjacore.so.1 to the nix store with command \"nix-store --add-fixed sha256 libbinaryninjacore.so.1\"";
-  #   };
-  #   installPhase = ''
-  #     mv libbinaryninjacore.so.1 crack-libbinaryninjacore.so.1
-  #   '';
-  # })
   stdenv.mkDerivation {
     name = "binaryninja-personal";
 
