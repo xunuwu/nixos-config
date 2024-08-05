@@ -32,10 +32,12 @@
     # programs
     ../../programs/misc/keepassxc.nix
     ../../programs/misc/discord.nix
+    ../../programs/misc/obs.nix
     #../../programs/misc/ardour.nix
     ../../programs/misc/foliate.nix
     ../../programs/misc/obsidian.nix
     ../../programs/misc/pwvucontrol.nix
+    ../../programs/misc/qpwgraph.nix
     ../../programs/misc/thunderbird.nix
     #../../programs/music
     #../../programs/music/yams.nix
@@ -44,7 +46,6 @@
     ../../programs/media/jellyfin.nix
     # gaming
     ../../programs/games
-    ../../programs/games/roblox.nix
     #../../programs/games/ludusavi.nix
 
     # media services

@@ -64,7 +64,6 @@
         mod = config.wayland.windowManager.sway.config.modifier;
         wobVolume = "${pkgs.wireplumber}/bin/wpctl get-volume @DEFAULT_SINK@ | awk '{print $2*100}' > $XDG_RUNTIME_DIR/wob.sock";
         setVolume = limit: amount: "${pkgs.wireplumber}/bin/wpctl set-volume -l ${limit} @DEFAULT_AUDIO_SINK@ ${amount}";
-        #perMonitor = workspace: "\"$(swaymsg -t get_outputs | ${lib.getExe pkgs.jq} -r '.[] | select(.focused == true).name' | ${lib.getExe pkgs.perl} -ne '$s=0;for(split//){$s+=ord}print\"$s\"')${toString workspace}\"";
         monitorId = pkgs.writers.writeBash "monitor-id" ''
           swaymsg -t get_outputs \
             | ${lib.getExe pkgs.jq} -r '.[] | select (.focused == true).name' \
@@ -128,5 +127,8 @@
             (range 0 9))
         );
     };
+    extraConfig = ''
+      bindcode 202 exec ${lib.getExe pkgs.obs-cmd} replay save # F24/numpad 1 on my ID75
+    '';
   };
 }
