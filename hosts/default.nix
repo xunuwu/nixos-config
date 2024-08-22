@@ -40,12 +40,8 @@ in {
       };
       imports = lib.flatten [
         ./kidney
-        (rootPaths [
-          "secrets" # tailscale auth mainly
-        ])
         (modulePaths [
           "core/tools.nix"
-          "network/tailscale.nix"
 
           "programs/tools.nix"
 
