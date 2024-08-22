@@ -34,6 +34,23 @@ in {
 
       inherit specialArgs;
     };
+    kidney = {
+      deployment = {
+        allowLocalDeployment = true;
+      };
+      imports = lib.flatten [
+        ./kidney
+        (modulePaths [
+          "core/tools.nix"
+          "network/tailscale.nix"
+
+          "programs/tools.nix"
+
+          "nix"
+          "nix/gc.nix"
+        ])
+      ];
+    };
     nixdesk = {
       deployment = {
         allowLocalDeployment = true;

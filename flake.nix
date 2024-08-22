@@ -34,7 +34,7 @@
     };
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/f97145f837de6d635b7d6da9a9d5d42e323f8050"; # TODO: switch back to nixos-unstable ASAP
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     hardware.url = "github:nixos/nixos-hardware";
@@ -44,6 +44,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
 
     ## deduplication
     flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
