@@ -14,6 +14,7 @@
     parted
     busybox
     fd # find replacement
+    graphviz-nox
     (
       if config.nixpkgs.config.allowUnfree
       then p7zip-rar

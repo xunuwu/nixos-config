@@ -12,6 +12,7 @@
       ./nixdesk
       inputs.nix-index-database.hmModules.nix-index
       inputs.sops-nix.homeManagerModules.sops
+      inputs.nur.hmModules.nur
       {
         programs.nix-index = {
           enableBashIntegration = false;

@@ -10,8 +10,17 @@
   #};
 
   boot = {
+    blacklistedKernelModules = [
+      "xhci_pci" # was causing issues (100% udevd cpu usage)
+    ];
     initrd = {
-      availableKernelModules = ["ehci_pci" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
+      availableKernelModules = [
+        "ehci_pci"
+        "ahci"
+        "usb_storage"
+        "usbhid"
+        "sd_mod"
+      ];
       kernelModules = [];
     };
     kernelModules = ["kvm-intel"];

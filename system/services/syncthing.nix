@@ -22,6 +22,10 @@
           id = "DK3RPET-ACMULD2-TLQS6YM-XWUMS3N-JRNDNME-YTM3H4X-P7QVUKB-N3PL5QF";
           autoAcceptFolders = true;
         };
+        "school-probook" = {
+          id = "ZYNRRWE-SIJLPMQ-5LJDWCY-BF5VMRM-FQRFEW4-L7PKA23-HVJADTV-FZYRSQM";
+          autoAcceptFolders = true;
+        };
       };
       folders = {
         "~/secrets" = {

@@ -13,6 +13,7 @@
     ../../editors/nvim.nix
     ../../editors/emacs.nix
     ../../editors/vscode.nix
+    ../../editors/jetbrains
     ../../programs/browsers/firefox
     ../../programs/browsers/tor.nix
     ../../programs/browsers/chromium.nix
@@ -46,6 +47,7 @@
     ../../programs/media/jellyfin.nix
     # gaming
     ../../programs/games
+    ../../programs/games/roblox.nix
     #../../programs/games/ludusavi.nix
 
     # media services
