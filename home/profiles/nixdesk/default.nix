@@ -48,6 +48,7 @@
     # gaming
     ../../programs/games
     ../../programs/games/roblox.nix
+    ../../programs/games/krunker.nix
     #../../programs/games/ludusavi.nix
 
     # media services

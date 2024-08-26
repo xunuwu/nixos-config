@@ -4,4 +4,5 @@
   pince = pkgs.callPackage ./pince {};
   binaryninja-personal = pkgs.qt6Packages.callPackage ./binaryninja-personal {};
   sobercookie = pkgs.callPackage ./sobercookie {};
+  krunker = pkgs.callPackage ./krunker {};
 }
