@@ -29,6 +29,7 @@
 
     # development
     ../../develop
+    ../../develop/small-misc.nix
 
     # programs
     ../../programs/misc/keepassxc.nix
