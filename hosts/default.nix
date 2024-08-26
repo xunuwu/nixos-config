@@ -74,9 +74,9 @@ in {
             #"services/ollama.nix"
             "desktop/x11/nosleep.nix"
 
-            "programs/gamemode.nix"
-            "programs/gamescope.nix"
-            "programs/steam.nix"
+            # "programs/gamemode.nix" # TEMP: TODO
+            # "programs/gamescope.nix" # TEMP: TODO
+            # "programs/steam.nix" # TEMP: TODO
             "programs/RE"
           ])
 
