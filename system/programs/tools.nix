@@ -13,6 +13,8 @@
     ffmpeg-full
     parted
     busybox
+    file
+    lm_sensors
     fd # find replacement
     graphviz-nox
     (
