@@ -11,7 +11,10 @@
       signByDefault = true;
     };
 
-    extraConfig.gpg.format = "ssh";
+    extraConfig = {
+      gpg.format = "ssh";
+      push.autoSetupRemote = true;
+    };
 
     userEmail = "xunuwu@gmail.com";
     userName = "xunuwu";

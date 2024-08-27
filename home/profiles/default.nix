@@ -7,6 +7,19 @@
   # get these into the module system
   extraSpecialArgs = {inherit inputs self;};
   homeImports = {
+    "xun@kidney" = [
+      ../.
+      ./kidney
+      inputs.nix-index-database.hmModules.nix-index
+      {
+        programs.nix-index = {
+          enableBashIntegration = false;
+          enableFishIntegration = false;
+          enableZshIntegration = false;
+        };
+        home.stateVersion = "24.05";
+      }
+    ];
     "xun@nixdesk" = [
       ../.
       ./nixdesk
@@ -19,12 +32,14 @@
           enableFishIntegration = false;
           enableZshIntegration = false;
         };
+        home.stateVersion = "23.11";
       }
     ];
     "xun@hopper" = [
       ../.
       ./hopper
       inputs.sops-nix.homeManagerModules.sops
+      {home.stateVersion = "23.11";}
     ];
   };
 
