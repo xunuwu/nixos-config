@@ -42,12 +42,21 @@ in {
         ./kidney
         (modulePaths [
           "core/tools.nix"
+          "core/users.nix"
 
           "programs/tools.nix"
+          "programs/zsh.nix"
+          "programs/home-manager.nix"
 
           "nix"
           "nix/gc.nix"
         ])
+        {
+          home-manager = {
+            users.xun.imports = homeImports."xun@kidney";
+            extraSpecialArgs = specialArgs;
+          };
+        }
       ];
     };
     nixdesk = {

@@ -1,5 +1,6 @@
-{
+{inputs, ...}: {
   imports = [
+    inputs.small-nvim.homeManagerModules.small-nvim
     ./kanshi.nix
     ./defaults.nix
 
@@ -10,7 +11,6 @@
     ../../terminal/programs/irssi.nix
     ../../terminal/programs/lazygit.nix
     ../../terminal/programs/beets.nix
-    ../../editors/nvim.nix
     ../../editors/emacs.nix
     ../../editors/vscode.nix
     ../../editors/jetbrains
@@ -58,4 +58,12 @@
     ../../services/system/polkit-agent.nix
     ../../services/system/udiskie.nix # although i dont need this for usb memory, it is quite convenient for flashing qmk
   ];
+  xun.small-nvim = {
+    enable = true;
+    colorscheme = {
+      name = "carbonfox";
+      package = "EdenEast/nightfox.nvim";
+    };
+    wakatime.enable = true;
+  };
 }
