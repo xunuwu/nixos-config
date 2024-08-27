@@ -11,7 +11,7 @@
   xun.small-nvim = {
     enable = true;
     colorscheme = {
-      name = "dawnfox";
+      name = "dayfox";
       package = "EdenEast/nightfox.nvim";
     };
     wakatime.enable = false;
