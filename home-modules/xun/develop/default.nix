@@ -17,12 +17,15 @@ in {
   config = let
     config =
       if cfg.enable
-      then {
-        nix.enable = true;
-        tools.enable = true;
-        docs.enable = true;
-        lsp.c.enable = true;
-      }
+      then
+        (cfg
+          // {
+            enable = true;
+            nix.enable = true;
+            tools.enable = true;
+            docs.enable = true;
+            lsp.c.enable = true;
+          })
       else cfg;
   in
     lib.mkMerge [
