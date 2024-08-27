@@ -15,12 +15,11 @@ in {
   };
 
   config = let
-    config =
+    conf =
       if cfg.enable
       then
         (cfg
           // {
-            enable = true;
             nix.enable = true;
             tools.enable = true;
             docs.enable = true;
@@ -29,16 +28,16 @@ in {
       else cfg;
   in
     lib.mkMerge [
-      (lib.mkIf config.nix.enable {
+      (lib.mkIf conf.nix.enable {
         home.packages = with pkgs; [nil alejandra];
       })
-      (lib.mkIf config.tools.enable {
+      (lib.mkIf conf.tools.enable {
         home.packages = with pkgs; [tokei];
       })
-      (lib.mkIf config.lsp.c.enable {
+      (lib.mkIf conf.lsp.c.enable {
         home.packages = with pkgs; [clang-tools];
       })
-      (lib.mkIf config.docs.enable {
+      (lib.mkIf conf.docs.enable {
         programs.man.generateCaches = true;
       })
     ];
