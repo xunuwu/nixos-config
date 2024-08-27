@@ -58,12 +58,14 @@
     ../../services/system/polkit-agent.nix
     ../../services/system/udiskie.nix # although i dont need this for usb memory, it is quite convenient for flashing qmk
   ];
-  xun.small-nvim = {
-    enable = true;
-    colorscheme = {
-      name = "carbonfox";
-      package = "EdenEast/nightfox.nvim";
+  xun = {
+    small-nvim = {
+      enable = true;
+      colorscheme = {
+        name = "carbonfox";
+        package = "EdenEast/nightfox.nvim";
+      };
+      wakatime.enable = true;
     };
-    wakatime.enable = true;
   };
 }

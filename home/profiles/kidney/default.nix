@@ -8,12 +8,14 @@
     ../../develop/small-misc.nix
   ];
 
-  xun.small-nvim = {
-    enable = true;
-    colorscheme = {
-      name = "dayfox";
-      package = "EdenEast/nightfox.nvim";
+  xun = {
+    small-nvim = {
+      enable = true;
+      colorscheme = {
+        name = "dayfox";
+        package = "EdenEast/nightfox.nvim";
+      };
+      wakatime.enable = false;
     };
-    wakatime.enable = false;
   };
 }
