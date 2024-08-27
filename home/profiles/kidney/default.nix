@@ -5,6 +5,7 @@
     ../../terminal/programs
     ../../terminal/programs/lazygit.nix
     ../../develop
+    ../../develop/small-misc.nix
   ];
 
   xun.small-nvim = {
