@@ -1,5 +1,10 @@
-{inputs, ...}: {
+{
+  inputs,
+  self,
+  ...
+}: {
   imports = [
+    self.homeManagerModules.xun
     inputs.small-nvim.homeManagerModules.small-nvim
     ./kanshi.nix
     ./defaults.nix
@@ -28,8 +33,8 @@
     ../../programs/desktop/sway
 
     # development
-    ../../develop
-    ../../develop/small-misc.nix
+    #../../develop
+    #../../develop/small-misc.nix
 
     # programs
     ../../programs/misc/keepassxc.nix
