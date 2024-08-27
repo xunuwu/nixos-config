@@ -8,6 +8,7 @@
         ./home/profiles
         ./hosts
         ./modules
+        ./home-modules
       ];
       flake = {
       };

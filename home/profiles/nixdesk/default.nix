@@ -67,5 +67,6 @@
       };
       wakatime.enable = true;
     };
+    develop.enable = true;
   };
 }

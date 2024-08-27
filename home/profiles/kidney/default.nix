@@ -1,11 +1,16 @@
-{inputs, ...}: {
+{
+  inputs,
+  self,
+  ...
+}: {
   imports = [
+    self.homeManagerModules.xun
     inputs.small-nvim.homeManagerModules.small-nvim
     ../../terminal/shell/zsh.nix
     ../../terminal/programs
     ../../terminal/programs/lazygit.nix
-    ../../develop
-    ../../develop/small-misc.nix
+    # ../../develop
+    # ../../develop/small-misc.nix
   ];
 
   xun = {
@@ -17,5 +22,6 @@
       };
       wakatime.enable = false;
     };
+    develop.enable = true;
   };
 }
