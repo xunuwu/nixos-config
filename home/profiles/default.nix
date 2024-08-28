@@ -10,7 +10,7 @@
     "xun@kidney" = [
       ../.
       ./kidney
-      inputs.nix-index-database.hmModules.nix-index
+      # inputs.nix-index-database.hmModules.nix-index
       {
         programs.nix-index = {
           enableBashIntegration = false;

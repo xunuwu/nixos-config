@@ -8,6 +8,7 @@
 in {
   options.xun.develop = {
     enable = lib.mkEnableOption "develop";
+    git.enable = lib.mkEnableOption "git";
     nix.enable = lib.mkEnableOption "nix";
     tools.enable = lib.mkEnableOption "tools";
     docs.enable = lib.mkEnableOption "man caches";
@@ -20,6 +21,7 @@ in {
       then
         (cfg
           // {
+            git.enable = true;
             nix.enable = true;
             tools.enable = true;
             docs.enable = true;
@@ -33,6 +35,32 @@ in {
       })
       (lib.mkIf conf.tools.enable {
         home.packages = with pkgs; [tokei];
+      })
+      (lib.mkIf conf.git.enable {
+        home.packages = with pkgs; [lazygit];
+        programs.gh.enable = true;
+        programs.gh-dash.enable = true;
+
+        programs.git = {
+          enable = true;
+          delta.enable = true;
+          lfs.enable = true;
+
+          ignores = ["*~" ".direnv"];
+
+          signing = {
+            key = "${config.home.homeDirectory}/.ssh/id_ed25519";
+            signByDefault = true;
+          };
+
+          extraConfig = {
+            gpg.format = "ssh";
+            push.autoSetupRemote = true;
+          };
+
+          userEmail = "xunuwu@gmail.com";
+          userName = "xunuwu";
+        };
       })
       (lib.mkIf conf.lsp.c.enable {
         home.packages = with pkgs; [clang-tools];
