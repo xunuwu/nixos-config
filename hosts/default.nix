@@ -43,6 +43,7 @@ in {
         (modulePaths [
           "core/tools.nix"
           "core/users.nix"
+          "core/locale.nix"
 
           "programs/tools.nix"
           "programs/zsh.nix"
