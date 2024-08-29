@@ -47,6 +47,10 @@ in {
           "programs/tools.nix"
           "programs/zsh.nix"
           "programs/home-manager.nix"
+          "hardware/graphics.nix"
+
+          "services/flatpak.nix"
+          "services/xdg-portals.nix"
 
           "nix"
           "nix/gc.nix"
