@@ -139,7 +139,7 @@
           "Google".metaData.alias = "@go";
           "DuckDuckGo".metaData.alias = "@ddg";
           "Wikipedia".metaData.alias = "@wiki";
-          "Bind".metaData.hidden = true;
+          "Bing".metaData.hidden = true;
         };
       };
       userChrome = builtins.readFile ./userChrome.css;
