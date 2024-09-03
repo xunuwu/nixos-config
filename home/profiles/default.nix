@@ -10,7 +10,7 @@
     "xun@kidney" = [
       ../.
       ./kidney
-      inputs.nix-index-database.hmModules.nix-index
+      # inputs.nix-index-database.hmModules.nix-index
       {
         programs.nix-index = {
           enableBashIntegration = false;
@@ -23,17 +23,9 @@
     "xun@nixdesk" = [
       ../.
       ./nixdesk
-      inputs.nix-index-database.hmModules.nix-index
       inputs.sops-nix.homeManagerModules.sops
       inputs.nur.hmModules.nur
-      {
-        programs.nix-index = {
-          enableBashIntegration = false;
-          enableFishIntegration = false;
-          enableZshIntegration = false;
-        };
-        home.stateVersion = "23.11";
-      }
+      {home.stateVersion = "23.11";}
     ];
     "xun@hopper" = [
       ../.

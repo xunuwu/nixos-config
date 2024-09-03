@@ -1,14 +1,19 @@
-{inputs, ...}: {
+{
+  inputs,
+  self,
+  ...
+}: {
   imports = [
+    self.homeManagerModules.xun
     inputs.small-nvim.homeManagerModules.small-nvim
     ./kanshi.nix
     ./defaults.nix
 
     ../../secrets
 
-    ../../terminal
+    # ../../terminal
     ../../terminal/programs/zellij.nix
-    ../../terminal/programs/irssi.nix
+    # ../../terminal/programs/irssi.nix
     ../../terminal/programs/lazygit.nix
     ../../terminal/programs/beets.nix
     ../../editors/emacs.nix
@@ -28,8 +33,8 @@
     ../../programs/desktop/sway
 
     # development
-    ../../develop
-    ../../develop/small-misc.nix
+    #../../develop
+    #../../develop/small-misc.nix
 
     # programs
     ../../programs/misc/keepassxc.nix
@@ -58,12 +63,29 @@
     ../../services/system/polkit-agent.nix
     ../../services/system/udiskie.nix # although i dont need this for usb memory, it is quite convenient for flashing qmk
   ];
-  xun.small-nvim = {
-    enable = true;
-    colorscheme = {
-      name = "carbonfox";
-      package = "EdenEast/nightfox.nvim";
+  xun = {
+    small-nvim = {
+      enable = true;
+      colorscheme = {
+        name = "carbonfox";
+        package = "EdenEast/nightfox.nvim";
+      };
+      wakatime.enable = true;
     };
-    wakatime.enable = true;
+    desktop.xdg.enable = true;
+    programs.terminal = {
+      shell.zsh.enable = true;
+      direnv.enable = true;
+      comma.enable = true;
+      tmux.enable = true;
+      irssi.enable = true;
+    };
+    develop = {
+      enable = true;
+      docs.enable = true;
+      lsp = {
+        c.enable = true;
+      };
+    };
   };
 }

@@ -2,6 +2,7 @@
   imports = [
     ./hardware.nix
     ./hibernate-boot.nix
+    ./testing.nix
   ];
 
   networking.hostName = "nixdesk";

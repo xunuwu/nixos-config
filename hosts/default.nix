@@ -43,10 +43,15 @@ in {
         (modulePaths [
           "core/tools.nix"
           "core/users.nix"
+          "core/locale.nix"
 
           "programs/tools.nix"
           "programs/zsh.nix"
           "programs/home-manager.nix"
+          "hardware/graphics.nix"
+
+          "services/flatpak.nix"
+          "services/xdg-portals.nix"
 
           "nix"
           "nix/gc.nix"
@@ -83,9 +88,9 @@ in {
             #"services/ollama.nix"
             "desktop/x11/nosleep.nix"
 
-            "programs/gamemode.nix"
-            "programs/gamescope.nix"
-            "programs/steam.nix"
+            # "programs/gamemode.nix" # TEMP: TODO
+            # "programs/gamescope.nix" # TEMP: TODO
+            # "programs/steam.nix" # TEMP: TODO
             "programs/RE"
           ])
 
