@@ -22,6 +22,7 @@ in {
 
   config = lib.mkMerge [
     (lib.mkIf cfg.shell.zsh.enable {
+      programs.fzf.enable = true;
       programs.zsh = {
         enable = true;
         autocd = true;
