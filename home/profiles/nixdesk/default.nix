@@ -11,9 +11,9 @@
 
     ../../secrets
 
-    ../../terminal
+    # ../../terminal
     ../../terminal/programs/zellij.nix
-    ../../terminal/programs/irssi.nix
+    # ../../terminal/programs/irssi.nix
     ../../terminal/programs/lazygit.nix
     ../../terminal/programs/beets.nix
     ../../editors/emacs.nix
@@ -72,6 +72,20 @@
       };
       wakatime.enable = true;
     };
-    develop.enable = true;
+    desktop.xdg.enable = true;
+    programs.terminal = {
+      shell.zsh.enable = true;
+      direnv.enable = true;
+      comma.enable = true;
+      tmux.enable = true;
+      irssi.enable = true;
+    };
+    develop = {
+      enable = true;
+      docs.enable = true;
+      lsp = {
+        c.enable = true;
+      };
+    };
   };
 }
