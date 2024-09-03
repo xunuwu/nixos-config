@@ -6,37 +6,26 @@
 }: let
   cfg = config.xun.develop;
 in {
-  options.xun.develop = {
-    enable = lib.mkEnableOption "develop";
-    git.enable = lib.mkEnableOption "git";
-    nix.enable = lib.mkEnableOption "nix";
-    tools.enable = lib.mkEnableOption "tools";
-    docs.enable = lib.mkEnableOption "man caches";
-    lsp.c.enable = lib.mkEnableOption "clangd";
+  options.xun.develop = let
+    enableOption = name: default: lib.mkEnableOption name // {inherit default;};
+  in {
+    enable = enableOption "develop" false;
+    git.enable = enableOption "git" true;
+    nix.enable = enableOption "nix" true;
+    tools.enable = enableOption "tools" true;
+    docs.enable = enableOption "man caches" false;
+    lsp.c.enable = enableOption "clangd" false;
   };
 
-  config = let
-    conf =
-      if cfg.enable
-      then
-        (cfg
-          // {
-            git.enable = true;
-            nix.enable = true;
-            tools.enable = true;
-            docs.enable = true;
-            lsp.c.enable = true;
-          })
-      else cfg;
-  in
+  config = lib.mkIf cfg.enable (
     lib.mkMerge [
-      (lib.mkIf conf.nix.enable {
+      (lib.mkIf cfg.nix.enable {
         home.packages = with pkgs; [nil alejandra];
       })
-      (lib.mkIf conf.tools.enable {
+      (lib.mkIf cfg.tools.enable {
         home.packages = with pkgs; [tokei];
       })
-      (lib.mkIf conf.git.enable {
+      (lib.mkIf cfg.git.enable {
         home.packages = with pkgs; [lazygit];
         programs.gh.enable = true;
         programs.gh-dash.enable = true;
@@ -62,11 +51,12 @@ in {
           userName = "xunuwu";
         };
       })
-      (lib.mkIf conf.lsp.c.enable {
+      (lib.mkIf cfg.lsp.c.enable {
         home.packages = with pkgs; [clang-tools];
       })
-      (lib.mkIf conf.docs.enable {
+      (lib.mkIf cfg.docs.enable {
         programs.man.generateCaches = true;
       })
-    ];
+    ]
+  );
 }
