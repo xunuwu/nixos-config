@@ -40,6 +40,7 @@
     ../../programs/misc/keepassxc.nix
     ../../programs/misc/discord.nix
     ../../programs/misc/obs.nix
+    ../../programs/misc/krita.nix
     #../../programs/misc/ardour.nix
     ../../programs/misc/foliate.nix
     ../../programs/misc/obsidian.nix
