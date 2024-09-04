@@ -14,6 +14,7 @@ in {
     nix.enable = enableOption "nix" true;
     tools.enable = enableOption "tools" true;
     docs.enable = enableOption "man caches" false;
+    devenv.enable = enableOption "devenv" true;
     lsp.c.enable = enableOption "clangd" false;
   };
 
@@ -24,6 +25,9 @@ in {
       })
       (lib.mkIf cfg.tools.enable {
         home.packages = with pkgs; [tokei];
+      })
+      (lib.mkIf cfg.devenv.enable {
+        home.packages = with pkgs; [devenv];
       })
       (lib.mkIf cfg.git.enable {
         home.packages = with pkgs; [lazygit];
