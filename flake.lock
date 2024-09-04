@@ -449,11 +449,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1724747422,
-        "narHash": "sha256-dhMxqQuXYuidq2fK1CowNrISiT8Fso+D3OsJkzAYn2I=",
+        "lastModified": 1725435730,
+        "narHash": "sha256-gPja4IoV48x8weXXxA1SJmK+iNbEhw4bSoqmff46xZ0=",
         "owner": "xunuwu",
         "repo": "small-nvim",
-        "rev": "5dd1af4da939416a8197f5b419992de2253926a2",
+        "rev": "88be2b8e644545c1f270d3890e887675b54e819e",
         "type": "github"
       },
       "original": {
