@@ -6,21 +6,35 @@
 }: let
   cfg = config.xun.gaming;
 in {
-  options.xun.gaming = {
+  options.xun.gaming = let
+    mkBool = lib.mkOption {type = lib.types.bool;};
+  in {
     enable = lib.mkEnableOption "gaming";
     steam.enable = lib.mkEnableOption "steam";
     gamemode.enable = lib.mkEnableOption "gamemode";
     gamescope.enable = lib.mkEnableOption "gamescope";
+    sunshine = {
+      enable = lib.mkEnableOption "sunshine";
+      openFirewall = mkBool;
+    };
   };
 
-  config = lib.mkIf cfg.enable ({
-      programs.gamescope = lib.mkIf cfg.gamescope.enable {
+  config = lib.mkIf cfg.enable (lib.mkMerge [
+    (lib.mkIf cfg.gamescope.enable {
+      programs.gamescope = {
         enable = true;
         capSysNice = false; # doesnt work with steam & heroic
       };
-      programs.gamemode.enable = cfg.gamemode.enable;
-    }
-    // lib.mkIf cfg.steam.enable {
+    })
+    (lib.mkIf cfg.sunshine.enable {
+      services.sunshine = {
+        enable = true;
+        capSysAdmin = true;
+        openFirewall = cfg.sunshine.openFirewall;
+      };
+    })
+    (lib.mkIf cfg.gamemode.enable {programs.gamemode.enable = true;})
+    (lib.mkIf cfg.steam.enable {
       # TODO: protontricks & steamtinkerlaunch
       programs.steam = {
         enable = true;
@@ -43,5 +57,6 @@ in {
           keyutils
         ];
       };
-    });
+    })
+  ]);
 }

@@ -54,8 +54,8 @@
     ../../programs/media/jellyfin.nix
     # gaming
     ../../programs/games
-    ../../programs/games/roblox.nix
-    ../../programs/games/krunker.nix
+    # ../../programs/games/roblox.nix
+    # ../../programs/games/krunker.nix
     #../../programs/games/ludusavi.nix
 
     # media services
@@ -64,29 +64,34 @@
     ../../services/system/polkit-agent.nix
     ../../services/system/udiskie.nix # although i dont need this for usb memory, it is quite convenient for flashing qmk
   ];
-  xun = {
+  xun = let
+    enabled = {enable = true;};
+  in {
     small-nvim = {
       enable = true;
       colorscheme = {
         name = "carbonfox";
         package = "EdenEast/nightfox.nvim";
       };
-      wakatime.enable = true;
+      wakatime = enabled;
     };
-    desktop.xdg.enable = true;
+    desktop.xdg = enabled;
     programs.terminal = {
-      shell.zsh.enable = true;
-      direnv.enable = true;
-      comma.enable = true;
-      tmux.enable = true;
-      irssi.enable = true;
+      shell.zsh = enabled;
+      direnv = enabled;
+      comma = enabled;
+      tmux = enabled;
+      irssi = enabled;
     };
     develop = {
       enable = true;
-      docs.enable = true;
+      docs = enabled;
       lsp = {
-        c.enable = true;
+        c = enabled;
       };
+    };
+    gaming = {
+      roblox.sobercookie = enabled;
     };
   };
 }
