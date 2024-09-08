@@ -21,7 +21,7 @@ in {
   config = lib.mkIf cfg.enable (
     lib.mkMerge [
       (lib.mkIf cfg.nix.enable {
-        home.packages = with pkgs; [nil alejandra];
+        home.packages = with pkgs; [nil nixd alejandra];
       })
       (lib.mkIf cfg.tools.enable {
         home.packages = with pkgs; [tokei];

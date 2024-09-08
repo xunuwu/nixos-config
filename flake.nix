@@ -17,6 +17,7 @@
           packages = with pkgs; [
             alejandra
             nil
+            nixd
             git
             just
             home-manager
