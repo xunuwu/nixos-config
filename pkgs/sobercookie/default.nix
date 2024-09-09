@@ -16,8 +16,8 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "xunuwu";
     repo = "sobercookie";
-    rev = "09b75ce925281a60a90281e9c5007720f50d48fb";
-    sha256 = "sha256-FIGXxG9CCSq1MPPiC5nHVdKJMwpz1Apd00Ix53jtYwk=";
+    rev = "0e082ab538a2eed206ab228ed50c5251323abdf2";
+    sha256 = "sha256-hdW/MqzphyAy6bcN3LDFFRV0t9ZHOx2b96hu9acZ7+E=";
   };
   version = "0.0.1";
 
