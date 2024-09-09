@@ -17,7 +17,6 @@
 in {
   flake.colmena = {
     meta = {
-      # machinesFile = TODO
       nixpkgs = import inputs.nixpkgs {
         system = "x86_64-linux";
         config.allowUnfree = true;
