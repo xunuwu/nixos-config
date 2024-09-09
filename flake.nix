@@ -23,6 +23,7 @@
             home-manager
             sops
             colmena
+            inputs.nvfetcher.packages.${pkgs.system}.default
           ];
           name = "dots";
         };
@@ -47,21 +48,18 @@
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+    nvfetcher.url = "github:berberman/nvfetcher";
 
     ## deduplication
     flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
-
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
     small-nvim.inputs.nixpkgs.follows = "nixpkgs";
-
     sops-nix.inputs = {
       nixpkgs.follows = "nixpkgs";
       nixpkgs-stable.follows = "nixpkgs";
     };
-
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-
     nix-vscode-extensions.inputs.nixpkgs.follows = "nixpkgs";
+    nvfetcher.inputs.nixpkgs.follows = "nixpkgs";
   };
 }

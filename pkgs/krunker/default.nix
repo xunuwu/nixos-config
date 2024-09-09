@@ -3,6 +3,7 @@
   fetchurl,
   imagemagick,
 }: let
+  # TODO: use https://github.com/KraXen72/crankshaft, can be tracked with nvfetcher
   pname = "krunker";
   version = "0.0.1";
   src = fetchurl {

@@ -1,0 +1,23 @@
+{
+    "sobercookie": {
+        "cargoLocks": null,
+        "date": "2024-09-08",
+        "extract": null,
+        "name": "sobercookie",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "xunuwu",
+            "repo": "sobercookie",
+            "rev": "0e082ab538a2eed206ab228ed50c5251323abdf2",
+            "sha256": "sha256-hdW/MqzphyAy6bcN3LDFFRV0t9ZHOx2b96hu9acZ7+E=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "0e082ab538a2eed206ab228ed50c5251323abdf2"
+    }
+}
