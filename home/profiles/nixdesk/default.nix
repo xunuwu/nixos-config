@@ -90,8 +90,7 @@
         c = enabled;
       };
     };
-    gaming = {
-      roblox.sobercookie = enabled;
-    };
+    gaming.roblox.sobercookie = enabled;
+    school.geogebra = enabled;
   };
 }

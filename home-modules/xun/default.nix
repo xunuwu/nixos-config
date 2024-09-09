@@ -4,5 +4,6 @@
     ./gaming
     ./programs
     ./desktop
+    ./school
   ];
 }
