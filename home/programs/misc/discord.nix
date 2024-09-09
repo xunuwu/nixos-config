@@ -5,4 +5,5 @@
       withOpenASAR = true;
     })
   ];
+  services.arrpc.enable = true; # RPC with vesktop
 }
