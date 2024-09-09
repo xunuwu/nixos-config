@@ -90,7 +90,10 @@
         c = enabled;
       };
     };
-    gaming.roblox.sobercookie = enabled;
+    gaming = {
+      krunker = enabled;
+      roblox.sobercookie = enabled;
+    };
     school.geogebra = enabled;
   };
 }
