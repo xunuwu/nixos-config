@@ -1,5 +1,0 @@
-{
-  services.wob = {
-    enable = true;
-  };
-}
