@@ -1,6 +1,7 @@
 {
   imports = [
     ./wsl.nix
+    ./hardware.nix
   ];
 
   networking.hostName = "kidney";
