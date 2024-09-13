@@ -1,8 +1,15 @@
 {
   stdenv,
+  gnugrep,
   lib,
   pkg-config,
+  flatpak,
+  procps,
   bash,
+  jq,
+  gnused,
+  libnotify,
+  coreutils,
   makeWrapper,
   luajitPackages,
   gobject-introspection,
@@ -31,6 +38,7 @@ stdenv.mkDerivation (nv_generated.sobercookie
 
       mkdir -p $out/bin
       cp sobercookie $out/bin/sobercookie
+      cp sobercookie_service $out/bin/sobercookie_service
       cp launcher.lua $out/bin/sobercookie-launcher
 
       mkdir -p $out/share/applications
@@ -47,7 +55,10 @@ stdenv.mkDerivation (nv_generated.sobercookie
     '';
 
     postFixup = ''
+      wrapProgram $out/bin/sobercookie_service \
+        --prefix PATH : ${lib.makeBinPath [bash jq libnotify coreutils procps gnugrep gnused]} ## sudo is assumed to be installed
+
       wrapProgram $out/bin/sobercookie \
-        --prefix PATH : ${lib.makeBinPath [bash]}
+        --prefix PATH : ${lib.makeBinPath [flatpak bash coreutils procps]}:$out/bin
     '';
   }))

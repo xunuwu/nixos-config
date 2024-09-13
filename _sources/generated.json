@@ -16,7 +16,7 @@
     },
     "sobercookie": {
         "cargoLocks": null,
-        "date": "2024-09-08",
+        "date": "2024-09-10",
         "extract": null,
         "name": "sobercookie",
         "passthru": null,
@@ -28,11 +28,11 @@
             "name": null,
             "owner": "xunuwu",
             "repo": "sobercookie",
-            "rev": "0e082ab538a2eed206ab228ed50c5251323abdf2",
-            "sha256": "sha256-hdW/MqzphyAy6bcN3LDFFRV0t9ZHOx2b96hu9acZ7+E=",
+            "rev": "40b1f97f0614172a116ce27aa502275f3f8dc2c0",
+            "sha256": "sha256-E/HJEDr0bBHQnMhtQckbJv+f4U/NVe8dQ6/y0ujSdjc=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "0e082ab538a2eed206ab228ed50c5251323abdf2"
+        "version": "40b1f97f0614172a116ce27aa502275f3f8dc2c0"
     }
 }
