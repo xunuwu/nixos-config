@@ -11,14 +11,14 @@
   };
   sobercookie = {
     pname = "sobercookie";
-    version = "35566d1a3354f0b9c975cc226b2eb49af0e088dc";
+    version = "5030aaf22c740a72c04c4a09534ee38a09158610";
     src = fetchFromGitHub {
       owner = "xunuwu";
       repo = "sobercookie";
-      rev = "35566d1a3354f0b9c975cc226b2eb49af0e088dc";
+      rev = "5030aaf22c740a72c04c4a09534ee38a09158610";
       fetchSubmodules = false;
-      sha256 = "sha256-DOGH4eMnYyFzwSzz9FZZx6Nmzc5npIQmYDzCQ7+K76Q=";
+      sha256 = "sha256-zDixpz/xw2LMs1EtUHYin/p1SQWVrkPGAmYJCSQWftU=";
     };
-    date = "2024-09-14";
+    date = "2024-09-15";
   };
 }
