@@ -21,6 +21,7 @@
         (devshells "devshells")
 
         (functions "hardwareProfiles")
+        (functions "userProfiles")
 
         nixosConfigurations
         # colmenaConfigurations
@@ -31,7 +32,7 @@
     }
     {
       nixosConfigurations = collect-unrenamed self "nixosConfigurations";
-      colmena = collect-unrenamed self "colmena";
+      # colmena = collect-unrenamed self "colmena";
     };
 
   inputs = {
@@ -56,6 +57,8 @@
       url = "github:zhaofengli/colmena";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-hardware.url = "github:nixos/nixos-hardware";
   };
 
   nixConfig = {
@@ -63,10 +66,12 @@
 
     extra-substituters = [
       "https://colmena.cachix.org"
+      "https://nix-community.cachix.org"
     ];
 
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "colmena.cachix.org-1:7BzpDnjjH8ki2CT3f6GdOk7QAzPOl+1t3LvTLXqYcSg="
     ];
   };
 }

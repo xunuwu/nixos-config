@@ -21,7 +21,7 @@ in {
     commands = lib.concatLists [
       (map (x: {package = x;}) (with nixpkgs; [
         std.std.cli.default
-        colmena.packages.colmena
+        nixpkgs.colmena # colmena.packages.colmena
         sops
         ssh-to-age
       ]))

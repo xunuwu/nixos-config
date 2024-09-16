@@ -10,5 +10,10 @@ in {
     pkgs = nixpkgs;
   };
 
+  imports = [
+    cell.userProfiles.xun
+    cell.hardwareProfiles.nixdesk
+  ];
+
   system.stateVersion = "23.11";
 }
