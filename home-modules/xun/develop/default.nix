@@ -15,7 +15,10 @@ in {
     tools.enable = enableOption "tools" true;
     docs.enable = enableOption "man caches" false;
     devenv.enable = enableOption "devenv" true;
-    lsp.c.enable = enableOption "clangd" false;
+    lang = {
+      c.enable = enableOption "clangd" false;
+      csharp.enable = enableOption "sharp" false;
+    };
   };
 
   config = lib.mkIf cfg.enable (
@@ -57,8 +60,14 @@ in {
           userName = "xunuwu";
         };
       })
-      (lib.mkIf cfg.lsp.c.enable {
+      (lib.mkIf cfg.lang.c.enable {
         home.packages = with pkgs; [clang-tools];
+      })
+      (lib.mkIf cfg.lang.csharp.enable {
+        home.packages = with pkgs; [
+          csharpier
+          omnisharp-roslyn
+        ];
       })
       (lib.mkIf cfg.docs.enable {
         programs.man.generateCaches = true;

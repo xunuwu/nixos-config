@@ -86,8 +86,9 @@
     develop = {
       enable = true;
       docs = enabled;
-      lsp = {
+      lang = {
         c = enabled;
+        csharp = enabled;
       };
     };
     gaming = {
