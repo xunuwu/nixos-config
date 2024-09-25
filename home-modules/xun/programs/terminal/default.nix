@@ -106,6 +106,9 @@ in {
           set -g status-interval 5
           set -g status-right "#[fg=#25be6a]#(free -h | awk 'NR==2{print $3\"/\"$2}')"
           set -ag status-right  "#[fg=default] %a %d %b %H:%M"
+
+          set-option -g  default-terminal "xterm-256color"
+          set-option -ga terminal-overrides ",xterm-256color:Tc"
         '';
       };
     })
