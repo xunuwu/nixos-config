@@ -17,7 +17,8 @@ in {
     devenv.enable = enableOption "devenv" true;
     lang = {
       c.enable = enableOption "clangd" false;
-      csharp.enable = enableOption "sharp" false;
+      csharp.enable = enableOption "csharp" false;
+      zig.enable = enableOption "zig" false;
     };
   };
 
@@ -68,6 +69,9 @@ in {
           csharpier
           omnisharp-roslyn
         ];
+      })
+      (lib.mkIf cfg.lang.zig.enable {
+        home.packages = with pkgs; [zig zls];
       })
       (lib.mkIf cfg.docs.enable {
         programs.man.generateCaches = true;

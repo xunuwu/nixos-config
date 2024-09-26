@@ -89,6 +89,7 @@
       lang = {
         c = enabled;
         csharp = enabled;
+        zig = enabled;
       };
     };
     gaming = {
