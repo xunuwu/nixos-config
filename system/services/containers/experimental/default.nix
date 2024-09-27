@@ -36,23 +36,15 @@
         image = "qmcgaw/gluetun:v3";
         volumes = [
           "${config.sops.secrets.wireguard.path}:/gluetun/wireguard/wg0.conf"
-          #"${builtins.toFile "post-rules.txt" ''
-          #  iptables -A INPUT -d 192.168.50.26 -p udp --sport
-          #  ''}:/iptables/post-rules.txt"
         ];
         ports = [
           ## This bypasses the firewall
           ## use 127.0.0.1:XXXX:XXXX if you only want it to be accessible locally
-          "127.0.0.1:1389:1389" # openldap
-          "127.0.0.1:1636:1636" # openldap
           "127.0.0.1:8191:8191" # flaresolverr
           "9117:9117" # jackett
+          "8080:8080" # qbittorrent webui
           "5030:5030" # slskd
           "8096:8096" # jellyfin
-          "8080:8080" # qbittorrent webui
-          #"80:8336" # caddy
-          #"443:443" # caddy
-          #"443:443/udp" # caddy
           "8336:8336" # jellyfin
         ];
 
@@ -137,11 +129,6 @@
       caddy = {
         image = "caddy";
         volumes = [
-          #alt.xunuwu.xyz:8336 {
-          #tls internal
-          #reverse_proxy
-          #localhost:5030
-          #}
           "${builtins.toFile "Caddyfile" ''
             https://jellyfin.xunuwu.xyz:8336 {
               tls /etc/ssl/certs/xunuwu.xyz/cert.pem /etc/ssl/certs/xunuwu.xyz/key.pem
@@ -152,9 +139,6 @@
               reverse_proxy localhost:3000
             }
           ''}:/etc/caddy/Caddyfile"
-          #tls /etc/ssl/certs/cloudflare/cert.pem /etc/ssl/certs/cloudflare/key.pem
-          #"${config.sops.secrets.xunuwu.xyz-cert.path}:/etc/ssl/certs/cloudflare/cert.pem"
-          #"${config.sops.secrets.xunuwu.xyz-key.path}:/etc/ssl/certs/cloudflare/key.pem"
           "/var/lib/acme/xunuwu.xyz:/etc/ssl/certs/xunuwu.xyz"
           "/media/config/caddy/data:/data"
           "/media/config/caddy/config:/config"
@@ -164,209 +148,19 @@
           "--network=container:gluetun"
         ];
       };
-      #openldap = {
-      #  image = "bitnami/openldap";
-      #  environment = {
-      #    "LDAP_ADMIN_USERNAME" = "admin";
-      #    "LDAP_ADMIN_PASSWORD" = "adminpassword";
-      #    "LDAP_USERS" = "user01,user02";
-      #    "LDAP_PASSWORDS" = "password1,password2";
-      #  };
-      #  dependsOn = ["gluetun"];
-      #  extraOptions = [
-      #    "--network=container:gluetun"
-      #  ];
-      #};
-      #authelia = {
-      #  image = "authelia/authelia";
-      #  environment = {
-      #    AUTHELIA_JWT_SECRET_FILE = "/secrets/JWT_SECRET";
-      #    AUTHELIA_SESSION_SECRET_FILE = "/secrets/SESSION_SECRET";
-      #    AUTHELIA_STORAGE_POSTGRES_PASSWORD_FILE = "/secrets/STORAGE_PASSWORD";
-      #    AUTHELIA_STORAGE_ENCRYPTION_KEY_FILE = "/secrets/STORAGE_ENCRYPTION_KEY";
-      #  };
-      #  volumes = [
-      #    "${config.sops.secrets.authelia_jwt_secret.path}:/secrets/JWT_SECRET"
-      #    "${config.sops.secrets.authelia_session_secret.path}:/secrets/SESSION_SECRET"
-      #    "${config.sops.secrets.authelia_storage_password.path}:/secrets/STORAGE_PASSWORD"
-      #    "${config.sops.secrets.authelia_encryption_key.path}:/secrets/STORAGE_ENCRYPTION_KEY"
-      #    "${builtins.toFile "users_database.yml" ''
-      #      them: auto
-      #      default_redirection_url: https://auth.xunuwu.xyz:8336
-
-      #      authentication_backend:
-      #        ldap:
-      #          address: 'ldap://127.0.0.1:1389'
-      #          implementation: 'custom'
-      #          timeout: '5s
-
-      #      session:
-      #        domain: example.com
-
-      #        redis:
-      #          host: redis
-      #          port: 6379
-
-      #      storage:
-      #        postgres:
-      #          host: database
-      #          database: authelia
-      #          username: authelia
-
-      #      notifier:
-      #        smtp:
-      #          host: smtp.xunuwu.xyz
-      #          port: 8336
-      #          username: auth@xunuwu.xyz
-      #          sender: "Authelia <auth@xunuwu.xyz"
-      #    ''}:/config/configuration.yml"
-      #    "${builtins.toFile "configuration.yml" ''
-      #      them: auto
-      #      default_redirection_url: https://auth.xunuwu.xyz:8336
-
-      #      authentication_backend:
-      #        file:
-      #          path: /config/users_database.yml
-      #      #authentication_backend:
-      #      #  ldap:
-      #      #    address: 'ldap://127.0.0.1:1389'
-      #      #    implementation: 'custom'
-      #      #    timeout: '5s
-
-      #      session:
-      #        domain: example.com
-
-      #        redis:
-      #          host: redis
-      #          port: 6379
-
-      #      storage:
-      #        postgres:
-      #          host: database
-      #          database: authelia
-      #          username: authelia
-
-      #      notifier:
-      #        smtp:
-      #          host: smtp.xunuwu.xyz
-      #          port: 8336
-      #          username: auth@xunuwu.xyz
-      #          sender: "Authelia <auth@xunuwu.xyz"
-      #    ''}:/config/configuration.yml"
-      #  ];
-      #  dependsOn = ["gluetun"];
-      #  extraOptions = [
-      #    "--network=container:gluetun"
-      #  ];
-      #};
       betanin = {
         image = "sentriz/betanin";
         environment = {
           UID = "1000";
           GID = "1000";
         };
-        ports = [
-          "9393:9393"
-        ];
+        ports = ["9393:9393"];
         volumes = [
           "/media/config/betanin/data:/b/.local/share/betanin"
           "/media/config/betanin/config:/b/.config/betanin"
           "/media/config/betanin/beets:/b/.config/beets"
           "${config.sops.secrets.betanin.path}:/b/.config/beets/secrets.yaml"
-          "${builtins.toFile "config.yaml" ''
-            include:
-              - secrets.yaml
-
-            library: library.db
-            directory: /music
-            statefile: state.pickle
-
-            threaded: yes
-
-            import:
-               write: yes
-               copy: yes
-               link: no
-               move: no
-               incremental: no
-
-            paths:
-               default: /$albumartist/$album %aunique{}/$track $title %aunique{}
-               singleton: /$albumartist/$artist %aunique{}/$track $title %aunique{}
-               comp: /Compilation/$album %aunique{}/$track $title %aunique{}
-               albumtype:soundtrack: Soundtracks/$album %aunique{}/$track $title %aunique{}
-
-            clutter: ["Thumbs.DB", ".DS_Store"]
-
-
-            plugins: [
-               embedart,
-               fetchart,
-               discogs,
-               advancedrewrite,
-               #lyrics,
-               spotify,
-               scrub,
-               duplicates,
-               unimported,
-               missing,
-            ]
-
-            genres: yes
-
-            unimported:
-              ignore_extensions: jpg png
-
-            spotify:
-              source_weight: 0.7
-
-            embedart:
-               auto: yes
-               ifempty: no
-               remove_art_file: no
-
-            fetchart:
-               auto: yes
-               cautious: yes
-               minwidth: 500
-               maxwidth: 1200
-               cover_format: jpeg
-               sources:
-                  - coverart: release
-                  - coverart: releasegroup
-                  - albumart
-                  - amazon
-                  - google
-                  - itunes
-                  - fanarttv
-                  - lastfm
-                  - wikipedia
-
-            #lyrics:
-            #   fallback: '''
-            #   sources: musixmatch google
-
-            replace:
-                '[\\]':         '''
-                '[_]':          '-'
-                '[/]':          '-'
-                '^\.':          '''
-                '[\x00-\x1f]':  '''
-                '[<>:"\?\*\|]': '''
-                '\.$':          '''
-                '\s+$':         '''
-                '^\s+':         '''
-                '^-':           '''
-                '’':            "'"
-                '′':            "'"
-                '″':            '''
-                '‐':            '-'
-
-            aunique:
-              keys: albumartist albumtype year album
-              disambuguators: format mastering media label albumdisambig releasegroupdisambig
-              bracket: '[]'
-          ''}:/b/.config/beets/config.yaml"
+          "${./beets.yaml}:/b/.config/beets/config.yaml"
           "/media/library/music:/music"
           "/media/slskd/downloads:/downloads/slskd"
           "/media/downloads/music:/downloads/torrent"

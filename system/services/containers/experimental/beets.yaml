@@ -1,0 +1,92 @@
+include:
+  - secrets.yaml
+
+library: library.db
+directory: /music
+statefile: state.pickle
+
+threaded: yes
+
+import:
+   write: yes
+   copy: yes
+   link: no
+   move: no
+   incremental: no
+
+paths:
+   default: /$albumartist/$album %aunique{}/$track $title %aunique{}
+   singleton: /$albumartist/$artist %aunique{}/$track $title %aunique{}
+   comp: /Compilation/$album %aunique{}/$track $title %aunique{}
+   albumtype:soundtrack: Soundtracks/$album %aunique{}/$track $title %aunique{}
+
+clutter: ["Thumbs.DB", ".DS_Store"]
+
+
+plugins: [
+   embedart,
+   fetchart,
+   discogs,
+   advancedrewrite,
+   #lyrics,
+   spotify,
+   scrub,
+   duplicates,
+   unimported,
+   missing,
+]
+
+genres: yes
+
+unimported:
+  ignore_extensions: jpg png
+
+spotify:
+  source_weight: 0.7
+
+embedart:
+   auto: yes
+   ifempty: no
+   remove_art_file: no
+
+fetchart:
+   auto: yes
+   cautious: yes
+   minwidth: 500
+   maxwidth: 1200
+   cover_format: jpeg
+   sources:
+      - coverart: release
+      - coverart: releasegroup
+      - albumart
+      - amazon
+      - google
+      - itunes
+      - fanarttv
+      - lastfm
+      - wikipedia
+
+#lyrics:
+#   fallback: '''
+#   sources: musixmatch google
+
+replace:
+    '[\\]':         '''
+    '[_]':          '-'
+    '[/]':          '-'
+    '^\.':          '''
+    '[\x00-\x1f]':  '''
+    '[<>:"\?\*\|]': '''
+    '\.$':          '''
+    '\s+$':         '''
+    '^\s+':         '''
+    '^-':           '''
+    '’':            "'"
+    '′':            "'"
+    '″':            '''
+    '‐':            '-'
+
+aunique:
+  keys: albumartist albumtype year album
+  disambuguators: format mastering media label albumdisambig releasegroupdisambig
+  bracket: '[]'
