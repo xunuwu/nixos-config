@@ -9,6 +9,7 @@
     ../common/fuzzel.nix
     ../common/wob.nix
     ../common/wl-clipboard.nix
+    ./waybar.nix
   ];
 
   services.cliphist = {
@@ -58,12 +59,7 @@
       input = {
         "*".xkb_layout = osConfig.services.xserver.xkb.layout;
       };
-      bars = [
-        {
-          workspaceNumbers = false;
-          statusCommand = "${lib.getExe pkgs.i3status}";
-        }
-      ];
+      bars = []; # i use waybar instead
       window = {
         titlebar = false;
       };

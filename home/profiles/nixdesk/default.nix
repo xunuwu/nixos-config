@@ -70,12 +70,15 @@
     small-nvim = {
       enable = true;
       colorscheme = {
-        name = "carbonfox";
+        name = "dayfox";
         package = "EdenEast/nightfox.nvim";
       };
       wakatime = enabled;
     };
-    desktop.xdg = enabled;
+    desktop = {
+      xdg = enabled;
+      colorscheme = "light";
+    };
     programs.terminal = {
       shell.zsh = enabled;
       direnv = enabled;

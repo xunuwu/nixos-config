@@ -6,11 +6,27 @@
 }: let
   cfg = config.xun.desktop;
 in {
+  imports = [
+    ./colorscheme
+  ];
+
   options.xun.desktop = {
     xdg.enable = lib.mkEnableOption "xdg env vars";
+    # colorscheme = lib.mkOption {
+    #   default = null;
+    #   type = lib.types.enum ["dark" "light"];
+    # };
   };
 
   config = lib.mkMerge [
+    # (let
+    #   switch = {
+    #     "dark" = {};
+    #     "light" = {};
+    #   };
+    # in
+    #   switch."${toString cfg.colorscheme}")
+
     (lib.mkIf cfg.xdg.enable {
       xdg = let
         home = config.home.homeDirectory;

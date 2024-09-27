@@ -1,0 +1,16 @@
+diff --git a/src/modules/sway/workspaces.cpp b/src/modules/sway/workspaces.cpp
+index 8f273300..faed503c 100644
+--- a/src/modules/sway/workspaces.cpp
++++ b/src/modules/sway/workspaces.cpp
+@@ -343,9 +343,9 @@ auto Workspaces::update() -> void {
+           fmt::arg("output", (*it)["output"].asString()));
+     }
+     if (!config_["disable-markup"].asBool()) {
+-      static_cast<Gtk::Label *>(button.get_children()[0])->set_markup(output);
++      static_cast<Gtk::Label *>(button.get_children()[0])->set_markup(trimWorkspaceName(output));
+     } else {
+-      button.set_label(output);
++      button.set_label(trimWorkspaceName(output));
+     }
+     onButtonReady(*it, button);
+   }
