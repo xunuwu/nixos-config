@@ -23,6 +23,7 @@
             home-manager
             sops
             colmena
+            git-agecrypt
             inputs.nvfetcher.packages.${pkgs.system}.default
           ];
           name = "dots";
@@ -43,12 +44,20 @@
     hardware.url = "github:nixos/nixos-hardware";
     home-manager.url = "github:nix-community/home-manager";
     small-nvim.url = "github:xunuwu/small-nvim";
+    # small-nvim.url = "/home/xun/dots/small-nvim";
     nur.url = "github:nix-community/NUR";
     sops-nix.url = "github:Mic92/sops-nix";
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     nvfetcher.url = "github:berberman/nvfetcher";
+    microvm.url = "github:astro/microvm.nix";
+    vpn-confinement.url = "github:Maroka-chan/VPN-Confinement";
+    sobercookie.url = "github:xunuwu/sobercookie";
+    umu = {
+      url = "github:Open-Wine-Components/umu-launcher/?dir=packaging\/nix&submodules=1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     ## deduplication
     flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
@@ -60,6 +69,9 @@
     };
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     nix-vscode-extensions.inputs.nixpkgs.follows = "nixpkgs";
+    nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
     nvfetcher.inputs.nixpkgs.follows = "nixpkgs";
+    microvm.inputs.nixpkgs.follows = "nixpkgs";
+    vpn-confinement.inputs.nixpkgs.follows = "nixpkgs";
   };
 }

@@ -3,6 +3,6 @@
     enable = true;
     openFirewall = true;
     useRoutingFeatures = "client";
-    authKeyFile = config.sops.secrets.tailscale-auth.path;
+    #authKeyFile = config.sops.secrets.tailscale-auth.path;
   };
 }

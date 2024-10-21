@@ -10,6 +10,9 @@ local OPERATION *FLAGS:
 buildiso *FLAGS:
   nix build .#nixosConfigurations.liveiso.config.system.build.isoImage {{FLAGS}}
 
+updatekeys:
+  fd . secrets -E '*.nix' -t f -x sops updatekeys
+
 
 remote OPERATION HOST HOSTNAME *FLAGS:
   nixos-rebuild \

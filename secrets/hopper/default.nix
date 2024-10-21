@@ -1,30 +1,21 @@
-{
+## TODO use defaultSopsFile mayb
+{config, ...}: let
+  autheliaUser = config.services.authelia.instances.main.user;
+in {
   sops.secrets = {
     wireguard = {
       format = "binary";
       sopsFile = ./wireguard;
     };
-    wg-private = {
-      key = "PrivateKey";
-      sopsFile = ./wireguard.yaml;
-      group = "systemd-network";
-      mode = "0640";
+    grafana-pass = {
+      format = "binary";
+      sopsFile = ./grafana-pass;
     };
-    wg-preshared = {
-      key = "PresharedKey";
-      sopsFile = ./wireguard.yaml;
-      group = "systemd-network";
-      mode = "0640";
+    wireguard-config = {
+      format = "binary";
+      sopsFile = ./wireguard-config;
     };
 
-    serverenv = {
-      format = "binary";
-      sopsFile = ./serverenv;
-    };
-    code-server = {
-      format = "binary";
-      sopsFile = ./code-server;
-    };
     slskd = {
       format = "binary";
       sopsFile = ./slskd;
@@ -45,27 +36,50 @@
       restartUnits = ["podman-betanin.service"];
     };
 
+    # lldap_jwt_secret = {
+    #   sopsFile = ./lldap.yaml;
+    #   key = "jwt_secret";
+    #   owner = "lldap";
+    # };
+    #
+    # lldap_user_password = {
+    #   sopsFile = ./lldap.yaml;
+    #   key = "user_password";
+    #   owner = "lldap";
+    # };
+
     # authelia
+    authelia_lldap_password = {
+      format = "yaml";
+      sopsFile = ./authelia.yaml;
+      key = "lldap_password";
+      owner = autheliaUser;
+    };
     authelia_jwt_secret = {
       format = "yaml";
       sopsFile = ./authelia.yaml;
       key = "jwt_secret";
+      owner = autheliaUser;
     };
     authelia_session_secret = {
       format = "yaml";
       sopsFile = ./authelia.yaml;
       key = "session_secret";
+      owner = autheliaUser;
     };
     authelia_encryption_key = {
       format = "yaml";
       sopsFile = ./authelia.yaml;
       key = "encryption_key";
+      owner = autheliaUser;
     };
     authelia_storage_password = {
       format = "yaml";
       sopsFile = ./authelia.yaml;
       key = "storage_password";
+      owner = autheliaUser;
     };
+
     brawlstars-api-key = {
       format = "binary";
       sopsFile = ./brawlstars;

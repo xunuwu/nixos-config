@@ -13,6 +13,7 @@
 
     # ../../terminal
     ../../terminal/programs/zellij.nix
+    ../../terminal/programs/zoxide.nix
     # ../../terminal/programs/irssi.nix
     ../../terminal/programs/lazygit.nix
     ../../terminal/programs/beets.nix
@@ -73,7 +74,6 @@
         name = "dayfox";
         package = "EdenEast/nightfox.nvim";
       };
-      wakatime = enabled;
     };
     desktop = {
       xdg = enabled;
@@ -97,6 +97,7 @@
     };
     gaming = {
       krunker = enabled;
+      umu = enabled;
       roblox.sobercookie = enabled;
     };
     school.geogebra = enabled;

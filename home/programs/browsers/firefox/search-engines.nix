@@ -95,7 +95,7 @@
       "Google".metaData.alias = "@go";
       "DuckDuckGo".metaData.alias = "@ddg";
       "Wikipedia".metaData.alias = "@wiki";
-      "Bing".metaData.hidden = true;
+      "Bing".metaData.alias = "@bi";
     };
   };
 }

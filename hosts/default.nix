@@ -138,7 +138,7 @@ in {
           #"services/pipewire.nix"
           "services/syncthing.nix"
           #"services/containers/server"
-          "services/containers/experimental"
+          # "services/containers/experimental" # TODO maybe reenable this?? or just abandon it and move fully to systemd network namespace
         ])
 
         #{

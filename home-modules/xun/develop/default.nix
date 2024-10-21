@@ -62,7 +62,7 @@ in {
         };
       })
       (lib.mkIf cfg.lang.c.enable {
-        home.packages = with pkgs; [clang-tools];
+        home.packages = with pkgs; [clang-tools buckle];
       })
       (lib.mkIf cfg.lang.csharp.enable {
         home.packages = with pkgs; [

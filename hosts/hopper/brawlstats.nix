@@ -5,7 +5,7 @@
   ...
 }: {
   networking.firewall.allowedTCPPorts = [
-    4444
+    # 4444
   ];
 
   systemd.services."static-web-server".after = ["brawlstats.timer"];
@@ -44,6 +44,8 @@
           plot "/dev/stdin" u 1:2 w lines notitle
         ''}
         }
+
+        rm /tmp/brawlstatslog
 
         case ''${parameters:1} in
           total*)

@@ -102,6 +102,8 @@
             "${mod}+Ctrl+Shift+${dir.up}" = "move output up";
             "${mod}+Ctrl+Shift+${dir.down}" = "move output down";
 
+            "${mod}+t" = "sticky toggle";
+
             "${mod}+Shift+Backspace" = "exec systemctl suspend";
             "${mod}+Shift+s" = "exec ${lib.getExe pkgs.sway-contrib.grimshot} copy anything";
             "${mod}+Ctrl+Shift+s" = "exec ${lib.getExe pkgs.sway-contrib.grimshot} savecopy anything";

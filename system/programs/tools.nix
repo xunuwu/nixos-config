@@ -23,5 +23,6 @@
       else p7zip
     )
     unar
+    openssl # for generating passwords
   ];
 }

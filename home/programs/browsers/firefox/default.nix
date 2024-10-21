@@ -39,14 +39,14 @@
         istilldontcareaboutcookies
         sidebery
         (lib.mkIf (builtins.elem pkgs.keepassxc config.home.packages) keepassxc-browser)
-        (buildFirefoxXpiAddon rec {
-          pname = "roseal";
-          version = "1.3.44";
-          addonId = "{f4f4223a-ff30-4961-b9c0-6a71b7a32aaf}";
-          url = "https://addons.mozilla.org/firefox/downloads/file/4323142/roseal-${version}.xpi";
-          sha256 = "sha256-Qvd/EUMsSqYCvwUuxjM/ejnn7/TRuhyD82/Azu0dAfE=";
-          meta = {};
-        })
+        #(buildFirefoxXpiAddon rec {
+        #  pname = "roseal";
+        #  version = "1.3.44";
+        #  addonId = "{f4f4223a-ff30-4961-b9c0-6a71b7a32aaf}";
+        #  url = "https://addons.mozilla.org/firefox/downloads/file/4323142/roseal-${version}.xpi";
+        #  sha256 = "sha256-Qvd/EUMsSqYCvwUuxjM/ejnn7/TRuhyD82/Azu0dAfE=";
+        #  meta = {};
+        #})
       ];
       userChrome = builtins.readFile ./userChrome.css;
       # extraConfig = let

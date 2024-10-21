@@ -20,5 +20,9 @@
       format = "binary";
       sopsFile = ./brawlstars;
     };
+    samba = {
+      format = "binary";
+      sopsFile = ./samba;
+    };
   };
 }

@@ -3,6 +3,7 @@
     ./hardware.nix
     ./hibernate-boot.nix
     ./testing.nix
+    ./samba-mount.nix
   ];
 
   networking.hostName = "nixdesk";

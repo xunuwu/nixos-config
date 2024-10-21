@@ -5,7 +5,6 @@
 
 /* Hide tab bar */
 #TabsToolbar {
-  /* display: none; */
   visibility: collapse;
 }
 
