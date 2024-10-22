@@ -3,6 +3,9 @@
     inputs.nixos-wsl.nixosModules.default
   ];
 
-  wsl.enable = true;
-  wsl.defaultUser = "xun";
+  wsl = {
+    enable = true;
+    defaultUser = "xun";
+    startMenuLaunchers = true;
+  };
 }

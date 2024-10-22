@@ -166,6 +166,7 @@ in {
   flake.nixosConfigurations = let
     l = inputs.nixpkgs.lib;
   in
+    ## TODO: make use of nixpkgs.pkgs for per-system pkgs without colmena
     builtins.mapAttrs (_: v:
       l.nixosSystem {
         inherit specialArgs;

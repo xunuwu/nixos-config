@@ -7,25 +7,30 @@
   cfg = config.xun.develop;
 in {
   options.xun.develop = let
-    enableOption = name: default: lib.mkEnableOption name // {inherit default;};
+    enableOption = default:
+      lib.mkOption {
+        inherit default;
+        type = lib.types.bool;
+      };
   in {
-    enable = enableOption "develop" false;
-    git.enable = enableOption "git" true;
-    nix.enable = enableOption "nix" true;
-    tools.enable = enableOption "tools" true;
-    docs.enable = enableOption "man caches" false;
-    devenv.enable = enableOption "devenv" true;
+    enable = enableOption false;
+    git.enable = enableOption true;
+    nix.enable = enableOption true;
+    tools.enable = enableOption true;
+    docs.enable = enableOption false;
+    devenv.enable = enableOption true;
     lang = {
-      c.enable = enableOption "clangd" false;
-      csharp.enable = enableOption "csharp" false;
-      zig.enable = enableOption "zig" false;
+      c.enable = enableOption false;
+      csharp.enable = enableOption false;
+      shell.enable = enableOption false;
+      zig.enable = enableOption false;
     };
   };
 
   config = lib.mkIf cfg.enable (
     lib.mkMerge [
       (lib.mkIf cfg.nix.enable {
-        home.packages = with pkgs; [nil nixd alejandra];
+        home.packages = with pkgs; [nil nixd alejandra nixfmt-rfc-style];
       })
       (lib.mkIf cfg.tools.enable {
         home.packages = with pkgs; [tokei];
@@ -68,6 +73,12 @@ in {
         home.packages = with pkgs; [
           csharpier
           omnisharp-roslyn
+          roslyn-ls
+        ];
+      })
+      (lib.mkIf cfg.lang.shell.enable {
+        home.packages = with pkgs; [
+          shellcheck
         ];
       })
       (lib.mkIf cfg.lang.zig.enable {

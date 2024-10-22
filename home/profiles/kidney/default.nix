@@ -6,6 +6,7 @@
   imports = [
     self.homeManagerModules.xun
     inputs.small-nvim.homeManagerModules.small-nvim
+    ../../editors/emacs.nix
     # ../../terminal/shell/zsh.nix
     # ../../terminal/programs
     # ../../terminal/programs/lazygit.nix
@@ -22,7 +23,12 @@
       };
       wakatime.enable = false;
     };
-    develop.enable = true;
+    develop = {
+      enable = true;
+      lang = {
+        csharp.enable = true;
+      };
+    };
     desktop = {
       xdg.enable = true;
     };
