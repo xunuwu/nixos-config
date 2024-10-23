@@ -58,6 +58,10 @@
       url = "github:Open-Wine-Components/umu-launcher/?dir=packaging\/nix&submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    haumea = {
+      url = "github:nix-community/haumea";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     ## deduplication
     flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";

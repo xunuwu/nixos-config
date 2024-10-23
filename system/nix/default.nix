@@ -1,4 +1,8 @@
 {
+  self,
+  super,
+  root,
+}: {
   config,
   pkgs,
   inputs,
@@ -6,8 +10,8 @@
   ...
 }: {
   imports = [
-    ./nixpkgs.nix
-    ./substituters.nix
+    super.nixpkgs
+    super.substituters
   ];
 
   # git is needed for flakes

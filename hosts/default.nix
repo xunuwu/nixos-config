@@ -4,6 +4,7 @@
   homeImports,
   lib,
   pkgs,
+  config,
   ...
 }: let
   specialArgs = {
@@ -13,7 +14,10 @@
   rootPaths = prependAll "${self}/";
   modulePaths = prependAll "${self}/system/";
 
-  inherit (import "${self}/system") desktop;
+  profiles = inputs.haumea.lib.load {
+    inputs = {inherit inputs lib;};
+    src = "${self}/profiles";
+  };
 in {
   flake.colmena = {
     meta = {
@@ -40,21 +44,21 @@ in {
       };
       imports = lib.flatten [
         ./kidney
-        (modulePaths [
-          "core/tools.nix"
-          "core/users.nix"
-          "core/locale.nix"
+        (with profiles; [
+          core.tools
+          core.users
+          core.locale
 
-          "programs/tools.nix"
-          "programs/zsh.nix"
-          "programs/home-manager.nix"
-          "hardware/graphics.nix"
+          programs.tools
+          programs.zsh
+          programs.home-manager
+          hardware.graphics
 
-          "services/flatpak.nix"
-          "services/xdg-portals.nix"
+          services.flatpak
+          services.xdg-portals
 
-          "nix"
-          "nix/gc.nix"
+          nix.default
+          nix.gc
         ])
         {
           home-manager = {
@@ -70,37 +74,67 @@ in {
         targetUser = "xun";
         targetHost = "nixdesk.local";
       };
-      imports =
-        desktop
-        ++ lib.flatten [
-          ./nixdesk
+      imports = lib.flatten [
+        ./nixdesk
 
-          (rootPaths [
-            "secrets"
-            "secrets/nixdesk"
-          ])
+        (rootPaths [
+          "secrets"
+          "secrets/nixdesk"
+        ])
 
-          (modulePaths [
-            "services/syncthing.nix"
-            "services/virt/waydroid.nix"
-            #"services/virt/virt-manager.nix"
-            #"network/wifi.nix"
-            #"services/ollama.nix"
-            "desktop/x11/nosleep.nix"
+        (with profiles; [
+          core.default
+          core.tools
+          core.compat
+          core.boot
+          core.docs
+          core.gvfs
 
-            # "programs/gamemode.nix" # TEMP: TODO
-            # "programs/gamescope.nix" # TEMP: TODO
-            # "programs/steam.nix" # TEMP: TODO
-            "programs/RE"
-          ])
+          nix.gc
 
-          {
-            home-manager = {
-              users.xun.imports = homeImports."xun@nixdesk";
-              extraSpecialArgs = specialArgs;
-            };
-          }
-        ];
+          hardware.graphics
+          hardware.steam-hardware
+          hardware.bluetooth
+          hardware.qmk
+
+          network.networkd
+          network.avahi
+          network.localsend
+          network.tailscale
+          network.goldberg
+
+          desktop.default
+          desktop.awesome
+          desktop.sway
+          #..desktop.hyprland
+
+          programs.default
+          programs.tools
+
+          services.default
+          services.pipewire
+          services.flatpak
+
+          services.syncthing
+          services.virt.waydroid
+          #services.virt.virt-manager
+          #network.wifi
+          #services.ollama
+          desktop.x11.nosleep
+
+          # programs.gamemode # TEMP: TODO
+          # programs.gamescope # TEMP: TODO
+          # programs.steam # TEMP: TODO
+          programs.RE.default
+        ])
+
+        {
+          home-manager = {
+            users.xun.imports = homeImports."xun@nixdesk";
+            extraSpecialArgs = specialArgs;
+          };
+        }
+      ];
     };
     hopper = {
       deployment = {

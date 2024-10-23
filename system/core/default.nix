@@ -1,10 +1,14 @@
-{lib, ...}: {
+{
+  self,
+  super,
+  root,
+}: {
   imports = [
-    ./security.nix
-    ./users.nix
-    ./ssh.nix
-    ./locale.nix
-    ../nix
-    ../programs/zsh.nix
+    super.security
+    super.users
+    super.ssh
+    super.locale
+    root.nix.default
+    root.programs.zsh
   ];
 }

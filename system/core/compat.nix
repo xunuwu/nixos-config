@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  self,
+  super,
+  root,
+}: {pkgs, ...}: let
   list-of-libraries = with pkgs; [
     alsa-lib
     at-spi2-atk

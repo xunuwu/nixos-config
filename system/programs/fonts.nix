@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  self,
+  super,
+  root,
+}: {pkgs, ...}: {
   fonts = {
     packages = with pkgs; [
       powerline-fonts

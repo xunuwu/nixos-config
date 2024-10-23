@@ -1,9 +1,13 @@
 {
-  imports = [
-    ./fonts.nix
-    ./home-manager.nix
-    ./qt.nix
-    ./adb.nix
+  self,
+  super,
+  root,
+}: {
+  imports = with super; [
+    fonts
+    home-manager
+    qt
+    adb
   ];
 
   programs = {
