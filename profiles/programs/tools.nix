@@ -17,11 +17,7 @@
     lm_sensors
     fd # find replacement
     graphviz-nox
-    (
-      if config.nixpkgs.config.allowUnfree
-      then p7zip-rar
-      else p7zip
-    )
+    p7zip
     unar
     openssl # for generating passwords
   ];

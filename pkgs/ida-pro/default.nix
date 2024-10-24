@@ -164,7 +164,7 @@ in
       description = "Paid version of the world's smartest and most feature-full disassembler";
       homepage = "https://hex-rays.com/ida-free/";
       changelog = "https://hex-rays.com/products/ida/news/";
-      # license = licenses.unfree;
+      # license = licenses.unfree; # unfree packages are a pain to deal with on nixos
       mainProgram = "ida64";
       # maintainers = with maintainers; [msanft];
       platforms = ["x86_64-linux"]; # Right now, the installation script only supports Linux.

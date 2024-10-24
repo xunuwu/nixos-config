@@ -12,14 +12,14 @@
     ../../secrets
 
     # ../../terminal
-    ../../terminal/programs/zellij.nix
+    # ../../terminal/programs/zellij.nix
     ../../terminal/programs/zoxide.nix
     # ../../terminal/programs/irssi.nix
     ../../terminal/programs/lazygit.nix
-    ../../terminal/programs/beets.nix
+    # ../../terminal/programs/beets.nix
     ../../editors/emacs.nix
     ../../editors/vscode.nix
-    ../../editors/jetbrains
+    # ../../editors/jetbrains
     ../../programs/browsers/firefox
     ../../programs/browsers/tor.nix
     ../../programs/browsers/chromium.nix
@@ -44,13 +44,13 @@
     ../../programs/misc/krita.nix
     #../../programs/misc/ardour.nix
     ../../programs/misc/foliate.nix
-    ../../programs/misc/obsidian.nix
+    # ../../programs/misc/obsidian.nix
     ../../programs/misc/pwvucontrol.nix
     ../../programs/misc/qpwgraph.nix
-    ../../programs/misc/thunderbird.nix
+    # ../../programs/misc/thunderbird.nix
     #../../programs/music
     #../../programs/music/yams.nix
-    ../../programs/music/spotify.nix
+    # ../../programs/music/spotify.nix
     ../../programs/media
     ../../programs/media/jellyfin.nix
     # gaming
@@ -100,6 +100,6 @@
       umu = enabled;
       roblox.sobercookie = enabled;
     };
-    school.geogebra = enabled;
+    # school.geogebra = enabled;
   };
 }

@@ -10,7 +10,6 @@
   ...
 }: {
   imports = [
-    super.nixpkgs
     super.substituters
   ];
 

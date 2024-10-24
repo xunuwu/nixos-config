@@ -19,6 +19,16 @@
   #  "resume_offset=3841492992" # fdisk -l
   #];
 
+  nixpkgs.config = {
+    rocmSupport = true;
+    allowUnfreePredicate = pkg:
+      builtins.elem (lib.getName pkg) [
+        "steam"
+        "steam-original"
+        "apple_cursor" # bwuh this is NOT unfree!!
+      ];
+  };
+
   networking.interfaces.eno1.wakeOnLan.enable = true;
 
   system.stateVersion = "23.11";

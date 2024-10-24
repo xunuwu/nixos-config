@@ -10,8 +10,10 @@
         ./modules
         ./home-modules
       ];
+
       flake = {
       };
+
       perSystem = {pkgs, ...}: {
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [

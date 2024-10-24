@@ -23,17 +23,6 @@ in {
     meta = {
       nixpkgs = import inputs.nixpkgs {
         system = "x86_64-linux";
-        config.allowUnfree = true;
-      };
-
-      nodeNixpkgs = {
-        nixdesk = import inputs.nixpkgs {
-          system = "x86_64-linux";
-          config = {
-            allowUnfree = true;
-            rocmSupport = true;
-          };
-        };
       };
 
       inherit specialArgs;
@@ -115,7 +104,7 @@ in {
 
           services.syncthing
           services.virt.waydroid
-          #services.virt.virt-manager
+          services.virt.virt-manager
           #network.wifi
           #services.ollama
           desktop.x11.nosleep

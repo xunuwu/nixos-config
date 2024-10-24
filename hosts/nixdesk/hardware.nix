@@ -79,7 +79,7 @@
     device = "/.swapvol/swapfile";
   };
 
-  hardware.enableAllFirmware = true;
+  hardware.enableRedistributableFirmware = true;
 
   services.xserver.videoDrivers = [
     "amdgpu"
