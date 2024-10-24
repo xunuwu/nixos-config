@@ -1,4 +1,4 @@
-{inputs, ...}: {
+_: {inputs, ...}: {
   imports = [
     inputs.sops-nix.nixosModules.sops
     ./global

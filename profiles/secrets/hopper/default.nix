@@ -1,5 +1,5 @@
 ## TODO use defaultSopsFile mayb
-{config, ...}: let
+_: {config, ...}: let
   autheliaUser = config.services.authelia.instances.main.user;
 in {
   sops.secrets = {

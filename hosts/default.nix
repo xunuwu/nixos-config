@@ -77,12 +77,10 @@ in {
       imports = lib.flatten [
         ./nixdesk
 
-        (rootPaths [
-          "secrets"
-          "secrets/nixdesk"
-        ])
-
         (with profiles; [
+          secrets.default
+          secrets.nixdesk.default
+
           core.default
           core.tools
           core.compat
@@ -103,7 +101,7 @@ in {
           network.tailscale
           network.goldberg
 
-          desktop.default
+          desktop.ly
           desktop.awesome
           desktop.sway
           #..desktop.hyprland
@@ -144,43 +142,19 @@ in {
       imports = lib.flatten [
         ./hopper
 
-        (rootPaths [
-          "secrets"
-          "secrets/hopper"
+        (with profiles; [
+          secrets.default
+          secrets.hopper.default
+
+          core.default
+          core.tools
+
+          network.avahi
+          network.networkd
+          network.tailscale
+
+          services.syncthing
         ])
-
-        (modulePaths [
-          "core"
-          "core/tools.nix"
-
-          #"programs"
-          #"programs/steam.nix"
-
-          #"desktop"
-          #"desktop/awesome.nix"
-
-          #"hardware/graphics.nix"
-          #"hardware/steam-hardware.nix"
-          #"hardware/bluetooth.nix"
-          #"hardware/qmk.nix"
-
-          "network/avahi.nix"
-          "network/networkd.nix"
-          "network/tailscale.nix"
-
-          #"services"
-          #"services/pipewire.nix"
-          "services/syncthing.nix"
-          #"services/containers/server"
-          # "services/containers/experimental" # TODO maybe reenable this?? or just abandon it and move fully to systemd network namespace
-        ])
-
-        #{
-        #  home-manager = {
-        #    users.xun.imports = homeImports."xun@hopper";
-        #    extraSpecialArgs = specialArgs;
-        #  };
-        #}
       ];
     };
     liveiso = {
@@ -188,11 +162,10 @@ in {
       imports = lib.flatten [
         ./liveiso
 
-        (modulePaths [
-          "/nix"
-          "/core/security.nix"
-          "/services"
-          "/desktop"
+        (with profiles; [
+          nix.default
+          core.security
+          services.default
         ])
       ];
     };
