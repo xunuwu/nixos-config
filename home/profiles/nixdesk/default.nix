@@ -28,6 +28,7 @@
 
     # desktop
     ../../programs/desktop
+    ../../programs/desktop/libreoffice.nix
     ../../programs/desktop/theme.nix
     ../../programs/desktop/awesome
     #../../programs/desktop/hyprland
