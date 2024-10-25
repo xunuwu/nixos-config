@@ -10,13 +10,10 @@
   specialArgs = {
     inherit inputs self;
   };
-  prependAll = a: b: map (x: a + x) b;
-  rootPaths = prependAll "${self}/";
-  modulePaths = prependAll "${self}/system/";
 
-  profiles = inputs.haumea.lib.load {
+  systemProfiles = inputs.haumea.lib.load {
     inputs = {inherit inputs lib;};
-    src = "${self}/profiles";
+    src = "${self}/systemProfiles";
   };
 in {
   flake.colmena = {
@@ -33,7 +30,7 @@ in {
       };
       imports = lib.flatten [
         ./kidney
-        (with profiles; [
+        (with systemProfiles; [
           core.tools
           core.users
           core.locale
@@ -66,7 +63,7 @@ in {
       imports = lib.flatten [
         ./nixdesk
 
-        (with profiles; [
+        (with systemProfiles; [
           secrets.default
           secrets.nixdesk.default
 
@@ -131,7 +128,7 @@ in {
       imports = lib.flatten [
         ./hopper
 
-        (with profiles; [
+        (with systemProfiles; [
           secrets.default
           secrets.hopper.default
 
@@ -151,7 +148,7 @@ in {
       imports = lib.flatten [
         ./liveiso
 
-        (with profiles; [
+        (with systemProfiles; [
           nix.default
           core.security
           services.default
@@ -162,7 +159,6 @@ in {
   flake.nixosConfigurations = let
     l = inputs.nixpkgs.lib;
   in
-    ## TODO: make use of nixpkgs.pkgs for per-system pkgs without colmena
     builtins.mapAttrs (_: v:
       l.nixosSystem {
         inherit specialArgs;
