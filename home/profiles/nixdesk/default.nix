@@ -28,7 +28,6 @@
 
     # desktop
     ../../programs/desktop
-    ../../programs/desktop/libreoffice.nix
     ../../programs/desktop/theme.nix
     ../../programs/desktop/awesome
     #../../programs/desktop/hyprland
@@ -48,10 +47,13 @@
     # ../../programs/misc/obsidian.nix
     ../../programs/misc/pwvucontrol.nix
     ../../programs/misc/qpwgraph.nix
+    ../../programs/misc/libreoffice.nix
     # ../../programs/misc/thunderbird.nix
     #../../programs/music
     #../../programs/music/yams.nix
     # ../../programs/music/spotify.nix
+    ../../programs/music/puddletag.nix
+    ../../programs/music/picard.nix
     ../../programs/media
     ../../programs/media/jellyfin.nix
     # gaming

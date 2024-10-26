@@ -6,7 +6,7 @@
       systems = ["x86_64-linux"];
       imports = [
         ./home/profiles
-        ./hosts
+        ./hosts/machines
         ./modules
         ./home-modules
       ];

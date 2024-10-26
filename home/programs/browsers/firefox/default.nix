@@ -102,7 +102,7 @@
         "browser.disableResetPrompt" = true; # "Looks like you haven't started Firefox in a while."
         "browser.onboarding.enabled" = false; # "New to Firefox? Let's get started!" tour
         "browser.aboutConfig.showWarning" = false; # Warning when opening about:config
-        "media.videocontrols.picture-in-picture.video-toggle.enabled" = false;
+        # "media.videocontrols.picture-in-picture.video-toggle.enabled" = false;
         "extensions.autoDisableScopes" = "0"; # Automatically enable extensions
         "extensions.pocket.enabled" = true; # i actually use pocket
         "extensions.shield-recipe-client.enabled" = false;

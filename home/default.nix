@@ -1,7 +1,4 @@
 {
-  imports = [
-  ];
-
   home = {
     username = "xun";
     homeDirectory = "/home/xun";

@@ -14,7 +14,22 @@
       type = "cifs";
       options = "uid=xun,gid=users," + (builtins.readFile ./smbcreds);
     }
+    {
+      description = "smb hopper library";
+      what = "//192.168.50.97/library"; # hopper local ip
+      where = "/server/library";
+      type = "cifs";
+      options = "uid=xun,gid=users," + (builtins.readFile ./smbcreds);
+    }
+    {
+      description = "smb hopper slskd files";
+      what = "//192.168.50.97/slskd"; # hopper local ip
+      where = "/server/slskd";
+      type = "cifs";
+      options = "uid=xun,gid=users," + (builtins.readFile ./smbcreds);
+    }
   ];
+
   systemd.automounts = [
     {
       requires = ["network-online.target"];
@@ -27,6 +42,22 @@
     {
       requires = ["network-online.target"];
       where = "/server/vault";
+      wantedBy = ["multi-user.target"];
+      automountConfig = {
+        TimeoutIdleSec = "10min";
+      };
+    }
+    {
+      requires = ["network-online.target"];
+      where = "/server/library";
+      wantedBy = ["multi-user.target"];
+      automountConfig = {
+        TimeoutIdleSec = "10min";
+      };
+    }
+    {
+      requires = ["network-online.target"];
+      where = "/server/slskd";
       wantedBy = ["multi-user.target"];
       automountConfig = {
         TimeoutIdleSec = "10min";
