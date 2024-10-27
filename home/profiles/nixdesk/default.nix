@@ -54,6 +54,7 @@
     # ../../programs/music/spotify.nix
     ../../programs/music/puddletag.nix
     ../../programs/music/picard.nix
+    ../../programs/music/cmus.nix
     ../../programs/media
     ../../programs/media/jellyfin.nix
     # gaming
