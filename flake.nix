@@ -24,7 +24,16 @@
             just
             home-manager
             sops
-            colmena
+            ## TODO remove after https://github.com/zhaofengli/colmena/pull/228 is merged
+            (colmena.overrideAttrs (final: prev: {
+              nativeBuildInputs = prev.nativeBuildInputs ++ [pkgs.makeBinaryWrapper];
+              postInstall =
+                prev.postInstall
+                + ''
+                  wrapProgram $out/bin/colmena \
+                     --prefix PATH ":" "${pkgs.lib.makeBinPath [pkgs.nixVersions.nix_2_18]}"
+                '';
+            }))
             git-agecrypt
             inputs.nvfetcher.packages.${pkgs.system}.default
           ];
@@ -78,6 +87,5 @@
     nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
     nvfetcher.inputs.nixpkgs.follows = "nixpkgs";
     microvm.inputs.nixpkgs.follows = "nixpkgs";
-    vpn-confinement.inputs.nixpkgs.follows = "nixpkgs";
   };
 }
