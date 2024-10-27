@@ -1,7 +1,3 @@
-[sobercookie]
-src.git = "https://github.com/xunuwu/sobercookie"
-fetch.github = "xunuwu/sobercookie"
-
 [krunker]
 src.cmd = "curl -I -s -o /dev/null -w '%header{x-goog-generation}' 'https://client2.krunker.io/setup.AppImage'"
 fetch.url = "https://client2.krunker.io/setup.AppImage"

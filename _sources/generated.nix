@@ -9,16 +9,4 @@
       sha256 = "sha256-yG8E3a6AaX0TBK23TlBBLmiCfqzS8FldTfl7As4Dcvo=";
     };
   };
-  sobercookie = {
-    pname = "sobercookie";
-    version = "5030aaf22c740a72c04c4a09534ee38a09158610";
-    src = fetchFromGitHub {
-      owner = "xunuwu";
-      repo = "sobercookie";
-      rev = "5030aaf22c740a72c04c4a09534ee38a09158610";
-      fetchSubmodules = false;
-      sha256 = "sha256-zDixpz/xw2LMs1EtUHYin/p1SQWVrkPGAmYJCSQWftU=";
-    };
-    date = "2024-09-15";
-  };
 }
