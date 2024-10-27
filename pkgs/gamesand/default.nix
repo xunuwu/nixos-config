@@ -1,11 +1,11 @@
 {
-  steamPackages,
+  steam-fhsenv-without-steam,
   symlinkJoin,
 }:
 symlinkJoin {
   name = "gamesand";
   paths = [
-    (steamPackages.steam-fhsenv-without-steam.override
+    (steam-fhsenv-without-steam.override
       {
         extraBwrapArgs = [
           "--ro-bind ./files /game/files"

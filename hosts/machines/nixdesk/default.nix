@@ -25,6 +25,7 @@
       builtins.elem (lib.getName pkg) [
         "steam"
         "steam-original"
+        "steam-unwrapped"
         "apple_cursor" # bwuh this is NOT unfree!!
       ];
   };

@@ -10,18 +10,18 @@ creation_rules:
     key_groups:
       - age:
         - *xun
-  - path_regex: profiles/secrets/global
+  - path_regex: systemProfiles/secrets/global
     key_groups:
       - age:
         - *xun
         - *nixdesk
         - *hopper
-  - path_regex: profiles/secrets/nixdesk
+  - path_regex: systemProfiles/secrets/nixdesk
     key_groups:
       - age:
         - *xun
         - *nixdesk
-  - path_regex: profiles/secrets/hopper
+  - path_regex: systemProfiles/secrets/hopper
     key_groups:
       - age:
         - *xun
