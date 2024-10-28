@@ -8,7 +8,7 @@ symlinkJoin {
     (steam-fhsenv-without-steam.override
       {
         extraBwrapArgs = [
-          "--ro-bind ./files /game/files"
+          "--bind ./files /game/files"
           "--bind ./appdata /home/$USER"
           "--chdir /game"
           "--ro-bind ./start.sh /game/start.sh"
