@@ -53,9 +53,9 @@
     '';
     config = {
       modifier = "Mod4";
-      output = {
-        "*".bg = "${config.xdg.userDirs.pictures}/wallpaper fill";
-      };
+      # output = {
+      #   "*".bg = "${config.xdg.userDirs.pictures}/wallpaper fill";
+      # };
       input = {
         "*".xkb_layout = osConfig.services.xserver.xkb.layout;
       };

@@ -1,6 +1,7 @@
 {
   inputs,
   self,
+  pkgs,
   ...
 }: {
   imports = [
@@ -28,7 +29,7 @@
 
     # desktop
     ../../programs/desktop
-    ../../programs/desktop/theme.nix
+    # ../../programs/desktop/theme.nix
     ../../programs/desktop/awesome
     #../../programs/desktop/hyprland
     ../../programs/desktop/sway
@@ -63,6 +64,8 @@
     # ../../programs/games/krunker.nix
     #../../programs/games/ludusavi.nix
 
+    ./dark.nix
+
     # media services
     ../../services/media/playerctl.nix
     # system services
@@ -81,7 +84,6 @@
     };
     desktop = {
       xdg = enabled;
-      colorscheme = "light";
     };
     programs.terminal = {
       shell.zsh = enabled;
@@ -105,5 +107,16 @@
       roblox.sobercookie = enabled;
     };
     # school.geogebra = enabled;
+  };
+
+  qt = {
+    enable = true;
+    platformTheme = {
+      name = "gtk3";
+      package = [
+        pkgs.libsForQt5.qtstyleplugins
+        pkgs.qt6.qtbase
+      ];
+    };
   };
 }

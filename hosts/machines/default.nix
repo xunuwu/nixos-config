@@ -63,6 +63,8 @@ in {
       imports = lib.flatten [
         ./nixdesk
 
+        inputs.stylix.nixosModules.stylix
+
         (with systemProfiles; [
           secrets.default
           secrets.nixdesk.default
@@ -92,8 +94,13 @@ in {
           desktop.sway
           #..desktop.hyprland
 
-          programs.default
+          programs.dconf
+          programs.fonts
+          programs.home-manager
+          # programs.qt
+          programs.adb
           programs.tools
+          programs.thunar
 
           services.default
           services.pipewire
@@ -106,6 +113,8 @@ in {
           #services.ollama
           desktop.x11.nosleep
 
+          themes.dark
+
           # programs.gamemode # TEMP: TODO
           # programs.gamescope # TEMP: TODO
           # programs.steam # TEMP: TODO
@@ -114,6 +123,7 @@ in {
 
         {
           home-manager = {
+            backupFileExtension = "hm-backup";
             users.xun.imports = homeImports."xun@nixdesk";
             extraSpecialArgs = specialArgs;
           };

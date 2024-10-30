@@ -31,7 +31,8 @@
     profiles.xun = {
       extensions = with config.nur.repos.rycee.firefox-addons; [
         ublock-origin
-        (lib.mkIf (config.xun.desktop.colorscheme == "dark") darkreader)
+        # (lib.mkIf (config.xun.desktop.colorscheme == "dark") darkreader)
+        darkreader
         sponsorblock
         tridactyl
         translate-web-pages
@@ -61,16 +62,6 @@
       #     else null
       #   }\", true);";
       settings = {
-        "extensions.activeThemeID" = let
-          inherit (config.xun.desktop) colorscheme;
-        in
-          lib.mkIf (colorscheme != null) (
-            if colorscheme == "dark"
-            then "{30756de5-da3b-43c4-8b35-1db7bb01680a}"
-            else if colorscheme == "light"
-            then "firefox-compact-light@mozilla.org"
-            else null
-          );
         "browser.display.use_system_colors" = true; # about:blank colour match colourscheme
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true; # enable userChrome
         "browser.tabs.inTitleBar" = "0"; # use system title bar

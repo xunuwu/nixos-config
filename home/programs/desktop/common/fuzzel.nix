@@ -32,7 +32,7 @@ in {
         terminal = "${lib.getExe pkgs.foot}";
         layer = "overlay";
       };
-      colors = colors."${config.xun.desktop.colorscheme}";
+      # colors = colors."${config.xun.desktop.colorscheme}";
     };
   };
 }

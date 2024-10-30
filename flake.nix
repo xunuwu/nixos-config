@@ -56,6 +56,7 @@
     home-manager.url = "github:nix-community/home-manager";
     small-nvim.url = "github:xunuwu/small-nvim";
     # small-nvim.url = "/home/xun/dots/small-nvim";
+    stylix.url = "github:danth/stylix";
     nur.url = "github:nix-community/NUR";
     sops-nix.url = "github:Mic92/sops-nix";
     nix-index-database.url = "github:Mic92/nix-index-database";
