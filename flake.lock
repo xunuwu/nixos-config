@@ -231,11 +231,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1710146030,
-        "narHash": "sha256-SZ5L6eA7HJ/nmkzGG7/ISclqe6oZdOZTNoesiInkXPQ=",
+        "lastModified": 1726560853,
+        "narHash": "sha256-X6rJYSESBVr3hBoH0WbKE5KvhPU5bloyZ2L4K60/fPQ=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "b1d9ab70662946ef0850d488da1c9019f3a9752a",
+        "rev": "c1dfcf08411b08f6b8615f7d8971a2bfa81d5e8a",
         "type": "github"
       },
       "original": {
@@ -406,11 +406,11 @@
     },
     "hardware": {
       "locked": {
-        "lastModified": 1729742320,
-        "narHash": "sha256-u3Of8xRkN//me8PU+RucKA59/6RNy4B2jcGAF36P4jI=",
+        "lastModified": 1730161780,
+        "narHash": "sha256-z5ILcmwMtiCoHTXS1KsQWqigO7HJO8sbyK7f7wn9F/E=",
         "owner": "nixos",
         "repo": "nixos-hardware",
-        "rev": "e8a2f6d5513fe7b7d15701b2d05404ffdc3b6dda",
+        "rev": "07d15e8990d5d86a631641b4c429bc0a7400cfb8",
         "type": "github"
       },
       "original": {
@@ -512,11 +512,11 @@
         "spectrum": "spectrum"
       },
       "locked": {
-        "lastModified": 1729979773,
-        "narHash": "sha256-FWW4FuCaXl5mCNv3DJmOuabXkQTsQZcww8C875HQ7s0=",
+        "lastModified": 1730296510,
+        "narHash": "sha256-ZiQPP6LE+SLKbS0UYNeDax08whSXlhZeniDzzLQGVEw=",
         "owner": "astro",
         "repo": "microvm.nix",
-        "rev": "7f30633d2739705dd0d6dabd95a92cdab6e19017",
+        "rev": "6ff444ef6cfd5d2effb6c4f50da2ca6f20f2677f",
         "type": "github"
       },
       "original": {
@@ -596,11 +596,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1729994042,
-        "narHash": "sha256-raAG3cW29BRYmu3Pxej65QgnNi88bGUqlqMkuaJRF8s=",
+        "lastModified": 1730252995,
+        "narHash": "sha256-/kFpSLC8kxSdL3rO4n38M9Fql+zovnw60X4Gpq7HnWo=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "88bf73817636e232513bff1f3a071b3ae2bcfd14",
+        "rev": "238dc7efbe88c5ae226f849b73cd809f3ffbd001",
         "type": "github"
       },
       "original": {
@@ -618,11 +618,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1729717678,
-        "narHash": "sha256-XEfYT1D+4KT9c0mMwsmZdWS2JgKsboAZbnuJvrjBQKg=",
+        "lastModified": 1730120924,
+        "narHash": "sha256-I6hwd+YlgefioLfmsM04MxzbEAES1N328/T+VqhcWnQ=",
         "owner": "nix-community",
         "repo": "NixOS-WSL",
-        "rev": "5a965cb108fb1f30b29a26dbc29b473f49e80b41",
+        "rev": "b124084667fb4c912fda68fdd9d05f59e18b6ef7",
         "type": "github"
       },
       "original": {
@@ -682,11 +682,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1730021733,
-        "narHash": "sha256-VcnseUulfsZM4sXq+oC3cKTSrkVNLp7fJTchJIGCyi4=",
+        "lastModified": 1730329096,
+        "narHash": "sha256-81OdXiIuBLqpXcwhHwJshn+eK/Ph5aYTUmLO8W3XwSo=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "c99f74da05c901e064eb98218844ad652f7f9216",
+        "rev": "5146513799002e9b3ecd50dd111d1f1fce61247d",
         "type": "github"
       },
       "original": {
@@ -804,11 +804,11 @@
     "spectrum": {
       "flake": false,
       "locked": {
-        "lastModified": 1720264467,
-        "narHash": "sha256-xzM92n3Q9L90faJIJrkrTtTx+JqCGRHMkHWztkV4PuY=",
+        "lastModified": 1729945407,
+        "narHash": "sha256-iGNMamNOAnVTETnIVqDWd6fl74J8fLEi1ejdZiNjEtY=",
         "ref": "refs/heads/main",
-        "rev": "fb59d42542049f586c84b0f8bb86ff3be338e9d3",
-        "revCount": 674,
+        "rev": "f1d94ee7029af18637dbd5fdf4749621533693fa",
+        "revCount": 764,
         "type": "git",
         "url": "https://spectrum-os.org/git/spectrum"
       },
@@ -994,11 +994,11 @@
       },
       "locked": {
         "dir": "packaging/nix",
-        "lastModified": 1729978972,
-        "narHash": "sha256-22JoG/jIZGdQvBtIn4AYkjcjKeUoaLCfquN5Di+EhGw=",
+        "lastModified": 1730219667,
+        "narHash": "sha256-maoMwZlsbWiawf3kT3Y7dzMPhwktF3Cp1vrI700Icuw=",
         "owner": "Open-Wine-Components",
         "repo": "umu-launcher",
-        "rev": "72499f349ca81cb2838eced9d7c465b2cf71c4a2",
+        "rev": "10a406962c27a5a7cf05eab4ae19072cfaa4f165",
         "type": "github"
       },
       "original": {
