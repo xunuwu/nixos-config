@@ -78,7 +78,7 @@
     small-nvim = {
       enable = true;
       colorscheme = {
-        name = "dayfox";
+        name = "carbonfox";
         package = "EdenEast/nightfox.nvim";
       };
     };
