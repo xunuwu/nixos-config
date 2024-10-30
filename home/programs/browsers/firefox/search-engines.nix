@@ -91,6 +91,16 @@
         iconUpdateURL = "https://brave.com/static-assets/images/brave-favicon.png";
         definedAliases = ["@b"];
       };
+      "YouTube" = {
+        urls = singleton {
+          template = "https://www.youtube.com/results";
+          params = attrsToList {
+            "search_query" = "{searchTerms}";
+          };
+        };
+        iconUpdateURL = "https://www.youtube.com/favicon.ico";
+        definedAliases = ["@yt"];
+      };
 
       "Google".metaData.alias = "@go";
       "DuckDuckGo".metaData.alias = "@ddg";
