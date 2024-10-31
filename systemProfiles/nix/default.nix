@@ -26,7 +26,7 @@
     settings = {
       #auto-optimise-store = true;
       builders-use-substitutes = true;
-      experimental-features = ["flakes" "nix-command"];
+      experimental-features = ["flakes" "nix-command" "pipe-operators" "no-url-literals"];
 
       # for direnv GC roots
       keep-outputs = true;

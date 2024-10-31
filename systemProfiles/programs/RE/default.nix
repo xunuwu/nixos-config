@@ -19,10 +19,10 @@
           machinelearning
         ]))
 
-      (cutter.withPlugins (ps:
-        with ps; [
-          rz-ghidra
-        ]))
+      # (cutter.withPlugins (ps:
+      #   with ps; [
+      #     rz-ghidra
+      #   ]))
 
       self.packages.${pkgs.system}.binaryninja-personal
       self.packages.${pkgs.system}.ida-pro
