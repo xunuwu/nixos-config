@@ -6,6 +6,7 @@
   imports = [
     self.homeManagerModules.xun
     ../../editors/emacs.nix
+    ../../editors/nvim.nix
     # ../../terminal/shell/zsh.nix
     # ../../terminal/programs
     # ../../terminal/programs/lazygit.nix

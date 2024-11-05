@@ -1,5 +1,4 @@
 {
-  inputs,
   self,
   pkgs,
   ...
@@ -18,6 +17,7 @@
     ../../terminal/programs/lazygit.nix
     # ../../terminal/programs/beets.nix
     ../../editors/emacs.nix
+    ../../editors/nvim.nix
     ../../editors/vscode.nix
     # ../../editors/jetbrains
     ../../programs/browsers/firefox
@@ -71,7 +71,6 @@
     ../../services/system/polkit-agent.nix
     ../../services/system/udiskie.nix # although i dont need this for usb memory, it is quite convenient for flashing qmk
   ];
-  home.packages = [inputs.nvim-nix.packages.${pkgs.system}.default];
   xun = let
     enabled = {enable = true;};
   in {
