@@ -23,10 +23,9 @@
     rocmSupport = true;
     allowUnfreePredicate = pkg:
       builtins.elem (lib.getName pkg) [
+        "discord"
         "steam"
-        "steam-original"
         "steam-unwrapped"
-        "apple_cursor" # bwuh this is NOT unfree!!
       ];
   };
 

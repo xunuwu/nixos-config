@@ -118,7 +118,7 @@ in {
           # programs.gamemode # TEMP: TODO
           # programs.gamescope # TEMP: TODO
           # programs.steam # TEMP: TODO
-          # programs.RE.default
+          programs.RE.default
         ])
 
         {

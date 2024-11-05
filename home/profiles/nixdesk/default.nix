@@ -6,7 +6,6 @@
 }: {
   imports = [
     self.homeManagerModules.xun
-    inputs.small-nvim.homeManagerModules.small-nvim
     ./kanshi.nix
     ./defaults.nix
 
@@ -72,16 +71,10 @@
     ../../services/system/polkit-agent.nix
     ../../services/system/udiskie.nix # although i dont need this for usb memory, it is quite convenient for flashing qmk
   ];
+  home.packages = [inputs.nvim-nix.packages.${pkgs.system}.default];
   xun = let
     enabled = {enable = true;};
   in {
-    small-nvim = {
-      enable = true;
-      colorscheme = {
-        name = "carbonfox";
-        package = "EdenEast/nightfox.nvim";
-      };
-    };
     desktop = {
       xdg = enabled;
     };
@@ -99,6 +92,7 @@
         c = enabled;
         csharp = enabled;
         zig = enabled;
+        lua = enabled;
       };
     };
     gaming = {

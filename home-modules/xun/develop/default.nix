@@ -24,6 +24,7 @@ in {
       csharp.enable = enableOption false;
       shell.enable = enableOption false;
       zig.enable = enableOption false;
+      lua.enable = enableOption false;
     };
   };
 
@@ -67,13 +68,19 @@ in {
         };
       })
       (lib.mkIf cfg.lang.c.enable {
-        home.packages = with pkgs; [clang-tools buckle];
+        home.packages = with pkgs; [clang-tools buckle gdb lldb];
       })
       (lib.mkIf cfg.lang.csharp.enable {
         home.packages = with pkgs; [
           csharpier
           omnisharp-roslyn
           roslyn-ls
+        ];
+      })
+      (lib.mkIf cfg.lang.lua.enable {
+        home.packages = with pkgs; [
+          stylua
+          lua-language-server
         ];
       })
       (lib.mkIf cfg.lang.shell.enable {

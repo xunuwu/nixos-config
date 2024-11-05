@@ -55,8 +55,10 @@
 
     hardware.url = "github:nixos/nixos-hardware";
     home-manager.url = "github:nix-community/home-manager";
-    small-nvim.url = "github:xunuwu/small-nvim";
-    # small-nvim.url = "/home/xun/dots/small-nvim";
+    nvim-nix = {
+      url = "github:xunuwu/nvim-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     stylix.url = "github:danth/stylix";
     nur.url = "github:nix-community/NUR";
     sops-nix.url = "github:Mic92/sops-nix";
@@ -73,6 +75,10 @@
     };
     haumea = {
       url = "github:nix-community/haumea";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-gaming = {
+      url = "github:fufexan/nix-gaming";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

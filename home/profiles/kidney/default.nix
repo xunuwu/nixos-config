@@ -5,7 +5,6 @@
 }: {
   imports = [
     self.homeManagerModules.xun
-    inputs.small-nvim.homeManagerModules.small-nvim
     ../../editors/emacs.nix
     # ../../terminal/shell/zsh.nix
     # ../../terminal/programs
@@ -15,14 +14,6 @@
   ];
 
   xun = {
-    small-nvim = {
-      enable = true;
-      colorscheme = {
-        name = "dayfox";
-        package = "EdenEast/nightfox.nvim";
-      };
-      wakatime.enable = false;
-    };
     develop = {
       enable = true;
       lang = {
