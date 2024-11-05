@@ -85,7 +85,6 @@
     ## deduplication
     flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    small-nvim.inputs.nixpkgs.follows = "nixpkgs";
     sops-nix.inputs = {
       nixpkgs.follows = "nixpkgs";
       nixpkgs-stable.follows = "nixpkgs";
