@@ -11,14 +11,7 @@
       ../.
       ./kidney
       # inputs.nix-index-database.hmModules.nix-index
-      {
-        programs.nix-index = {
-          enableBashIntegration = false;
-          enableFishIntegration = false;
-          enableZshIntegration = false;
-        };
-        home.stateVersion = "24.05";
-      }
+      {home.stateVersion = "24.05";}
     ];
     "xun@nixdesk" = [
       ../.

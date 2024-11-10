@@ -1,6 +1,6 @@
 ## TODO use defaultSopsFile mayb
 _: {config, ...}: let
-  autheliaUser = config.services.authelia.instances.main.user;
+  # autheliaUser = config.services.authelia.instances.main.user;
 in {
   sops.secrets = {
     wireguard = {
@@ -19,7 +19,7 @@ in {
     slskd = {
       format = "binary";
       sopsFile = ./slskd;
-      restartUnits = ["podman-slskd.service"];
+      # restartUnits = ["podman-slskd.service"];
     };
     cloudflare = {
       format = "binary";
@@ -36,48 +36,51 @@ in {
       restartUnits = ["podman-betanin.service"];
     };
 
-    # lldap_jwt_secret = {
-    #   sopsFile = ./lldap.yaml;
-    #   key = "jwt_secret";
-    #   owner = "lldap";
-    # };
-    #
-    # lldap_user_password = {
-    #   sopsFile = ./lldap.yaml;
-    #   key = "user_password";
-    #   owner = "lldap";
-    # };
+    transmission = {
+      format = "binary";
+      sopsFile = ./transmission;
+    };
+
+    "lldap/jwt" = {
+      sopsFile = ./lldap.yaml;
+      owner = "lldap";
+    };
+
+    "lldap/password" = {
+      sopsFile = ./lldap.yaml;
+      owner = "lldap";
+    };
 
     # authelia
     authelia_lldap_password = {
       format = "yaml";
       sopsFile = ./authelia.yaml;
       key = "lldap_password";
-      owner = autheliaUser;
+      # owner = autheliaUser;
     };
     authelia_jwt_secret = {
       format = "yaml";
       sopsFile = ./authelia.yaml;
       key = "jwt_secret";
-      owner = autheliaUser;
+      # owner = autheliaUser;
     };
     authelia_session_secret = {
       format = "yaml";
       sopsFile = ./authelia.yaml;
       key = "session_secret";
-      owner = autheliaUser;
+      #owner = autheliaUser;
     };
     authelia_encryption_key = {
       format = "yaml";
       sopsFile = ./authelia.yaml;
       key = "encryption_key";
-      owner = autheliaUser;
+      #owner = autheliaUser;
     };
     authelia_storage_password = {
       format = "yaml";
       sopsFile = ./authelia.yaml;
       key = "storage_password";
-      owner = autheliaUser;
+      #owner = autheliaUser;
     };
 
     brawlstars-api-key = {

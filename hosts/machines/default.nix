@@ -69,7 +69,12 @@ in {
           secrets.default
           secrets.nixdesk.default
 
-          core.default
+          core.security
+          core.users
+          core.ssh
+          core.locale
+          nix.default
+          programs.zsh
           core.tools
           core.compat
           core.boot
@@ -142,14 +147,22 @@ in {
           secrets.default
           secrets.hopper.default
 
-          core.default
+          core.security
+          core.locale
           core.tools
+          core.ssh
+          nix.default # TODO slim this down
 
+          network.tailscale
           network.avahi
           network.networkd
-          network.tailscale
-
           services.syncthing
+
+          #network.avahi
+          #network.networkd
+          #network.tailscale
+
+          #services.syncthing
         ])
       ];
     };

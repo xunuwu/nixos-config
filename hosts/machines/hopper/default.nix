@@ -5,9 +5,10 @@
     inputs.vpn-confinement.nixosModules.default
 
     ./hardware.nix
-    ./brawlstats.nix
-    ./lab.nix
-    ./hardening.nix
+    ./newlab.nix
+    # ./brawlstats.nix
+    # ./lab.nix
+    # ./hardening.nix
   ];
 
   networking.hostName = "hopper";
