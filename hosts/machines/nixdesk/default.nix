@@ -26,6 +26,7 @@
         "discord"
         "steam"
         "steam-unwrapped"
+        "rider"
       ];
   };
 
