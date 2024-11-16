@@ -19,6 +19,7 @@
     graphviz-nox
     p7zip
     unar
+    jq
     openssl # for generating passwords
   ];
 }
