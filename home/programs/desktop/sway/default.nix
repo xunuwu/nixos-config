@@ -105,10 +105,11 @@
             "${mod}+t" = "sticky toggle";
 
             "${mod}+Shift+Backspace" = "exec systemctl suspend";
-            "${mod}+Shift+s" = "exec ${lib.getExe pkgs.sway-contrib.grimshot} copy anything";
-            "${mod}+Ctrl+Shift+s" = "exec ${lib.getExe pkgs.sway-contrib.grimshot} savecopy anything";
+            "${mod}+Shift+s" = "exec ${lib.getExe pkgs.wayfreeze} --after-freeze-cmd '${lib.getExe pkgs.sway-contrib.grimshot} copy anything'";
+            "${mod}+Ctrl+Shift+s" = "exec ${lib.getExe pkgs.wayfreeze} --after-freeze-cmd '${lib.getExe pkgs.sway-contrib.grimshot} savecopy anything'";
 
             "${mod}+Shift+p" = "exec ${pauseApp}";
+            "${mod}+period" = "exec ${lib.getExe pkgs.bemoji}";
 
             "XF86AudioRaiseVolume" = "exec ${setVolume "1.5" "3%+"} && ${wobVolume}";
             "XF86AudioLowerVolume" = "exec ${setVolume "1.5" "3%-"} && ${wobVolume}";
