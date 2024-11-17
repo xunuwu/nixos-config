@@ -21,5 +21,6 @@
     unar
     jq
     openssl # for generating passwords
+    yt-dlp
   ];
 }
