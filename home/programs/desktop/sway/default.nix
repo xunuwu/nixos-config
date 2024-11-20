@@ -105,8 +105,8 @@
             "${mod}+t" = "sticky toggle";
 
             "${mod}+Shift+Backspace" = "exec systemctl suspend";
-            "${mod}+Shift+s" = "exec ${lib.getExe pkgs.wayfreeze} --after-freeze-cmd '${lib.getExe pkgs.sway-contrib.grimshot} copy anything'";
-            "${mod}+Ctrl+Shift+s" = "exec ${lib.getExe pkgs.wayfreeze} --after-freeze-cmd '${lib.getExe pkgs.sway-contrib.grimshot} savecopy anything'";
+            "${mod}+Shift+s" = "exec ${lib.getExe pkgs.wayfreeze} --after-freeze-cmd '${lib.getExe pkgs.sway-contrib.grimshot} copy anything && pkill wayfreeze'";
+            "${mod}+Ctrl+Shift+s" = "exec ${lib.getExe pkgs.wayfreeze} --after-freeze-cmd '${lib.getExe pkgs.sway-contrib.grimshot} savecopy anything && pkill wayfreeze'";
 
             "${mod}+Shift+p" = "exec ${pauseApp}";
             "${mod}+period" = "exec ${lib.getExe pkgs.bemoji}";
