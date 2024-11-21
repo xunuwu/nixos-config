@@ -14,11 +14,11 @@ updatekeys:
   fd . systemProfiles/secrets -E '*.nix' -t f -x sops updatekeys
 
 
-remote OPERATION HOST HOSTNAME *FLAGS:
+remote OPERATION HOST REMOTEHOST *FLAGS:
   nixos-rebuild \
   --fast \
   --flake .#{{HOST}} \
-  --target-host xun@{{HOSTNAME}} \
+  --target-host {{REMOTEHOST}} \
   --use-remote-sudo \
   {{FLAGS}} \
   {{OPERATION}}

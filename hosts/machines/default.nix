@@ -11,10 +11,11 @@
     inherit inputs self;
   };
 
-  systemProfiles = inputs.haumea.lib.load {
+  source = inputs.haumea.lib.load {
     inputs = {inherit inputs lib;};
-    src = "${self}/systemProfiles";
+    src = "${self}/nix";
   };
+  systemProfiles = source.systemProfiles;
 in {
   flake.colmena = {
     meta = {
@@ -151,12 +152,13 @@ in {
           core.locale
           core.tools
           core.ssh
+          core.deploy
           nix.default # TODO slim this down
 
           network.tailscale
           network.avahi
           network.networkd
-          services.syncthing
+          # services.syncthing # TODO make syncthing not rely on having "xun" user
 
           #network.avahi
           #network.networkd

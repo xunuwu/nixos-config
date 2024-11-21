@@ -18,6 +18,12 @@ in {
   ## TODO use impermanence
   ## TODO setup fail2ban mayb
 
+  users.groups.media = {};
+  users.users.media = {
+    isSystemUser = true;
+    group = "media";
+  };
+
   security.acme = {
     acceptTerms = true;
     defaults.email = "xunuwu@gmail.com";
@@ -264,7 +270,8 @@ in {
           {
             targets = [
               "127.0.0.1:${toString config.services.prometheus.exporters.node.port}"
-              # "127.0.0.1:${toString config.services.prometheus.exporters.nextcloud.port}"
+              "127.0.0.1:${toString config.services.prometheus.exporters.systemd.port}"
+              # "127.0.0.1:${toString config.services.prometheus.exporters.wireguard.port}"
             ];
           }
         ];
@@ -277,6 +284,11 @@ in {
       enable = true;
       enabledCollectors = ["systemd"];
     };
+    systemd.enable = true;
+    # wireguard = {
+    #   enable = true;
+    #   wireguardConfig = config.sops.secrets.wireguard.path;
+    # };
     # nextcloud = {
     #   enable = true;
     #   tokenFile = config.sops.secrets."prometheus/nextcloud".path;
@@ -294,6 +306,7 @@ in {
     environmentFile = config.sops.secrets.slskd.path;
     domain = null; # why isnt this the default?
     settings = {
+      remote_file_management = true;
       shares.directories = ["/media/library/music"];
       soulseek = {
         listen_port = 14794;
@@ -337,7 +350,7 @@ in {
   users.users.xun = {
     isSystemUser = true;
     group = "xun";
-    extraGroups = ["transmission" "vault"];
+    extraGroups = ["transmission" "vault" "media"];
   };
 
   users.groups.vault = {};
@@ -353,12 +366,10 @@ in {
         "log file" = "/var/log/samba/samba.log";
         "server string" = config.networking.hostName;
         "hosts allow" = "192.168.50.0/24";
-        "hosts deny" = "0.0.0.0/0";
-        "guest account" = "nobody";
         "map to guest" = "bad user";
       };
       transmission = {
-        path = "/var/lib/transmission/Downloads";
+        path = "/var/lib/transmission";
         browseable = "yes";
         "read only" = "yes";
         "guest ok" = "no";
@@ -372,6 +383,28 @@ in {
         "guest ok" = "no";
         "create mask" = "0660";
         "directory mask" = "0770";
+        "force user" = "xun";
+        "force group" = "xun";
+      };
+      slskd = {
+        path = "/var/lib/slskd";
+        browseable = "yes";
+        "read only" = "no";
+        "guest ok" = "no";
+        "create mask" = "0660";
+        "directory mask" = "0770";
+        "force user" = "slskd";
+        "force group" = "slskd";
+      };
+      library = {
+        path = "media/library";
+        browseable = "yes";
+        "read only" = "no";
+        "guest ok" = "no";
+        "create mask" = "0666";
+        "directory mask" = "0777";
+        "force user" = "media";
+        "force group" = "media";
       };
     };
   };
