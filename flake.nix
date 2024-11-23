@@ -6,8 +6,7 @@
       systems = ["x86_64-linux"];
       imports = [
         ./home/profiles
-        ./hosts/machines
-        ./modules
+        ./nix/machines
         ./home-modules
       ];
 
@@ -24,16 +23,7 @@
             just
             home-manager
             sops
-            ## TODO remove after https://github.com/zhaofengli/colmena/pull/228 is merged
-            (colmena.overrideAttrs (final: prev: {
-              nativeBuildInputs = prev.nativeBuildInputs ++ [pkgs.makeBinaryWrapper];
-              postInstall =
-                prev.postInstall
-                + ''
-                  wrapProgram $out/bin/colmena \
-                     --prefix PATH ":" "${pkgs.lib.makeBinPath [pkgs.nixVersions.nix_2_18]}"
-                '';
-            }))
+            colmena
             git-agecrypt
             inputs.nvfetcher.packages.${pkgs.system}.default
           ];
@@ -77,11 +67,6 @@
       url = "github:nix-community/haumea";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-gaming = {
-      url = "github:fufexan/nix-gaming";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     ## deduplication
     flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";

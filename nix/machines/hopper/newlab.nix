@@ -219,13 +219,13 @@ in {
         "Obtaining" = [
           {
             "transmission" = {
-              href = "http://hopper:9091";
+              href = "http://${config.networking.hostName}:9091";
               icon = "transmission";
             };
           }
           {
             "slskd" = {
-              href = "http://hopper:23488";
+              href = "http://${config.networking.hostName}:23488";
               icon = "slskd";
             };
           }
@@ -237,6 +237,12 @@ in {
             "jellyfin" = {
               href = "https://jellyfin.xunuwu.xyz";
               icon = "jellyfin";
+            };
+          }
+          {
+            "lldap" = {
+              href = "http://${config.networking.hostName}:${toString config.services.lldap.settings.http_port}";
+              icon = "lldap";
             };
           }
           # {

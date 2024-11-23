@@ -98,7 +98,7 @@ in {
           desktop.ly
           desktop.awesome
           desktop.sway
-          #..desktop.hyprland
+          #desktop.hyprland
 
           programs.dconf
           programs.fonts
@@ -115,15 +115,16 @@ in {
           services.syncthing
           services.virt.waydroid
           services.virt.virt-manager
+          services.sunshine
           #network.wifi
           #services.ollama
           desktop.x11.nosleep
 
           themes.dark
 
-          # programs.gamemode # TEMP: TODO
-          # programs.gamescope # TEMP: TODO
-          # programs.steam # TEMP: TODO
+          programs.gamemode
+          programs.gamescope
+          programs.steam
           programs.RE.default
         ])
 

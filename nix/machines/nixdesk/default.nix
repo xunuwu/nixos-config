@@ -2,7 +2,6 @@
   imports = [
     ./hardware.nix
     ./hibernate-boot.nix
-    ./testing.nix
     ./samba-mount.nix
   ];
 
