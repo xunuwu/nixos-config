@@ -16,8 +16,11 @@
   installPhase = ''
     runHook preInstall
 
-    mkdir -p $out/share/fonts
-    cp -r $src/Nerd\ Font $out/share/fonts
+
+    install -Dm644 $src/Nerd\ Font/*.ttf -t $out/share/fonts/truetype/NerdFonts
+    install -Dm644 $src/*.otf -t $out/share/fonts/opentype
+    # mkdir -p $out/share/fonts
+    # cp -r $src/Nerd\ Font $out/share/fonts/truetype
 
     runHook postInstall
   '';

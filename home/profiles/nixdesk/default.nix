@@ -13,6 +13,7 @@
     # ../../terminal
     # ../../terminal/programs/zellij.nix
     ../../terminal/programs/zoxide.nix
+    ../../terminal/programs/tdf.nix
     # ../../terminal/programs/irssi.nix
     ../../terminal/programs/lazygit.nix
     # ../../terminal/programs/beets.nix
@@ -34,6 +35,7 @@
     ../../programs/desktop/sway
 
     # development
+    ../../develop/common.nix
     #../../develop
     #../../develop/small-misc.nix
 

@@ -72,7 +72,6 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     sops-nix.inputs = {
       nixpkgs.follows = "nixpkgs";
-      nixpkgs-stable.follows = "nixpkgs";
     };
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     nix-vscode-extensions.inputs.nixpkgs.follows = "nixpkgs";

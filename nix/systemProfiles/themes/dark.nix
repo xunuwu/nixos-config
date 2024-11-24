@@ -24,4 +24,8 @@ _: {
       };
     };
   };
+
+  fonts.packages = [
+    self.packages.${pkgs.system}.cartograph-cf
+  ];
 }
