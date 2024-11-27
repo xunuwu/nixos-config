@@ -36,6 +36,7 @@
 
     # development
     ../../develop/common.nix
+    ../../develop/haskell.nix
     #../../develop
     #../../develop/small-misc.nix
 
