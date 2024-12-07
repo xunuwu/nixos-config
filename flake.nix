@@ -50,7 +50,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     stylix.url = "github:danth/stylix";
-    nur.url = "github:nix-community/NUR";
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     sops-nix.url = "github:Mic92/sops-nix";
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
@@ -67,6 +70,7 @@
       url = "github:nix-community/haumea";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    authentik-nix.url = "github:nix-community/authentik-nix";
     ## deduplication
     flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";

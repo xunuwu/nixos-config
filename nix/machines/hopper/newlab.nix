@@ -13,8 +13,9 @@
   slskdUiPort = 23488;
   caddyLocal = 8562;
   ncPort = 46523;
-  # kanidmPort = 8300;
+  kanidmPort = 8300;
 in {
+  ## TODO use kanidm
   ## TODO use impermanence
   ## TODO setup fail2ban mayb
 
@@ -35,8 +36,47 @@ in {
         credentialFiles.CF_DNS_API_TOKEN_FILE = config.sops.secrets.cloudflare.path;
         extraDomainNames = [domain];
       };
+      "kanidm.${domain}" = {
+        domain = "kanidm.${domain}";
+        group = "kanidm";
+        dnsProvider = "cloudflare";
+        reloadServices = ["caddy.service" "kanidm.service"];
+        credentialFiles.CF_DNS_API_TOKEN_FILE = config.sops.secrets.cloudflare.path;
+      };
     };
   };
+
+  ## make sure vpn connection is reasonably fast
+  ## god, there has to be a proper, not horrible way of doing this
+  ## TODO fix this and uhh make sure it works and stuff
+  # systemd.services."wg-speedcheck" = {
+  #   requires = ["wg.service"];
+  #   enable = false;
+  #   serviceConfig = {
+  #     Type = "oneshot";
+  #     ExecStart = pkgs.writers.writeBash "wg-speedcheck.sh" ''
+  #       echo "running test in netns"
+  #       vpn_result=$( ${pkgs.iproute2}/bin/ip netns exec wg ${pkgs.speedtest-cli}/bin/speedtest --json )
+  #       vpn_download=$( echo "$vpn_result" | ${l.getExe pkgs.jq} '.download' )
+  #       vpn_upload=$( echo "$vpn_result" | ${l.getExe pkgs.jq} '.upload' )
+  #
+  #       echo "running test outside of netns"
+  #       normal_result=$( ${pkgs.speedtest-cli}/bin/speedtest --json )
+  #       normal_download=$( echo "$normal_result" | ${l.getExe pkgs.jq} '.download' )
+  #       normal_upload=$( echo "$normal_result" | ${l.getExe pkgs.jq} '.upload' )
+  #
+  #       download_ratio_is_more_than_half=$( echo "$vpn_download / $normal_download > 0.5" | ${l.getExe pkgs.bc} -l | tr -d '\n' )
+  #       upload_ratio_is_more_than_half=$( echo "$vpn_upload / $normal_upload > 0.5" | ${l.getExe pkgs.bc} -l | tr -d '\n' )
+  #
+  #       if [[ "$upload_ratio_is_more_than_half" == "0" || "$download_ratio_is_more_than_half" == "0" ]]; then
+  #         echo "ratio is insufficient, restarting vpn"
+  #         systemctl restart wg.service
+  #         exit
+  #       fi
+  #       echo "ratio is sufficient"
+  #     '';
+  #   };
+  # };
 
   vpnNamespaces."wg" = {
     enable = true;
@@ -105,7 +145,19 @@ in {
       }
       // v) {
       jellyfin.extraConfig = "reverse_proxy localhost:8096"; # TODO setup proper auth
-      # kanidm.extraConfig = "reverse_proxy localhost:${toString kanidmPort}";
+      kanidm = {
+        useACMEHost = null;
+        # hostName = "kanidm.xunuwu.xyz:${toString caddyPort}";
+        extraConfig = ''
+          reverse_proxy https://127.0.0.1:${toString kanidmPort} {
+            header_up Host {upstream_hostport}
+            header_down Access-Control-Allow-Origin "*"
+            transport http {
+              tls_server_name ${config.services.kanidm.serverSettings.domain}
+            }
+          }
+        '';
+      };
       slskd = {
         useACMEHost = null;
         hostName = ":${toString slskdUiPort}";
@@ -129,6 +181,32 @@ in {
       };
     };
   };
+
+  # systemd.services.authentik.vpnConfinement = {
+  #   enable = true;
+  #   vpnNamespace = "wg";
+  # };
+  # services = {
+  #   authentik = {
+  #     enable = true;
+  #     environmentFile = config.sops.secrets.authentik.path;
+  #     settings = {
+  #       disable_startup_analytics = true;
+  #       avatars = "initials";
+  #     };
+  #   };
+  #   authentik-ldap = {
+  #     enable = true;
+  #   };
+  # };
+
+  # services.keycloak = {
+  #   enable = true;
+  #   settings = {
+  #     hostname = "keycloak.${domain}";
+  #   };
+  #   database.passwordFile = config.sops.secrets."keycloak/db".path;
+  # };
 
   # needed for deploying secrets
   users.users.lldap = {
@@ -421,6 +499,43 @@ in {
   #   user = config.services.caddy.user;
   #   group = config.services.caddy.group;
   # };
+
+  systemd.services.kanidm = {
+    vpnConfinement = {
+      enable = true;
+      vpnNamespace = "wg";
+    };
+    serviceConfig = {
+      InaccessiblePaths = lib.mkForce [];
+    };
+  };
+  boot.kernel.sysctl."fs.inotify.max_user_watches" = 524288;
+  services.kanidm = {
+    package = pkgs.kanidm_1_4.override {enableSecretProvisioning = true;};
+    enableServer = true;
+    serverSettings = {
+      domain = "kanidm.${domain}";
+      origin = "https://kanidm.${domain}";
+      bindaddress = "127.0.0.1:${toString kanidmPort}";
+      ldapbindaddress = "[::1]:3636";
+      trust_x_forward_for = true;
+      tls_chain = "${config.security.acme.certs."kanidm.${domain}".directory}/fullchain.pem";
+      tls_key = "${config.security.acme.certs."kanidm.${domain}".directory}/key.pem";
+    };
+    provision = {
+      enable = true;
+      adminPasswordFile = config.sops.secrets."kanidm/admin_pass".path;
+      idmAdminPasswordFile = config.sops.secrets."kanidm/idm_admin_pass".path;
+      persons = {
+        "xun" = {
+          displayName = "xun";
+          legalName = "xun";
+          mailAddresses = ["xunuwu@gmail.com"];
+          groups = [];
+        };
+      };
+    };
+  };
 
   # systemd.services.kanidm = {
   #   vpnConfinement = {

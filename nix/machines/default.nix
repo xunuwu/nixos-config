@@ -105,6 +105,7 @@ in {
           programs.home-manager
           # programs.qt
           programs.adb
+          programs.kanidm
           programs.tools
           programs.thunar
 

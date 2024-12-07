@@ -13,8 +13,17 @@ _: {
       source-code-pro
       iosevka
 
-      nerdfonts
-      #(nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
+      nerd-fonts.symbols-only
+      nerd-fonts.sauce-code-pro
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.iosevka-term
+      nerd-fonts.iosevka
+      nerd-fonts.inconsolata
+      nerd-fonts.fira-code
+      nerd-fonts.dejavu-sans-mono
+      nerd-fonts.blex-mono
+      nerd-fonts._0xproto
+
       self.packages.${pkgs.system}.cartograph-cf
     ];
 

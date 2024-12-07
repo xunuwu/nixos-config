@@ -21,7 +21,6 @@ in {
     devenv.enable = enableOption true;
     lang = {
       c.enable = enableOption false;
-      csharp.enable = enableOption false;
       shell.enable = enableOption false;
       zig.enable = enableOption false;
       lua.enable = enableOption false;
@@ -69,13 +68,6 @@ in {
       })
       (lib.mkIf cfg.lang.c.enable {
         home.packages = with pkgs; [clang-tools buckle gdb lldb];
-      })
-      (lib.mkIf cfg.lang.csharp.enable {
-        home.packages = with pkgs; [
-          csharpier
-          omnisharp-roslyn
-          roslyn-ls
-        ];
       })
       (lib.mkIf cfg.lang.lua.enable {
         home.packages = with pkgs; [

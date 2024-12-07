@@ -41,6 +41,25 @@ in {
       sopsFile = ./transmission;
     };
 
+    authentik = {
+      format = "binary";
+      sopsFile = ./authentik;
+    };
+
+    "kanidm/admin_pass" = {
+      sopsFile = ./kanidm.yaml;
+      owner = "kanidm";
+    };
+    "kanidm/idm_admin_pass" = {
+      sopsFile = ./kanidm.yaml;
+      owner = "kanidm";
+    };
+
+    # "keycloak/db" = {
+    #   sopsFile = ./keycloak.yaml;
+    #   owner = "keycloak";
+    # };
+    #
     "lldap/jwt" = {
       sopsFile = ./lldap.yaml;
       owner = "lldap";

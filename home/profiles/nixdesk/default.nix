@@ -36,7 +36,9 @@
 
     # development
     ../../develop/common.nix
-    ../../develop/haskell.nix
+    ../../develop/langs/haskell.nix
+    ../../develop/langs/rust.nix
+    ../../develop/langs/uiua.nix
     #../../develop
     #../../develop/small-misc.nix
 
@@ -47,7 +49,7 @@
     ../../programs/misc/krita.nix
     #../../programs/misc/ardour.nix
     ../../programs/misc/foliate.nix
-    # ../../programs/misc/obsidian.nix
+    ../../programs/misc/obsidian.nix
     ../../programs/misc/pwvucontrol.nix
     ../../programs/misc/qpwgraph.nix
     ../../programs/misc/libreoffice.nix
@@ -92,7 +94,6 @@
       docs = enabled;
       lang = {
         c = enabled;
-        csharp = enabled;
         zig = enabled;
         lua = enabled;
       };

@@ -17,9 +17,6 @@
   xun = {
     develop = {
       enable = true;
-      lang = {
-        csharp.enable = true;
-      };
     };
     desktop = {
       xdg.enable = true;

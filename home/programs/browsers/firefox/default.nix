@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }: {
   imports = [
@@ -29,7 +30,7 @@
       ];
     };
     profiles.xun = {
-      extensions = with config.nur.repos.rycee.firefox-addons; [
+      extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
         ublock-origin
         # (lib.mkIf (config.xun.desktop.colorscheme == "dark") darkreader)
         darkreader
@@ -39,6 +40,7 @@
         cookie-quick-manager
         istilldontcareaboutcookies
         sidebery
+        mal-sync
         (lib.mkIf (builtins.elem pkgs.keepassxc config.home.packages) keepassxc-browser)
         #(buildFirefoxXpiAddon rec {
         #  pname = "roseal";

@@ -17,13 +17,11 @@
       ../.
       ./nixdesk
       inputs.sops-nix.homeManagerModules.sops
-      inputs.nur.hmModules.nur
       {home.stateVersion = "23.11";}
     ];
     "xun@hopper" = [
       ../.
       ./hopper
-      inputs.sops-nix.homeManagerModules.sops
       {home.stateVersion = "23.11";}
     ];
   };

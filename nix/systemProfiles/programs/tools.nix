@@ -22,5 +22,6 @@
     jq
     openssl # for generating passwords
     yt-dlp
+    inotify-tools
   ];
 }

@@ -24,6 +24,7 @@
       builtins.elem (lib.getName pkg) [
         "discord"
         "steam"
+        "obsidian"
         "steam-unwrapped"
         "rider"
       ];
