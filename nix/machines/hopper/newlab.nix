@@ -413,6 +413,7 @@ in {
 
   services.transmission = {
     enable = true;
+    package = pkgs.transmission_4;
     performanceNetParameters = true;
     settings = let
       mbit = 125;
