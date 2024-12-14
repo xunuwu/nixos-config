@@ -21,6 +21,7 @@
     ../../editors/nvim.nix
     ../../editors/vscode.nix
     ../../editors/jetbrains
+    ../../editors/jetbrains/android-studio.nix
     ../../programs/browsers/firefox
     ../../programs/browsers/tor.nix
     ../../programs/browsers/chromium.nix

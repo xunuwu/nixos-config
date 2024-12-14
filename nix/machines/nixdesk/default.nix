@@ -22,12 +22,14 @@
     rocmSupport = true;
     allowUnfreePredicate = pkg:
       builtins.elem (lib.getName pkg) [
-        "discord"
         "steam"
-        "obsidian"
         "steam-unwrapped"
+        "discord"
+        "obsidian"
         "rider"
+        "android-studio-stable"
       ];
+    android_sdk.accept_license = true;
   };
 
   networking.interfaces.eno1.wakeOnLan.enable = true;
