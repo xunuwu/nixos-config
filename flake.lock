@@ -1049,7 +1049,6 @@
         "sobercookie": "sobercookie",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
-        "umu": "umu",
         "vpn-confinement": "vpn-confinement"
       }
     },
@@ -1333,28 +1332,6 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
-        "type": "github"
-      }
-    },
-    "umu": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "dir": "packaging/nix",
-        "lastModified": 1733509971,
-        "narHash": "sha256-KVpe03nlfvYnZo5EphvOjS4T3CcpQIUcFHGrY6J8Frs=",
-        "owner": "Open-Wine-Components",
-        "repo": "umu-launcher",
-        "rev": "562e3900eebde0fb276dd2f425c097c8b44ccb92",
-        "type": "github"
-      },
-      "original": {
-        "dir": "packaging/nix",
-        "owner": "Open-Wine-Components",
-        "repo": "umu-launcher",
         "type": "github"
       }
     },

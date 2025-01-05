@@ -5,7 +5,7 @@
 }: {
   imports = [
     self.homeManagerModules.xun
-    ./kanshi.nix
+    # ./kanshi.nix
     ./defaults.nix
 
     ../../secrets
@@ -50,6 +50,7 @@
     ../../programs/misc/krita.nix
     #../../programs/misc/ardour.nix
     ../../programs/misc/foliate.nix
+    ../../programs/misc/blender.nix
     ../../programs/misc/obsidian.nix
     ../../programs/misc/pwvucontrol.nix
     ../../programs/misc/qpwgraph.nix
@@ -69,7 +70,8 @@
     # ../../programs/games/krunker.nix
     #../../programs/games/ludusavi.nix
 
-    ./dark.nix
+    # ./dark.nix
+    # ./xundark.nix
 
     # media services
     ../../services/media/playerctl.nix
@@ -101,7 +103,6 @@
     };
     gaming = {
       krunker = enabled;
-      umu = enabled;
       roblox.sobercookie = enabled;
     };
     # school.geogebra = enabled;

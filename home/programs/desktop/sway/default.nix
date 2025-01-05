@@ -10,6 +10,7 @@
     ../common/wob.nix
     ../common/wl-clipboard.nix
     ./waybar.nix
+    ./headless-remote.nix
   ];
 
   services.cliphist = {
@@ -53,6 +54,16 @@
     '';
     config = {
       modifier = "Mod4";
+      output = {
+        "DP-3" = {
+          mode = "1920x1080@165Hz";
+          position = "1920 0";
+          allow_tearing = "yes";
+        };
+        "HDMI-A-1" = {
+          position = "0 0";
+        };
+      };
       # output = {
       #   "*".bg = "${config.xdg.userDirs.pictures}/wallpaper fill";
       # };
@@ -88,6 +99,7 @@
       in
         lib.mkOptionDefault (
           {
+            "${mod}+m" = "exec ${pkgs.nwg-launchers}/bin/nwggrid";
             "${mod}+n" = "exec ${pkgs.swaynotificationcenter}/bin/swaync-client -t";
             "${mod}+Shift+v" = "exec ${lib.getExe pkgs.cliphist} list | ${lib.getExe pkgs.wofi} --dmenu | ${lib.getExe pkgs.cliphist} decode | ${pkgs.wl-clipboard}/bin/wl-copy";
             "${mod}+Ctrl+${dir.left}" = "focus output left";
@@ -105,6 +117,7 @@
             "${mod}+Shift+Backspace" = "exec systemctl suspend";
             "${mod}+Shift+s" = "exec ${lib.getExe pkgs.wayfreeze} --after-freeze-cmd '${lib.getExe pkgs.sway-contrib.grimshot} copy anything && pkill wayfreeze'";
             "${mod}+Ctrl+Shift+s" = "exec ${lib.getExe pkgs.wayfreeze} --after-freeze-cmd '${lib.getExe pkgs.sway-contrib.grimshot} savecopy anything && pkill wayfreeze'";
+            "${mod}+Alt+s" = "exec ${lib.getExe pkgs.wayfreeze} --after-freeze-cmd '${lib.getExe pkgs.sway-contrib.grimshot} save anything - | ${lib.getExe pkgs.tesseract} -l eng - - | wl-copy && pkill wayfreeze'";
 
             "${mod}+Shift+p" = "exec ${pauseApp}";
             "${mod}+period" = "exec ${lib.getExe pkgs.bemoji}";

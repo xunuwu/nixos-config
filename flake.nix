@@ -62,10 +62,6 @@
     microvm.url = "github:astro/microvm.nix";
     vpn-confinement.url = "github:Maroka-chan/VPN-Confinement";
     sobercookie.url = "github:xunuwu/sobercookie";
-    umu = {
-      url = "github:Open-Wine-Components/umu-launcher/?dir=packaging\/nix&submodules=1";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     haumea = {
       url = "github:nix-community/haumea";
       inputs.nixpkgs.follows = "nixpkgs";

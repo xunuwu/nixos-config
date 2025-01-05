@@ -106,8 +106,10 @@ in {
           # programs.qt
           programs.adb
           programs.kanidm
+          programs.openrgb
           programs.tools
           programs.thunar
+          programs.corectrl
 
           services.default
           services.pipewire
@@ -122,6 +124,7 @@ in {
           desktop.x11.nosleep
 
           themes.dark
+          # themes.xundark
 
           programs.gamemode
           programs.gamescope

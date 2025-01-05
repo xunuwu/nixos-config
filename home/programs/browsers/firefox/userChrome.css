@@ -17,8 +17,3 @@
 #navigator-toolbox {
   border-bottom: none !important;
 }
-
-/* Hide shield thing since i never ever change those settings */
-#tracking-protection-icon-container {
-  visibility: collapse;
-}

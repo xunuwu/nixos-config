@@ -19,7 +19,7 @@
   #];
 
   nixpkgs.config = {
-    rocmSupport = true;
+    # rocmSupport = true; # TODO enable once nixpkgs fixes their shit and llvm libc doesnt fail to compile (https://github.com/NixOS/nixpkgs/issues/368672)
     allowUnfreePredicate = pkg:
       builtins.elem (lib.getName pkg) [
         "steam"

@@ -7,7 +7,8 @@
 
   users.groups.deploy = {};
   users.users.deploy = {
-    isSystemUser = true;
+    isSystemUser = false;
+    isNormalUser = true; # i want a home directory for some things
     useDefaultShell = true;
     group = "deploy";
     extraGroups = ["wheel"];

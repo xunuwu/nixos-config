@@ -5,5 +5,5 @@
       withOpenASAR = true;
     })
   ];
-  # services.arrpc.enable = true; # RPC with vesktop (disabled since it uses way more cpu than is reasonable for such a program)
+  services.arrpc.enable = true; # RPC with vesktop (has issues with cpu usage sometimes ime)
 }

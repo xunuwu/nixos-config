@@ -11,7 +11,7 @@
 
   boot = {
     blacklistedKernelModules = [
-      # "xhci_pci" # was causing issues (100% udevd cpu usage)
+      "xhci_pci" # was causing issues (100% udevd cpu usage)
     ];
     initrd = {
       availableKernelModules = [

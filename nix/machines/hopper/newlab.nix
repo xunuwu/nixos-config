@@ -48,12 +48,10 @@ in {
 
   ## make sure vpn connection is reasonably fast
   ## god, there has to be a proper, not horrible way of doing this
-  ## TODO fix this and uhh make sure it works and stuff
   # systemd.services."wg-speedcheck" = {
-  #   requires = ["wg.service"];
-  #   enable = false;
   #   serviceConfig = {
   #     Type = "oneshot";
+  #     ExecCondition = "${config.systemd.package}/bin/systemctl is-active wg.service"; # horrible, horrible hack, theres 100% a better way
   #     ExecStart = pkgs.writers.writeBash "wg-speedcheck.sh" ''
   #       echo "running test in netns"
   #       vpn_result=$( ${pkgs.iproute2}/bin/ip netns exec wg ${pkgs.speedtest-cli}/bin/speedtest --json )
@@ -75,6 +73,14 @@ in {
   #       fi
   #       echo "ratio is sufficient"
   #     '';
+  #   };
+  # };
+
+  # systemd.timers."wg-speedcheck" = {
+  #   wantedBy = ["timers.target"];
+  #   timerConfig = {
+  #     OnCalendar = "0/2:00:00";
+  #     Unit = "wg-speedcheck.service";
   #   };
   # };
 
