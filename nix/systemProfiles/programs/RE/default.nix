@@ -4,32 +4,21 @@
   self,
   ...
 }: {
-  environment.systemPackages = let
-    il2cppdumper = pkgs.callPackage ./il2cppdumper {};
-    ilspy = pkgs.callPackage ./ilspy {};
-  in
-    with pkgs; [
-      (ghidra.withExtensions (ps:
-        with ps; [
-          gnudisassembler
-          machinelearning
-        ]))
+  environment.systemPackages = with pkgs; [
+    (ghidra.withExtensions (ps:
+      with ps; [
+        gnudisassembler
+        machinelearning
+      ]))
 
-      # (cutter.withPlugins (ps:
-      #   with ps; [
-      #     rz-ghidra
-      #   ]))
-
-      self.packages.${pkgs.system}.binaryninja-personal
-      self.packages.${pkgs.system}.ida-pro
-      # il2cppdumper
-      # ilspy
-      gdb
-    ];
+    self.packages.${pkgs.system}.binaryninja-personal
+    self.packages.${pkgs.system}.ida-pro
+    # (pkgs.callPackage ./il2cppdumper {})
+    # (pkgs.callPackage ./ilspy {})
+    gdb
+  ];
 
   networking.hosts = {
     "0.0.0.0" = ["master.binary.ninja"]; # idk my binary ninja crack [AMPED] told me to
   };
 }
-## NOTE: you still need to run keygen.exe to generate a key
-

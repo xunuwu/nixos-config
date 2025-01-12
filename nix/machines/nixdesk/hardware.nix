@@ -81,14 +81,7 @@
 
   hardware.enableRedistributableFirmware = true;
 
-  services.xserver.videoDrivers = [
-    "amdgpu"
-    #"nvidia"
-  ];
-  #hardware.nvidia = {
-  #  modesetting.enable = true;
-  #  package = config.boot.kernelPackages.nvidiaPackages.stable;
-  #};
+  services.xserver.videoDrivers = ["amdgpu"];
 
   nixpkgs.hostPlatform.system = "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = true;
