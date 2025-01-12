@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    nil
-    alejandra
+    stylua
+    lua-language-server
   ];
 }

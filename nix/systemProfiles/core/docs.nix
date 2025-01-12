@@ -1,8 +1,4 @@
-{
-  self,
-  super,
-  root,
-}: {pkgs, ...}: {
+{pkgs, ...}: {
   documentation = {
     dev.enable = true;
     # man.generateCaches = true; # this does slow down builds by quite a lot

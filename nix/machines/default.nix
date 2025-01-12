@@ -7,46 +7,30 @@
   config,
   ...
 }: let
+  inherit (inputs.nixpkgs.lib) nixosSystem;
   specialArgs = {
     inherit inputs self;
   };
-
-  source = inputs.haumea.lib.load {
-    inputs = {inherit inputs lib;};
-    src = "${self}/nix";
-  };
-  systemProfiles = source.systemProfiles;
 in {
-  flake.colmena = {
-    meta = {
-      nixpkgs = import inputs.nixpkgs {
-        system = "x86_64-linux";
-      };
-
-      inherit specialArgs;
-    };
-    kidney = {
-      deployment = {
-        allowLocalDeployment = true;
-      };
-      imports = lib.flatten [
+  flake.nixosConfigurations = {
+    kidney = nixosSystem {
+      modules = [
         ./kidney
-        (with systemProfiles; [
-          core.tools
-          core.users
-          core.locale
 
-          programs.tools
-          programs.zsh
-          programs.home-manager
-          hardware.graphics
+        ../systemProfiles/core/tools.nix
+        ../systemProfiles/core/users.nix
+        ../systemProfiles/core/locale.nix
 
-          services.flatpak
-          services.xdg-portals
+        ../systemProfiles/programs/tools.nix
+        ../systemProfiles/programs/zsh.nix
+        ../systemProfiles/programs/home-manager.nix
+        ../systemProfiles/hardware/graphics.nix
 
-          nix.default
-          nix.gc
-        ])
+        ../systemProfiles/services/flatpak.nix
+        ../systemProfiles/services/xdg-portals.nix
+
+        ../systemProfiles/nix/default.nix
+        ../systemProfiles/nix/gc.nix
         {
           home-manager = {
             users.xun.imports = homeImports."xun@kidney";
@@ -54,83 +38,72 @@ in {
           };
         }
       ];
+
+      inherit specialArgs;
     };
-    nixdesk = {
-      deployment = {
-        allowLocalDeployment = true;
-        targetUser = "xun";
-        targetHost = "nixdesk.local";
-      };
-      imports = lib.flatten [
+    nixdesk = nixosSystem {
+      modules = [
         ./nixdesk
 
         inputs.stylix.nixosModules.stylix
 
-        (with systemProfiles; [
-          secrets.default
-          secrets.nixdesk.default
+        ../systemProfiles/secrets/default.nix
+        ../systemProfiles/secrets/nixdesk/default.nix
 
-          core.security
-          core.users
-          core.ssh
-          core.locale
-          nix.default
-          programs.zsh
-          core.tools
-          core.compat
-          core.boot
-          core.docs
-          core.gvfs
+        ../systemProfiles/core/security.nix
+        ../systemProfiles/core/users.nix
+        ../systemProfiles/core/ssh.nix
+        ../systemProfiles/core/locale.nix
+        ../systemProfiles/nix/default.nix
+        ../systemProfiles/programs/zsh.nix
+        ../systemProfiles/core/tools.nix
+        ../systemProfiles/core/compat.nix
+        ../systemProfiles/core/boot.nix
+        ../systemProfiles/core/docs.nix
+        ../systemProfiles/core/gvfs.nix
 
-          nix.gc
+        ../systemProfiles/nix/gc.nix
 
-          hardware.graphics
-          hardware.steam-hardware
-          hardware.bluetooth
-          hardware.qmk
+        ../systemProfiles/hardware/graphics.nix
+        ../systemProfiles/hardware/steam-hardware.nix
+        ../systemProfiles/hardware/bluetooth.nix
+        ../systemProfiles/hardware/qmk.nix
 
-          network.networkd
-          network.avahi
-          network.localsend
-          network.tailscale
-          network.goldberg
+        ../systemProfiles/network/networkd.nix
+        ../systemProfiles/network/avahi.nix
+        ../systemProfiles/network/localsend.nix
+        ../systemProfiles/network/tailscale.nix
+        ../systemProfiles/network/goldberg.nix
 
-          desktop.ly
-          desktop.awesome
-          desktop.sway
-          #desktop.hyprland
+        ../systemProfiles/desktop/sway.nix
 
-          programs.dconf
-          programs.fonts
-          programs.home-manager
-          # programs.qt
-          programs.adb
-          programs.kanidm
-          programs.openrgb
-          programs.tools
-          programs.thunar
-          programs.corectrl
+        ../systemProfiles/programs/dconf.nix
+        ../systemProfiles/programs/fonts.nix
+        ../systemProfiles/programs/home-manager.nix
+        # ../systemProfiles/programs/qt.nix
+        ../systemProfiles/programs/adb.nix
+        ../systemProfiles/programs/kanidm.nix
+        ../systemProfiles/programs/openrgb.nix
+        ../systemProfiles/programs/tools.nix
+        ../systemProfiles/programs/thunar.nix
+        ../systemProfiles/programs/corectrl.nix
 
-          services.default
-          services.pipewire
-          services.flatpak
+        ../systemProfiles/services/default.nix
+        ../systemProfiles/services/pipewire.nix
+        ../systemProfiles/services/flatpak.nix
 
-          services.syncthing
-          services.virt.waydroid
-          services.virt.virt-manager
-          services.sunshine
-          #network.wifi
-          #services.ollama
-          desktop.x11.nosleep
+        ../systemProfiles/services/syncthing.nix
+        ../systemProfiles/services/virt/waydroid.nix
+        ../systemProfiles/services/virt/virt-manager.nix
+        ../systemProfiles/services/sunshine.nix
+        # ../systemProfiles/network/wifi.nix
 
-          themes.dark
-          # themes.xundark
+        ../systemProfiles/themes/dark.nix
 
-          programs.gamemode
-          programs.gamescope
-          programs.steam
-          programs.RE.default
-        ])
+        ../systemProfiles/programs/gamemode.nix
+        ../systemProfiles/programs/gamescope.nix
+        ../systemProfiles/programs/steam.nix
+        ../systemProfiles/programs/RE/default.nix
 
         {
           home-manager = {
@@ -140,58 +113,30 @@ in {
           };
         }
       ];
+
+      inherit specialArgs;
     };
-    hopper = {
-      deployment = {
-        targetUser = "xun";
-        targetHost = "hopper.local";
-      };
-      imports = lib.flatten [
+    hopper = nixosSystem {
+      modules = [
         ./hopper
 
-        (with systemProfiles; [
-          secrets.default
-          secrets.hopper.default
+        ../systemProfiles/secrets/default.nix
+        ../systemProfiles/secrets/hopper/default.nix
 
-          core.security
-          core.locale
-          core.tools
-          core.ssh
-          core.deploy
-          nix.default # TODO slim this down
+        ../systemProfiles/core/security.nix
+        ../systemProfiles/core/locale.nix
+        ../systemProfiles/core/tools.nix
+        ../systemProfiles/core/ssh.nix
+        ../systemProfiles/core/deploy.nix
+        ../systemProfiles/nix/default.nix # TODO slim this down
 
-          network.tailscale
-          network.avahi
-          network.networkd
-          # services.syncthing # TODO make syncthing not rely on having "xun" user
-
-          #network.avahi
-          #network.networkd
-          #network.tailscale
-
-          #services.syncthing
-        ])
+        ../systemProfiles/network/tailscale.nix
+        ../systemProfiles/network/avahi.nix
+        ../systemProfiles/network/networkd.nix
+        # services.syncthing # TODO make syncthing not rely on having "xun" user
       ];
-    };
-    liveiso = {
-      deployment.targetHost = null;
-      imports = lib.flatten [
-        ./liveiso
 
-        (with systemProfiles; [
-          nix.default
-          core.security
-          services.default
-        ])
-      ];
+      inherit specialArgs;
     };
   };
-  flake.nixosConfigurations = let
-    l = inputs.nixpkgs.lib;
-  in
-    builtins.mapAttrs (_: v:
-      l.nixosSystem {
-        inherit specialArgs;
-        modules = v.imports;
-      }) (l.filterAttrs (n: _: n != "meta") self.colmena);
 }

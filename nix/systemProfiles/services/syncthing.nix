@@ -1,8 +1,4 @@
-{
-  self,
-  super,
-  root,
-}: {config, ...}: let
+let
   devices = {
     "nixdesk" = {
       id = "XXABQZC-CO6OM2E-EMB3QIJ-NF5I3WU-CCQPPRY-7BX4ZSS-WIU4WW2-WXFWVQR";

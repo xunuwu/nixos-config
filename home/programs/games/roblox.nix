@@ -1,10 +1,10 @@
 {
-  self,
+  inputs,
   pkgs,
   ...
 }: {
   # i have sober installed imperatively through flatpak
   home.packages = [
-    self.packages.${pkgs.system}.sobercookie
+    inputs.sobercookie.packages.${pkgs.system}.default
   ];
 }

@@ -18,6 +18,8 @@
     extraConfig = {
       gpg.format = "ssh";
       push.autoSetupRemote = true;
+      pull.rebase = true;
+      rebase.autostash = true;
     };
 
     userEmail = "xunuwu@gmail.com";

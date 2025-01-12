@@ -4,44 +4,53 @@
   ...
 }: {
   imports = [
-    self.homeManagerModules.xun
-    # ./kanshi.nix
     ./defaults.nix
 
     ../../secrets
 
-    # ../../terminal
-    # ../../terminal/programs/zellij.nix
+    ../../terminal/shell/zsh.nix
+
+    ../../terminal/programs/xdg.nix
+    ../../terminal/programs/direnv.nix
+    ../../terminal/programs/tmux.nix
+    ../../terminal/programs/comma.nix
     ../../terminal/programs/zoxide.nix
     ../../terminal/programs/tdf.nix
-    # ../../terminal/programs/irssi.nix
+    ../../terminal/programs/irssi.nix
+    ../../terminal/programs/git.nix
+    ../../terminal/programs/github.nix
     ../../terminal/programs/lazygit.nix
-    # ../../terminal/programs/beets.nix
+
     ../../editors/emacs.nix
     ../../editors/nvim.nix
     ../../editors/vscode.nix
     ../../editors/jetbrains
     ../../editors/jetbrains/android-studio.nix
+
     ../../programs/browsers/firefox
     ../../programs/browsers/tor.nix
     ../../programs/browsers/chromium.nix
+
     ../../terminal/emulator/wezterm.nix
     ../../terminal/emulator/foot.nix
 
     # desktop
     ../../programs/desktop
-    # ../../programs/desktop/theme.nix
-    ../../programs/desktop/awesome
-    #../../programs/desktop/hyprland
     ../../programs/desktop/sway
 
     # development
     ../../develop/common.nix
+    ../../develop/tools.nix
+    ../../develop/docs.nix
+    ../../develop/devenv.nix
+
     ../../develop/langs/haskell.nix
     ../../develop/langs/rust.nix
     ../../develop/langs/uiua.nix
-    #../../develop
-    #../../develop/small-misc.nix
+    ../../develop/langs/nix.nix
+    ../../develop/langs/zig.nix
+    ../../develop/langs/lua.nix
+    ../../develop/langs/c.nix
 
     # programs
     ../../programs/misc/keepassxc.nix
@@ -64,14 +73,14 @@
     ../../programs/music/cmus.nix
     ../../programs/media
     ../../programs/media/jellyfin.nix
+
     # gaming
     ../../programs/games
-    # ../../programs/games/roblox.nix
-    # ../../programs/games/krunker.nix
+    ../../programs/games/roblox.nix
+    ../../programs/games/krunker.nix
     #../../programs/games/ludusavi.nix
 
     # ./dark.nix
-    # ./xundark.nix
 
     # media services
     ../../services/media/playerctl.nix
@@ -79,34 +88,6 @@
     ../../services/system/polkit-agent.nix
     ../../services/system/udiskie.nix # although i dont need this for usb memory, it is quite convenient for flashing qmk
   ];
-  xun = let
-    enabled = {enable = true;};
-  in {
-    desktop = {
-      xdg = enabled;
-    };
-    programs.terminal = {
-      shell.zsh = enabled;
-      direnv = enabled;
-      comma = enabled;
-      tmux = enabled;
-      irssi = enabled;
-    };
-    develop = {
-      enable = true;
-      docs = enabled;
-      lang = {
-        c = enabled;
-        zig = enabled;
-        lua = enabled;
-      };
-    };
-    gaming = {
-      krunker = enabled;
-      roblox.sobercookie = enabled;
-    };
-    # school.geogebra = enabled;
-  };
 
   qt = {
     enable = true;

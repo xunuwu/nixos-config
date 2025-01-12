@@ -3,7 +3,6 @@
     common-cpu-intel
 
     inputs.vpn-confinement.nixosModules.default
-    inputs.authentik-nix.nixosModules.default
 
     ./hardware.nix
     ./newlab.nix

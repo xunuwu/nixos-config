@@ -4,29 +4,22 @@
   ...
 }: {
   imports = [
-    self.homeManagerModules.xun
     ../../editors/emacs.nix
     ../../editors/nvim.nix
-    # ../../terminal/shell/zsh.nix
-    # ../../terminal/programs
-    # ../../terminal/programs/lazygit.nix
-    # ../../develop
-    # ../../develop/small-misc.nix
-  ];
 
-  xun = {
-    develop = {
-      enable = true;
-    };
-    desktop = {
-      xdg.enable = true;
-    };
-    programs.terminal = {
-      shell.zsh.enable = true;
-      direnv.enable = true;
-      comma.enable = true;
-      tmux.enable = true;
-      irssi.enable = true;
-    };
-  };
+    ../../terminal/shell/zsh.nix
+    ../../terminal/programs/xdg.nix
+    ../../terminal/programs/direnv.nix
+    ../../terminal/programs/comma.nix
+    ../../terminal/programs/tmux.nix
+    ../../terminal/programs/irssi.nix
+
+    ../../develop/langs/nix.nix
+    ../../develop/tools.nix
+    ../../develop/devenv.nix
+
+    ../../terminal/programs/git.nix
+    ../../terminal/programs/github.nix
+    ../../terminal/programs/lazygit.nix
+  ];
 }

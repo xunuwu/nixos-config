@@ -1,4 +1,4 @@
-_: {pkgs, ...}: {
+{pkgs, ...}: {
   users.users.xun = {
     isNormalUser = true;
     initialPassword = "nixos";

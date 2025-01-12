@@ -1,8 +1,4 @@
-{
-  self,
-  super,
-  root,
-}: {pkgs, ...}: {
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     localsend
   ];

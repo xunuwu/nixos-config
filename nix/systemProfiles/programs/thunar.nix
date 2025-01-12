@@ -1,4 +1,4 @@
-_: {pkgs, ...}: {
+{pkgs, ...}: {
   services.tumbler.enable = true; # image thumbnails
   programs.thunar = {
     enable = true;

@@ -7,7 +7,6 @@
       imports = [
         ./home/profiles
         ./nix/machines
-        ./home-modules
       ];
 
       flake = {
@@ -62,11 +61,6 @@
     microvm.url = "github:astro/microvm.nix";
     vpn-confinement.url = "github:Maroka-chan/VPN-Confinement";
     sobercookie.url = "github:xunuwu/sobercookie";
-    haumea = {
-      url = "github:nix-community/haumea";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    authentik-nix.url = "github:nix-community/authentik-nix";
     ## deduplication
     flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";

@@ -1,9 +1,5 @@
 # patchelf --replace-needed libbinaryninjacore.so.1 ${symlinkJoin} $out/opt/binaryninja
 {
-  self,
-  super,
-  root,
-}: {
   pkgs,
   self,
   ...

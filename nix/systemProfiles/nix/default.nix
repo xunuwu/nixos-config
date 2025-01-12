@@ -1,8 +1,4 @@
 {
-  self,
-  super,
-  root,
-}: {
   config,
   pkgs,
   inputs,
@@ -10,7 +6,7 @@
   ...
 }: {
   imports = [
-    super.substituters
+    ./substituters.nix
   ];
 
   # git is needed for flakes

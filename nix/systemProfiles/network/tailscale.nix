@@ -1,8 +1,4 @@
 {
-  self,
-  super,
-  root,
-}: {config, ...}: {
   services.tailscale = {
     enable = true;
     openFirewall = true;
