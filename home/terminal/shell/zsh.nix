@@ -1,4 +1,6 @@
 {config, ...}: {
+  programs.fzf.enable = true;
+
   programs.zsh = {
     enable = true;
     autocd = true;

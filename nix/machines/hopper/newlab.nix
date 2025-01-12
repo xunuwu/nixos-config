@@ -99,11 +99,11 @@ in {
       }
       {
         port = config.services.slskd.settings.soulseek.listen_port;
-        protocol = "both"; # TODO figure out which one its actually using lol
+        protocol = "both";
       }
       {
         port = config.services.transmission.settings.peer-port;
-        protocol = "both"; # TODO figure out which one its actually using lol
+        protocol = "both";
       }
     ];
 

@@ -23,7 +23,6 @@
 
     ../../editors/emacs.nix
     ../../editors/nvim.nix
-    ../../editors/vscode.nix
     ../../editors/jetbrains
     ../../editors/jetbrains/android-studio.nix
 
@@ -57,36 +56,28 @@
     ../../programs/misc/discord.nix
     ../../programs/misc/obs.nix
     ../../programs/misc/krita.nix
-    #../../programs/misc/ardour.nix
     ../../programs/misc/foliate.nix
     ../../programs/misc/blender.nix
     ../../programs/misc/obsidian.nix
     ../../programs/misc/pwvucontrol.nix
     ../../programs/misc/qpwgraph.nix
     ../../programs/misc/libreoffice.nix
-    # ../../programs/misc/thunderbird.nix
-    #../../programs/music
-    #../../programs/music/yams.nix
-    # ../../programs/music/spotify.nix
     ../../programs/music/puddletag.nix
     ../../programs/music/picard.nix
     ../../programs/music/cmus.nix
-    ../../programs/media
+    ../../programs/media/mpv.nix
     ../../programs/media/jellyfin.nix
 
     # gaming
-    ../../programs/games
+    ../../programs/games/lutris.nix
+    ../../programs/games/heroic.nix
+    ../../programs/games/minecraft.nix
     ../../programs/games/roblox.nix
     ../../programs/games/krunker.nix
-    #../../programs/games/ludusavi.nix
 
-    # ./dark.nix
-
-    # media services
-    ../../services/media/playerctl.nix
-    # system services
-    ../../services/system/polkit-agent.nix
-    ../../services/system/udiskie.nix # although i dont need this for usb memory, it is quite convenient for flashing qmk
+    ../../services/playerctl.nix
+    ../../services/polkit-agent.nix
+    ../../services/udiskie.nix # although i dont need this for usb memory, it is quite convenient for flashing qmk
   ];
 
   qt = {

@@ -55,7 +55,6 @@
     };
     sops-nix.url = "github:Mic92/sops-nix";
     nix-index-database.url = "github:Mic92/nix-index-database";
-    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     nvfetcher.url = "github:berberman/nvfetcher";
     microvm.url = "github:astro/microvm.nix";
@@ -68,7 +67,6 @@
       nixpkgs.follows = "nixpkgs";
     };
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-    nix-vscode-extensions.inputs.nixpkgs.follows = "nixpkgs";
     nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
     nvfetcher.inputs.nixpkgs.follows = "nixpkgs";
     microvm.inputs.nixpkgs.follows = "nixpkgs";

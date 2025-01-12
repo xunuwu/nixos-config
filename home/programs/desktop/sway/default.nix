@@ -10,7 +10,6 @@
     ../common/wob.nix
     ../common/wl-clipboard.nix
     ./waybar.nix
-    ./headless-remote.nix
   ];
 
   services.cliphist = {
@@ -99,7 +98,6 @@
       in
         lib.mkOptionDefault (
           {
-            "${mod}+m" = "exec ${pkgs.nwg-launchers}/bin/nwggrid";
             "${mod}+n" = "exec ${pkgs.swaynotificationcenter}/bin/swaync-client -t";
             "${mod}+Shift+v" = "exec ${lib.getExe pkgs.cliphist} list | ${lib.getExe pkgs.wofi} --dmenu | ${lib.getExe pkgs.cliphist} decode | ${pkgs.wl-clipboard}/bin/wl-copy";
             "${mod}+Ctrl+${dir.left}" = "focus output left";

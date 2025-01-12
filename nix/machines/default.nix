@@ -2,9 +2,6 @@
   self,
   inputs,
   homeImports,
-  lib,
-  pkgs,
-  config,
   ...
 }: let
   inherit (inputs.nixpkgs.lib) nixosSystem;
