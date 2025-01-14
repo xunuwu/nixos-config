@@ -4,7 +4,7 @@
     inputs.vpn-confinement.nixosModules.default
 
     ./hardware.nix
-    ./newlab.nix
+    ./lab
 
     ../../systemProfiles/secrets/default.nix
     ../../systemProfiles/secrets/hopper/default.nix
