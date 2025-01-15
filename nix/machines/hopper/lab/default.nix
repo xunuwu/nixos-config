@@ -367,6 +367,19 @@ in {
           targets = ["127.0.0.1:${toString config.services.prometheus.exporters.systemd.port}"];
         };
       }
+      {
+        job_name = "tailscale_client";
+        static_configs = lib.singleton {
+          targets = ["100.100.100.100"];
+        };
+      }
+      # TODO figure out why i cant connect to slskd locally
+      # {
+      #   job_name = "slskd";
+      #   static_configs = lib.singleton {
+      #     targets = ["127.0.0.1:${toString slskdUiPort}"];
+      #   };
+      # }
     ];
   };
 
@@ -397,6 +410,10 @@ in {
     environmentFile = config.sops.secrets.slskd.path;
     domain = null; # why isnt this the default?
     settings = {
+      metrics = {
+        enabled = true;
+        authentication.disabled = true;
+      };
       remote_file_management = true;
       shares.directories = ["/media/library/music"];
       soulseek = {
