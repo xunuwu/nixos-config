@@ -54,6 +54,7 @@
     # programs
     ../../programs/misc/keepassxc.nix
     ../../programs/misc/discord.nix
+    ../../programs/misc/element.nix
     ../../programs/misc/obs.nix
     ../../programs/misc/krita.nix
     ../../programs/misc/foliate.nix
