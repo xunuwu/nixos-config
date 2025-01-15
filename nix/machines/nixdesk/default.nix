@@ -72,7 +72,7 @@
   networking.hostName = "nixdesk";
 
   nixpkgs.config = {
-    # rocmSupport = true; # TODO enable once nixpkgs fixes their shit and llvm libc doesnt fail to compile (https://github.com/NixOS/nixpkgs/issues/368672)
+    rocmSupport = true;
     allowUnfreePredicate = pkg:
       builtins.elem (lib.getName pkg) [
         "steam"
