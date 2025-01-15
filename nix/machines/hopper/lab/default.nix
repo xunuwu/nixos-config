@@ -356,16 +356,16 @@ in {
     extraFlags = ["--storage.tsdb.retention.time=30d"];
     scrapeConfigs = [
       {
-        job_name = config.networking.hostName;
-        static_configs = [
-          {
-            targets = [
-              "127.0.0.1:${toString config.services.prometheus.exporters.node.port}"
-              "127.0.0.1:${toString config.services.prometheus.exporters.systemd.port}"
-              # "127.0.0.1:${toString config.services.prometheus.exporters.wireguard.port}"
-            ];
-          }
-        ];
+        job_name = "node";
+        static_configs = lib.singleton {
+          targets = ["127.0.0.1:${toString config.services.prometheus.exporters.node.port}"];
+        };
+      }
+      {
+        job_name = "systemd";
+        static_configs = lib.singleton {
+          targets = ["127.0.0.1:${toString config.services.prometheus.exporters.systemd.port}"];
+        };
       }
     ];
   };
