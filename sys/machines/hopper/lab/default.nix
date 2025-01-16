@@ -139,7 +139,6 @@ in {
         hostName = ":80";
         extraConfig = "reverse_proxy localhost:${toString config.services.homepage-dashboard.listenPort}";
       };
-      # nextcloud.extraConfig = "reverse_proxy localhost:${toString ncPort}";
       other = {
         hostName = ":${toString caddyPort}";
         extraConfig = ''

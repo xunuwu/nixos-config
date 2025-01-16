@@ -60,15 +60,15 @@ in {
     #   owner = "keycloak";
     # };
     #
-    "lldap/jwt" = {
-      sopsFile = ./lldap.yaml;
-      owner = "lldap";
-    };
-
-    "lldap/password" = {
-      sopsFile = ./lldap.yaml;
-      owner = "lldap";
-    };
+    # "lldap/jwt" = {
+    #   sopsFile = ./lldap.yaml;
+    #   owner = "lldap";
+    # };
+    #
+    # "lldap/password" = {
+    #   sopsFile = ./lldap.yaml;
+    #   owner = "lldap";
+    # };
 
     # authelia
     authelia_lldap_password = {
