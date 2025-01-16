@@ -50,44 +50,6 @@ in {
     };
   };
 
-  ## make sure vpn connection is reasonably fast
-  ## god, there has to be a proper, not horrible way of doing this
-  # systemd.services."wg-speedcheck" = {
-  #   serviceConfig = {
-  #     Type = "oneshot";
-  #     ExecCondition = "${config.systemd.package}/bin/systemctl is-active wg.service"; # horrible, horrible hack, theres 100% a better way
-  #     ExecStart = pkgs.writers.writeBash "wg-speedcheck.sh" ''
-  #       echo "running test in netns"
-  #       vpn_result=$( ${pkgs.iproute2}/bin/ip netns exec wg ${pkgs.speedtest-cli}/bin/speedtest --json )
-  #       vpn_download=$( echo "$vpn_result" | ${l.getExe pkgs.jq} '.download' )
-  #       vpn_upload=$( echo "$vpn_result" | ${l.getExe pkgs.jq} '.upload' )
-  #
-  #       echo "running test outside of netns"
-  #       normal_result=$( ${pkgs.speedtest-cli}/bin/speedtest --json )
-  #       normal_download=$( echo "$normal_result" | ${l.getExe pkgs.jq} '.download' )
-  #       normal_upload=$( echo "$normal_result" | ${l.getExe pkgs.jq} '.upload' )
-  #
-  #       download_ratio_is_more_than_half=$( echo "$vpn_download / $normal_download > 0.5" | ${l.getExe pkgs.bc} -l | tr -d '\n' )
-  #       upload_ratio_is_more_than_half=$( echo "$vpn_upload / $normal_upload > 0.5" | ${l.getExe pkgs.bc} -l | tr -d '\n' )
-  #
-  #       if [[ "$upload_ratio_is_more_than_half" == "0" || "$download_ratio_is_more_than_half" == "0" ]]; then
-  #         echo "ratio is insufficient, restarting vpn"
-  #         systemctl restart wg.service
-  #         exit
-  #       fi
-  #       echo "ratio is sufficient"
-  #     '';
-  #   };
-  # };
-
-  # systemd.timers."wg-speedcheck" = {
-  #   wantedBy = ["timers.target"];
-  #   timerConfig = {
-  #     OnCalendar = "0/2:00:00";
-  #     Unit = "wg-speedcheck.service";
-  #   };
-  # };
-
   vpnNamespaces."wg" = {
     enable = true;
     wireguardConfigFile = config.sops.secrets.wireguard.path;
@@ -189,100 +151,6 @@ in {
     };
   };
 
-  # systemd.services.authentik.vpnConfinement = {
-  #   enable = true;
-  #   vpnNamespace = "wg";
-  # };
-  # services = {
-  #   authentik = {
-  #     enable = true;
-  #     environmentFile = config.sops.secrets.authentik.path;
-  #     settings = {
-  #       disable_startup_analytics = true;
-  #       avatars = "initials";
-  #     };
-  #   };
-  #   authentik-ldap = {
-  #     enable = true;
-  #   };
-  # };
-
-  # services.keycloak = {
-  #   enable = true;
-  #   settings = {
-  #     hostname = "keycloak.${domain}";
-  #   };
-  #   database.passwordFile = config.sops.secrets."keycloak/db".path;
-  # };
-
-  # needed for deploying secrets
-  users.users.lldap = {
-    group = "lldap";
-    isSystemUser = true;
-  };
-  users.groups.lldap = {};
-
-  services.lldap = {
-    enable = true;
-    environment = {
-      LLDAP_JWT_SECRET_FILE = config.sops.secrets."lldap/jwt".path;
-      LLDAP_LDAP_USER_PASS_FILE = config.sops.secrets."lldap/password".path;
-    };
-    settings = {
-      ldap_base_dn = "dc=xunuwu,dc=xyz";
-    };
-  };
-
-  # services.nextcloud = {
-  #   enable = true;
-  #   appstoreEnable = true;
-  #   autoUpdateApps.enable = true;
-  #   https = true;
-  #   hostName = "localhost";
-  #   package = pkgs.nextcloud30;
-  #   database.createLocally = true;
-  #   configureRedis = true;
-  #   extraAppsEnable = true;
-  #   extraApps = {
-  #     inherit (config.services.nextcloud.package.packages.apps) calendar;
-  #   };
-  #
-  #   config = {
-  #     adminuser = "admin";
-  #     adminpassFile = config.sops.secrets."nextcloud/admin_pass".path;
-  #     dbtype = "pgsql";
-  #     # commented so we just use the default sqlite
-  #     # dbhost = "/run/postgresql";
-  #     # dbtype = "pgsql";
-  #   };
-  #   settings = {
-  #     default_phone_region = "SE";
-  #     trusted_domains = ["127.0.0.1" "nextcloud.${domain}"];
-  #   };
-  # };
-
-  # systemd.services.nginx.vpnConfinement = {
-  #   enable = true;
-  #   vpnNamespace = "wg";
-  # };
-  #
-  # services.nginx.virtualHosts."${config.services.nextcloud.hostName}".listen = [
-  #   {
-  #     addr = "127.0.0.1";
-  #     port = ncPort; # NOT an exposed port
-  #   }
-  # ];
-
-  # systemd.services.phpfpm-nextcloud.vpnConfinement = {
-  #   enable = true;
-  #   vpnNamespace = "wg";
-  # };
-  #
-  # systemd.services.nextcloud-setup = {
-  #   requires = ["postgresql.service"];
-  #   after = ["postgresql.service"];
-  # };
-
   systemd.services.homepage-dashboard.vpnConfinement = {
     enable = true;
     vpnNamespace = "wg";
@@ -324,18 +192,6 @@ in {
               icon = "jellyfin";
             };
           }
-          {
-            "lldap" = {
-              href = "http://${config.networking.hostName}:${toString config.services.lldap.settings.http_port}";
-              icon = "lldap";
-            };
-          }
-          # {
-          #   "nextcloud" = {
-          #     href = "https://nextcloud.xunuwu.xyz";
-          #     icon = "nextcloud";
-          #   };
-          # }
         ];
       }
     ];
@@ -362,12 +218,6 @@ in {
         };
       }
       {
-        job_name = "systemd";
-        static_configs = lib.singleton {
-          targets = ["127.0.0.1:${toString config.services.prometheus.exporters.systemd.port}"];
-        };
-      }
-      {
         job_name = "tailscale_client";
         static_configs = lib.singleton {
           targets = ["100.100.100.100"];
@@ -389,15 +239,6 @@ in {
       enabledCollectors = ["systemd"];
     };
     systemd.enable = true;
-    # wireguard = {
-    #   enable = true;
-    #   wireguardConfig = config.sops.secrets.wireguard.path;
-    # };
-    # nextcloud = {
-    #   enable = true;
-    #   tokenFile = config.sops.secrets."prometheus/nextcloud".path;
-    #   url = "https://nextcloud.${domain}";
-    # };
   };
 
   systemd.services.slskd.vpnConfinement = {
@@ -498,75 +339,5 @@ in {
     };
   };
 
-  # systemd.services.kanidm = {
-  #   vpnConfinement = {
-  #     enable = true;
-  #     vpnNamespace = "wg";
-  #   };
-  #   serviceConfig = {
-  #     RestartSec = "60";
-  #     SupplementaryGroups = [config.security.acme.certs.${domain}.group];
-  #     PrivateNetwork = l.mkOverride 40 false;
-  #     ProtectControlGroups = l.mkForce false;
-  #     RestrictNamespaces = l.mkForce false;
-  #     LockPersonality = l.mkForce false;
-  #     CapabilityBoundingSet = l.mkForce [];
-  #     # TemporaryFileSystem = l.mkForce [];
-  #   };
-  # };
-  #
-  # services.kanidm = {
-  #   package = pkgs.kanidm.override {enableSecretProvisioning = true;};
-  #
-  #   enableServer = true;
-  #   serverSettings = let
-  #     subdomain = "kanidm";
-  #     kdomain = "${subdomain}.${domain}";
-  #     certDir = config.security.acme.certs.${domain}.directory;
-  #   in {
-  #     domain = kdomain;
-  #     origin = "https://${kdomain}";
-  #     bindaddress = "0.0.0.0:${toString kanidmPort}";
-  #     # ldapbindaddress = "[::1]:636";
-  #     trust_x_forward_for = true;
-  #     tls_chain = "${certDir}/fullchain.pem";
-  #     tls_key = "${certDir}/key.pem";
-  #     ## TODO online_backup mayb
-  #   };
-  #
-  #   provision = {
-  #     enable = true;
-  #
-  #     adminPasswordFile = config.sops.secrets."kanidm/admin_pass".path;
-  #     idmAdminPasswordFile = config.sops.secrets."kanidm/idm_admin_pass".path;
-  #
-  #     persons = let
-  #       mainUser = "xun";
-  #       mail = "xunuwu@gmail.com";
-  #     in {
-  #       ${mainUser} = {
-  #         displayName = mainUser;
-  #         legalName = mainUser;
-  #         mailAddresses = [mail];
-  #         groups = [
-  #           "slskd.access"
-  #           "slskd.admins"
-  #         ];
-  #       };
-  #     };
-  #
-  #     groups = {
-  #       "slskd.access" = {};
-  #       "slskd.admins" = {};
-  #     };
-  #
-  #     # systems.oath2 = {
-  #     #   slskd = {
-  #     #     displayName = "slskd";
-  #     #     originUrl = "https://";
-  #     #   };
-  #     # };
-  #   };
-  # };
   ## TODO: add forgejo
 }
