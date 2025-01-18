@@ -414,6 +414,13 @@ in {
           }
         ];
       };
+      filters = [
+        {
+          name = "OISD (Big)";
+          url = "https://big.oisd.nl";
+          enabled = true;
+        }
+      ];
     };
   };
 
