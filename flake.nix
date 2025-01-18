@@ -57,8 +57,8 @@
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
 
-    nvfetcher.url = "github:berberman/nvfetcher";
-    nvfetcher.inputs.nixpkgs.follows = "nixpkgs";
+    # nvfetcher.url = "github:berberman/nvfetcher";
+    # nvfetcher.inputs.nixpkgs.follows = "nixpkgs";
 
     vpn-confinement.url = "github:Maroka-chan/VPN-Confinement";
 

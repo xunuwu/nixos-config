@@ -6,22 +6,22 @@ keys:
     - &hopper age15mgf89h220puhz48rjpwxwu4n2h4edur60w6cd8gku2hh4e5kqpsghvnyw
 
 creation_rules:
-  - path_regex: home/secrets
+  - path_regex: home/profiles/secrets
     key_groups:
       - age:
         - *xun
-  - path_regex: systemProfiles/secrets/global
+  - path_regex: sys/profiles/secrets/global
     key_groups:
       - age:
         - *xun
         - *nixdesk
         - *hopper
-  - path_regex: systemProfiles/secrets/nixdesk
+  - path_regex: sys/proofiles/secrets/nixdesk
     key_groups:
       - age:
         - *xun
         - *nixdesk
-  - path_regex: systemProfiles/secrets/hopper
+  - path_regex: sys/profiles/secrets/hopper
     key_groups:
       - age:
         - *xun

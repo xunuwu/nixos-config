@@ -7,14 +7,14 @@ in {
       format = "binary";
       sopsFile = ./wireguard;
     };
-    grafana-pass = {
-      format = "binary";
-      sopsFile = ./grafana-pass;
-    };
-    wireguard-config = {
-      format = "binary";
-      sopsFile = ./wireguard-config;
-    };
+    # grafana-pass = {
+    #   format = "binary";
+    #   sopsFile = ./grafana-pass;
+    # };
+    # wireguard-config = {
+    #   format = "binary";
+    #   sopsFile = ./wireguard-config;
+    # };
 
     slskd = {
       format = "binary";
@@ -25,26 +25,26 @@ in {
       format = "binary";
       sopsFile = ./cloudflare;
     };
-    jackett = {
-      format = "binary";
-      sopsFile = ./jackett;
-      restartUnits = ["podman-qbittorrent.service"];
-    };
-    betanin = {
-      format = "binary";
-      sopsFile = ./betanin;
-      restartUnits = ["podman-betanin.service"];
-    };
+    # jackett = {
+    #   format = "binary";
+    #   sopsFile = ./jackett;
+    #   restartUnits = ["podman-qbittorrent.service"];
+    # };
+    # betanin = {
+    #   format = "binary";
+    #   sopsFile = ./betanin;
+    #   restartUnits = ["podman-betanin.service"];
+    # };
 
     transmission = {
       format = "binary";
       sopsFile = ./transmission;
     };
 
-    authentik = {
-      format = "binary";
-      sopsFile = ./authentik;
-    };
+    # authentik = {
+    #   format = "binary";
+    #   sopsFile = ./authentik;
+    # };
 
     "kanidm/admin_pass" = {
       sopsFile = ./kanidm.yaml;
@@ -71,45 +71,45 @@ in {
     # };
 
     # authelia
-    authelia_lldap_password = {
-      format = "yaml";
-      sopsFile = ./authelia.yaml;
-      key = "lldap_password";
-      # owner = autheliaUser;
-    };
-    authelia_jwt_secret = {
-      format = "yaml";
-      sopsFile = ./authelia.yaml;
-      key = "jwt_secret";
-      # owner = autheliaUser;
-    };
-    authelia_session_secret = {
-      format = "yaml";
-      sopsFile = ./authelia.yaml;
-      key = "session_secret";
-      #owner = autheliaUser;
-    };
-    authelia_encryption_key = {
-      format = "yaml";
-      sopsFile = ./authelia.yaml;
-      key = "encryption_key";
-      #owner = autheliaUser;
-    };
-    authelia_storage_password = {
-      format = "yaml";
-      sopsFile = ./authelia.yaml;
-      key = "storage_password";
-      #owner = autheliaUser;
-    };
+    # authelia_lldap_password = {
+    #   format = "yaml";
+    #   sopsFile = ./authelia.yaml;
+    #   key = "lldap_password";
+    #   # owner = autheliaUser;
+    # };
+    # authelia_jwt_secret = {
+    #   format = "yaml";
+    #   sopsFile = ./authelia.yaml;
+    #   key = "jwt_secret";
+    #   # owner = autheliaUser;
+    # };
+    # authelia_session_secret = {
+    #   format = "yaml";
+    #   sopsFile = ./authelia.yaml;
+    #   key = "session_secret";
+    #   #owner = autheliaUser;
+    # };
+    # authelia_encryption_key = {
+    #   format = "yaml";
+    #   sopsFile = ./authelia.yaml;
+    #   key = "encryption_key";
+    #   #owner = autheliaUser;
+    # };
+    # authelia_storage_password = {
+    #   format = "yaml";
+    #   sopsFile = ./authelia.yaml;
+    #   key = "storage_password";
+    #   #owner = autheliaUser;
+    # };
 
-    brawlstars-api-key = {
-      format = "binary";
-      sopsFile = ./brawlstars;
-    };
-    wakapi = {
-      format = "binary";
-      sopsFile = ./wakapi;
-      mode = "004";
-    };
+    # brawlstars-api-key = {
+    #   format = "binary";
+    #   sopsFile = ./brawlstars;
+    # };
+    # wakapi = {
+    #   format = "binary";
+    #   sopsFile = ./wakapi;
+    #   mode = "004";
+    # };
   };
 }
