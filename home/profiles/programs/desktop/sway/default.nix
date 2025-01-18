@@ -22,6 +22,7 @@
   services.swaync = {
     enable = true;
     settings = {
+      timeout = 4;
       positionX = "right";
       positionY = "top";
       layer = "overlay";
