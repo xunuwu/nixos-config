@@ -7,6 +7,10 @@ in {
       format = "binary";
       sopsFile = ./wireguard;
     };
+    oauth2-proxy = {
+      format = "binary";
+      sopsFile = ./oauth2-proxy;
+    };
     # grafana-pass = {
     #   format = "binary";
     #   sopsFile = ./grafana-pass;

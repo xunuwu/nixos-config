@@ -15,6 +15,7 @@
   ncPort = 46523;
   adguardWebPort = 23489;
   kanidmPort = 8300;
+  oauth2ProxyPort = 23490;
 in {
   imports = [
     ./samba.nix
@@ -149,6 +150,31 @@ in {
         hostName = "dash.hopper.xun.host:80";
         extraConfig = "reverse_proxy localhost:${toString config.services.homepage-dashboard.listenPort}";
       };
+      oauth2-proxy = {
+        hostName = "oauth2.${domain}:${toString caddyPort}";
+        extraConfig = "reverse_proxy unix//run/oauth2-proxy/oauth2-proxy.sock";
+      };
+      # slskd-pub = {
+      #   hostName = "slskd.${domain}:${toString caddyPort}";
+      #   extraConfig = ''
+      #     handle /oauth2/* {
+      #       reverse_proxy unix//run/oauth2-proxy/oauth2-proxy.sock
+      #     }
+      #     handle {
+      #       forward_auth unix//run/oauth2-proxy/oauth2-proxy.sock {
+      #         uri /oauth2/auth
+      #
+      #         header_up X-Real-IP {remote_host}
+      #
+      #         @bad status 4xx
+      #         handle_response @bad {
+      #           redir * /oauth2/start
+      #         }
+      #       }
+      #       reverse_proxy localhost:${toString config.services.slskd.settings.web.port}
+      #     }
+      #   '';
+      # };
       # prometheus = {
       #   useACMEHost = null;
       #   hostName = "prometheus.hopper.xun.host:80";
@@ -347,6 +373,57 @@ in {
   #   group = config.services.caddy.group;
   # };
 
+  # systemd.services.oauth2-proxy.vpnConfinement = {
+  #   enable = true;
+  #   vpnNamespace = "wg";
+  # };
+
+  systemd.services.oauth2-proxy = {
+    after = ["kanidm.service"];
+    serviceConfig = {
+      RuntimeDirectory = "oauth2-proxy";
+      UMask = "007";
+    };
+  };
+  users.groups.oauth2-proxy.members = ["caddy"];
+
+  services.oauth2-proxy = let
+    clientID = "oauth2-proxy";
+  in {
+    enable = true;
+    inherit clientID;
+    cookie.expire = "24h";
+    email.domains = ["*"];
+    httpAddress = "unix:///run/oauth2-proxy/oauth2-proxy.sock";
+
+    keyFile = config.sops.secrets.oauth2-proxy.path;
+
+    reverseProxy = true;
+    approvalPrompt = "auto";
+    setXauthrequest = true;
+
+    provider = "oidc";
+
+    loginURL = "https://${config.services.kanidm.serverSettings.domain}/ui/oauth2";
+    redeemURL = "https://${config.services.kanidm.serverSettings.domain}/oauth2/token";
+    validateURL = "https://${config.services.kanidm.serverSettings.domain}/oauth2/openid/${clientID}/userinfo";
+    oidcIssuerUrl = "https://${config.services.kanidm.serverSettings.domain}/oauth2/openid/${clientID}";
+
+    # redeemURL = "https://${config.services.kanidm.serverSettings.domain}/oauth2/token";
+    # loginURL = "https://${config.services.kanidm.serverSettings.domain}/ui/oauth2";
+    # validateURL = "https://${config.services.kanidm.serverSettings.domain}/oauth2/openid/oauth2-proxy";
+    # oidcIssuerUrl = "https://kanidm.${domain}/oauth2/openid/oauth2-proxy";
+    # profileURL = "https://kanidm.${domain}/oauth2/openid/oauth2-proxy/userinfo";
+
+    extraConfig = {
+      code-challenge-method = "S256"; # PKCE
+      #   oidc-issuer-url = "https://${config.services.kanidm.serverSettings.domain}";
+      # insecure-oidc-skip-issuer-verification = "true";
+      # insecure-oidc-allow-unverified-email = "true";
+      # scope = "openid profile email groups";
+    };
+  };
+
   systemd.services.kanidm = {
     vpnConfinement = {
       enable = true;
@@ -378,7 +455,33 @@ in {
           displayName = "xun";
           legalName = "xun";
           mailAddresses = ["xunuwu@gmail.com"];
-          groups = [];
+          groups = [
+            "oauth2-proxy.access"
+            "oauth2-proxy.adguardhome"
+            "oauth2-proxy.analytics"
+          ];
+        };
+      };
+
+      groups."oauth2-proxy.access" = {};
+      groups."oauth2-proxy.adguardhome" = {};
+      # groups."oauth2-proxy.openwebui" = {};
+      groups."oauth2-proxy.analytics" = {};
+      systems.oauth2.oauth2-proxy = {
+        displayName = "Oauth2 Proxy";
+        originUrl = "https://oauth2.${domain}/oauth2/callback";
+        originLanding = "https://oauth2.${domain}/";
+        # basicSecretFile = config.age.secrets..path;
+        preferShortUsername = true;
+        scopeMaps."oauth2-proxy.access" = [
+          "openid"
+          "email"
+        ];
+        claimMaps.groups = {
+          joinType = "array";
+          valuesByGroup."oauth2-proxy.adguardhome" = ["access_adguardhome"];
+          # valuesByGroup."oauth2-proxy.openwebui" = ["access_openwebui"];
+          valuesByGroup."oauth2-proxy.analytics" = ["access_analytics"];
         };
       };
     };
