@@ -72,6 +72,13 @@
       window = {
         titlebar = false;
       };
+      floating.criteria = [
+        {
+          app_id = "org.keepassxc.KeePassXC";
+          title = "^KeePassXC - "; # should only match popups
+        }
+      ];
+
       menu = "${lib.getExe pkgs.fuzzel}";
       keybindings = let
         mod = config.wayland.windowManager.sway.config.modifier;
