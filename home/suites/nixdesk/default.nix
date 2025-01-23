@@ -23,6 +23,7 @@
     terminal.programs.git
     terminal.programs.github
     terminal.programs.lazygit
+    terminal.programs.jujutsu
 
     editors.emacs
     editors.nvim
