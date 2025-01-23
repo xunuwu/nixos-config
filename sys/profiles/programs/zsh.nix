@@ -11,6 +11,7 @@
         "--mouse"
         "--RAW-CONTROL-CHARS"
         "--use-color"
+        "--quit-if-one-screen"
       ];
     };
 
