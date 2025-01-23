@@ -62,12 +62,16 @@
       }
 
       autoload -Uz vcs_info
-      precmd_vcs_info() { vcs_info }
+      precmd_vcs_info() {
+        vcs_info
+        export vcs_info_msg_0_="''${vcs_info_msg_0_:0:20}''${vcs_info_msg_0_[21]:+...}" # truncate the branch name
+      }
       precmd_functions+=( precmd_vcs_info precmd_timer )
       zstyle ':vcs_info:git:*' formats ' %b '
+
       setopt prompt_subst
 
-      PROMPT='%F{blue}[%F{magenta}%n%F{blue}@%F{magenta}%M%F{blue}] %~%f %F{green}$vcs_info_msg_0_%f%(?..%F{red}| %? )%#%f '
+      PROMPT='%F{blue}[%F{magenta}%n%F{blue}@%F{magenta}%M%F{blue}] %~%f %F{green}''${vcs_info_msg_0_}%f%(?..%F{red}| %? )%#%f '
     '';
   };
 }
