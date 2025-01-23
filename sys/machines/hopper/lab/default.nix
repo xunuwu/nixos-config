@@ -19,6 +19,7 @@
 in {
   imports = [
     ./samba.nix
+    inputs.authentik-nix.nixosModules.default
   ];
 
   ## TODO use kanidm
@@ -82,6 +83,7 @@ in {
         caddyPort
         slskdUiPort
         80 # caddy
+        443 # caddy
         1900 # jellyfin discovery
         7359 # jellyfin discovery
         # 9001
@@ -116,12 +118,17 @@ in {
         hostName = "${n}.${domain}:${toString caddyPort}";
       }
       // v) {
-      jellyfin.extraConfig = "reverse_proxy localhost:8096"; # TODO setup proper auth
+      jellyfin.extraConfig = ''
+        reverse_proxy {
+          header_up X-Forwarded-For {http.request.header.CF-Connecting-IP}
+          to localhost:8096
+        }
+      '';
       kanidm = {
         useACMEHost = null;
-        # hostName = "kanidm.xunuwu.xyz:${toString caddyPort}";
         extraConfig = ''
           reverse_proxy https://127.0.0.1:${toString kanidmPort} {
+            header_up X-Forwarded-For {http.request.header.CF-Connecting-IP}
             header_up Host {upstream_hostport}
             header_down Access-Control-Allow-Origin "*"
             transport http {
@@ -148,11 +155,53 @@ in {
       dash = {
         useACMEHost = null;
         hostName = "dash.hopper.xun.host:80";
-        extraConfig = "reverse_proxy localhost:${toString config.services.homepage-dashboard.listenPort}";
+        extraConfig = ''
+          # Requests to /oauth2/* are proxied to oauth2-proxy without authentication.
+          # You can't use `reverse_proxy /oauth2/* oauth2-proxy.internal:4180` here because the reverse_proxy directive has lower precedence than the handle directive.
+          handle /oauth2/* {
+          	reverse_proxy unix//run/oauth2-proxy/oauth2-proxy.sock {
+          		# oauth2-proxy requires the X-Real-IP and X-Forwarded-{Proto,Host,Uri} headers.
+          		# The reverse_proxy directive automatically sets X-Forwarded-{For,Proto,Host} headers.
+          		header_up X-Real-IP {remote_host}
+          		header_up X-Forwarded-Uri {uri}
+          	}
+          }
+
+          # Requests to other paths are first processed by oauth2-proxy for authentication.
+          handle {
+            forward_auth unix//run/oauth2-proxy/oauth2-proxy.sock {
+              uri /oauth2/auth
+
+              # oauth2-proxy requires the X-Real-IP and X-Forwarded-{Proto,Host,Uri} headers.
+              # The forward_auth directive automatically sets the X-Forwarded-{For,Proto,Host,Method,Uri} headers.
+              header_up X-Real-IP {remote_host}
+
+              # If needed, you can copy headers from the oauth2-proxy response to the request sent to the upstream.
+              # Make sure to configure the --set-xauthrequest flag to enable this feature.
+              #copy_headers X-Auth-Request-User X-Auth-Request-Email
+
+              # If oauth2-proxy returns a 401 status, redirect the client to the sign-in page.
+              @error status 401
+              handle_response @error {
+                redir * /oauth2/sign_in?rd={scheme}://{host}{uri}
+              }
+            }
+
+            reverse_proxy localhost:${toString config.services.homepage-dashboard.listenPort}
+          }
+
+        '';
       };
       oauth2-proxy = {
         hostName = "oauth2.${domain}:${toString caddyPort}";
         extraConfig = "reverse_proxy unix//run/oauth2-proxy/oauth2-proxy.sock";
+      };
+      navidrome = {
+        useACMEHost = null;
+        hostName = "navidrome.hopper.xun.host:80";
+        extraConfig = ''
+          reverse_proxy unix//var/lib/navidrome/navidrome.sock
+        '';
       };
       firefly = {
         useACMEHost = null;
@@ -316,6 +365,26 @@ in {
     ];
   };
 
+  # TODO finish setting up authentik
+  # services.authentik = {
+  #   enable = true;
+  #   settings = {
+  #     disable_startup_analytics = true;
+  #     error_reporting.enabled = false;
+  #     avatars = "initials";
+  #   };
+  # };
+
+  # TODO finish setting up navidrome
+  users.groups.${config.services.navidrome.group}.members = ["caddy"]; # for socket file :)
+  services.navidrome = {
+    enable = true;
+    settings = {
+      MusicFolder = "/media/library/music";
+      Address = "unix:/var/lib/navidrome/navidrome.sock";
+    };
+  };
+
   systemd.services.jellyfin.vpnConfinement = {
     enable = true;
     vpnNamespace = "wg";
@@ -433,14 +502,14 @@ in {
   };
   users.groups.oauth2-proxy.members = ["caddy"];
 
-  services.oauth2-proxy = let
-    clientID = "oauth2-proxy";
-  in {
+  services.oauth2-proxy = {
     enable = true;
-    inherit clientID;
+    clientID = "oauth2-proxy";
     cookie.expire = "24h";
     email.domains = ["*"];
     httpAddress = "unix:///run/oauth2-proxy/oauth2-proxy.sock";
+    scope = "openid profile email";
+    redirectURL = "https://oauth2.${domain}/oauth2/callback";
 
     keyFile = config.sops.secrets.oauth2-proxy.path;
 
@@ -450,10 +519,11 @@ in {
 
     provider = "oidc";
 
-    loginURL = "https://${config.services.kanidm.serverSettings.domain}/ui/oauth2";
     redeemURL = "https://${config.services.kanidm.serverSettings.domain}/oauth2/token";
-    validateURL = "https://${config.services.kanidm.serverSettings.domain}/oauth2/openid/${clientID}/userinfo";
-    oidcIssuerUrl = "https://${config.services.kanidm.serverSettings.domain}/oauth2/openid/${clientID}";
+    loginURL = "https://${config.services.kanidm.serverSettings.domain}/ui/oauth2";
+    oidcIssuerUrl = "https://${config.services.kanidm.serverSettings.domain}/oauth2/openid/oauth2-proxy";
+    validateURL = "https://${config.services.kanidm.serverSettings.domain}/oauth2/token/introspect";
+    profileURL = "https://${config.services.kanidm.serverSettings.domain}/oauth2/openid/oauth2-proxy/userinfo";
 
     # redeemURL = "https://${config.services.kanidm.serverSettings.domain}/oauth2/token";
     # loginURL = "https://${config.services.kanidm.serverSettings.domain}/ui/oauth2";
@@ -521,6 +591,7 @@ in {
         preferShortUsername = true;
         scopeMaps."oauth2-proxy.access" = [
           "openid"
+          "profile"
           "email"
         ];
         claimMaps.groups = {

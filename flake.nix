@@ -57,6 +57,8 @@
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
 
+    authentik-nix.url = "github:nix-community/authentik-nix";
+
     # nvfetcher.url = "github:berberman/nvfetcher";
     # nvfetcher.inputs.nixpkgs.follows = "nixpkgs";
 
