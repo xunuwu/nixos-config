@@ -11,6 +11,7 @@
       noto-fonts
       noto-fonts-emoji
       source-code-pro
+      noto-fonts-cjk-sans
       iosevka
 
       nerd-fonts.symbols-only
@@ -31,9 +32,9 @@
     enableDefaultPackages = false;
 
     # user defined fonts
-    fontconfig.defaultFonts = {
-      monospace = ["DejaVu Sans Mono for Powerline"];
-      sansSerif = ["DejaVu Sans"];
-    };
+    # fontconfig.defaultFonts = {
+    #   monospace = ["DejaVu Sans Mono for Powerline"];
+    #   sansSerif = ["DejaVu Sans"];
+    # };
   };
 }
