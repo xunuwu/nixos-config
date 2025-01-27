@@ -203,16 +203,6 @@ in {
           reverse_proxy unix//var/lib/navidrome/navidrome.sock
         '';
       };
-      firefly = {
-        useACMEHost = null;
-        hostName = "firefly.hopper.xun.host:80";
-        extraConfig = ''
-          encode zstd gzip
-          root * ${config.services.firefly-iii.package}/public
-          php_fastcgi unix/${config.services.phpfpm.pools.firefly-iii.socket}
-          file_server
-        '';
-      };
       # slskd-pub = {
       #   hostName = "slskd.${domain}:${toString caddyPort}";
       #   extraConfig = ''
@@ -258,36 +248,6 @@ in {
           }
         '';
       };
-    };
-  };
-
-  # https://github.com/diogotcorreia/dotfiles/blob/f49cda185cef30d8150a08b60112766f4fc95813/hosts/hera/firefly-iii.nix#L19
-  services.firefly-iii = {
-    enable = true;
-    virtualHost = "firefly.hopper.xun.host";
-    group = config.services.caddy.group;
-    settings = {
-      DB_CONNECTION = "pgsql";
-      APP_KEY_FILE = config.sops.secrets.firefly.path;
-    };
-  };
-  services.postgresql = {
-    enable = true;
-    ensureUsers = [
-      {
-        name = config.services.firefly-iii.user;
-        ensureDBOwnership = true;
-        ensureClauses.login = true;
-      }
-    ];
-    ensureDatabases = [config.services.firefly-iii.user];
-  };
-  services.firefly-iii-data-importer = {
-    enable = true;
-    group = config.services.caddy.group;
-    settings = {
-      FIREFLY_III_URL = config.services.firefly-iii.settings.APP_URL;
-      FIREFLY_III_ACCESS_TOKEN = config.sops.secrets.firefly-data-importer.path;
     };
   };
 
@@ -337,6 +297,12 @@ in {
             };
           }
           {
+            "navidrome" = {
+              href = "http://navidrome.hopper.xun.host";
+              icon = "jellyfin";
+            };
+          }
+          {
             "adguard home" = {
               href = "http://${config.networking.hostName}:${toString config.services.adguardhome.port}";
               icon = "adguard-home";
@@ -352,12 +318,6 @@ in {
             "kanidm" = {
               href = "https://kanidm.${domain}";
               icon = "kanidm";
-            };
-          }
-          {
-            "firefly iii" = {
-              href = "http://firefly.hopper.xun.host";
-              icon = "firefly-iii";
             };
           }
         ];
@@ -505,7 +465,10 @@ in {
   services.oauth2-proxy = {
     enable = true;
     clientID = "oauth2-proxy";
-    cookie.expire = "24h";
+    cookie = {
+      expire = "24h";
+      # secure = false;
+    };
     email.domains = ["*"];
     httpAddress = "unix:///run/oauth2-proxy/oauth2-proxy.sock";
     scope = "openid profile email";

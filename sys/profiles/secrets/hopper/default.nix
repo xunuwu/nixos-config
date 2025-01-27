@@ -59,16 +59,16 @@ in {
       owner = "kanidm";
     };
 
-    firefly = {
-      format = "binary";
-      sopsFile = ./firefly;
-      owner = config.services.firefly-iii.user;
-    };
-    firefly-data-importer = {
-      format = "binary";
-      sopsFile = ./firefly-data-importer;
-      owner = config.services.firefly-iii-data-importer.user;
-    };
+    # firefly = {
+    #   format = "binary";
+    #   sopsFile = ./firefly;
+    #   owner = config.services.firefly-iii.user;
+    # };
+    # firefly-data-importer = {
+    #   format = "binary";
+    #   sopsFile = ./firefly-data-importer;
+    #   owner = config.services.firefly-iii-data-importer.user;
+    # };
 
     # "keycloak/db" = {
     #   sopsFile = ./keycloak.yaml;
