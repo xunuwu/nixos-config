@@ -88,7 +88,7 @@
   networking.hostName = "nixdesk";
 
   nixpkgs.config = {
-    rocmSupport = true;
+    # rocmSupport = true;
     allowUnfreePredicate = pkg:
       builtins.elem (lib.getName pkg) [
         "apple_cursor"

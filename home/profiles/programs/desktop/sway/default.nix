@@ -14,7 +14,7 @@
 
   services.cliphist = {
     enable = true;
-    systemdTarget = "sway-session.target";
+    systemdTargets = ["sway-session.target"];
     extraOptions = ["-max-items" "150"];
   };
 
@@ -41,6 +41,7 @@
     };
   };
 
+  wayland.systemd.target = "sway-session.target";
   wayland.windowManager.sway = {
     enable = true;
     checkConfig = false; # doesnt work with custom wallpaper
@@ -134,6 +135,7 @@
             "XF86AudioStop" = "exec ${lib.getExe pkgs.playerctl} stop";
             "XF86AudioNext" = "exec ${lib.getExe pkgs.playerctl} next";
             "XF86AudioPrev" = "exec ${lib.getExe pkgs.playerctl} previous";
+            "XF86AudioMute" = "exec ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_SINK@ toggle";
           }
           // (let
             inherit (builtins) foldl';

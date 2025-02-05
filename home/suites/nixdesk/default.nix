@@ -67,9 +67,12 @@
     programs.misc.pwvucontrol
     programs.misc.qpwgraph
     programs.misc.libreoffice
+
     programs.music.puddletag
     programs.music.picard
+    # programs.music.beets
     programs.music.cmus
+
     programs.media.mpv
     programs.media.jellyfin
 
@@ -85,14 +88,14 @@
     services.udiskie # although i dont need this for usb memory, it is quite convenient for flashing qmk
   ];
 
-  qt = {
-    enable = true;
-    platformTheme = {
-      name = "gtk3";
-      package = [
-        pkgs.libsForQt5.qtstyleplugins
-        pkgs.qt6.qtbase
-      ];
-    };
-  };
+  # qt = {
+  #   enable = true;
+  #   platformTheme = {
+  #     name = "gtk3";
+  #     package = [
+  #       pkgs.libsForQt5.qtstyleplugins
+  #       pkgs.qt6.qtbase
+  #     ];
+  #   };
+  # };
 }

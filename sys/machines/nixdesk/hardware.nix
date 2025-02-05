@@ -27,7 +27,7 @@
     };
     kernelModules = ["kvm-amd"];
     extraModulePackages = with config.boot.kernelPackages; [
-      rtl88xxau-aircrack # usb wifi card
+      # rtl88xxau-aircrack # usb wifi card
     ];
     loader = {
       timeout = 10;
