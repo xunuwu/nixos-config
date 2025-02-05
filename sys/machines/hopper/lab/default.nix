@@ -203,6 +203,45 @@ in {
           reverse_proxy unix//var/lib/navidrome/navidrome.sock
         '';
       };
+      navidrome2 = {
+        hostName = "navidrome.${domain}:${toString caddyPort}";
+        extraConfig = ''
+          # Requests to /oauth2/* are proxied to oauth2-proxy without authentication.
+          # You can't use `reverse_proxy /oauth2/* oauth2-proxy.internal:4180` here because the reverse_proxy directive has lower precedence than the handle directive.
+          handle /oauth2/* {
+          	reverse_proxy unix//run/oauth2-proxy/oauth2-proxy.sock {
+          		# oauth2-proxy requires the X-Real-IP and X-Forwarded-{Proto,Host,Uri} headers.
+          		# The reverse_proxy directive automatically sets X-Forwarded-{For,Proto,Host} headers.
+          		header_up X-Real-IP {remote_host}
+          		header_up X-Forwarded-Uri {uri}
+          	}
+          }
+
+          # Requests to other paths are first processed by oauth2-proxy for authentication.
+          handle {
+            forward_auth unix//run/oauth2-proxy/oauth2-proxy.sock {
+              uri /oauth2/auth
+
+              # oauth2-proxy requires the X-Real-IP and X-Forwarded-{Proto,Host,Uri} headers.
+              # The forward_auth directive automatically sets the X-Forwarded-{For,Proto,Host,Method,Uri} headers.
+              header_up X-Real-IP {remote_host}
+
+              # If needed, you can copy headers from the oauth2-proxy response to the request sent to the upstream.
+              # Make sure to configure the --set-xauthrequest flag to enable this feature.
+              #copy_headers X-Auth-Request-User X-Auth-Request-Email
+
+              # If oauth2-proxy returns a 401 status, redirect the client to the sign-in page.
+              @error status 401
+              handle_response @error {
+                redir * /oauth2/sign_in?rd={scheme}://{host}{uri}
+              }
+            }
+
+            reverse_proxy unix//var/lib/navidrome/navidrome.sock
+          }
+
+        '';
+      };
       # slskd-pub = {
       #   hostName = "slskd.${domain}:${toString caddyPort}";
       #   extraConfig = ''
@@ -466,7 +505,7 @@ in {
     enable = true;
     clientID = "oauth2-proxy";
     cookie = {
-      expire = "24h";
+      expire = "5m";
       # secure = false;
     };
     email.domains = ["*"];
@@ -496,6 +535,7 @@ in {
 
     extraConfig = {
       code-challenge-method = "S256"; # PKCE
+      whitelist-domain = "dash.hopper.xun.host";
       #   oidc-issuer-url = "https://${config.services.kanidm.serverSettings.domain}";
       # insecure-oidc-skip-issuer-verification = "true";
       # insecure-oidc-allow-unverified-email = "true";
