@@ -27,6 +27,7 @@
 
     editors.emacs
     editors.nvim
+    editors.vscodium
     editors.jetbrains.rider
     editors.jetbrains.android-studio
 
