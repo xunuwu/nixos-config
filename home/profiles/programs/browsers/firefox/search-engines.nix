@@ -102,6 +102,17 @@
         definedAliases = ["@yt"];
       };
 
+      "crates.io" = {
+        urls = singleton {
+          template = "https://crates.io/search";
+          params = attrsToList {
+            "q" = "{searchTerms}";
+          };
+        };
+        iconUpdateURL = "https://crates.io/favicon.ico";
+        definedAliases = ["@cr"];
+      };
+
       "Google".metaData.alias = "@go";
       "DuckDuckGo".metaData.alias = "@ddg";
       "Wikipedia".metaData.alias = "@wiki";
