@@ -14,101 +14,52 @@
       "DuckDuckGo"
     ];
 
-    engines = {
+    engines = let
+      mkUrl = x: lib.singleton {template = x;};
+    in {
       "Home Manager" = {
-        urls = singleton {
-          template = "https://home-manager-options.extranix.com";
-          params = attrsToList {
-            query = "{searchTerms}";
-            release = "master";
-          };
-        };
+        urls = mkUrl "https://home-manager-options.extranix.com?release=master&query={searchTerms}";
         iconUpdateURL = "https://home-manager-options.extranix.com/images/favicon.png";
         definedAliases = ["@hm"];
       };
       "Nix Packages" = {
-        urls = singleton {
-          template = "https://search.nixos.org/packages";
-          params = attrsToList {
-            query = "{searchTerms}";
-            channel = "unstable";
-          };
-        };
+        urls = mkUrl "https://search.nixos.org/packages?channel=unstable&query={searchTerms}";
         icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
         definedAliases = ["@np"];
       };
       "NixOS Options" = {
-        urls = singleton {
-          template = "https://search.nixos.org/options";
-          params = attrsToList {
-            query = "{searchTerms}";
-            channel = "unstable";
-          };
-        };
+        urls = mkUrl "https://search.nixos.org/options?channel=unstable&query={searchTerms}";
         icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
         definedAliases = ["@no"];
       };
       "GitHub" = {
-        urls = singleton {
-          template = "https://github.com/search";
-          params = attrsToList {
-            q = "{searchTerms}";
-            type = "code";
-          };
-        };
+        urls = mkUrl "https://github.com/search?type=code&q={searchTerms}";
         iconUpdateURL = "https://github.githubassets.com/favicons/favicon-dark.svg";
         definedAliases = ["@gh"];
       };
       "GitHub Repos" = {
-        urls = singleton {
-          template = "https://github.com/search";
-          params = attrsToList {
-            q = "{searchTerms}";
-            type = "repositories";
-          };
-        };
+        urls = mkUrl "https://github.com/search?type=code&q={searchTerms}";
         iconUpdateURL = "https://github.githubassets.com/favicons/favicon-dark.svg";
         definedAliases = ["@ghr"];
       };
       "GitHub Nix" = {
-        urls = singleton {
-          template = "https://github.com/search";
-          params = attrsToList {
-            "q" = "lang:nix {searchTerms}";
-            "type" = "code";
-          };
-        };
+        urls = mkUrl "https://github.com/search?type=code&q=lang:nix NOT is:fork {searchTerms}";
         iconUpdateURL = "https://github.githubassets.com/favicons/favicon-dark.svg";
         definedAliases = ["@ghn"];
       };
       "Brave" = {
-        urls = singleton {
-          template = "https://search.brave.com/search";
-          params = attrsToList {
-            "q" = "{searchTerms}";
-          };
-        };
+        urls = mkUrl "https://search.brave.com/search?q={searchTerms}";
         iconUpdateURL = "https://brave.com/static-assets/images/brave-favicon.png";
         definedAliases = ["@b"];
       };
       "YouTube" = {
-        urls = singleton {
-          template = "https://www.youtube.com/results";
-          params = attrsToList {
-            "search_query" = "{searchTerms}";
-          };
-        };
+        urls = mkUrl "https://www.youtube.com/results?search_query={searchTerms}";
         iconUpdateURL = "https://www.youtube.com/favicon.ico";
         definedAliases = ["@yt"];
       };
 
       "crates.io" = {
-        urls = singleton {
-          template = "https://crates.io/search";
-          params = attrsToList {
-            "q" = "{searchTerms}";
-          };
-        };
+        urls = mkUrl "https://crates.io/search?q={searchTerms}";
         iconUpdateURL = "https://crates.io/favicon.ico";
         definedAliases = ["@cr"];
       };
