@@ -38,7 +38,7 @@
         definedAliases = ["@gh"];
       };
       "GitHub Repos" = {
-        urls = mkUrl "https://github.com/search?type=code&q={searchTerms}";
+        urls = mkUrl "https://github.com/search?q={searchTerms}";
         iconUpdateURL = "https://github.githubassets.com/favicons/favicon-dark.svg";
         definedAliases = ["@ghr"];
       };
