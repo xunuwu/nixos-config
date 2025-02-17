@@ -107,13 +107,19 @@ in {
           }
         '';
       };
+      navidrome = {
+        useACMEHost = domain;
+        hostName = "navidrome.${domain}:${toString caddyPort}";
+        extraConfig = ''
+          reverse_proxy unix//var/lib/navidrome/navidrome.sock
+        '';
+      };
       slskd = {
         hostName = "slskd.hopper.xun.host:80";
         extraConfig = ''
           reverse_proxy localhost:${toString config.services.slskd.settings.web.port}
         '';
       };
-
       transmission = {
         hostName = "transmission.hopper.xun.host:80";
         extraConfig = ''
@@ -192,6 +198,12 @@ in {
             };
           }
           {
+            "navidrome" = {
+              href = "https://navidrome.${domain}";
+              icon = "navidrome";
+            };
+          }
+          {
             "adguard home" = {
               href = "http://${config.networking.hostName}:${toString config.services.adguardhome.port}";
               icon = "adguard-home";
@@ -232,13 +244,6 @@ in {
           targets = ["100.100.100.100"];
         };
       }
-      # TODO figure out why i cant connect to slskd locally
-      # {
-      #   job_name = "slskd";
-      #   static_configs = lib.singleton {
-      #     targets = ["127.0.0.1:${toString slskdUiPort}"];
-      #   };
-      # }
     ];
   };
 
@@ -343,4 +348,15 @@ in {
       ];
     };
   };
+
+  users.groups.${config.services.navidrome.group}.members = ["caddy"]; # for caddy to access socket file
+  services.navidrome = {
+    enable = true;
+    settings = {
+      MusicFolder = "/media/library/music";
+      Address = "unix:/var/lib/navidrome/navidrome.sock";
+      EnableSharing = true;
+    };
+  };
+  systemd.services.navidrome.serviceConfig.EnvironmentFile = config.sops.secrets.navidrome.path;
 }

@@ -17,5 +17,9 @@
       format = "binary";
       sopsFile = ./transmission;
     };
+    navidrome = {
+      format = "binary";
+      sopsFile = ./navidrome;
+    };
   };
 }
