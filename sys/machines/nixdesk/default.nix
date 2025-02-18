@@ -11,6 +11,7 @@
     ./hardware.nix
     ./hibernate-boot.nix
     ./samba-mount.nix
+    ./wireguard.nix
 
     inputs.stylix.nixosModules.stylix
 

@@ -7,9 +7,9 @@
   imports = with homeProfiles; [
     ./defaults.nix
 
-    default
-
     secrets.default
+
+    default
 
     terminal.shell.zsh
 
