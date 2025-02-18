@@ -72,7 +72,7 @@
 
     programs.music.puddletag
     programs.music.picard
-    # programs.music.beets
+    programs.music.beets
     programs.music.cmus
 
     programs.media.mpv
