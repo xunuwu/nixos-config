@@ -13,7 +13,16 @@
     accessibleFrom = ["192.168.0.0/24"];
 
     # Forwarded to my vpn, for making things accessible from outside
-    openVPNPorts = [];
+    openVPNPorts = [
+      {
+        port = 14794;
+        protocol = "both";
+      }
+      {
+        port = 14795;
+        protocol = "both";
+      }
+    ];
 
     # From inside of the vpn namespace to outside of it, for making things inside accessible to LAN
     portMappings = [];

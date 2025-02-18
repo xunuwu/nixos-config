@@ -57,6 +57,10 @@ in {
         protocol = "both";
       }
       {
+        port = config.services.slskd.settings.soulseek.listen_port + 1;
+        protocol = "both";
+      }
+      {
         port = config.services.transmission.settings.peer-port;
         protocol = "both";
       }
