@@ -73,7 +73,7 @@
 
   boot.resumeDevice = "/dev/disk/by-uuid/d87276c0-ef9c-422e-b2de-effc1b47c654";
   # btrfs inspect-internal map-swapfile -r /.swapvol/swapfile
-  boot.kernelParams = ["resume_offset=76293376"];
+  boot.kernelParams = ["resume_offset=63801739"];
 
   swapDevices = lib.singleton {
     device = "/.swapvol/swapfile";
