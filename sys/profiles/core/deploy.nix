@@ -20,6 +20,7 @@
 
     openssh.authorizedKeys.keyFiles = [
       (self + /sshKeys/xun_nixdesk)
+      (self + /sshKeys/alka_alkpc)
     ];
   };
 }
