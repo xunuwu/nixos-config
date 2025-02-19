@@ -1,12 +1,13 @@
 {pkgs, ...}: let
-  musicDir = "/home/xun/music/copy";
+  musicDir = "/server/library/music";
+  beetsDir = "/home/xun/beets";
 in {
   programs.beets = {
     enable = true;
     package = pkgs.beets-unstable;
     settings = {
       directory = "${musicDir}/beets";
-      library = "${musicDir}/beets.db";
+      library = "${beetsDir}/beets.db";
 
       import = {
         write = true;
@@ -21,13 +22,11 @@ in {
 
       original_date = true;
 
-      plugins = ["rewrite" "lyrics" "missing" "unimported" "edit" "duplicates" "info"];
-      rewrite = {
-        "artist GHOST" = "Ghost and Pals";
-      };
+      plugins = ["lyrics" "missing" "unimported" "edit" "duplicates" "info"];
 
       lyrics = {
         synced = true; # prefer synced
+        sources = ["lrclib" "genius" "google" "tekstowo"];
       };
 
       paths = {
