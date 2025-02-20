@@ -21,5 +21,9 @@
       format = "binary";
       sopsFile = ./navidrome;
     };
+    restic-password = {
+      format = "binary";
+      sopsFile = ./restic-password;
+    };
   };
 }
