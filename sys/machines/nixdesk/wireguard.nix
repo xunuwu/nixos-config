@@ -15,11 +15,11 @@
     # Forwarded to my vpn, for making things accessible from outside
     openVPNPorts = [
       {
-        port = 14794;
+        port = 26449;
         protocol = "both";
       }
       {
-        port = 14795;
+        port = 26450;
         protocol = "both";
       }
     ];

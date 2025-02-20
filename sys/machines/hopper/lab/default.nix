@@ -276,7 +276,7 @@ in {
       remote_file_management = true;
       shares.directories = ["/media/library/music"];
       soulseek = {
-        listen_port = 14794;
+        listen_port = 26449;
         description = "";
       };
       global = {
