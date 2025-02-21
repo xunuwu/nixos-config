@@ -41,7 +41,8 @@
         istilldontcareaboutcookies
         sidebery
         mal-sync
-        (lib.mkIf (builtins.elem pkgs.keepassxc config.home.packages) keepassxc-browser)
+        bitwarden
+        # (lib.mkIf (builtins.elem pkgs.keepassxc config.home.packages) keepassxc-browser)
         #(buildFirefoxXpiAddon rec {
         #  pname = "roseal";
         #  version = "1.3.44";

@@ -25,5 +25,9 @@
       format = "binary";
       sopsFile = ./restic-password;
     };
+    vaultwarden-env = {
+      format = "binary";
+      sopsFile = ./vaultwarden-env;
+    };
   };
 }

@@ -136,6 +136,16 @@ in {
           reverse_proxy localhost:${toString config.services.homepage-dashboard.listenPort}
         '';
       };
+      vw = {
+        useACMEHost = domain;
+        hostName = "vw.${domain}:${toString caddyPort}";
+        extraConfig = ''
+          reverse_proxy {
+            header_up X-Real-Ip {http.request.header.CF-Connecting-IP}
+            to localhost:${toString config.services.vaultwarden.config.ROCKET_PORT}
+          }
+        '';
+      };
       other = {
         useACMEHost = domain;
         hostName = ":${toString caddyPort}";
@@ -217,6 +227,12 @@ in {
             "prometheus" = {
               href = "http://${config.networking.hostName}:${toString config.services.prometheus.port}";
               icon = "prometheus";
+            };
+          }
+          {
+            "vaultwarden" = {
+              href = "https://vw.${domain}";
+              icon = "vaultwarden";
             };
           }
         ];
@@ -364,6 +380,25 @@ in {
   };
   systemd.services.navidrome.serviceConfig.EnvironmentFile = config.sops.secrets.navidrome.path;
 
+  systemd.services.vaultwarden = {
+    serviceConfig.EnvironmentFile = config.sops.secrets.vaultwarden-env.path;
+    vpnConfinement = {
+      enable = true;
+      vpnNamespace = "wg";
+    };
+  };
+  # NOTE send doesnt work, probably due to my cloudflare port rewriting rules
+  services.vaultwarden = {
+    enable = true;
+    config = {
+      DOMAIN = "https://${domain}:${toString caddyPort}";
+      ROCKET_ADDRESS = "127.0.0.1";
+      ROCKET_PORT = 35381;
+      ROCKET_LOG = "critical";
+      SIGNUPS_ALLOWED = false;
+    };
+  };
+
   services.restic.backups.hopper = {
     initialize = true;
     inhibitsSleep = true;
@@ -384,6 +419,7 @@ in {
       "/var/lib/navidrome"
       "/var/lib/jellyfin/data"
       "/var/lib/jellyfin/config"
+      "/var/lib/bitwarden_rs"
       "/media/library/music"
     ];
     exclude = [
