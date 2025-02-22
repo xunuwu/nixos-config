@@ -62,4 +62,6 @@
       };
     };
   };
+
+  services.restic.backups.hopper.paths = ["/srv/vault"];
 }
