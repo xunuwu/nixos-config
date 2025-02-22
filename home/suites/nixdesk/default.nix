@@ -59,6 +59,7 @@
 
     # programs
     programs.misc.keepassxc
+    programs.misc.bitwarden
     programs.misc.discord
     programs.misc.element
     programs.misc.obs
@@ -89,15 +90,4 @@
     services.polkit-agent
     services.udiskie # although i dont need this for usb memory, it is quite convenient for flashing qmk
   ];
-
-  # qt = {
-  #   enable = true;
-  #   platformTheme = {
-  #     name = "gtk3";
-  #     package = [
-  #       pkgs.libsForQt5.qtstyleplugins
-  #       pkgs.qt6.qtbase
-  #     ];
-  #   };
-  # };
 }
