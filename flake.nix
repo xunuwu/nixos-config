@@ -29,7 +29,7 @@
     };
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?rev=d2faa1bbca1b1e4962ce7373c5b0879e5b12cef2"; # TODO unlock after things work
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
     flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
