@@ -97,6 +97,7 @@
         "steam"
         "steam-unwrapped"
         "discord"
+        "discord-ptb"
         "obsidian"
         "rider"
         "android-studio-stable"
