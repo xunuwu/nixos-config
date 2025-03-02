@@ -1,6 +1,7 @@
 {
   config,
   inputs,
+  lib,
   ...
 }: {
   imports = [inputs.vpn-confinement.nixosModules.default];
@@ -27,4 +28,6 @@
     # From inside of the vpn namespace to outside of it, for making things inside accessible to LAN
     portMappings = [];
   };
+
+  systemd.services.wg.wantedBy = lib.mkForce [];
 }
