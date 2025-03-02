@@ -3,6 +3,6 @@
   inputs,
   ...
 }: {
-  home.packages = [inputs.nvim-nix.packages.${pkgs.system}.default];
+  home.packages = [inputs.nvim-config.packages.${pkgs.system}.default];
   home.sessionVariables.EDITOR = "nvim";
 }

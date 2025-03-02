@@ -39,8 +39,8 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    nvim-nix.url = "github:xunuwu/nvim-nix";
-    nvim-nix.inputs.nixpkgs.follows = "nixpkgs";
+    nvim-config.url = "github:xunuwu/nvim-config";
+    nvim-config.inputs.nixpkgs.follows = "nixpkgs";
 
     stylix.url = "github:danth/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
