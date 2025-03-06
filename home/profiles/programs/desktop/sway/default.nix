@@ -12,6 +12,11 @@
     ./waybar.nix
   ];
 
+  services.gnome-keyring = {
+    enable = true;
+    components = ["secrets"];
+  };
+
   services.cliphist = {
     enable = true;
     systemdTargets = ["sway-session.target"];

@@ -20,6 +20,7 @@
     secrets.nixdesk
 
     core.security
+    core.keyring
     core.users
     core.ssh
     core.locale
