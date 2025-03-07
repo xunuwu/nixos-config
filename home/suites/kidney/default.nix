@@ -2,7 +2,7 @@
   imports = with homeProfiles; [
     default
 
-    editors.emacs
+    # editors.emacs
     editors.nvim
 
     terminal.shell.zsh

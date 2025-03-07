@@ -12,7 +12,7 @@
     text = ''
       unbind <C-e>
       unbind <C-b>
-      unbind <C-a> # why would you ever want to increment the current url??
+      unbind <C-a>
       bind J tabnext
       bind K tabprev
 
@@ -30,7 +30,7 @@
       ];
     };
     profiles.xun = {
-      extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
+      extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
         ublock-origin
         # (lib.mkIf (config.xun.desktop.colorscheme == "dark") darkreader)
         darkreader

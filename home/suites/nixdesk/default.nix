@@ -25,7 +25,7 @@
     terminal.programs.lazygit
     terminal.programs.jujutsu
 
-    editors.emacs
+    # editors.emacs
     editors.nvim
     editors.vscodium
     editors.jetbrains.rider
