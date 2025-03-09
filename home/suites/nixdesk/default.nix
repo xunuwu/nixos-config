@@ -12,6 +12,8 @@
     default
 
     terminal.shell.zsh
+    terminal.shell.fish
+    terminal.shell.starship
 
     terminal.programs.xdg
     terminal.programs.direnv
@@ -36,7 +38,7 @@
     programs.browsers.tor
     programs.browsers.chromium
 
-    terminal.emulator.wezterm
+    # terminal.emulator.wezterm
     terminal.emulator.foot
 
     # desktop

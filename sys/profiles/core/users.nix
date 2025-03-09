@@ -2,7 +2,7 @@
   users.users.xun = {
     isNormalUser = true;
     initialPassword = "nixos";
-    shell = pkgs.zsh;
+    shell = pkgs.fish;
     extraGroups = [
       "wheel"
       "input"

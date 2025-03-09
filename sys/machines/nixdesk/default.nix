@@ -26,6 +26,7 @@
     core.locale
     nix.default
     programs.zsh
+    programs.fish
     core.tools
     core.compat
     core.boot
