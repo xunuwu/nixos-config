@@ -132,7 +132,7 @@
             "${mod}+Alt+s" = "exec ${lib.getExe pkgs.wayfreeze} --after-freeze-cmd '${lib.getExe pkgs.sway-contrib.grimshot} save anything - | ${lib.getExe pkgs.tesseract} -l eng - - | wl-copy && pkill wayfreeze'";
 
             "${mod}+Shift+p" = "exec ${pauseApp}";
-            "${mod}+period" = "exec ${lib.getExe pkgs.bemoji} -t";
+            "${mod}+period" = "exec ${lib.getExe pkgs.bemoji}";
 
             "XF86AudioRaiseVolume" = "exec ${setVolume "1.5" "3%+"} && ${wobVolume}";
             "XF86AudioLowerVolume" = "exec ${setVolume "1.5" "3%-"} && ${wobVolume}";
