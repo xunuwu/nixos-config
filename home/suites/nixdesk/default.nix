@@ -29,6 +29,7 @@
     editors.nvim
     editors.vscodium
     editors.jetbrains.rider
+    editors.jetbrains.idea
     editors.jetbrains.android-studio
 
     programs.browsers.firefox.default

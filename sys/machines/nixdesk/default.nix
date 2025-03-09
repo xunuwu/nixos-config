@@ -101,6 +101,7 @@
         "discord-ptb"
         "obsidian"
         "rider"
+        "idea-ultimate"
         "android-studio-stable"
       ];
     android_sdk.accept_license = true;
