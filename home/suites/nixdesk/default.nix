@@ -84,6 +84,7 @@
 
     # gaming
     programs.games.lutris
+    programs.games.switch
     programs.games.heroic
     programs.games.minecraft
     programs.games.roblox
