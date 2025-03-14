@@ -12,6 +12,7 @@
     ./restic.nix
     ./samba.nix
     ./slskd.nix
+    ./miniflux.nix
     ./transmission.nix
     ./vaultwarden.nix
     ./vpn-namespace.nix

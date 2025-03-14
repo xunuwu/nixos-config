@@ -29,5 +29,9 @@
       format = "binary";
       sopsFile = ./vaultwarden-env;
     };
+    miniflux = {
+      format = "binary";
+      sopsFile = ./miniflux;
+    };
   };
 }
