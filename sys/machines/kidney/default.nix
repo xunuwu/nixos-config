@@ -15,6 +15,7 @@
 
     programs.tools
     programs.zsh
+    programs.fish
     programs.home-manager
     hardware.graphics
 
