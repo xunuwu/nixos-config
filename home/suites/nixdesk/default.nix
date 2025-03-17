@@ -83,6 +83,7 @@
     programs.media.jellyfin
 
     # gaming
+    programs.games.default
     programs.games.lutris
     programs.games.switch
     programs.games.heroic
