@@ -53,7 +53,6 @@
     programs.home-manager
     # programs.qt
     programs.adb
-    programs.kanidm
     programs.openrgb
     programs.tools
     programs.thunar
