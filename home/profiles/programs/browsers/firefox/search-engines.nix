@@ -10,8 +10,8 @@
     default = "Brave";
     order = [
       "Brave"
-      "Google"
-      "DuckDuckGo"
+      "google"
+      "ddg"
     ];
 
     engines = let
@@ -19,7 +19,7 @@
     in {
       "Home Manager" = {
         urls = mkUrl "https://home-manager-options.extranix.com?release=master&query={searchTerms}";
-        iconUpdateURL = "https://home-manager-options.extranix.com/images/favicon.png";
+        icon = "https://home-manager-options.extranix.com/images/favicon.png";
         definedAliases = ["@hm"];
       };
       "Nix Packages" = {
@@ -34,40 +34,40 @@
       };
       "GitHub" = {
         urls = mkUrl "https://github.com/search?type=code&q={searchTerms}";
-        iconUpdateURL = "https://github.githubassets.com/favicons/favicon-dark.svg";
+        icon = "https://github.githubassets.com/favicons/favicon-dark.svg";
         definedAliases = ["@gh"];
       };
       "GitHub Repos" = {
         urls = mkUrl "https://github.com/search?q={searchTerms}";
-        iconUpdateURL = "https://github.githubassets.com/favicons/favicon-dark.svg";
+        icon = "https://github.githubassets.com/favicons/favicon-dark.svg";
         definedAliases = ["@ghr"];
       };
       "GitHub Nix" = {
         urls = mkUrl "https://github.com/search?type=code&q=lang:nix NOT is:fork {searchTerms}";
-        iconUpdateURL = "https://github.githubassets.com/favicons/favicon-dark.svg";
+        icon = "https://github.githubassets.com/favicons/favicon-dark.svg";
         definedAliases = ["@ghn"];
       };
       "Brave" = {
         urls = mkUrl "https://search.brave.com/search?q={searchTerms}";
-        iconUpdateURL = "https://brave.com/static-assets/images/brave-favicon.png";
+        icon = "https://brave.com/static-assets/images/brave-favicon.png";
         definedAliases = ["@b"];
       };
-      "YouTube" = {
+      "youtube" = {
         urls = mkUrl "https://www.youtube.com/results?search_query={searchTerms}";
-        iconUpdateURL = "https://www.youtube.com/favicon.ico";
+        icon = "https://www.youtube.com/favicon.ico";
         definedAliases = ["@yt"];
       };
 
       "crates.io" = {
         urls = mkUrl "https://crates.io/search?q={searchTerms}";
-        iconUpdateURL = "https://crates.io/favicon.ico";
+        icon = "https://crates.io/favicon.ico";
         definedAliases = ["@cr"];
       };
 
-      "Google".metaData.alias = "@go";
-      "DuckDuckGo".metaData.alias = "@ddg";
+      "google".metaData.alias = "@go";
+      "ddb".metaData.alias = "@ddg";
       "Wikipedia".metaData.alias = "@wiki";
-      "Bing".metaData.alias = "@bi";
+      "bing".metaData.alias = "@bi";
     };
   };
 }
