@@ -49,7 +49,7 @@
   wayland.systemd.target = "sway-session.target";
   wayland.windowManager.sway = {
     enable = true;
-    checkConfig = false; # doesnt work with custom wallpaper
+    checkConfig = true; # doesnt work with custom wallpaper
     extraSessionCommands = ''
       export SDL_VIDEODRIVER=wayland,x11,windows
 
