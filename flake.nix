@@ -66,5 +66,8 @@
 
     sobercookie.url = "github:xunuwu/sobercookie";
     sobercookie.inputs.nixpkgs.follows = "nixpkgs";
+
+    wayland-appusage.url = "github:xunuwu/wayland-appusage";
+    wayland-appusage.inputs.nixpkgs.follows = "nixpkgs";
   };
 }
