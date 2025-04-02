@@ -70,6 +70,7 @@
     programs.misc.foliate
     programs.misc.blender
     programs.misc.obsidian
+    programs.misc.dolphin
     programs.misc.pwvucontrol
     programs.misc.qpwgraph
     programs.misc.libreoffice
