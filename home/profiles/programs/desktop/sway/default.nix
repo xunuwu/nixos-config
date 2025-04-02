@@ -124,7 +124,7 @@
             "${mod}+Ctrl+Shift+${dir.up}" = "move output up";
             "${mod}+Ctrl+Shift+${dir.down}" = "move output down";
 
-            "${mod}+t" = "sticky toggle";
+            "${mod}+Shift+t" = "sticky toggle";
 
             "${mod}+Shift+Backspace" = "exec systemctl suspend";
             "${mod}+Shift+s" = "exec ${lib.getExe pkgs.wayfreeze} --after-freeze-cmd '${lib.getExe pkgs.sway-contrib.grimshot} copy anything && pkill wayfreeze'";
