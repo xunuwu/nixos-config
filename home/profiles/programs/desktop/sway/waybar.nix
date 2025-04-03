@@ -16,14 +16,26 @@
           "sway/window"
         ];
         modules-right = [
+          "mpris"
           "tray"
           "clock"
         ];
         "sway/workspaces" = {
           format = "{icon}";
         };
+        "sway/window" = {
+          max-length = 80;
+        };
+        mpris = {
+          ignored-players = ["firefox"];
+          on-click-right = "";
+          on-click-middle = "";
+          format = "{dynamic}";
+          dynamic-order = ["title" "album" "artist"];
+          dynamic-importance-order = ["title" "album" "artist"];
+        };
         clock = {
-          format = "{:%a %H:%M}";
+          format = "{:%V|%d %a %H:%M}";
           tooltip-format = "<big>{:%a %Y-%m-%d %H:%M}</big>\n<small>{calendar}</small>";
         };
       }
