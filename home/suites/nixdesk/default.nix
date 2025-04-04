@@ -41,6 +41,8 @@
     # terminal.emulator.wezterm
     terminal.emulator.foot
 
+    themes.dark
+
     # desktop
     programs.desktop.default
     programs.desktop.sway.default
