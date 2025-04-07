@@ -16,7 +16,6 @@
           "sway/window"
         ];
         modules-right = [
-          "mpris"
           "tray"
           "clock"
         ];
@@ -25,14 +24,6 @@
         };
         "sway/window" = {
           max-length = 80;
-        };
-        mpris = {
-          ignored-players = ["firefox"];
-          on-click-right = "";
-          on-click-middle = "";
-          format = "{dynamic}";
-          dynamic-order = ["title" "album" "artist"];
-          dynamic-importance-order = ["title" "album" "artist"];
         };
         clock = {
           format = "{:%V|%d %a %H:%M}";
