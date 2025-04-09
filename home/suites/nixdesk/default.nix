@@ -97,6 +97,6 @@
     services.playerctl
     services.polkit-agent
     services.udiskie # although i dont need this for usb memory, it is quite convenient for flashing qmk
-    services.appusage
+    # services.appusage
   ];
 }
