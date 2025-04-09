@@ -103,6 +103,9 @@
         "rider"
         "idea-ultimate"
         "android-studio-stable"
+
+        "stremio-shell"
+        "stremio-server"
       ];
     android_sdk.accept_license = true;
   };

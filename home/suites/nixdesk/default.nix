@@ -84,6 +84,7 @@
 
     programs.media.mpv
     programs.media.jellyfin
+    programs.media.stremio
 
     # gaming
     programs.games.default
