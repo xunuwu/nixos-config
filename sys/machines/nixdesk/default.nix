@@ -13,6 +13,7 @@
     ./samba-mount.nix
     ./wireguard.nix
     ./restic-server.nix
+    ./greetd.nix
 
     inputs.stylix.nixosModules.stylix
 
