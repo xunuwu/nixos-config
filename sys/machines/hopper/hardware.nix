@@ -2,7 +2,10 @@
   nixpkgs.hostPlatform.system = "x86_64-linux";
 
   ## nvidia gpu
-  #services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = ["nvidia"];
+  hardware.nvidia = {
+    open = false;
+  };
 
   #hardware.nvidia = {
   #  modesetting.enable = true;
