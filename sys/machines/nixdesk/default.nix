@@ -63,7 +63,7 @@
     services.pipewire
     services.flatpak
 
-    services.syncthing
+    # services.syncthing
     services.waydroid
     services.virt-manager
     services.sunshine
