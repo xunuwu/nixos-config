@@ -53,12 +53,6 @@
             };
           }
           {
-            "miniflux" = {
-              href = "https://mf.xunuwu.xyz";
-              icon = "miniflux";
-            };
-          }
-          {
             "adguard home" = {
               href = "http://${config.networking.hostName}:${toString config.services.adguardhome.port}";
               icon = "adguard-home";
