@@ -4,6 +4,8 @@
     vpnNamespace = "wg";
   };
 
+  systemd.services.homepage-dashboard.environment.HOMEPAGE_ALLOWED_HOSTS = "dash.hopper.xun.host";
+
   services.homepage-dashboard = {
     enable = true;
     widgets = [
