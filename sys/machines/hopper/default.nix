@@ -1,6 +1,7 @@
 {
   inputs,
   systemProfiles,
+  lib,
   ...
 }: {
   imports = with systemProfiles; [
@@ -9,6 +10,7 @@
 
     ./hardware.nix
     ./lab
+    ./desktop.nix
 
     secrets.default
     secrets.hopper
@@ -19,6 +21,10 @@
     core.ssh
     core.deploy
 
+    hardware.graphics
+    hardware.steam-hardware
+    hardware.bluetooth
+
     nix.default # TODO slim this down
 
     network.tailscale
@@ -27,6 +33,17 @@
 
     # services.syncthing # TODO make syncthing not rely on having "xun" user
   ];
+
+  nixpkgs.config = {
+    allowUnfreePredicate = pkg:
+      builtins.elem (lib.getName pkg) [
+        "nvidia-x11"
+        "nvidia-settings"
+
+        "stremio-shell"
+        "stremio-server"
+      ];
+  };
 
   networking.hostName = "hopper";
 
