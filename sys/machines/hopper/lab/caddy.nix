@@ -27,13 +27,6 @@ in {
           reverse_proxy unix//var/lib/navidrome/navidrome.sock
         '';
       };
-      miniflux = {
-        useACMEHost = domain;
-        hostName = "mf.${domain}:${toString caddyPort}";
-        extraConfig = ''
-          reverse_proxy unix/${config.services.miniflux.config.LISTEN_ADDR}
-        '';
-      };
       slskd = {
         hostName = "slskd.hopper.xun.host:80";
         extraConfig = ''
