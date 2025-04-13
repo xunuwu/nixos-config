@@ -8,6 +8,7 @@
       EnableSharing = true;
     };
   };
+  systemd.services.navidrome.unitConfig.After = ["caddy.service"];
   systemd.services.navidrome.serviceConfig.EnvironmentFile = config.sops.secrets.navidrome.path;
 
   services.restic.backups.hopper = {
