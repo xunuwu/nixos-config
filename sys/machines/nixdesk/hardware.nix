@@ -15,6 +15,7 @@
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
     initrd = {
+      verbose = false;
       availableKernelModules = [
         "nvme"
         "xhci_pci"
@@ -30,7 +31,7 @@
       # rtl88xxau-aircrack # usb wifi card
     ];
     loader = {
-      timeout = 10;
+      timeout = 0;
       systemd-boot = {
         enable = true;
         consoleMode = "max";
@@ -42,6 +43,7 @@
         efiSysMountPoint = "/boot";
       };
     };
+    tmp.cleanOnBoot = true;
   };
 
   fileSystems = {
@@ -72,8 +74,11 @@
   };
 
   boot.resumeDevice = "/dev/disk/by-uuid/d87276c0-ef9c-422e-b2de-effc1b47c654";
-  # btrfs inspect-internal map-swapfile -r /.swapvol/swapfile
-  boot.kernelParams = ["resume_offset=326444288"];
+  boot.kernelParams = [
+    "nowatchdog"
+    # btrfs inspect-internal map-swapfile -r /.swapvol/swapfile
+    "resume_offset=326444288"
+  ];
 
   swapDevices = lib.singleton {
     device = "/.swapvol/swapfile";
