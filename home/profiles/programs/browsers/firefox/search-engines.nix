@@ -7,10 +7,10 @@
     inherit (lib) attrsToList singleton;
   in {
     force = true;
-    default = "Brave";
+    default = "google";
     order = [
-      "Brave"
       "google"
+      "Brave"
       "ddg"
     ];
 
