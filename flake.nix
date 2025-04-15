@@ -69,5 +69,10 @@
 
     wayland-appusage.url = "github:xunuwu/wayland-appusage";
     wayland-appusage.inputs.nixpkgs.follows = "nixpkgs";
+
+    wallpaper = {
+      url = "https://cdn.donmai.us/original/9e/ee/__kasane_teto_and_kasane_teto_utau_drawn_by_xi_wu__9eee30303152b9320922a63e685cc073.jpg";
+      flake = false;
+    };
   };
 }

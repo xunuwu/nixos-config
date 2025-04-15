@@ -7,10 +7,10 @@
     enable = true;
     autoEnable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/mountain.yaml";
-    image = pkgs.fetchurl {
-      url = "https://imgur.com/2HATcuP.png";
-      hash = "sha256-YsSg1nreefSD/Ij44ZrWMkdk6+rJ2YozcFXvCM/EZNM=";
-    };
+    # image = pkgs.fetchurl {
+    #   url = "https://imgur.com/2HATcuP.png";
+    #   hash = "sha256-YsSg1nreefSD/Ij44ZrWMkdk6+rJ2YozcFXvCM/EZNM=";
+    # };
     polarity = "dark";
     cursor = {
       package = pkgs.apple-cursor;

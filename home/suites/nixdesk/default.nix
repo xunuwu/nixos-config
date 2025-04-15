@@ -6,6 +6,7 @@
 }: {
   imports = with homeProfiles; [
     ./defaults.nix
+    ./outputs.nix
 
     secrets.default
 

@@ -908,6 +908,7 @@
         "sops-nix": "sops-nix",
         "stylix": "stylix",
         "vpn-confinement": "vpn-confinement",
+        "wallpaper": "wallpaper",
         "wayland-appusage": "wayland-appusage"
       }
     },
@@ -1194,6 +1195,18 @@
         "owner": "Maroka-chan",
         "repo": "VPN-Confinement",
         "type": "github"
+      }
+    },
+    "wallpaper": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-Ka69DKAY7BAFSpKGkfuaPpeU2ghfeh5RXOP+RJ9NxSA=",
+        "type": "file",
+        "url": "https://cdn.donmai.us/original/9e/ee/__kasane_teto_and_kasane_teto_utau_drawn_by_xi_wu__9eee30303152b9320922a63e685cc073.jpg"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://cdn.donmai.us/original/9e/ee/__kasane_teto_and_kasane_teto_utau_drawn_by_xi_wu__9eee30303152b9320922a63e685cc073.jpg"
       }
     },
     "wayland-appusage": {

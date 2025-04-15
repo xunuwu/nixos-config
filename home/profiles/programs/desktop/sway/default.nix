@@ -60,19 +60,6 @@
     '';
     config = {
       modifier = "Mod4";
-      output = {
-        "DP-3" = {
-          mode = "1920x1080@165Hz";
-          position = "1920 0";
-          allow_tearing = "yes";
-        };
-        "HDMI-A-1" = {
-          position = "0 0";
-        };
-      };
-      # output = {
-      #   "*".bg = "${config.xdg.userDirs.pictures}/wallpaper fill";
-      # };
       input."type:keyboard".xkb_layout = osConfig.services.xserver.xkb.layout;
       bars = []; # i use waybar instead
       window = {
