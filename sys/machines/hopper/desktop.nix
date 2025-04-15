@@ -19,14 +19,7 @@
 
   environment.systemPackages = with pkgs; [
     firefox
-    stremio
   ];
-
-  environment.etc."sway/config.d/custom.conf".text = ''
-    output HDMI-A-1 {
-      scale 2.0
-    }
-  '';
 
   services.greetd = {
     enable = true;

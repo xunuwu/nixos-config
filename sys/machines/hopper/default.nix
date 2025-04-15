@@ -1,6 +1,8 @@
 {
   inputs,
   systemProfiles,
+  homeSuites,
+  specialArgs,
   lib,
   ...
 }: {
@@ -14,6 +16,8 @@
 
     secrets.default
     secrets.hopper
+
+    programs.home-manager
 
     core.security
     core.locale
@@ -32,6 +36,17 @@
     network.networkd
 
     # services.syncthing # TODO make syncthing not rely on having "xun" user
+
+    {
+      home-manager = {
+        backupFileExtension = "hm-backup";
+        users.desktop.imports = [
+          homeSuites.hopper
+          {home.stateVersion = "24.11";}
+        ];
+        extraSpecialArgs = specialArgs;
+      };
+    }
   ];
 
   nixpkgs.config = {
