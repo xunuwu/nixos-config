@@ -71,7 +71,7 @@
     wayland-appusage.inputs.nixpkgs.follows = "nixpkgs";
 
     wallpaper = {
-      url = "https://cdn.donmai.us/original/9e/ee/__kasane_teto_and_kasane_teto_utau_drawn_by_xi_wu__9eee30303152b9320922a63e685cc073.jpg";
+      url = "https://cdn.donmai.us/original/43/20/__kasane_teto_and_kasane_teto_utau_and_1_more_drawn_by_maguru_white__43204cf49ef8c071c34009553d1c0455.jpg";
       flake = false;
     };
   };

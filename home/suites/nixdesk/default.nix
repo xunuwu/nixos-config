@@ -42,7 +42,7 @@
     # terminal.emulator.wezterm
     terminal.emulator.foot
 
-    themes.dark
+    themes.dark.default
 
     # desktop
     programs.desktop.default
