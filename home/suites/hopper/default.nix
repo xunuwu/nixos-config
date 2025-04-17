@@ -1,6 +1,7 @@
 {
   homeProfiles,
   lib,
+  pkgs,
   ...
 }: {
   imports = with homeProfiles; [
@@ -13,18 +14,23 @@
     programs.desktop.default
     programs.desktop.sway.default
 
-    programs.misc.pwvucontrol
-    programs.misc.qpwgraph
-
     programs.media.mpv
-    programs.media.stremio
 
     services.playerctl
     services.polkit-agent
-    services.udiskie
   ];
 
   wayland.windowManager.sway.config.output."HDMI-A-1".scale = "2.0";
+
+  services = {
+    udiskie.enable = true;
+  };
+  home.packages = with pkgs; [
+    pwvucontrol
+    qpwgraph
+
+    stremio
+  ];
 
   home = {
     username = "desktop";

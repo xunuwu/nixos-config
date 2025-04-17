@@ -54,9 +54,6 @@
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
-    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
-    nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
-
     authentik-nix.url = "github:nix-community/authentik-nix";
 
     # nvfetcher.url = "github:berberman/nvfetcher";

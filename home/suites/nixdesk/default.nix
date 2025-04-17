@@ -1,6 +1,7 @@
 {
   self,
   pkgs,
+  inputs,
   homeProfiles,
   ...
 }: {
@@ -14,26 +15,18 @@
 
     terminal.shell.zsh
     terminal.shell.fish
-    terminal.shell.starship
 
     terminal.programs.xdg
     terminal.programs.direnv
     terminal.programs.tmux
     terminal.programs.comma
-    terminal.programs.zoxide
-    terminal.programs.tdf
     terminal.programs.irssi
     terminal.programs.git
     terminal.programs.github
-    terminal.programs.lazygit
     terminal.programs.jujutsu
 
     # editors.emacs
     editors.nvim
-    editors.vscodium
-    editors.jetbrains.rider
-    editors.jetbrains.idea
-    editors.jetbrains.android-studio
 
     programs.browsers.firefox.default
     programs.browsers.tor
@@ -50,9 +43,7 @@
 
     # development
     develop.common
-    develop.tools
     develop.docs
-    develop.devenv
 
     develop.langs.haskell
     develop.langs.rust
@@ -64,41 +55,78 @@
     develop.langs.c
 
     # programs
-    programs.misc.keepassxc
-    programs.misc.bitwarden
     programs.misc.discord
-    programs.misc.element
     programs.misc.obs
-    programs.misc.krita
-    programs.misc.foliate
-    programs.misc.blender
-    programs.misc.obsidian
-    programs.misc.dolphin
-    programs.misc.pwvucontrol
-    programs.misc.qpwgraph
-    programs.misc.libreoffice
 
-    programs.music.puddletag
-    programs.music.picard
     programs.music.beets
     programs.music.cmus
 
     programs.media.mpv
-    programs.media.jellyfin
-    programs.media.stremio
 
     # gaming
     programs.games.default
-    programs.games.lutris
-    programs.games.switch
-    programs.games.heroic
-    programs.games.minecraft
-    programs.games.roblox
-    programs.games.krunker
 
     services.playerctl
     services.polkit-agent
-    services.udiskie # although i dont need this for usb memory, it is quite convenient for flashing qmk
     # services.appusage
+  ];
+
+  services = {
+    udiskie.enable = true;
+  };
+  programs = {
+    starship.enable = true;
+    zoxide.enable = true;
+    lazygit.enable = true;
+  };
+  home.packages = with pkgs; [
+    # coding
+    tokei
+    devenv
+    vscodium
+    android-studio
+    jetbrains.rider
+    jetbrains.idea-ultimate
+
+    # communication
+    element-desktop
+
+    # audio
+    pwvucontrol
+    qpwgraph
+
+    # productivity
+    tdf # terminal pdf reader
+    obsidian
+
+    # passwords
+    keepassxc
+    bitwarden-desktop
+
+    # creating
+    krita
+    blender
+    libreoffice-qt6
+
+    # system things
+    kdePackages.dolphin
+
+    # music
+    puddletag
+    picard
+
+    # media
+    stremio
+    jellyfin-media-player
+    feishin
+    foliate
+
+    # games
+    heroic
+    lutris
+    ryubing # switch emu
+    prismlauncher
+    inputs.sobercookie.packages.${pkgs.system}.default
+    self.packages.${pkgs.system}.krunker
   ];
 }
