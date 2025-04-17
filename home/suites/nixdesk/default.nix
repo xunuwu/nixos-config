@@ -106,6 +106,7 @@
     # creating
     krita
     blender
+    godot
     libreoffice-qt6
 
     # system things
