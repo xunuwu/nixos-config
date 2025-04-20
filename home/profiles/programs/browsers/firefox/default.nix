@@ -72,6 +72,8 @@
         "browser.newtab.url" = "about:blank";
         "general.autoScroll" = true; # mmb scroll mode
 
+        "accessibility.typeaheadfind.enablesound" = false; # disable system bell when using ctrl+f
+
         "browser.newtabpage.enhanced" = false;
         "browser.newtabpage.introShown" = true;
         "browser.newtab.preload" = false;
