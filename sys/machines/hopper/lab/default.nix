@@ -15,6 +15,7 @@
     ./transmission.nix
     ./vaultwarden.nix
     ./vpn-namespace.nix
+    ./minecraft.nix
   ];
 
   users.groups.media = {};

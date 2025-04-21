@@ -61,6 +61,9 @@
 
     vpn-confinement.url = "github:Maroka-chan/VPN-Confinement";
 
+    nix-minecraft.url = "github:Infinidoge/nix-minecraft";
+    # nix-minecraft.inputs.nixpkgs.follows = "nixpkgs";
+
     sobercookie.url = "github:xunuwu/sobercookie";
     sobercookie.inputs.nixpkgs.follows = "nixpkgs";
 
