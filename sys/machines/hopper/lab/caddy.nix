@@ -1,5 +1,9 @@
-{config, ...}: let
-  domain = "xunuwu.xyz";
+{
+  config,
+  vars,
+  ...
+}: let
+  inherit (vars.common) domain;
   caddyPort = 8336;
 in {
   systemd.services.caddy.vpnConfinement = {
@@ -7,8 +11,14 @@ in {
     vpnNamespace = "wg";
   };
 
+  systemd.services.caddy = {
+    environment.CADDY_ADMIN = "0.0.0.0:2019";
+    serviceConfig.RuntimeDirectory = "caddy";
+  };
+
   services.caddy = {
     enable = true;
+    globalConfig = "metrics";
     virtualHosts = {
       jellyfin = {
         useACMEHost = domain;

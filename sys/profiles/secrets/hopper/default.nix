@@ -5,6 +5,8 @@
       format = "binary";
       sopsFile = ./wireguard;
     };
+    porkbun_api_key.sopsFile = ./porkbun.yaml;
+    porkbun_secret_key.sopsFile = ./porkbun.yaml;
     slskd = {
       format = "binary";
       sopsFile = ./slskd;

@@ -20,6 +20,12 @@
           targets = ["100.100.100.100"];
         };
       }
+      {
+        job_name = "caddy";
+        static_configs = lib.singleton {
+          targets = ["192.168.15.1:2019"];
+        };
+      }
     ];
   };
 

@@ -9,13 +9,15 @@
     systemProfiles = mylib.loadTree2 ./sys/profiles;
     homeProfiles = mylib.loadTreeInf ./home/profiles;
     homeSuites = mylib.loadBranch ./home/suites;
+    vars = builtins.mapAttrs (_: v: import v) (mylib.loadBranch ./vars);
   in
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = ["x86_64-linux"];
 
       flake._mylib = mylib; # for debugging :3
+      flake._vars = vars; # for debugging :3
       flake.nixosConfigurations = mylib.loadConfigurations ./sys/machines {
-        inherit inputs self systemProfiles homeProfiles homeSuites;
+        inherit inputs self systemProfiles homeProfiles homeSuites vars;
       };
 
       perSystem = {pkgs, ...}: {
@@ -62,7 +64,7 @@
     vpn-confinement.url = "github:Maroka-chan/VPN-Confinement";
 
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
-    # nix-minecraft.inputs.nixpkgs.follows = "nixpkgs";
+    nix-minecraft.inputs.nixpkgs.follows = "nixpkgs";
 
     sobercookie.url = "github:xunuwu/sobercookie";
     sobercookie.inputs.nixpkgs.follows = "nixpkgs";

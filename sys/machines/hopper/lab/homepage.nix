@@ -1,4 +1,10 @@
-{config, ...}: {
+{
+  config,
+  vars,
+  ...
+}: let
+  inherit (vars.common) domain;
+in {
   systemd.services.homepage-dashboard.vpnConfinement = {
     enable = true;
     vpnNamespace = "wg";
@@ -42,13 +48,13 @@
         "Services" = [
           {
             "jellyfin" = {
-              href = "https://jellyfin.xunuwu.xyz";
+              href = "https://jellyfin.${domain}";
               icon = "jellyfin";
             };
           }
           {
             "navidrome" = {
-              href = "https://navidrome.xunuwu.xyz";
+              href = "https://navidrome.${domain}";
               icon = "navidrome";
             };
           }
@@ -66,7 +72,7 @@
           }
           {
             "vaultwarden" = {
-              href = "https://vw.xunuwu.xyz";
+              href = "https://vw.${domain}";
               icon = "vaultwarden";
             };
           }
