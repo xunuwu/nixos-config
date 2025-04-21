@@ -3,6 +3,22 @@
   lib,
   ...
 }: {
+  networking.firewall = let
+    allowTcpFromVPNToDefaultPorts = [
+      config.services.prometheus.port
+      config.services.adguardhome.port
+    ];
+  in {
+    extraCommands = builtins.concatStringsSep "\n" (map
+      (port: "iptables -A nixos-fw -p tcp -s ${config.vpnNamespaces."wg".namespaceAddress} --dport ${toString port} -j nixos-fw-accept")
+      allowTcpFromVPNToDefaultPorts);
+    extraStopCommands = builtins.concatStringsSep "\n" (
+      map
+      (port: "iptables -D nixos-fw -p tcp -s ${config.vpnNamespaces."wg".namespaceAddress} --dport ${toString port} -j nixos-fw-accept || true")
+      allowTcpFromVPNToDefaultPorts
+    );
+  };
+
   vpnNamespaces."wg" = {
     enable = true;
     wireguardConfigFile = config.sops.secrets.wireguard.path;

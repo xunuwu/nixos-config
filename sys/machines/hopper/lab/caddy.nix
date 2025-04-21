@@ -43,6 +43,18 @@ in {
           reverse_proxy localhost:${toString config.services.slskd.settings.web.port}
         '';
       };
+      prometheus = {
+        hostName = "prometheus.hopper.xun.host:80";
+        extraConfig = ''
+          reverse_proxy ${config.vpnNamespaces."wg".bridgeAddress}:${toString config.services.prometheus.port}
+        '';
+      };
+      adguard = {
+        hostName = "adguard.hopper.xun.host:80";
+        extraConfig = ''
+          reverse_proxy ${config.vpnNamespaces."wg".bridgeAddress}:${toString config.services.adguardhome.port}
+        '';
+      };
       transmission = {
         hostName = "transmission.hopper.xun.host:80";
         extraConfig = ''

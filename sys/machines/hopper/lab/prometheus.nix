@@ -23,7 +23,7 @@
       {
         job_name = "caddy";
         static_configs = lib.singleton {
-          targets = ["192.168.15.1:2019"];
+          targets = ["${config.vpnNamespaces."wg".namespaceAddress}:2019"];
         };
       }
     ];

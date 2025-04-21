@@ -60,13 +60,13 @@ in {
           }
           {
             "adguard home" = {
-              href = "http://${config.networking.hostName}:${toString config.services.adguardhome.port}";
+              href = "http://adguard.hopper.xun.host";
               icon = "adguard-home";
             };
           }
           {
             "prometheus" = {
-              href = "http://${config.networking.hostName}:${toString config.services.prometheus.port}";
+              href = "http://prometheus.hopper.xun.host";
               icon = "prometheus";
             };
           }
