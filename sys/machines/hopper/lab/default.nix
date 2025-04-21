@@ -7,6 +7,7 @@
     ./caddy.nix
     ./homepage.nix
     ./jellyfin.nix
+    ./minecraft.nix
     ./navidrome.nix
     ./prometheus.nix
     ./restic.nix
@@ -15,7 +16,6 @@
     ./transmission.nix
     ./vaultwarden.nix
     ./vpn-namespace.nix
-    ./minecraft.nix
   ];
 
   users.groups.media = {};

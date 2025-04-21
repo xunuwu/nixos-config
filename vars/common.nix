@@ -1,3 +1,3 @@
 {
-  domain = "242114.xyz";
+  domain = "xunuwu.xyz";
 }
