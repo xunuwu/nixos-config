@@ -83,6 +83,7 @@
     # coding
     tokei
     devenv
+    lazyjj
     vscodium
     android-studio
     jetbrains.rider
