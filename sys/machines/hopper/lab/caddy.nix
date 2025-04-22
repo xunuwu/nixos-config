@@ -5,6 +5,7 @@
 }: let
   inherit (vars.common) domain;
   caddyPort = 8336;
+  bridge = config.vpnNamespaces."wg".bridgeAddress;
 in {
   systemd.services.caddy.vpnConfinement = {
     enable = true;
@@ -26,7 +27,7 @@ in {
         extraConfig = ''
           reverse_proxy {
             header_up X-Forwarded-For {http.request.header.CF-Connecting-IP}
-            to localhost:8096
+            to ${bridge}:8096
           }
         '';
       };
@@ -46,13 +47,13 @@ in {
       prometheus = {
         hostName = "prometheus.hopper.xun.host:80";
         extraConfig = ''
-          reverse_proxy ${config.vpnNamespaces."wg".bridgeAddress}:${toString config.services.prometheus.port}
+          reverse_proxy ${bridge}:${toString config.services.prometheus.port}
         '';
       };
       adguard = {
         hostName = "adguard.hopper.xun.host:80";
         extraConfig = ''
-          reverse_proxy ${config.vpnNamespaces."wg".bridgeAddress}:${toString config.services.adguardhome.port}
+          reverse_proxy ${bridge}:${toString config.services.adguardhome.port}
         '';
       };
       transmission = {
@@ -64,7 +65,7 @@ in {
       dash = {
         hostName = "dash.hopper.xun.host:80";
         extraConfig = ''
-          reverse_proxy localhost:${toString config.services.homepage-dashboard.listenPort}
+          reverse_proxy ${bridge}:${toString config.services.homepage-dashboard.listenPort}
         '';
       };
       vw = {
@@ -73,7 +74,7 @@ in {
         extraConfig = ''
           reverse_proxy {
             header_up X-Real-Ip {http.request.header.CF-Connecting-IP}
-            to localhost:${toString config.services.vaultwarden.config.ROCKET_PORT}
+            to ${bridge}:${toString config.services.vaultwarden.config.ROCKET_PORT}
           }
         '';
       };

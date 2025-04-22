@@ -1,10 +1,6 @@
 {config, ...}: {
   systemd.services.vaultwarden = {
     serviceConfig.EnvironmentFile = config.sops.secrets.vaultwarden-env.path;
-    vpnConfinement = {
-      enable = true;
-      vpnNamespace = "wg";
-    };
   };
   # NOTE send doesnt work, probably due to my cloudflare port rewriting rules
   services.vaultwarden = {

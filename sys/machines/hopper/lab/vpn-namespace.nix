@@ -7,6 +7,9 @@
     allowTcpFromVPNToDefaultPorts = [
       config.services.prometheus.port
       config.services.adguardhome.port
+      config.services.vaultwarden.config.ROCKET_PORT
+      config.services.homepage-dashboard.listenPort
+      8096 # jellyfin port
     ];
   in {
     extraCommands = builtins.concatStringsSep "\n" (map
