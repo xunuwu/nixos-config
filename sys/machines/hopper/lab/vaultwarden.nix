@@ -7,7 +7,7 @@
     enable = true;
     config = {
       DOMAIN = "https://${config.services.caddy.virtualHosts.vw.hostName}";
-      ROCKET_ADDRESS = "127.0.0.1";
+      ROCKET_ADDRESS = "0.0.0.0";
       ROCKET_PORT = 35381;
       ROCKET_LOG = "critical";
       SIGNUPS_ALLOWED = false;
