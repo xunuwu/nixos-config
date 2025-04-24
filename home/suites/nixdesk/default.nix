@@ -48,7 +48,7 @@
     develop.langs.haskell
     develop.langs.rust
     develop.langs.elixir
-    develop.langs.uiua
+    # develop.langs.uiua
     develop.langs.nix
     develop.langs.zig
     develop.langs.lua

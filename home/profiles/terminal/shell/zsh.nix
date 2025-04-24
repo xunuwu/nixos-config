@@ -15,7 +15,7 @@
       save = 100 * 1000;
       path = "${config.xdg.dataHome}/zsh_history";
     };
-    initExtra = ''
+    initContent = ''
       unsetopt beep
 
       ## KEYBINDS ##
