@@ -36,4 +36,6 @@
     };
     systemd.enable = true;
   };
+
+  services.restic.backups.hopper.paths = ["/var/lib/prometheus2"];
 }
