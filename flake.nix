@@ -72,6 +72,9 @@
     wayland-appusage.url = "github:xunuwu/wayland-appusage";
     wayland-appusage.inputs.nixpkgs.follows = "nixpkgs";
 
+    roblox-playtime.url = "github:xunuwu/roblox-playtime";
+    roblox-playtime.inputs.nixpkgs.follows = "nixpkgs";
+
     wallpaper = {
       url = "https://cdn.donmai.us/original/43/20/__kasane_teto_and_kasane_teto_utau_and_1_more_drawn_by_maguru_white__43204cf49ef8c071c34009553d1c0455.jpg";
       flake = false;

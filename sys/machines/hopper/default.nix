@@ -13,6 +13,7 @@
 
     ./hardware.nix
     ./lab
+    ./roblox-playtime.nix
     ./desktop.nix
 
     secrets.default

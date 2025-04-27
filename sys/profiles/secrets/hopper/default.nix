@@ -35,5 +35,11 @@
       format = "binary";
       sopsFile = ./miniflux;
     };
+    roblox-playtime = {
+      format = "binary";
+      sopsFile = ./roblox-playtime;
+      owner = "roblox-playtime";
+      group = "roblox-playtime";
+    };
   };
 }
