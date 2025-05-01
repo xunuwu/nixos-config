@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   systemd.services.slskd.vpnConfinement = {
     enable = true;
     vpnNamespace = "wg";
@@ -17,7 +21,10 @@
       shares.directories = ["/media/library/music"];
       soulseek = {
         listen_port = 26449;
-        description = "";
+        picture = pkgs.fetchurl {
+          url = "https://cdn.donmai.us/original/57/65/__kasane_teto_utau_drawn_by_nonounno__576558c9a54c63a268f9b584f1e84c9f.png";
+          hash = "sha256-7WOClBi4QgOfmcMaMorK/t8FGGO7dNUwxg3AVEjRemw=";
+        };
       };
       global = {
         upload = {
