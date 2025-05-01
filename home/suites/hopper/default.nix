@@ -30,6 +30,7 @@
     qpwgraph
 
     stremio
+    moonlight-qt
   ];
 
   home = {
