@@ -57,8 +57,8 @@
         80 # caddy
         443 # caddy
         2019 # caddy admin, for prometheus metrics
-        1900 # jellyfin discovery
-        7359 # jellyfin discovery
+        config.services.transmission.settings.rpc-port
+        config.services.slskd.settings.web.port
       ];
     in (lib.map (x: {
         from = x;

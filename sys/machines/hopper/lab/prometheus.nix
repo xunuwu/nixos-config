@@ -26,6 +26,17 @@
           targets = ["${config.vpnNamespaces."wg".namespaceAddress}:2019"];
         };
       }
+      {
+        job_name = "slskd";
+        static_configs = lib.singleton {
+          targets = ["${config.vpnNamespaces."wg".namespaceAddress}:${toString config.services.slskd.settings.web.port}"];
+        };
+        metric_relabel_configs = lib.singleton {
+          source_labels = ["__name__"];
+          regex = "node_.*";
+          action = "drop";
+        };
+      }
     ];
   };
 

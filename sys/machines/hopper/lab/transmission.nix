@@ -19,11 +19,13 @@
       speed-limit-up = 100 * mbit;
       speed-limit-down-enabled = true;
       speed-limit-down = 150 * mbit;
-      rpc-authentication-required = true;
       peer-port = 11936;
+      rpc-authentication-required = false;
       rpc-bind-address = "0.0.0.0";
-      rpc-whitelist = "127.0.0.1,192.168.\*.\*";
+      rpc-host-whitelist = "transmission.hopper.xun.host";
+      rpc-whitelist-enabled = true;
+      rpc-whitelist = "127.0.0.1,192.168.\*.\*,100.\*.\*.\*";
     };
-    credentialsFile = config.sops.secrets.transmission.path;
+    # credentialsFile = config.sops.secrets.transmission.path;
   };
 }

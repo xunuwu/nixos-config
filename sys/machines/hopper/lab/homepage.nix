@@ -4,6 +4,7 @@
   ...
 }: let
   inherit (vars.common) domain;
+  bridge = config.vpnNamespaces."wg".bridgeAddress;
 in {
   services.homepage-dashboard = {
     enable = true;
@@ -28,6 +29,10 @@ in {
             "transmission" = {
               href = "http://transmission.hopper.xun.host";
               icon = "transmission";
+              widget = {
+                type = "transmission";
+                url = "http://${config.vpnNamespaces."wg".namespaceAddress}:${toString config.services.transmission.settings.rpc-port}";
+              };
             };
           }
           {
@@ -56,12 +61,20 @@ in {
             "adguard home" = {
               href = "http://adguard.hopper.xun.host";
               icon = "adguard-home";
+              widget = {
+                type = "adguard";
+                url = "http://localhost:${toString config.services.adguardhome.port}";
+              };
             };
           }
           {
             "prometheus" = {
               href = "http://prometheus.hopper.xun.host";
               icon = "prometheus";
+              widget = {
+                type = "prometheus";
+                url = "http://localhost:${toString config.services.prometheus.port}";
+              };
             };
           }
           {
