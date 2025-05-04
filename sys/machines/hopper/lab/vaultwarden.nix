@@ -6,11 +6,12 @@
   services.vaultwarden = {
     enable = true;
     config = {
-      DOMAIN = "https://${config.services.caddy.virtualHosts.vw.hostName}";
+      DOMAIN = "https://${config.services.caddy.virtualHosts.vaultwarden.hostName}";
       ROCKET_ADDRESS = "0.0.0.0";
       ROCKET_PORT = 35381;
       ROCKET_LOG = "critical";
       SIGNUPS_ALLOWED = false;
+      IP_HEADER = "X-Forwarded-For";
     };
   };
 

@@ -1,6 +1,7 @@
 {
   config,
   vars,
+  inputs,
   ...
 }: let
   inherit (vars.common) domain;
@@ -20,64 +21,34 @@ in {
   services.caddy = {
     enable = true;
     globalConfig = "metrics";
-    virtualHosts = {
-      jellyfin = {
+    virtualHosts = let
+      mkPublicEntry = name: destination: {
         useACMEHost = domain;
-        hostName = "jellyfin.${domain}:${toString caddyPort}";
+        hostName = "${name}.${domain}:${toString caddyPort}";
         extraConfig = ''
+          @blocked not remote_ip ${builtins.replaceStrings ["\n"] [" "] (builtins.foldl' (res: ip-ver: "${res} ${builtins.readFile inputs."cloudflare-${ip-ver}".outPath}") "" ["ipv4" "ipv6"])}
+          respond @blocked "Access only allowed through cloudflare" 403
           reverse_proxy {
             header_up X-Forwarded-For {http.request.header.CF-Connecting-IP}
-            to ${bridge}:8096
+            to ${destination}
           }
         '';
       };
-      navidrome = {
-        useACMEHost = domain;
-        hostName = "navidrome.${domain}:${toString caddyPort}";
-        extraConfig = ''
-          reverse_proxy unix//var/lib/navidrome/navidrome.sock
-        '';
+      mkPrivateEntry = name: destination: {
+        hostName = "${name}.hopper.xun.host:80";
+        extraConfig = "reverse_proxy ${destination}";
       };
-      slskd = {
-        hostName = "slskd.hopper.xun.host:80";
-        extraConfig = ''
-          reverse_proxy localhost:${toString config.services.slskd.settings.web.port}
-        '';
-      };
-      prometheus = {
-        hostName = "prometheus.hopper.xun.host:80";
-        extraConfig = ''
-          reverse_proxy ${bridge}:${toString config.services.prometheus.port}
-        '';
-      };
-      adguard = {
-        hostName = "adguard.hopper.xun.host:80";
-        extraConfig = ''
-          reverse_proxy ${bridge}:${toString config.services.adguardhome.port}
-        '';
-      };
-      transmission = {
-        hostName = "transmission.hopper.xun.host:80";
-        extraConfig = ''
-          reverse_proxy localhost:${toString config.services.transmission.settings.rpc-port}
-        '';
-      };
-      dash = {
-        hostName = "dash.hopper.xun.host:80";
-        extraConfig = ''
-          reverse_proxy ${bridge}:${toString config.services.homepage-dashboard.listenPort}
-        '';
-      };
-      vw = {
-        useACMEHost = domain;
-        hostName = "vw.${domain}:${toString caddyPort}";
-        extraConfig = ''
-          reverse_proxy {
-            header_up X-Real-Ip {http.request.header.CF-Connecting-IP}
-            to ${bridge}:${toString config.services.vaultwarden.config.ROCKET_PORT}
-          }
-        '';
-      };
+    in {
+      jellyfin = mkPublicEntry "jellyfin" "${bridge}:8096";
+      navidrome = mkPublicEntry "navidrome" "unix//var/lib/navidrome/navidrome.sock";
+      vaultwarden = mkPublicEntry "vw" "${bridge}:${toString config.services.vaultwarden.config.ROCKET_PORT}";
+
+      slskd = mkPrivateEntry "slskd" "localhost:${toString config.services.slskd.settings.web.port}";
+      prometheus = mkPrivateEntry "prometheus" "${bridge}:${toString config.services.prometheus.port}";
+      adguard = mkPrivateEntry "adguard" "${bridge}:${toString config.services.adguardhome.port}";
+      transmission = mkPrivateEntry "transmission" "localhost:${toString config.services.transmission.settings.rpc-port}";
+      dash = mkPrivateEntry "dash" "${bridge}:${toString config.services.homepage-dashboard.listenPort}";
+
       other = {
         useACMEHost = domain;
         hostName = ":${toString caddyPort}";
