@@ -9,4 +9,6 @@
     enable = true;
     configFile = config.sops.secrets.roblox-playtime.path;
   };
+
+  services.restic.backups.hopper.paths = ["/var/lib/roblox-playtime"];
 }
