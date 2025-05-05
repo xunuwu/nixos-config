@@ -26,7 +26,7 @@
       ];
       kernelModules = ["amdgpu"];
     };
-    kernelModules = ["kvm-amd"];
+    kernelModules = ["kvm-amd" "msr"];
     extraModulePackages = with config.boot.kernelPackages; [
       # rtl88xxau-aircrack # usb wifi card
     ];
