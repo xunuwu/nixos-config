@@ -46,6 +46,7 @@
     develop.docs
 
     develop.langs.haskell
+    develop.langs.go
     develop.langs.rust
     develop.langs.elixir
     # develop.langs.uiua
