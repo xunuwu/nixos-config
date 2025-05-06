@@ -72,6 +72,9 @@
     # services.appusage
   ];
 
+  wayland.windowManager.sway.extraConfig = ''
+    exec obs --startreplaybuffer --disable-shutdown-check --minimize-to-tray
+  '';
   services = {
     udiskie.enable = true;
   };
