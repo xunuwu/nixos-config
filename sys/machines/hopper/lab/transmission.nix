@@ -16,7 +16,7 @@
       mbit = 125;
     in {
       speed-limit-up-enabled = true;
-      speed-limit-up = 100 * mbit;
+      speed-limit-up = 50 * mbit;
       speed-limit-down-enabled = true;
       speed-limit-down = 150 * mbit;
       peer-port = 11936;
