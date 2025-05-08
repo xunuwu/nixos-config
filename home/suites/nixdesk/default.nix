@@ -88,6 +88,7 @@
     tokei
     devenv
     lazyjj
+    jjui
     vscodium
     android-studio
     jetbrains.rider
