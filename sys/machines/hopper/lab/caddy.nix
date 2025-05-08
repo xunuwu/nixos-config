@@ -42,12 +42,14 @@ in {
       jellyfin = mkPublicEntry "jellyfin" "${bridge}:8096";
       navidrome = mkPublicEntry "navidrome" "unix//var/lib/navidrome/navidrome.sock";
       vaultwarden = mkPublicEntry "vw" "${bridge}:${toString config.services.vaultwarden.config.ROCKET_PORT}";
+      abs = mkPublicEntry "abs" "${bridge}:${toString config.services.audiobookshelf.port}";
 
       slskd = mkPrivateEntry "slskd" "localhost:${toString config.services.slskd.settings.web.port}";
       prometheus = mkPrivateEntry "prometheus" "${bridge}:${toString config.services.prometheus.port}";
       adguard = mkPrivateEntry "adguard" "${bridge}:${toString config.services.adguardhome.port}";
       transmission = mkPrivateEntry "transmission" "localhost:${toString config.services.transmission.settings.rpc-port}";
       dash = mkPrivateEntry "dash" "${bridge}:${toString config.services.homepage-dashboard.listenPort}";
+      absPriv = mkPrivateEntry "abs" "${bridge}:${toString config.services.audiobookshelf.port}";
 
       other = {
         useACMEHost = domain;

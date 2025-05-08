@@ -58,6 +58,12 @@ in {
             };
           }
           {
+            "audiobookshelf" = {
+              href = "https://abs.${domain}";
+              icon = "audiobookshelf";
+            };
+          }
+          {
             "adguard home" = {
               href = "http://adguard.hopper.xun.host";
               icon = "adguard-home";

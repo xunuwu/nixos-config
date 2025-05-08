@@ -4,6 +4,7 @@
   imports = [
     ./acme.nix
     ./adguard.nix
+    ./audiobookshelf.nix
     ./caddy.nix
     ./homepage.nix
     ./jellyfin.nix

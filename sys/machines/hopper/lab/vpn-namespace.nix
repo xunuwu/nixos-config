@@ -9,6 +9,7 @@
       config.services.adguardhome.port
       config.services.vaultwarden.config.ROCKET_PORT
       config.services.homepage-dashboard.listenPort
+      config.services.audiobookshelf.port
       8096 # jellyfin port
     ];
   in {
