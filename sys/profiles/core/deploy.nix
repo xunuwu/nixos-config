@@ -1,6 +1,6 @@
 {
   lib,
-  self,
+  vars,
   ...
 }: {
   nix.settings.trusted-users = ["deploy"]; # trust closures created by our user
@@ -18,9 +18,10 @@
     password = lib.mkForce null;
     passwordFile = lib.mkForce null;
 
-    openssh.authorizedKeys.keyFiles = [
-      (self + /sshKeys/xun_nixdesk)
-      (self + /sshKeys/alka_alkpc)
+    openssh.authorizedKeys.keys = with vars.sshKeys; [
+      xun_nixdesk
+      xun_redmi
+      alka_alkpc
     ];
   };
 }

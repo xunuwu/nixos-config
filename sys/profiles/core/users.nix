@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  vars,
+  ...
+}: {
   users.users.xun = {
     isNormalUser = true;
     initialPassword = "nixos";
@@ -11,6 +15,11 @@
       "video"
       "render"
       "audio"
+    ];
+
+    openssh.authorizedKeys.keys = with vars.sshKeys; [
+      xun_nixdesk
+      xun_redmi
     ];
   };
 }
