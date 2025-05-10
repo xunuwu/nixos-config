@@ -26,6 +26,7 @@
           hash = "sha256-7WOClBi4QgOfmcMaMorK/t8FGGO7dNUwxg3AVEjRemw=";
         };
       };
+      web.authentication.disabled = true;
       global = {
         upload = {
           slots = 50;
