@@ -3,7 +3,7 @@
   vars,
   ...
 }: let
-  inherit (vars.common) domain;
+  inherit (vars) domain;
   bridge = config.vpnNamespaces."wg".bridgeAddress;
 in {
   services.homepage-dashboard = {

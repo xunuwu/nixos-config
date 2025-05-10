@@ -6,19 +6,18 @@
     ...
   } @ inputs: let
     mylib = import ./lib nixpkgs.lib;
-    systemProfiles = mylib.loadTree2 ./sys/profiles;
-    homeProfiles = mylib.loadTreeInf ./home/profiles;
-    homeSuites = mylib.loadBranch ./home/suites;
-    vars = builtins.mapAttrs (_: v: import v) (mylib.loadBranch ./vars);
+    systemProfiles = ./sys/profiles;
+    homeProfiles = ./home/profiles;
+    homeSuites = ./home/suites;
+    vars = import ./vars;
   in
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = ["x86_64-linux"];
 
-      flake._mylib = mylib; # for debugging :3
-      flake._vars = vars; # for debugging :3
-      flake.nixosConfigurations = mylib.loadConfigurations ./sys/machines {
+      flake.nixosConfigurations = mylib.loadConfigurations ./sys/machines (hostname: {
         inherit inputs self systemProfiles homeProfiles homeSuites vars;
-      };
+        hostVars = ./vars/${hostname};
+      });
 
       perSystem = {pkgs, ...}: {
         imports = [

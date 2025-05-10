@@ -5,72 +5,70 @@
   homeProfiles,
   ...
 }: {
-  imports = with homeProfiles; [
-    ./defaults.nix
-    ./outputs.nix
+  imports =
+    [
+      ./defaults.nix
+      ./outputs.nix
+    ]
+    ++ (map (x: homeProfiles + x) [
+      /secrets
 
-    secrets.default
+      /default.nix
 
-    default
+      /terminal/shell/zsh.nix
+      /terminal/shell/fish.nix
 
-    terminal.shell.zsh
-    terminal.shell.fish
+      /terminal/programs/xdg.nix
+      /terminal/programs/direnv.nix
+      /terminal/programs/tmux.nix
+      /terminal/programs/comma.nix
+      /terminal/programs/irssi.nix
+      /terminal/programs/git.nix
+      /terminal/programs/github.nix
+      /terminal/programs/jujutsu.nix
 
-    terminal.programs.xdg
-    terminal.programs.direnv
-    terminal.programs.tmux
-    terminal.programs.comma
-    terminal.programs.irssi
-    terminal.programs.git
-    terminal.programs.github
-    terminal.programs.jujutsu
+      /editors/nvim.nix
 
-    # editors.emacs
-    editors.nvim
+      /programs/browsers/firefox/default.nix
+      /programs/browsers/tor.nix
+      /programs/browsers/chromium.nix
 
-    programs.browsers.firefox.default
-    programs.browsers.tor
-    programs.browsers.chromium
+      /terminal/emulator/foot.nix
 
-    # terminal.emulator.wezterm
-    terminal.emulator.foot
+      /themes/dark/default.nix
 
-    themes.dark.default
+      # desktop
+      /programs/desktop/default.nix
+      /programs/desktop/sway/default.nix
 
-    # desktop
-    programs.desktop.default
-    programs.desktop.sway.default
+      # development
+      /develop/common.nix
+      /develop/docs.nix
 
-    # development
-    develop.common
-    develop.docs
+      /develop/langs/haskell.nix
+      /develop/langs/go.nix
+      /develop/langs/rust.nix
+      /develop/langs/elixir.nix
+      /develop/langs/nix.nix
+      /develop/langs/zig.nix
+      /develop/langs/lua.nix
+      /develop/langs/c.nix
 
-    develop.langs.haskell
-    develop.langs.go
-    develop.langs.rust
-    develop.langs.elixir
-    # develop.langs.uiua
-    develop.langs.nix
-    develop.langs.zig
-    develop.langs.lua
-    develop.langs.c
+      # programs
+      /programs/misc/discord.nix
+      /programs/misc/obs.nix
 
-    # programs
-    programs.misc.discord
-    programs.misc.obs
+      /programs/music/beets.nix
+      /programs/music/cmus.nix
 
-    programs.music.beets
-    programs.music.cmus
+      /programs/media/mpv.nix
 
-    programs.media.mpv
+      # gaming
+      /programs/games/default.nix
 
-    # gaming
-    programs.games.default
-
-    services.playerctl
-    services.polkit-agent
-    # services.appusage
-  ];
+      /services/playerctl.nix
+      /services/polkit-agent.nix
+    ]);
 
   wayland.windowManager.sway.extraConfig = ''
     exec obs --startreplaybuffer --disable-shutdown-check --minimize-to-tray

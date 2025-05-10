@@ -7,87 +7,90 @@
   homeSuites,
   ...
 }: {
-  imports = with systemProfiles; [
-    ./hardware.nix
-    ./hibernate-boot.nix
-    ./samba-mount.nix
-    ./wireguard.nix
-    ./restic-server.nix
-    ./autologin.nix
+  # imports = with systemProfiles; [
+  imports =
+    [
+      ./hardware.nix
+      ./hibernate-boot.nix
+      ./samba-mount.nix
+      ./wireguard.nix
+      ./restic-server.nix
+      ./autologin.nix
 
-    inputs.stylix.nixosModules.stylix
+      inputs.stylix.nixosModules.stylix
 
-    secrets.default
-    secrets.nixdesk
+      {
+        home-manager = {
+          backupFileExtension = "hm-backup";
+          users.xun.imports = [
+            (homeSuites + /nixdesk)
+            inputs.sops-nix.homeManagerModules.sops
+            {home.stateVersion = "23.11";}
+          ];
+          extraSpecialArgs = specialArgs;
+        };
+      }
+    ]
+    ++ (map (x: systemProfiles + x) [
+      /secrets
+      /secrets/nixdesk
 
-    core.security
-    core.keyring
-    core.users
-    core.ssh
-    core.locale
-    nix.default
-    programs.zsh
-    programs.fish
-    core.tools
-    core.compat
-    core.boot
-    # core.docs
-    core.gvfs
+      /core/security.nix
+      /core/keyring.nix
+      /core/users.nix
+      /core/ssh.nix
+      /core/locale.nix
+      /nix
+      /programs/zsh.nix
+      /programs/fish.nix
+      /core/tools.nix
+      /core/compat.nix
+      /core/boot.nix
+      # core.docs
+      /core/gvfs.nix
 
-    nix.gc
+      /nix/gc.nix
 
-    hardware.graphics
-    hardware.steam-hardware
-    hardware.bluetooth
-    hardware.qmk
+      /hardware/graphics.nix
+      /hardware/steam-hardware.nix
+      /hardware/bluetooth.nix
+      /hardware/qmk.nix
 
-    network.networkd
-    network.avahi
-    network.localsend
-    network.tailscale
-    network.goldberg
+      /network/networkd.nix
+      /network/avahi.nix
+      /network/localsend.nix
+      /network/tailscale.nix
+      /network/goldberg.nix
 
-    desktop.sway
+      /desktop/sway.nix
 
-    programs.dconf
-    programs.fonts
-    programs.home-manager
-    # programs.qt
-    programs.adb
-    programs.openrgb
-    programs.tools
-    programs.thunar
-    programs.corectrl
+      /programs/dconf.nix
+      /programs/fonts.nix
+      /programs/home-manager.nix
+      # programs.qt
+      /programs/adb.nix
+      /programs/openrgb.nix
+      /programs/tools.nix
+      /programs/thunar.nix
+      /programs/corectrl.nix
 
-    services.default
-    services.pipewire
-    services.flatpak
+      /services
+      /services/pipewire.nix
+      /services/flatpak.nix
 
-    # services.syncthing
-    services.waydroid
-    services.virt-manager
-    services.sunshine
-    # network.wifi
+      # services.syncthing
+      /services/waydroid.nix
+      /services/virt-manager.nix
+      /services/sunshine.nix
+      # network.wifi
 
-    themes.dark
+      /themes/dark.nix
 
-    programs.gamemode
-    programs.gamescope
-    programs.steam
-    programs.RE
-
-    {
-      home-manager = {
-        backupFileExtension = "hm-backup";
-        users.xun.imports = [
-          homeSuites.nixdesk
-          inputs.sops-nix.homeManagerModules.sops
-          {home.stateVersion = "23.11";}
-        ];
-        extraSpecialArgs = specialArgs;
-      };
-    }
-  ];
+      /programs/gamemode.nix
+      /programs/gamescope.nix
+      /programs/steam.nix
+      /programs/RE
+    ]);
 
   networking.hostName = "nixdesk";
 

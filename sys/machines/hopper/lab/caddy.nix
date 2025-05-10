@@ -4,7 +4,7 @@
   inputs,
   ...
 }: let
-  inherit (vars.common) domain;
+  inherit (vars) domain;
   caddyPort = 8336;
   bridge = config.vpnNamespaces."wg".bridgeAddress;
 in {

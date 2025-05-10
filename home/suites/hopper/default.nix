@@ -4,20 +4,20 @@
   pkgs,
   ...
 }: {
-  imports = with homeProfiles; [
-    terminal.programs.xdg
-    terminal.programs.comma
+  imports = map (x: homeProfiles + x) [
+    /terminal/programs/xdg.nix
+    /terminal/programs/comma.nix
 
-    editors.nvim
-    terminal.emulator.foot
+    /editors/nvim.nix
+    /terminal/emulator/foot.nix
 
-    programs.desktop.default
-    programs.desktop.sway.default
+    /programs/desktop/default.nix
+    /programs/desktop/sway/default.nix
 
-    programs.media.mpv
+    /programs/media/mpv.nix
 
-    services.playerctl
-    services.polkit-agent
+    /services/playerctl.nix
+    /services/polkit-agent.nix
   ];
 
   wayland.windowManager.sway.config.output."HDMI-A-1".scale = "2.0";

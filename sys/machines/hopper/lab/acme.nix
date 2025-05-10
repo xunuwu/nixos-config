@@ -3,7 +3,7 @@
   vars,
   ...
 }: let
-  inherit (vars.common) domain;
+  inherit (vars) domain;
 in {
   security.acme = {
     acceptTerms = true;
