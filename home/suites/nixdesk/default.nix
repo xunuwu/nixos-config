@@ -80,6 +80,7 @@
     starship.enable = true;
     zoxide.enable = true;
     lazygit.enable = true;
+    distrobox.enable = true;
   };
   home.packages = with pkgs; [
     # coding
