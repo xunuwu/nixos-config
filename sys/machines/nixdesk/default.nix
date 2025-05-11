@@ -76,6 +76,7 @@
 
       /services
       /services/pipewire.nix
+      /services/podman.nix
       /services/flatpak.nix
 
       # services.syncthing
