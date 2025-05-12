@@ -66,7 +66,7 @@
 
       "google".metaData.alias = "@go";
       "ddb".metaData.alias = "@ddg";
-      "Wikipedia".metaData.alias = "@wiki";
+      "wikipedia".metaData.alias = "@wiki";
       "bing".metaData.alias = "@bi";
     };
   };
