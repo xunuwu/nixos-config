@@ -1,0 +1,23 @@
+diff --git a/core/agents/lastfm/client.go b/core/agents/lastfm/client.go
+index 6a24ac80..bbc0aebb 100644
+--- a/core/agents/lastfm/client.go
++++ b/core/agents/lastfm/client.go
+@@ -131,7 +131,7 @@ type ScrobbleInfo struct {
+ func (c *client) updateNowPlaying(ctx context.Context, sessionKey string, info ScrobbleInfo) error {
+ 	params := url.Values{}
+ 	params.Add("method", "track.updateNowPlaying")
+-	params.Add("artist", info.artist)
++	params.Add("artist", info.albumArtist)
+ 	params.Add("track", info.track)
+ 	params.Add("album", info.album)
+ 	params.Add("trackNumber", strconv.Itoa(info.trackNumber))
+@@ -154,7 +154,7 @@ func (c *client) scrobble(ctx context.Context, sessionKey string, info ScrobbleI
+ 	params := url.Values{}
+ 	params.Add("method", "track.scrobble")
+ 	params.Add("timestamp", strconv.FormatInt(info.timestamp.Unix(), 10))
+-	params.Add("artist", info.artist)
++	params.Add("artist", info.albumArtist)
+ 	params.Add("track", info.track)
+ 	params.Add("album", info.album)
+ 	params.Add("trackNumber", strconv.Itoa(info.trackNumber))
+

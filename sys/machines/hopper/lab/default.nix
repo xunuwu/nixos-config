@@ -9,7 +9,7 @@
     ./homepage.nix
     ./jellyfin.nix
     ./minecraft.nix
-    ./navidrome.nix
+    ./navidrome
     ./prometheus.nix
     ./restic.nix
     ./samba.nix
