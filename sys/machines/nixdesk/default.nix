@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   inputs,
   systemProfiles,
   specialArgs,
@@ -94,6 +95,17 @@
     ]);
 
   networking.hostName = "nixdesk";
+
+  # for running waydroid as root, needed for cage-xtmapper
+  services.dbus.packages = [
+    (pkgs.writeTextDir "/etc/dbus-1/session.d/dbus-allow-root.conf" ''
+      <busconfig>
+        <policy context="mandatory">
+          <allow user="root"/>
+        </policy>
+      </busconfig>
+    '')
+  ];
 
   nixpkgs.config = {
     # rocmSupport = true;
