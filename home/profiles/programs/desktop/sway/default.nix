@@ -116,7 +116,8 @@
             "${mod}+Shift+Backspace" = "exec systemctl suspend";
             "${mod}+Shift+s" = "exec ${lib.getExe pkgs.wayfreeze} --after-freeze-cmd '${lib.getExe pkgs.sway-contrib.grimshot} copy anything && pkill wayfreeze'";
             "${mod}+Ctrl+Shift+s" = "exec ${lib.getExe pkgs.wayfreeze} --after-freeze-cmd '${lib.getExe pkgs.sway-contrib.grimshot} savecopy anything && pkill wayfreeze'";
-            "${mod}+Alt+s" = "exec ${lib.getExe pkgs.wayfreeze} --after-freeze-cmd '${lib.getExe pkgs.sway-contrib.grimshot} save anything - | ${lib.getExe pkgs.tesseract} -l eng - - | wl-copy && pkill wayfreeze'";
+            # "${mod}+Alt+s" = "exec ${lib.getExe pkgs.wayfreeze} --after-freeze-cmd '${lib.getExe pkgs.sway-contrib.grimshot} save anything - | ${lib.getExe pkgs.tesseract} -l eng - - | wl-copy && pkill wayfreeze'";
+            "${mod}+Alt+s" = "exec ${lib.getExe pkgs.wayfreeze} --after-freeze-cmd '${lib.getExe pkgs.sway-contrib.grimshot} save anything - && pkill wayfreeze' | ${lib.getExe pkgs.satty} --disable-notifications --fullscreen -f -";
 
             "${mod}+Shift+p" = "exec ${pauseApp}";
             "${mod}+period" = "exec ${lib.getExe pkgs.bemoji}";
