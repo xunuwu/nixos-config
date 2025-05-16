@@ -88,7 +88,7 @@
     devenv
     lazyjj
     jjui
-    vscodium
+    vscodium-fhs
     android-studio
     jetbrains.rider
     jetbrains.idea-ultimate
