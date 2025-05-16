@@ -3,7 +3,6 @@
   pkgs,
   ...
 }: {
-  users.groups.${config.services.navidrome.group}.members = ["caddy"]; # for caddy to access socket file
   services.navidrome = {
     enable = true;
     package = pkgs.navidrome.overrideAttrs {
@@ -12,7 +11,7 @@
     };
     settings = {
       MusicFolder = "/media/library/music";
-      Address = "unix:/var/lib/navidrome/navidrome.sock";
+      Address = config.vpnNamespaces."wg".bridgeAddress;
       EnableSharing = true;
     };
   };

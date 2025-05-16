@@ -10,6 +10,7 @@
       config.services.vaultwarden.config.ROCKET_PORT
       config.services.homepage-dashboard.listenPort
       config.services.audiobookshelf.port
+      config.services.navidrome.settings.Port
       8096 # jellyfin port
     ];
   in {
