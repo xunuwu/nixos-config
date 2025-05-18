@@ -7,9 +7,10 @@
   stylix = {
     iconTheme = {
       enable = true;
-      package = pkgs.adwaita-icon-theme;
-      dark = "Adwaita-dark";
+      package = pkgs.morewaita-icon-theme;
+      dark = "MoreWaita";
     };
+
     targets = {
       firefox.profileNames = ["xun"];
       gtk.enable = true;
