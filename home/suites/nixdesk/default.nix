@@ -47,6 +47,7 @@
 
       /develop/langs/haskell.nix
       /develop/langs/go.nix
+      /develop/langs/js.nix
       /develop/langs/rust.nix
       /develop/langs/elixir.nix
       /develop/langs/nix.nix
