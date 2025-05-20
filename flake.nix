@@ -78,6 +78,9 @@
     roblox-playtime.url = "github:xunuwu/roblox-playtime";
     roblox-playtime.inputs.nixpkgs.follows = "nixpkgs";
 
+    own-website.url = "github:xunuwu/xunuwu.xyz";
+    own-website.inputs.nixpkgs.follows = "nixpkgs";
+
     cloudflare-ipv4.url = "https://www.cloudflare.com/ips-v4";
     cloudflare-ipv4.flake = false;
 

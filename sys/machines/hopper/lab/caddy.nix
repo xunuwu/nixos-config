@@ -2,6 +2,7 @@
   config,
   vars,
   inputs,
+  pkgs,
   ...
 }: let
   inherit (vars) domain;
@@ -50,6 +51,15 @@ in {
       transmission = mkPrivateEntry "transmission" "localhost:${toString config.services.transmission.settings.rpc-port}";
       dash = mkPrivateEntry "dash" "${bridge}:${toString config.services.homepage-dashboard.listenPort}";
       absPriv = mkPrivateEntry "abs" "${bridge}:${toString config.services.audiobookshelf.port}";
+
+      base = {
+        useACMEHost = domain;
+        hostName = "${domain}:${toString caddyPort}";
+        extraConfig = ''
+          root * ${inputs.own-website.packages.${pkgs.system}.default}
+          file_server
+        '';
+      };
 
       other = {
         useACMEHost = domain;
