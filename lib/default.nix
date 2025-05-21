@@ -7,4 +7,5 @@ in {
         modules = [(dir + /${name})];
         specialArgs = specialArgsFromHost name;
       })) (b.readDir dir);
+  stripPort = url: builtins.match "(.*):[0-9]*" url |> builtins.head;
 }

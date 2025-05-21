@@ -15,9 +15,11 @@
       systems = ["x86_64-linux"];
 
       flake.nixosConfigurations = mylib.loadConfigurations ./sys/machines (hostname: {
-        inherit inputs self systemProfiles homeProfiles homeSuites vars;
+        inherit inputs self systemProfiles homeProfiles homeSuites vars mylib;
         hostVars = ./vars/${hostname};
       });
+
+      flake._mylib = mylib;
 
       perSystem = {pkgs, ...}: {
         imports = [
