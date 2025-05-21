@@ -63,6 +63,11 @@
         icon = "https://crates.io/favicon.ico";
         definedAliases = ["@cr"];
       };
+      "noogle" = {
+        url = mkUrl "https://noogle.dev/q?term={searchTerms}";
+        icon = "https://noogle.dev/favicon.png";
+        definedAliases = ["@noogle"];
+      };
 
       "google".metaData.alias = "@go";
       "ddb".metaData.alias = "@ddg";
