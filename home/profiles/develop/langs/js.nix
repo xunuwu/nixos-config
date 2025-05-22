@@ -1,8 +1,8 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
+    vtsls
     nodejs
     typescript
-    typescript-language-server
     vscode-langservers-extracted
   ];
 }
