@@ -1,4 +1,8 @@
 {
+  vars,
+  lib,
+  ...
+}: {
   services.adguardhome = {
     enable = true;
     mutableSettings = false;
@@ -16,16 +20,17 @@
         bootstrap_dns = ["1.1.1.1" "8.8.8.8"];
       };
       filtering = {
-        rewrites = [
-          {
-            domain = "*.hopper.xun.host";
-            answer = "100.115.105.144";
-          }
-          {
-            domain = "hopper.xun.host";
-            answer = "100.115.105.144";
-          }
-        ];
+        rewrites = lib.concatLists (lib.mapAttrsToList (n: v: [
+            {
+              domain = "${n}.xun.host";
+              answer = v;
+            }
+            {
+              domain = "*.${n}.xun.host";
+              answer = v;
+            }
+          ])
+          vars.tailnet);
       };
       filters = [
         {

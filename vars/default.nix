@@ -1,5 +1,9 @@
 {
   domain = "xunuwu.xyz";
+  tailnet = {
+    hopper = "100.115.105.144";
+    nixdesk = "100.104.163.5";
+  };
   sshKeys = {
     xun_nixdesk = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKqW5ZkBV2XCdF/ZhwC1DOfrgiLxCC2ym6BO7miHi05M xun@nixdesk";
     xun_redmi = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK2FOrgCLSoewCnDH01SmRqsCb7cR3CA6AcULrlV+180 xun@redmi";
