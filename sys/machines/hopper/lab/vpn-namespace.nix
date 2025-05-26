@@ -11,6 +11,7 @@
       config.services.homepage-dashboard.listenPort
       config.services.audiobookshelf.port
       config.services.navidrome.settings.Port
+      config.services.glances.port
       8096 # jellyfin port
     ];
   in {

@@ -54,6 +54,7 @@ in {
       transmission = mkPrivateEntry "transmission" "localhost:${toString config.services.transmission.settings.rpc-port}";
       dash = mkPrivateEntry "dash" "${bridge}:${toString config.services.homepage-dashboard.listenPort}";
       absPriv = mkPrivateEntry "abs" "${bridge}:${toString config.services.audiobookshelf.port}";
+      glances = mkPrivateEntry "glances" "${bridge}:${toString config.services.glances.port}";
 
       base = {
         useACMEHost = domain;

@@ -84,6 +84,12 @@ in {
             };
           }
           {
+            "glances" = {
+              href = "http://glances.hopper.xun.host";
+              icon = "glances";
+            };
+          }
+          {
             "vaultwarden" = {
               href = "https://vw.${domain}";
               icon = "vaultwarden";

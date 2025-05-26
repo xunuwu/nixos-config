@@ -6,6 +6,7 @@
     ./adguard.nix
     ./audiobookshelf.nix
     ./caddy.nix
+    ./glances.nix
     ./homepage.nix
     ./jellyfin.nix
     ./minecraft.nix

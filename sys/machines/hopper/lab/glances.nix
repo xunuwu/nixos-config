@@ -1,0 +1,5 @@
+{
+  services.glances = {
+    enable = true;
+  };
+}
