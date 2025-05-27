@@ -80,6 +80,8 @@
     roblox-playtime.url = "github:xunuwu/roblox-playtime";
     roblox-playtime.inputs.nixpkgs.follows = "nixpkgs";
 
+    impermanence.url = "github:nix-community/impermanence";
+
     own-website.url = "github:xunuwu/xunuwu.xyz";
     own-website.inputs.nixpkgs.follows = "nixpkgs";
 

@@ -45,5 +45,6 @@
     };
   };
 
+  environment.persistence."/persist".directories = ["/srv/minecraft"];
   services.restic.backups.hopper.paths = ["/srv/minecraft"];
 }

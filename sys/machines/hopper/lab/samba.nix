@@ -63,5 +63,6 @@
     };
   };
 
+  environment.persistence."/persist".directories = ["/srv/vault"];
   services.restic.backups.hopper.paths = ["/srv/vault"];
 }

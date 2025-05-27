@@ -19,5 +19,6 @@
     };
   };
 
+  environment.persistence."/persist".directories = ["/var/lib/bitwarden_rs"];
   services.restic.backups.hopper.paths = ["/var/lib/bitwarden_rs"];
 }

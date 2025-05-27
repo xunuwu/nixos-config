@@ -16,7 +16,7 @@
           "tls://unfiltered.adguard-dns.com"
           "https://dns10.quad9.net/dns-query"
         ];
-        bind_hosts = ["100.115.105.144"];
+        bind_hosts = [vars.tailnet.hopper];
         bootstrap_dns = ["1.1.1.1" "8.8.8.8"];
       };
       filtering = {

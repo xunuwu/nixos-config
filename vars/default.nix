@@ -1,7 +1,7 @@
 {
   domain = "xunuwu.xyz";
   tailnet = {
-    hopper = "100.115.105.144";
+    hopper = "100.99.196.113";
     nixdesk = "100.104.163.5";
   };
   sshKeys = {

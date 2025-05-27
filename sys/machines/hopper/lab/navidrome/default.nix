@@ -17,6 +17,8 @@
   };
   systemd.services.navidrome.serviceConfig.EnvironmentFile = config.sops.secrets.navidrome.path;
 
+  environment.persistence."/persist".directories = ["/var/lib/navidrome"];
+
   services.restic.backups.hopper = {
     paths = ["/var/lib/navidrome"];
     exclude = ["/var/lib/navidrome/cache"];

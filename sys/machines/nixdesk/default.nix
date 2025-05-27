@@ -18,6 +18,7 @@
       ./restic-server.nix
       ./autologin.nix
 
+      inputs.impermanence.nixosModules.impermanence
       inputs.stylix.nixosModules.stylix
 
       {
@@ -125,6 +126,8 @@
       ];
     android_sdk.accept_license = true;
   };
+
+  environment.persistence."/persist".enable = false;
 
   networking.interfaces.eno1.wakeOnLan.enable = true;
 

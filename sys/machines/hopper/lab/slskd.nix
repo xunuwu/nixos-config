@@ -36,4 +36,6 @@
       };
     };
   };
+
+  environment.persistence."/persist".directories = ["/var/lib/slskd"];
 }

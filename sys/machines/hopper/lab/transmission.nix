@@ -28,4 +28,6 @@
     };
     # credentialsFile = config.sops.secrets.transmission.path;
   };
+
+  environment.persistence."/persist".directories = ["/var/lib/transmission"];
 }
