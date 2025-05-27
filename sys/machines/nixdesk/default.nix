@@ -84,6 +84,7 @@
       /services/waydroid.nix
       /services/virt-manager.nix
       /services/sunshine.nix
+      /services/locate.nix
       # network.wifi
 
       /themes/dark.nix
@@ -94,7 +95,7 @@
       /programs/RE
     ]);
 
-  networking.hostName = "nixdesk";
+  services.locate.prunePaths = lib.mkOptionDefault ["/home/xun/backup"];
 
   # for running waydroid as root, needed for cage-xtmapper
   services.dbus.packages = [
@@ -131,5 +132,6 @@
 
   networking.interfaces.eno1.wakeOnLan.enable = true;
 
+  networking.hostName = "nixdesk";
   system.stateVersion = "23.11";
 }
