@@ -12,7 +12,6 @@
       config.services.audiobookshelf.port
       config.services.navidrome.settings.Port
       config.services.glances.port
-      8096 # jellyfin port
     ];
   in {
     extraCommands = builtins.concatStringsSep "\n" (map

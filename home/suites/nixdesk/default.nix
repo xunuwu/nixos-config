@@ -124,7 +124,6 @@
 
     # media
     stremio
-    jellyfin-media-player
     feishin
     foliate
 

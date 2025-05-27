@@ -43,7 +43,6 @@ in {
         extraConfig = "reverse_proxy ${destination}";
       };
     in {
-      jellyfin = mkPublicEntry "jellyfin" "${bridge}:8096";
       navidrome = mkPublicEntry "navidrome" "${bridge}:${toString config.services.navidrome.settings.Port}";
       vaultwarden = mkPublicEntry "vw" "${bridge}:${toString config.services.vaultwarden.config.ROCKET_PORT}";
       abs = mkPublicEntry "abs" "${bridge}:${toString config.services.audiobookshelf.port}";

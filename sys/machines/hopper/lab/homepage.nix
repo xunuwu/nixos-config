@@ -46,12 +46,6 @@ in {
       {
         "Services" = [
           {
-            "jellyfin" = {
-              href = "https://jellyfin.${domain}";
-              icon = "jellyfin";
-            };
-          }
-          {
             "navidrome" = {
               href = "https://navidrome.${domain}";
               icon = "navidrome";

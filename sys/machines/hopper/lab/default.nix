@@ -8,7 +8,6 @@
     ./caddy.nix
     ./glances.nix
     ./homepage.nix
-    ./jellyfin.nix
     ./minecraft.nix
     ./navidrome
     ./prometheus.nix
