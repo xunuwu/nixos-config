@@ -73,7 +73,6 @@
       /programs/openrgb.nix
       /programs/tools.nix
       /programs/thunar.nix
-      /programs/corectrl.nix
 
       /services
       /services/pipewire.nix
