@@ -1,3 +1,0 @@
-[krunker]
-src.cmd = "curl -I -s -o /dev/null -w '%header{x-goog-generation}' 'https://client2.krunker.io/setup.AppImage'"
-fetch.url = "https://client2.krunker.io/setup.AppImage"
