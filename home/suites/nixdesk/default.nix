@@ -54,6 +54,7 @@
       /develop/langs/zig.nix
       /develop/langs/lua.nix
       /develop/langs/c.nix
+      /develop/langs/csharp.nix
 
       # programs
       /programs/misc/discord.nix
