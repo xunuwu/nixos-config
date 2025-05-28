@@ -587,7 +587,10 @@
         "git-hooks": "git-hooks",
         "hercules-ci-effects": "hercules-ci-effects",
         "neovim-src": "neovim-src",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": [
+          "nvim-config",
+          "nixpkgs"
+        ],
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
@@ -729,22 +732,6 @@
         "type": "github"
       }
     },
-    "nixpkgs_2": {
-      "locked": {
-        "lastModified": 1747467164,
-        "narHash": "sha256-JBXbjJ0t6T6BbVc9iPVquQI9XSXCGQJD8c8SgnUquus=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "3fcbdcfc707e0aa42c541b7743e05820472bdaec",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nur": {
       "inputs": {
         "flake-parts": [
@@ -779,11 +766,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1748400544,
-        "narHash": "sha256-65XqgPIhQqQu3AzJgQxkCT7QC7Y0AbJGpuy2S1aTsYk=",
+        "lastModified": 1748446177,
+        "narHash": "sha256-fWSR3KIlHFynWDU4lOE6GVblCQTZJ4dLhCDbllv3Oio=",
         "owner": "xunuwu",
         "repo": "nvim-config",
-        "rev": "e10f6a82c2e1bce50f2eb9aa28c961e70c814413",
+        "rev": "2b3d114b5ceef920b666baa64fc147920a89a825",
         "type": "github"
       },
       "original": {
