@@ -7,7 +7,6 @@
       just
       home-manager
       sops
-      nvfetcher
     ];
   };
 }

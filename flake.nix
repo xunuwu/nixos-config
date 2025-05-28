@@ -58,11 +58,6 @@
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
-    authentik-nix.url = "github:nix-community/authentik-nix";
-
-    # nvfetcher.url = "github:berberman/nvfetcher";
-    # nvfetcher.inputs.nixpkgs.follows = "nixpkgs";
-
     nix-gaming.url = "github:fufexan/nix-gaming";
     nix-gaming.inputs.nixpkgs.follows = "nixpkgs";
 
