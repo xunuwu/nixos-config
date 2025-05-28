@@ -80,13 +80,9 @@
     own-website.url = "github:xunuwu/xunuwu.xyz";
     own-website.inputs.nixpkgs.follows = "nixpkgs";
 
-    cloudflare-ipv4.url = "https://www.cloudflare.com/ips-v4";
-    cloudflare-ipv4.flake = false;
+    cloudflare-ipv4.url = "file+https://www.cloudflare.com/ips-v4";
+    cloudflare-ipv6.url = "file+https://www.cloudflare.com/ips-v6";
 
-    cloudflare-ipv6.url = "https://www.cloudflare.com/ips-v6";
-    cloudflare-ipv6.flake = false;
-
-    wallpaper.url = "https://cdn.donmai.us/original/43/20/__kasane_teto_and_kasane_teto_utau_and_1_more_drawn_by_maguru_white__43204cf49ef8c071c34009553d1c0455.jpg";
-    wallpaper.flake = false;
+    wallpaper.url = "file+https://cdn.donmai.us/original/43/20/__kasane_teto_and_kasane_teto_utau_and_1_more_drawn_by_maguru_white__43204cf49ef8c071c34009553d1c0455.jpg";
   };
 }
