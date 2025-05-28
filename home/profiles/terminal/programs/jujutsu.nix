@@ -7,7 +7,7 @@
         name = config.programs.git.userName;
       };
       signing = {
-        behaviour = "own";
+        behavior = "own";
         backend = "ssh";
         key = config.programs.git.signing.key;
       };
