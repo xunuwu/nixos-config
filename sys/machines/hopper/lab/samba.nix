@@ -1,4 +1,9 @@
-{config, ...}: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   # only used for samba
   users.groups.xun = {};
   users.users.xun = {
@@ -27,14 +32,15 @@
         "server string" = config.networking.hostName;
         "hosts allow" = "192.168.50.0/24";
         "map to guest" = "bad user";
+        "passdb backend" = "smbpasswd:${config.sops.secrets.samba-pass.path}";
       };
       transmission = {
         path = "/var/lib/transmission";
         browseable = "yes";
         "read only" = "yes";
         "guest ok" = "no";
-        "create mask" = "0664";
-        "directory mask" = "0775";
+        "create mask" = "0660";
+        "directory mask" = "0770";
       };
       vault = {
         path = "/srv/vault";
@@ -61,8 +67,8 @@
         browseable = "yes";
         "read only" = "no";
         "guest ok" = "no";
-        "create mask" = "0666";
-        "directory mask" = "0777";
+        "create mask" = "0660";
+        "directory mask" = "0770";
         "force user" = "media";
         "force group" = "media";
       };

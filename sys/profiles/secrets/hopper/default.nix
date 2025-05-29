@@ -41,5 +41,10 @@
       owner = "roblox-playtime";
       group = "roblox-playtime";
     };
+    samba-pass = {
+      format = "binary";
+      sopsFile = ./samba-pass;
+      mode = "0600";
+    };
   };
 }
