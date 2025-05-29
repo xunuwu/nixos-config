@@ -3,9 +3,9 @@
 {
   imports = [
     ./acme.nix
-    ./adguard.nix
     ./audiobookshelf.nix
     ./caddy.nix
+    ./dnsmasq.nix
     ./glances.nix
     ./homepage.nix
     ./minecraft.nix

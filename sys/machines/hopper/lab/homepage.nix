@@ -58,16 +58,6 @@ in {
             };
           }
           {
-            "adguard home" = {
-              href = "http://adguard.hopper.xun.host";
-              icon = "adguard-home";
-              widget = {
-                type = "adguard";
-                url = "http://localhost:${toString config.services.adguardhome.port}";
-              };
-            };
-          }
-          {
             "prometheus" = {
               href = "http://prometheus.hopper.xun.host";
               icon = "prometheus";

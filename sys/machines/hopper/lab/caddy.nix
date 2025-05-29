@@ -49,7 +49,6 @@ in {
 
       slskd = mkPrivateEntry "slskd" "localhost:${toString config.services.slskd.settings.web.port}";
       prometheus = mkPrivateEntry "prometheus" "${bridge}:${toString config.services.prometheus.port}";
-      adguard = mkPrivateEntry "adguard" "${bridge}:${toString config.services.adguardhome.port}";
       transmission = mkPrivateEntry "transmission" "localhost:${toString config.services.transmission.settings.rpc-port}";
       dash = mkPrivateEntry "dash" "${bridge}:${toString config.services.homepage-dashboard.listenPort}";
       absPriv = mkPrivateEntry "abs" "${bridge}:${toString config.services.audiobookshelf.port}";
