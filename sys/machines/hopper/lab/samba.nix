@@ -7,16 +7,22 @@
     extraGroups = ["transmission" "vault" "media"];
   };
 
+  users.users.media = {
+    isSystemUser = true;
+    group = "media";
+  };
+
   users.groups.vault = {};
   systemd.tmpfiles.rules = [
     "d /srv/vault 0770 root vault -"
+    "d /media/library 0770 media media -"
   ];
   services.samba = {
     enable = true;
     openFirewall = true;
     settings = {
       global = {
-        "log level" = 6;
+        "log level" = "3 passdb:5 auth:5";
         "log file" = "/var/log/samba/samba.log";
         "server string" = config.networking.hostName;
         "hosts allow" = "192.168.50.0/24";

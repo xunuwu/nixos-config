@@ -3,6 +3,8 @@
   pkgs,
   ...
 }: {
+  users.users.navidrome.extraGroups = ["media"];
+
   services.navidrome = {
     enable = true;
     package = pkgs.navidrome.overrideAttrs {

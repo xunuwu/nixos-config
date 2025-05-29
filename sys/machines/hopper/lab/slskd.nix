@@ -8,6 +8,8 @@
     vpnNamespace = "wg";
   };
 
+  users.users.slskd.extraGroups = ["media"];
+
   services.slskd = {
     enable = true;
     environmentFile = config.sops.secrets.slskd.path;
