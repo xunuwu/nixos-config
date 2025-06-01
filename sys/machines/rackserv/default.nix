@@ -1,10 +1,6 @@
 {
-  lib,
-  pkgs,
   inputs,
   systemProfiles,
-  specialArgs,
-  self,
   ...
 }: {
   imports =
@@ -13,6 +9,7 @@
       inputs.impermanence.nixosModules.impermanence
       inputs.disko.nixosModules.disko
       ./disk-config.nix
+      ./fail2ban.nix
     ]
     ++ (map (x: systemProfiles + x) [
       /core/security.nix
