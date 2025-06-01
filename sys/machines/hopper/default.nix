@@ -47,6 +47,7 @@
       /hardware/bluetooth.nix
 
       /nix/default.nix # TODO slim this down
+      /nix/gc.nix
 
       /network/tailscale.nix
       /network/avahi.nix
