@@ -44,6 +44,7 @@ in {
       vaultwarden = mkPublicEntry "vw" "${bridge}:${toString config.services.vaultwarden.config.ROCKET_PORT}";
       abs = mkPublicEntry "abs" "${bridge}:${toString config.services.audiobookshelf.port}";
 
+      navidrome2 = mkPrivateEntry "navidrome" "${bridge}:${toString config.services.navidrome.settings.Port}";
       slskd = mkPrivateEntry "slskd" "localhost:${toString config.services.slskd.settings.web.port}";
       prometheus = mkPrivateEntry "prometheus" "${bridge}:${toString config.services.prometheus.port}";
       transmission = mkPrivateEntry "transmission" "localhost:${toString config.services.transmission.settings.rpc-port}";
