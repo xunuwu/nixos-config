@@ -34,18 +34,24 @@
     allowedUDPPorts = [51820] ++ (b.filter (x: b.elem "udp" x.protocols) portsList |> map (x: x.port));
     extraCommands =
       portsAndIpsList
-      |> map (x: ''
-        ${x.protocols |> map (protocol: "iptables -t nat -A PREROUTING  -p ${protocol} --dport ${toString x.port} -j DNAT --to-destination ${x.destinationIp}") |> b.concatStringsSep "\n"}
-        ${x.protocols |> map (protocol: "iptables -t nat -A POSTROUTING -p ${protocol} -d ${x.destinationIp} --dport ${toString x.port} -j SNAT --to-source 172.245.52.19") |> b.concatStringsSep "\n"}
-      '')
+      |> map (x:
+        x.protocols
+        |> map (protocol: ''
+          iptables -t nat -A PREROUTING  -p ${protocol} --dport ${toString x.port} -j DNAT --to-destination ${x.destinationIp}
+          iptables -t nat -A POSTROUTING -p ${protocol} -d ${x.destinationIp} --dport ${toString x.port} -j SNAT --to-source 172.245.52.19
+        ''))
+      |> b.concatLists
       |> b.concatStringsSep "\n";
 
     extraStopCommands =
       portsAndIpsList
-      |> map (x: ''
-        ${x.protocols |> map (protocol: "iptables -t nat -D PREROUTING  -t nat -p ${protocol} --dport ${toString x.port} -j DNAT --to-destination ${x.destinationIp}") |> b.concatStringsSep "\n"}
-        ${x.protocols |> map (protocol: "iptables -t nat -D POSTROUTING -t nat -p ${protocol} -d ${x.destinationIp} --dport ${toString x.port} -j SNAT --to-source 172.245.52.19") |> b.concatStringsSep "\n"}
-      '')
+      |> map (x:
+        x.protocols
+        |> map (protocol: ''
+          iptables -t nat -D PREROUTING  -p ${protocol} --dport ${toString x.port} -j DNAT --to-destination ${x.destinationIp} || true
+          iptables -t nat -D POSTROUTING -p ${protocol} -d ${x.destinationIp} --dport ${toString x.port} -j SNAT --to-source 172.245.52.19 || true
+        ''))
+      |> b.concatLists
       |> b.concatStringsSep "\n";
 
     interfaces.wg0 = {
@@ -104,28 +110,4 @@
       bind-interfaces = true;
     };
   };
-
-  # networking.wireguard = {
-  #   enable = true;
-  #   interfaces.wg0 = {
-  #     ips = ["10.0.0.0/10"];
-  #     listenPort = 51820;
-  #     postSetup = ''
-  #       ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.100.0.0/24 -o eth0 -j MASQUERADE
-  #     '';
-  #     postShutdown = ''
-  #       ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.100.0.0/24 -o eth0 -j MASQUERADE
-  #     '';
-  #
-  #     privateKeyFile = config.sops.secrets.wireguard-privatekey.path;
-  #
-  #     peers = [
-  #       {
-  #         # hopper
-  #         publicKey = "P5W5/m9VnWcbdR6e3rs4Yars4Qb2rPjkRmCAbgja4Ug=";
-  #         allowedIPs = ["10.0.0.1/32"];
-  #       }
-  #     ];
-  #   };
-  # };
 }
