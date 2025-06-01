@@ -77,6 +77,9 @@
 
     impermanence.url = "github:nix-community/impermanence";
 
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
+
     own-website.url = "github:xunuwu/xunuwu.xyz";
     own-website.inputs.nixpkgs.follows = "nixpkgs";
 

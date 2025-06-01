@@ -3,6 +3,7 @@
   tailnet = {
     hopper = "100.99.196.113";
     nixdesk = "100.104.163.5";
+    rackserv = "100.83.27.16";
   };
   sshKeys = {
     xun_nixdesk = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKqW5ZkBV2XCdF/ZhwC1DOfrgiLxCC2ym6BO7miHi05M xun@nixdesk";
