@@ -6,18 +6,24 @@
 }: {
   networking.firewall = let
     forwardPorts = {
-      "10.0.0.3" =
-        lib.range 23000 23010
-        |> map (n: {
-          protocols = ["tcp" "udp"];
-          port = n;
-        });
       "10.0.0.2" =
         [24001 24002 24003]
         |> map (n: {
           protocols = ["tcp"];
           port = n;
         });
+      "10.0.0.3" =
+        lib.range 23000 23010
+        |> map (n: {
+          protocols = ["tcp" "udp"];
+          port = n;
+        });
+      "10.0.0.4" = [
+        {
+          protocols = ["tcp"];
+          port = 22000;
+        }
+      ];
     };
 
     b = builtins;
@@ -70,6 +76,11 @@
           # nixdesk
           PublicKey = "DMauL/fv08yXvVtyStsUfg/OM+ZJwMNvguQ59X/KU2Q=";
           AllowedIPs = ["10.0.0.3" "fd12:1e51:ca23::3"];
+        }
+        {
+          # alka
+          PublicKey = "Q90dKQtQTu8RLgkPau7/Y5fY3PVstP0bL6ey3zrdS18=";
+          AllowedIPs = ["10.0.0.4" "fd12:1e51:ca23::3"];
         }
       ];
     };
