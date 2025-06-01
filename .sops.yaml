@@ -4,6 +4,7 @@ keys:
   - &hosts:
     - &nixdesk age155sscpw0x36t6s9usdrz7relpxqrtqnk98mrc7s0qcv2n0v3zd7sfl2xn8
     - &hopper age1e9nhfwfcg9krc03re4fwh0wu0cwf6jq4js5vfn26hcdqc2apgdes98fea7
+    - &rackserv age1zutg3s4nth679a6av9xqw4km0ezmfkxlnusu78demf0rzazqn3pqk9exgj
 
 creation_rules:
   - path_regex: home/profiles/secrets
@@ -26,3 +27,8 @@ creation_rules:
       - age:
         - *xun
         - *hopper
+  - path_regex: sys/profiles/secrets/rackserv
+    key_groups:
+      - age:
+        - *xun
+        - *rackserv

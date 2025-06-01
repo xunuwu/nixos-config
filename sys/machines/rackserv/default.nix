@@ -10,8 +10,12 @@
       inputs.disko.nixosModules.disko
       ./disk-config.nix
       ./fail2ban.nix
+      ./wireguard-server.nix
     ]
     ++ (map (x: systemProfiles + x) [
+      /secrets/default.nix
+      /secrets/rackserv/default.nix
+
       /core/security.nix
       /core/tools.nix
       /core/ssh.nix

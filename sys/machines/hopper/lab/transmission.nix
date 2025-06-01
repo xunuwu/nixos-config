@@ -19,7 +19,7 @@
       speed-limit-up = 50 * mbit;
       speed-limit-down-enabled = true;
       speed-limit-down = 150 * mbit;
-      peer-port = 11936;
+      peer-port = 24003;
       rpc-authentication-required = false;
       rpc-bind-address = "0.0.0.0";
       rpc-host-whitelist = "transmission.hopper.xun.host";

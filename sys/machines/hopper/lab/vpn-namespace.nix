@@ -38,15 +38,15 @@
         protocol = "tcp";
       }
       {
-        port = config.services.slskd.settings.soulseek.listen_port;
+        port = 24001; # slskd
         protocol = "both";
       }
       {
-        port = config.services.slskd.settings.soulseek.listen_port + 1;
+        port = 24002; # slskd
         protocol = "both";
       }
       {
-        port = config.services.transmission.settings.peer-port;
+        port = 24003; # transmission
         protocol = "both";
       }
     ];
