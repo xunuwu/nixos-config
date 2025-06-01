@@ -6,7 +6,6 @@
   ...
 }: let
   inherit (vars) domain;
-  caddyPort = 8336;
   bridge = config.vpnNamespaces."wg".bridgeAddress;
 in {
   systemd.services.caddy.vpnConfinement = {
@@ -29,11 +28,9 @@ in {
       '';
       mkPublicEntry = name: destination: {
         useACMEHost = domain;
-        hostName = "${name}.${domain}:${toString caddyPort}";
+        hostName = "${name}.${domain}";
         extraConfig = ''
-          ${blockNonCloudflare}
           reverse_proxy {
-            header_up X-Forwarded-For {http.request.header.CF-Connecting-IP}
             to ${destination}
           }
         '';
@@ -56,9 +53,8 @@ in {
 
       base = {
         useACMEHost = domain;
-        hostName = "${domain}:${toString caddyPort}";
+        hostName = "${domain}";
         extraConfig = ''
-          ${blockNonCloudflare}
           root * ${inputs.own-website.packages.${pkgs.system}.default}
           file_server
         '';
@@ -66,15 +62,7 @@ in {
 
       other = {
         useACMEHost = domain;
-        hostName = ":${toString caddyPort}";
-        extraConfig = ''
-          respond 404 {
-            body "uhh that doesnt exist, i hope this isnt my fault.."
-          }
-        '';
-      };
-      otherPriv = {
-        hostName = ":80";
+        hostName = "*.${domain}";
         extraConfig = ''
           respond 404 {
             body "uhh that doesnt exist, i hope this isnt my fault.."

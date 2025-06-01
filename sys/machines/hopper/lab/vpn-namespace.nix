@@ -34,9 +34,14 @@
     # Forwarded to my vpn, for making things accessible from outside
     openVPNPorts = [
       {
-        port = 8336;
+        port = 443; # caddy
         protocol = "tcp";
       }
+      {
+        port = 80; # caddy
+        protocol = "tcp";
+      }
+
       {
         port = 24001; # slskd
         protocol = "both";
