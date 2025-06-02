@@ -25,7 +25,7 @@
         }
       ];
     };
-
+    externalIp = "172.245.52.19";
     b = builtins;
     portsList = b.attrValues forwardPorts |> b.concatLists;
     portsAndIpsList = lib.mapAttrsToList (n: v: map (x: x // {destinationIp = n;}) v) forwardPorts |> b.concatLists;
@@ -37,7 +37,7 @@
       |> map (x:
         x.protocols
         |> map (protocol: ''
-          iptables -t nat -A PREROUTING  -p ${protocol} --dport ${toString x.port} -j DNAT --to-destination ${x.destinationIp}
+          iptables -t nat -A PREROUTING -p ${protocol} -d ${externalIp} --dport ${toString x.port} -j DNAT --to-destination ${x.destinationIp}
           iptables -t nat -A POSTROUTING -p ${protocol} -d ${x.destinationIp} --dport ${toString x.port} -j SNAT --to-source 172.245.52.19
         ''))
       |> b.concatLists
@@ -48,7 +48,7 @@
       |> map (x:
         x.protocols
         |> map (protocol: ''
-          iptables -t nat -D PREROUTING  -p ${protocol} --dport ${toString x.port} -j DNAT --to-destination ${x.destinationIp} || true
+          iptables -t nat -D PREROUTING  -p ${protocol} -d ${externalIp} --dport ${toString x.port} -j DNAT --to-destination ${x.destinationIp} || true
           iptables -t nat -D POSTROUTING -p ${protocol} -d ${x.destinationIp} --dport ${toString x.port} -j SNAT --to-source 172.245.52.19 || true
         ''))
       |> b.concatLists
@@ -65,7 +65,7 @@
       netdevConfig = {
         Kind = "wireguard";
         Name = "wg0";
-        MTUBytes = "1300";
+        MTUBytes = "1420";
       };
       wireguardConfig = {
         ListenPort = 51820;
