@@ -32,6 +32,8 @@
     efiInstallAsRemovable = true;
   };
 
+  networking.firewall.logRefusedConnections = false; # this spams my journal too much
+
   hardware.enableRedistributableFirmware = true;
 
   environment.persistence."/persist".enable = false;
