@@ -27,12 +27,6 @@
 
   networking.firewall = {
     allowedUDPPorts = [1900 7359]; # Jellyfin auto-discovery
-    allowedTCPPorts = [
-      # caddy lan ports
-      80
-      443
-      2345
-    ];
   };
 
   boot.kernel.sysctl."fs.inotify.max_user_watches" = 99999999;

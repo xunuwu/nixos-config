@@ -67,30 +67,6 @@
         "type": "github"
       }
     },
-    "cloudflare-ipv4": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-V4dThTb8iw02hjngubVtSJbEeWgOS1e/ODt1fLjLZvk=",
-        "type": "file",
-        "url": "https://www.cloudflare.com/ips-v4"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://www.cloudflare.com/ips-v4"
-      }
-    },
-    "cloudflare-ipv6": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-BgpkXCAh/MmK3GTAElKiGJctCYUN+/UgvpuawqGmitE=",
-        "type": "file",
-        "url": "https://www.cloudflare.com/ips-v6"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://www.cloudflare.com/ips-v6"
-      }
-    },
     "crane": {
       "locked": {
         "lastModified": 1745454774,
@@ -844,8 +820,6 @@
     },
     "root": {
       "inputs": {
-        "cloudflare-ipv4": "cloudflare-ipv4",
-        "cloudflare-ipv6": "cloudflare-ipv6",
         "disko": "disko",
         "firefox-addons": "firefox-addons",
         "flake-parts": "flake-parts",

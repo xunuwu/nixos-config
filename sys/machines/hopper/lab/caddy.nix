@@ -22,10 +22,6 @@ in {
     enable = true;
     globalConfig = "metrics";
     virtualHosts = let
-      blockNonCloudflare = ''
-        @blocked not remote_ip ${builtins.replaceStrings ["\n"] [" "] (builtins.foldl' (res: ip-ver: "${res} ${builtins.readFile inputs."cloudflare-${ip-ver}".outPath}") "" ["ipv4" "ipv6"])}
-        respond @blocked "Access only allowed through cloudflare" 403
-      '';
       mkPublicEntry = name: destination: {
         useACMEHost = domain;
         hostName = "${name}.${domain}";
@@ -36,8 +32,12 @@ in {
         '';
       };
       mkPrivateEntry = name: destination: {
-        hostName = "${name}.hopper.xun.host:80";
-        extraConfig = "reverse_proxy ${destination}";
+        hostName = "${name}.hopper.priv.${domain}";
+        extraConfig = ''
+          @blocked not remote_ip ${bridge}
+          respond @blocked "limited to intranet" 403
+          reverse_proxy ${destination}
+        '';
       };
     in {
       navidrome = mkPublicEntry "navidrome" "${bridge}:${toString config.services.navidrome.settings.Port}";

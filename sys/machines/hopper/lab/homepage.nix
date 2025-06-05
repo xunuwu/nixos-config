@@ -8,7 +8,7 @@
 in {
   services.homepage-dashboard = {
     enable = true;
-    allowedHosts = "dash.hopper.xun.host";
+    allowedHosts = "dash.hopper.priv.${domain}";
     widgets = [
       {
         resources = {
@@ -27,7 +27,7 @@ in {
         "Downloading" = [
           {
             "transmission" = {
-              href = "http://transmission.hopper.xun.host";
+              href = "https://transmission.hopper.priv.${domain}";
               icon = "transmission";
               widget = {
                 type = "transmission";
@@ -37,7 +37,7 @@ in {
           }
           {
             "slskd" = {
-              href = "http://slskd.hopper.xun.host";
+              href = "https://slskd.hopper.priv.${domain}";
               icon = "slskd";
             };
           }
@@ -59,7 +59,7 @@ in {
           }
           {
             "prometheus" = {
-              href = "http://prometheus.hopper.xun.host";
+              href = "https://prometheus.hopper.priv.${domain}";
               icon = "prometheus";
               widget = {
                 type = "prometheus";
@@ -69,7 +69,7 @@ in {
           }
           {
             "glances" = {
-              href = "http://glances.hopper.xun.host";
+              href = "https://glances.hopper.priv.${domain}";
               icon = "glances";
             };
           }

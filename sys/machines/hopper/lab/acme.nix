@@ -11,7 +11,7 @@ in {
     certs = {
       "${domain}" = {
         domain = "${domain}";
-        extraDomainNames = ["*.${domain}"];
+        extraDomainNames = ["*.${domain}" "*.hopper.priv.${domain}"];
         dnsProvider = "cloudflare";
         reloadServices = ["caddy.service"];
         credentialFiles = {
