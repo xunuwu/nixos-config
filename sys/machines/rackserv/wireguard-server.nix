@@ -38,7 +38,6 @@
         x.protocols
         |> map (protocol: ''
           iptables -t nat -A PREROUTING -p ${protocol} -d ${externalIp} --dport ${toString x.port} -j DNAT --to-destination ${x.destinationIp}
-          iptables -t nat -A POSTROUTING -p ${protocol} -d ${x.destinationIp} --dport ${toString x.port} -j SNAT --to-source 172.245.52.19
         ''))
       |> b.concatLists
       |> b.concatStringsSep "\n";
@@ -49,7 +48,6 @@
         x.protocols
         |> map (protocol: ''
           iptables -t nat -D PREROUTING  -p ${protocol} -d ${externalIp} --dport ${toString x.port} -j DNAT --to-destination ${x.destinationIp} || true
-          iptables -t nat -D POSTROUTING -p ${protocol} -d ${x.destinationIp} --dport ${toString x.port} -j SNAT --to-source 172.245.52.19 || true
         ''))
       |> b.concatLists
       |> b.concatStringsSep "\n";
