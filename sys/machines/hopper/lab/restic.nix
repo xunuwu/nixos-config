@@ -12,8 +12,7 @@
     pruneOpts = [
       "--keep-daily 7"
       "--keep-weekly 5"
-      "--keep-monthly 12"
-      "--keep-yearly 2"
+      "--keep-monthly 6"
     ];
     paths = [
       "/media/library/music"
