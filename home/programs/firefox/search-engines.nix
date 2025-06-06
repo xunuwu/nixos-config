@@ -64,9 +64,9 @@
         definedAliases = ["@cr"];
       };
       "noogle" = {
-        url = mkUrl "https://noogle.dev/q?term={searchTerms}";
+        urls = mkUrl "https://noogle.dev/q?term={searchTerms}";
         icon = "https://noogle.dev/favicon.png";
-        definedAliases = ["@noogle"];
+        definedAliases = ["@nog"];
       };
 
       "google".metaData.alias = "@go";
