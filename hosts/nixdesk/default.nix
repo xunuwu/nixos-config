@@ -37,7 +37,6 @@
       /core/users.nix
       /core/ssh.nix
       /core/locale.nix
-      /nix
       /programs/zsh.nix
       /programs/fish.nix
       /core/tools.nix
@@ -46,6 +45,7 @@
       # core.docs
       /core/gvfs.nix
 
+      /nix/nix.nix
       /nix/gc.nix
 
       /hardware/graphics.nix
@@ -70,7 +70,8 @@
       /programs/tools.nix
       /programs/thunar.nix
 
-      /services
+      /services/psd.nix
+      /services/dbus-broker.nix
       /services/pipewire.nix
       /services/podman.nix
       /services/flatpak.nix

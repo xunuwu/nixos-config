@@ -42,7 +42,7 @@
       /hardware/steam-hardware.nix
       /hardware/bluetooth.nix
 
-      /nix/default.nix # TODO slim this down
+      /nix/nix.nix
       /nix/gc.nix
 
       /network/tailscale.nix
