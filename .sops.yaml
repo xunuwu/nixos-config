@@ -7,27 +7,17 @@ keys:
     - &rackserv age1zutg3s4nth679a6av9xqw4km0ezmfkxlnusu78demf0rzazqn3pqk9exgj
 
 creation_rules:
-  - path_regex: home/profiles/secrets
-    key_groups:
-      - age:
-        - *xun
-  - path_regex: sys/profiles/secrets/global
+  - path_regex: secrets/nixdesk
     key_groups:
       - age:
         - *xun
         - *nixdesk
-        - *hopper
-  - path_regex: sys/profiles/secrets/nixdesk
-    key_groups:
-      - age:
-        - *xun
-        - *nixdesk
-  - path_regex: sys/profiles/secrets/hopper
+  - path_regex: secrets/hopper
     key_groups:
       - age:
         - *xun
         - *hopper
-  - path_regex: sys/profiles/secrets/rackserv
+  - path_regex: secrets/rackserv
     key_groups:
       - age:
         - *xun

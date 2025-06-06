@@ -8,7 +8,7 @@ local OPERATION *FLAGS:
   {{OPERATION}}
 
 updatekeys:
-  fd . sys/profiles/secrets -E '*.nix' -t f -x sops updatekeys -y
+  fd . secrets -E '*.nix' -t f -x sops updatekeys -y
 
 remote OPERATION HOST REMOTEHOST *FLAGS:
   nixos-rebuild \
