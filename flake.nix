@@ -6,11 +6,13 @@
     haumea,
     ...
   } @ inputs: let
-    systemProfiles = haumea.lib.load {
-      src = ./sys/profiles;
-      loader = haumea.lib.loaders.path;
-    };
-    homeProfiles = ./home;
+    _load = path:
+      haumea.lib.load {
+        src = path;
+        loader = haumea.lib.loaders.path;
+      };
+    systemProfiles = _load ./sys/profiles;
+    homeProfiles = _load ./home;
     vars = import ./vars;
     l = nixpkgs.lib;
     b = builtins;

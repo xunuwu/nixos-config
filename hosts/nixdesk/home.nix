@@ -6,63 +6,63 @@
   homeProfiles,
   ...
 }: {
-  imports = map (x: homeProfiles + x) [
-    /cli/zsh.nix
-    /cli/fish.nix
+  imports = with homeProfiles; [
+    cli.zsh
+    cli.fish
 
-    /cli/xdg.nix
-    /cli/direnv.nix
-    /cli/tmux.nix
-    /cli/comma.nix
-    /cli/irssi.nix
-    /cli/git.nix
-    /cli/github.nix
-    /cli/jujutsu.nix
+    cli.xdg
+    cli.direnv
+    cli.tmux
+    cli.comma
+    cli.irssi
+    cli.git
+    cli.github
+    cli.jujutsu
 
-    /programs/nvim.nix
+    programs.nvim
 
-    /programs/firefox/default.nix
-    /programs/tor.nix
-    /programs/chromium.nix
+    programs.firefox.default
+    programs.tor
+    programs.chromium
 
-    /programs/foot.nix
+    programs.foot
 
-    /themes/dark/default.nix
+    themes.dark.default
 
     # desktop
-    /desktop/xdg-portals.nix
-    /desktop/sway/default.nix
+    desktop.xdg-portals
+    desktop.sway.default
 
     # development
-    /develop/common.nix
-    /develop/docs.nix
+    develop.common
+    develop.docs
 
-    /develop/langs/haskell.nix
-    /develop/langs/go.nix
-    /develop/langs/js.nix
-    /develop/langs/rust.nix
-    /develop/langs/elixir.nix
-    /develop/langs/nix.nix
-    /develop/langs/zig.nix
-    /develop/langs/lua.nix
-    /develop/langs/c.nix
-    /develop/langs/csharp.nix
+    develop.langs.haskell
+    develop.langs.go
+    develop.langs.js
+    develop.langs.rust
+    develop.langs.elixir
+    develop.langs.nix
+    develop.langs.zig
+    develop.langs.lua
+    develop.langs.c
+    develop.langs.csharp
 
     # programs
-    /programs/discord.nix
-    /programs/obs.nix
+    programs.discord
+    programs.obs
 
-    /programs/beets.nix
-    /programs/cmus.nix
+    programs.beets
+    programs.cmus
 
-    /programs/mpv.nix
+    programs.mpv
 
     # gaming
-    /programs/mangohud.nix
-    /programs/jc141.nix
+    programs.mangohud
+    programs.jc141
 
-    /services/playerctl.nix
-    /services/polkit-agent.nix
+    services.playerctl
+    services.polkit-agent
   ];
 
   wayland.windowManager.sway.extraConfig = ''
