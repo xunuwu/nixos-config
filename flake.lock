@@ -783,11 +783,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1747945819,
-        "narHash": "sha256-wkzFyNmaWzSfaJoSx1QRSoK/b9178juBNaHVwgOuWgM=",
+        "lastModified": 1749197856,
+        "narHash": "sha256-Vk9HO8RMe8fsDCzFQJlp4hAUDFMrduOMDmh6ZifiVHA=",
         "owner": "xunuwu",
         "repo": "xunuwu.xyz",
-        "rev": "968f8db09275d8730765771dfd791aab07ead7bc",
+        "rev": "3943ddd64bf04e3631d39f110723f1aee27c3a82",
         "type": "github"
       },
       "original": {
