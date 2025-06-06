@@ -15,11 +15,11 @@
       systems = ["x86_64-linux"];
 
       flake.nixosConfigurations =
-        b.readDir ./sys/machines
+        b.readDir ./hosts
         |> b.mapAttrs (hostname: _:
           l.nixosSystem {
             modules = [
-              ./sys/machines/${hostname}
+              ./hosts/${hostname}
               ./secrets/${hostname}
               inputs.sops-nix.nixosModules.sops
             ];
