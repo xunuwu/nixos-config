@@ -45,6 +45,11 @@
         icon = "https://github.githubassets.com/favicons/favicon-dark.svg";
         definedAliases = ["@ghn"];
       };
+      "nixpkgs github" = {
+        urls = mkUrl "https://github.com/search?type=code&q=repo:NixOS/nixpkgs {searchTerms}";
+        icon = "https://github.githubassets.com/favicons/favicon-dark.svg";
+        definedAliases = ["@nixpkgs"];
+      };
       "Brave" = {
         urls = mkUrl "https://search.brave.com/search?q={searchTerms}";
         icon = "https://brave.com/static-assets/images/brave-favicon.png";
