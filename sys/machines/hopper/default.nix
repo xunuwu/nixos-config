@@ -31,9 +31,6 @@
       }
     ]
     ++ (map (x: systemProfiles + x) [
-      /secrets/default.nix
-      /secrets/hopper/default.nix
-
       /programs/home-manager.nix
 
       /core/security.nix

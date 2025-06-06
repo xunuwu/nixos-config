@@ -13,8 +13,6 @@
 
     self.packages.${pkgs.system}.binaryninja-personal
     self.packages.${pkgs.system}.ida-pro
-    # (pkgs.callPackage ./il2cppdumper {})
-    # (pkgs.callPackage ./ilspy {})
     gdb
   ];
 

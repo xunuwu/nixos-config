@@ -11,8 +11,6 @@
       ./outputs.nix
     ]
     ++ (map (x: homeProfiles + x) [
-      /secrets
-
       /default.nix
 
       /terminal/shell/zsh.nix

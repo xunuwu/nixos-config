@@ -5,21 +5,29 @@
     nixpkgs,
     ...
   } @ inputs: let
-    mylib = import ./lib nixpkgs.lib;
     systemProfiles = ./sys/profiles;
     homeProfiles = ./home/profiles;
     homeSuites = ./home/suites;
     vars = import ./vars;
+    l = nixpkgs.lib;
+    b = builtins;
   in
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = ["x86_64-linux"];
 
-      flake.nixosConfigurations = mylib.loadConfigurations ./sys/machines (hostname: {
-        inherit inputs self systemProfiles homeProfiles homeSuites vars mylib;
-        hostVars = ./vars/${hostname};
-      });
-
-      flake._mylib = mylib;
+      flake.nixosConfigurations =
+        b.readDir ./sys/machines
+        |> b.mapAttrs (hostname: _:
+          l.nixosSystem {
+            modules = [
+              ./sys/machines/${hostname}
+              ./secrets/${hostname}
+              inputs.sops-nix.nixosModules.sops
+            ];
+            specialArgs = {
+              inherit inputs self systemProfiles homeProfiles homeSuites vars;
+            };
+          });
 
       perSystem = {pkgs, ...}: {
         imports = [

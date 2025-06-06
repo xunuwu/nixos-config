@@ -34,9 +34,6 @@
       }
     ]
     ++ (map (x: systemProfiles + x) [
-      /secrets
-      /secrets/nixdesk
-
       /core/security.nix
       /core/keyring.nix
       /core/users.nix
@@ -92,7 +89,7 @@
       /programs/gamemode.nix
       /programs/gamescope.nix
       /programs/steam.nix
-      /programs/RE
+      /programs/reverse-engineering.nix
     ]);
 
   services.locate.prunePaths = lib.mkOptionDefault ["/home/xun/backup"];
