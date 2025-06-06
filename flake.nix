@@ -3,17 +3,13 @@
     self,
     flake-parts,
     nixpkgs,
+    haumea,
     ...
   } @ inputs: let
-    _loadProfiles = dir:
-      b.readDir dir
-      |> b.mapAttrs (categoryName: _:
-        b.readDir /${dir}/${categoryName}
-        |> l.mapAttrs' (profileName: _: {
-          name = l.removeSuffix ".nix" profileName;
-          value = /${dir}/${categoryName}/${profileName};
-        }));
-    systemProfiles = _loadProfiles ./sys/profiles;
+    systemProfiles = haumea.lib.load {
+      src = ./sys/profiles;
+      loader = haumea.lib.loaders.path;
+    };
     homeProfiles = ./home;
     vars = import ./vars;
     l = nixpkgs.lib;
@@ -79,6 +75,9 @@
 
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    haumea.url = "github:nix-community/haumea/v0.2.2";
+    haumea.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
