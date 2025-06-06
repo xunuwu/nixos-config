@@ -13,10 +13,10 @@
       inputs.impermanence.nixosModules.impermanence
 
       ./hardware.nix
-      ./lab
-      ./roblox-playtime.nix
-      ./desktop.nix
-      ./persistent.nix
+      ./profiles/lab
+      ./profiles/roblox-playtime.nix
+      ./profiles/desktop.nix
+      ./profiles/persistent.nix
 
       {
         home-manager = {

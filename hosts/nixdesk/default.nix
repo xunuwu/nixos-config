@@ -10,11 +10,11 @@
   imports =
     [
       ./hardware.nix
-      ./hibernate-boot.nix
-      ./samba-mount.nix
-      ./wireguard.nix
-      ./restic-server.nix
-      ./autologin.nix
+      ./profiles/hibernate-boot.nix
+      ./profiles/samba-mount.nix
+      ./profiles/wireguard.nix
+      ./profiles/restic-server.nix
+      ./profiles/autologin.nix
 
       inputs.impermanence.nixosModules.impermanence
       inputs.stylix.nixosModules.stylix

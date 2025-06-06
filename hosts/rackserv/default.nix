@@ -8,11 +8,11 @@
       "${inputs.nixpkgs}/nixos/modules/profiles/qemu-guest.nix"
       inputs.impermanence.nixosModules.impermanence
       inputs.disko.nixosModules.disko
-      ./disk-config.nix
-      ./fail2ban.nix
-      ./wireguard-server.nix
-      ./backups.nix
-      ./caddy.nix
+      ./disks.nix
+      ./profiles/fail2ban.nix
+      ./profiles/wireguard-server.nix
+      ./profiles/backups.nix
+      ./profiles/caddy.nix
     ]
     ++ (map (x: systemProfiles + x) [
       /core/security.nix
