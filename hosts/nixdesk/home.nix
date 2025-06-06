@@ -7,33 +7,31 @@
   ...
 }: {
   imports = map (x: homeProfiles + x) [
-    /default.nix
+    /cli/zsh.nix
+    /cli/fish.nix
 
-    /terminal/shell/zsh.nix
-    /terminal/shell/fish.nix
+    /cli/xdg.nix
+    /cli/direnv.nix
+    /cli/tmux.nix
+    /cli/comma.nix
+    /cli/irssi.nix
+    /cli/git.nix
+    /cli/github.nix
+    /cli/jujutsu.nix
 
-    /terminal/programs/xdg.nix
-    /terminal/programs/direnv.nix
-    /terminal/programs/tmux.nix
-    /terminal/programs/comma.nix
-    /terminal/programs/irssi.nix
-    /terminal/programs/git.nix
-    /terminal/programs/github.nix
-    /terminal/programs/jujutsu.nix
+    /programs/nvim.nix
 
-    /editors/nvim.nix
+    /programs/firefox/default.nix
+    /programs/tor.nix
+    /programs/chromium.nix
 
-    /programs/browsers/firefox/default.nix
-    /programs/browsers/tor.nix
-    /programs/browsers/chromium.nix
-
-    /terminal/emulator/foot.nix
+    /programs/foot.nix
 
     /themes/dark/default.nix
 
     # desktop
-    /programs/desktop/default.nix
-    /programs/desktop/sway/default.nix
+    /desktop/xdg-portals.nix
+    /desktop/sway/default.nix
 
     # development
     /develop/common.nix
@@ -51,17 +49,17 @@
     /develop/langs/csharp.nix
 
     # programs
-    /programs/misc/discord.nix
-    /programs/misc/obs.nix
+    /programs/discord.nix
+    /programs/obs.nix
 
-    /programs/music/beets.nix
-    /programs/music/cmus.nix
+    /programs/beets.nix
+    /programs/cmus.nix
 
-    /programs/media/mpv.nix
+    /programs/mpv.nix
 
     # gaming
-    /programs/games/default.nix
-    /programs/games/jc141.nix
+    /programs/mangohud.nix
+    /programs/jc141.nix
 
     /services/playerctl.nix
     /services/polkit-agent.nix
@@ -156,4 +154,12 @@
     inputs.sobercookie.packages.${pkgs.system}.default
     self.packages.${pkgs.system}.krunker
   ];
+
+  home = {
+    username = "xun";
+    homeDirectory = "/home/xun";
+    extraOutputsToInstall = ["doc" "devdoc"];
+  };
+
+  programs.home-manager.enable = true;
 }

@@ -5,16 +5,16 @@
   ...
 }: {
   imports = map (x: homeProfiles + x) [
-    /terminal/programs/xdg.nix
-    /terminal/programs/comma.nix
+    /cli/xdg.nix
+    /cli/comma.nix
 
-    /editors/nvim.nix
-    /terminal/emulator/foot.nix
+    /programs/nvim.nix
+    /programs/foot.nix
 
-    /programs/desktop/default.nix
-    /programs/desktop/sway/default.nix
+    /desktop/xdg-portals.nix
+    /desktop/sway/default.nix
 
-    /programs/media/mpv.nix
+    /programs/mpv.nix
 
     /services/playerctl.nix
     /services/polkit-agent.nix
