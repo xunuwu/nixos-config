@@ -7,7 +7,7 @@
   networking.firewall = let
     forwardPorts = {
       "10.0.0.2" =
-        [24001 24002 24003 443 80]
+        [24001 24002 24003]
         |> map (n: {
           protocols = ["tcp"];
           port = n;

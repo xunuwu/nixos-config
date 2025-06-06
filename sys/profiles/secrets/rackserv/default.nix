@@ -9,5 +9,9 @@
       format = "binary";
       sopsFile = ./restic-password;
     };
+    cloudflare = {
+      format = "binary";
+      sopsFile = ./cloudflare;
+    };
   };
 }

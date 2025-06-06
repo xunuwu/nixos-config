@@ -12,6 +12,7 @@
       ./fail2ban.nix
       ./wireguard-server.nix
       ./backups.nix
+      ./caddy.nix
     ]
     ++ (map (x: systemProfiles + x) [
       /secrets/default.nix

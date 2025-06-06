@@ -23,8 +23,7 @@ in {
     globalConfig = "metrics";
     virtualHosts = let
       mkPublicEntry = name: destination: {
-        useACMEHost = domain;
-        hostName = "${name}.${domain}";
+        hostName = "${name}.${domain}:80";
         extraConfig = ''
           reverse_proxy {
             to ${destination}
@@ -33,6 +32,7 @@ in {
       };
       mkPrivateEntry = name: destination: {
         hostName = "${name}.hopper.priv.${domain}";
+        useACMEHost = domain;
         extraConfig = ''
           @blocked not remote_ip ${bridge}
           respond @blocked "limited to intranet" 403
@@ -53,8 +53,7 @@ in {
       glances = mkPrivateEntry "glances" "${bridge}:${toString config.services.glances.port}";
 
       base = {
-        useACMEHost = domain;
-        hostName = "${domain}";
+        hostName = "${domain}:80";
         extraConfig = ''
           root * ${inputs.own-website.packages.${pkgs.system}.default}
           file_server
@@ -62,8 +61,7 @@ in {
       };
 
       other = {
-        useACMEHost = domain;
-        hostName = "*.${domain}";
+        hostName = "*.${domain}:80";
         extraConfig = ''
           respond 404 {
             body "uhh that doesnt exist, i hope this isnt my fault.."
