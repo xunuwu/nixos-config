@@ -3,9 +3,7 @@
   pkgs,
   ...
 }: {
-  programs.firefox.profiles.xun.search = let
-    inherit (lib) attrsToList singleton;
-  in {
+  programs.firefox.profiles.xun.search = {
     force = true;
     default = "google";
     order = [
@@ -57,7 +55,6 @@
         icon = "https://www.youtube.com/favicon.ico";
         definedAliases = ["@yt"];
       };
-
       "crates.io" = {
         urls = mkUrl "https://crates.io/search?q={searchTerms}";
         icon = "https://crates.io/favicon.ico";
@@ -71,7 +68,6 @@
 
       "google".metaData.alias = "@go";
       "ddb".metaData.alias = "@ddg";
-      "wikipedia".metaData.alias = "@wiki";
       "bing".metaData.alias = "@bi";
     };
   };
