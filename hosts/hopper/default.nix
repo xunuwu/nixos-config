@@ -29,25 +29,25 @@
         };
       }
     ]
-    ++ (map (x: systemProfiles + x) [
-      /programs/home-manager.nix
+    ++ (with systemProfiles; [
+      programs.home-manager
 
-      /core/security.nix
-      /core/locale.nix
-      /core/tools.nix
-      /core/ssh.nix
-      /core/deploy.nix
+      core.security
+      core.locale
+      core.tools
+      core.ssh
+      core.deploy
 
-      /hardware/graphics.nix
-      /hardware/steam-hardware.nix
-      /hardware/bluetooth.nix
+      hardware.graphics
+      hardware.steam-hardware
+      hardware.bluetooth
 
-      /nix/nix.nix
-      /nix/gc.nix
+      nix.nix
+      nix.gc
 
-      /network/tailscale.nix
-      /network/avahi.nix
-      /network/networkd.nix
+      network.tailscale
+      network.avahi
+      network.networkd
     ]);
 
   nixpkgs.config = {

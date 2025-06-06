@@ -5,7 +5,15 @@
     nixpkgs,
     ...
   } @ inputs: let
-    systemProfiles = ./sys/profiles;
+    _loadProfiles = dir:
+      b.readDir dir
+      |> b.mapAttrs (categoryName: _:
+        b.readDir /${dir}/${categoryName}
+        |> l.mapAttrs' (profileName: _: {
+          name = l.removeSuffix ".nix" profileName;
+          value = /${dir}/${categoryName}/${profileName};
+        }));
+    systemProfiles = _loadProfiles ./sys/profiles;
     homeProfiles = ./home;
     vars = import ./vars;
     l = nixpkgs.lib;

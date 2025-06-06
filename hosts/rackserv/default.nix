@@ -14,16 +14,16 @@
       ./profiles/backups.nix
       ./profiles/caddy.nix
     ]
-    ++ (map (x: systemProfiles + x) [
-      /core/security.nix
-      /core/tools.nix
-      /core/ssh.nix
-      /core/deploy.nix
+    ++ (with systemProfiles; [
+      core.security
+      core.tools
+      core.ssh
+      core.deploy
 
-      /nix/default.nix
+      nix.nix
 
-      /network/tailscale.nix
-      /network/networkd.nix
+      network.tailscale
+      network.networkd
     ]);
 
   boot.loader.grub = {

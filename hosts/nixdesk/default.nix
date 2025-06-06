@@ -6,7 +6,6 @@
   specialArgs,
   ...
 }: {
-  # imports = with systemProfiles; [
   imports =
     [
       ./hardware.nix
@@ -31,64 +30,64 @@
         };
       }
     ]
-    ++ (map (x: systemProfiles + x) [
-      /core/security.nix
-      /core/keyring.nix
-      /core/users.nix
-      /core/ssh.nix
-      /core/locale.nix
-      /programs/zsh.nix
-      /programs/fish.nix
-      /core/tools.nix
-      /core/compat.nix
-      /core/boot.nix
+    ++ (with systemProfiles; [
+      core.security
+      core.keyring
+      core.users
+      core.ssh
+      core.locale
+      programs.zsh
+      programs.fish
+      core.tools
+      core.compat
+      core.boot
       # core.docs
-      /core/gvfs.nix
+      core.gvfs
 
-      /nix/nix.nix
-      /nix/gc.nix
+      nix.nix
+      nix.gc
 
-      /hardware/graphics.nix
-      /hardware/steam-hardware.nix
-      /hardware/bluetooth.nix
-      /hardware/qmk.nix
+      hardware.graphics
+      hardware.steam-hardware
+      hardware.bluetooth
+      hardware.qmk
 
-      /network/networkd.nix
-      /network/avahi.nix
-      /network/localsend.nix
-      /network/tailscale.nix
-      /network/goldberg.nix
+      network.networkd
+      network.avahi
+      network.localsend
+      network.tailscale
+      network.goldberg
 
-      /desktop/sway.nix
+      desktop.sway
 
-      /programs/dconf.nix
-      /programs/fonts.nix
-      /programs/home-manager.nix
+      programs.dconf
+      programs.fonts
+      programs.home-manager
       # programs.qt
-      /programs/adb.nix
-      /programs/openrgb.nix
-      /programs/tools.nix
-      /programs/thunar.nix
+      programs.adb
+      programs.openrgb
+      programs.tools
+      programs.thunar
 
-      /services/psd.nix
-      /services/dbus-broker.nix
-      /services/pipewire.nix
-      /services/podman.nix
-      /services/flatpak.nix
+      services.psd
+      services.dbus-broker
+      services.pipewire
+      services.podman
+      services.flatpak
 
       # services.syncthing
-      /services/waydroid.nix
-      /services/virt-manager.nix
-      /services/sunshine.nix
-      /services/locate.nix
+      services.waydroid
+      services.virt-manager
+      services.sunshine
+      services.locate
       # network.wifi
 
-      /themes/dark.nix
+      themes.dark
 
-      /programs/gamemode.nix
-      /programs/gamescope.nix
-      /programs/steam.nix
-      /programs/reverse-engineering.nix
+      programs.gamemode
+      programs.gamescope
+      programs.steam
+      programs.reverse-engineering
     ]);
 
   services.locate.prunePaths = lib.mkOptionDefault ["/home/xun/backup"];
