@@ -67,6 +67,7 @@
 
       # gaming
       /programs/games/default.nix
+      /programs/games/jc141.nix
 
       /services/playerctl.nix
       /services/polkit-agent.nix
