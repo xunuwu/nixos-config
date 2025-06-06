@@ -6,8 +6,7 @@
     ...
   } @ inputs: let
     systemProfiles = ./sys/profiles;
-    homeProfiles = ./home/profiles;
-    homeSuites = ./home/suites;
+    homeProfiles = ./home;
     vars = import ./vars;
     l = nixpkgs.lib;
     b = builtins;
@@ -25,7 +24,7 @@
               inputs.sops-nix.nixosModules.sops
             ];
             specialArgs = {
-              inherit inputs self systemProfiles homeProfiles homeSuites vars;
+              inherit inputs self systemProfiles homeProfiles vars;
             };
           });
 

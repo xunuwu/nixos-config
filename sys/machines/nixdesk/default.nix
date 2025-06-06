@@ -4,8 +4,6 @@
   inputs,
   systemProfiles,
   specialArgs,
-  self,
-  homeSuites,
   ...
 }: {
   # imports = with systemProfiles; [
@@ -25,7 +23,7 @@
         home-manager = {
           backupFileExtension = "hm-backup";
           users.xun.imports = [
-            (homeSuites + /nixdesk)
+            ./home.nix
             inputs.sops-nix.homeManagerModules.sops
             {home.stateVersion = "23.11";}
           ];

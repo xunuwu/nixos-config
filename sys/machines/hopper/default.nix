@@ -1,7 +1,6 @@
 {
   inputs,
   systemProfiles,
-  homeSuites,
   specialArgs,
   lib,
   ...
@@ -23,7 +22,7 @@
         home-manager = {
           backupFileExtension = "hm-backup";
           users.desktop.imports = [
-            (homeSuites + /hopper)
+            ./home.nix
             {home.stateVersion = "24.11";}
           ];
           extraSpecialArgs = specialArgs;
