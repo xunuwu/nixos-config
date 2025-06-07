@@ -8,6 +8,7 @@
       "/var/log"
       "/var/lib/nixos"
       "/var/lib/bluetooth"
+      "/var/lib/postgresql"
     ];
     files = [
       "/etc/machine-id"

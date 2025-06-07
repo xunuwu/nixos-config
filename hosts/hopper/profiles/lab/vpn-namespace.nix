@@ -11,6 +11,7 @@
       config.services.audiobookshelf.port
       config.services.navidrome.settings.Port
       config.services.glances.port
+      18632
     ];
   in {
     extraCommands = builtins.concatStringsSep "\n" (map

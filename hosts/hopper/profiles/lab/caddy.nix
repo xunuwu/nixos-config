@@ -43,6 +43,7 @@ in {
       navidrome = mkPublicEntry "navidrome" "${bridge}:${toString config.services.navidrome.settings.Port}";
       vaultwarden = mkPublicEntry "vw" "${bridge}:${toString config.services.vaultwarden.config.ROCKET_PORT}";
       abs = mkPublicEntry "abs" "${bridge}:${toString config.services.audiobookshelf.port}";
+      miniflux = mkPublicEntry "rss" "${bridge}:18632";
 
       navidrome2 = mkPrivateEntry "navidrome" "${bridge}:${toString config.services.navidrome.settings.Port}";
       slskd = mkPrivateEntry "slskd" "localhost:${toString config.services.slskd.settings.web.port}";

@@ -79,6 +79,12 @@ in {
               icon = "vaultwarden";
             };
           }
+          {
+            "miniflux" = {
+              href = "https://rss.${domain}";
+              icon = "miniflux";
+            };
+          }
         ];
       }
     ];

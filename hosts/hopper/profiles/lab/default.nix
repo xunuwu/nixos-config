@@ -9,6 +9,7 @@
     ./glances.nix
     ./homepage.nix
     ./minecraft.nix
+    ./miniflux.nix
     ./navidrome
     ./prometheus.nix
     ./restic.nix
