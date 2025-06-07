@@ -65,6 +65,7 @@
       programs.home-manager
       # programs.qt
       programs.adb
+      programs.gpg
       programs.openrgb
       programs.tools
       programs.thunar

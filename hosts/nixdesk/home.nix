@@ -15,6 +15,7 @@
     cli.tmux
     cli.comma
     cli.irssi
+    cli.gpg
     cli.git
     cli.github
     cli.jujutsu
