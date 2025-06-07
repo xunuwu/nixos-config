@@ -6,10 +6,10 @@
   ...
 }: {
   imports = [
-    ../common/fuzzel.nix
-    ../common/wob.nix
-    ../common/wl-clipboard.nix
-    ./waybar.nix
+    ../__common/fuzzel.nix
+    ../__common/wob.nix
+    ../__common/wl-clipboard.nix
+    ./__waybar.nix
   ];
 
   # services.gnome-keyring = {
