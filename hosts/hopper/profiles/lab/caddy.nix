@@ -20,7 +20,12 @@ in {
 
   services.caddy = {
     enable = true;
-    globalConfig = "metrics";
+    globalConfig = ''
+      metrics
+      servers {
+        trusted_proxies static 10.0.0.1
+      }
+    '';
     virtualHosts = let
       mkPublicEntry = name: destination: {
         hostName = "${name}.${domain}:80";
