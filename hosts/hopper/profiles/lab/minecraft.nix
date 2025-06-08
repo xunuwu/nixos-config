@@ -4,7 +4,7 @@
   ...
 }: {
   services.minecraft-servers = {
-    enable = false;
+    enable = true;
     eula = true;
     openFirewall = true;
     servers.owo = {
