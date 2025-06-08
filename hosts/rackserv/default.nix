@@ -13,6 +13,7 @@
       ./profiles/wireguard-server.nix
       ./profiles/backups.nix
       ./profiles/caddy.nix
+      ./profiles/forgejo.nix
     ]
     ++ (with systemProfiles; [
       core.security

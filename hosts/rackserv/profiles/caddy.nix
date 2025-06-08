@@ -33,6 +33,13 @@ in {
           reverse_proxy ${hopper}
         '';
       };
+      forgejo = {
+        hostName = "git.${domain}";
+        useACMEHost = domain;
+        extraConfig = ''
+          reverse_proxy localhost:${toString config.services.forgejo.settings.server.HTTP_PORT}
+        '';
+      };
       other = {
         extraConfig = ''
           respond 404
