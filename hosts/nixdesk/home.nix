@@ -18,6 +18,7 @@
     cli.gpg
     cli.git
     cli.github
+    cli.forgejo
     cli.jujutsu
 
     programs.nvim
