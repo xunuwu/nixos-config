@@ -1,3 +1,9 @@
 {pkgs, ...}: {
-  home.packages = with pkgs; [clang-tools buckle gdb lldb];
+  home.packages = with pkgs; [
+    clang-tools
+    buckle
+    gdb
+    lldb
+    lld
+  ];
 }
