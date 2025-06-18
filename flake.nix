@@ -13,7 +13,11 @@
       };
     systemProfiles = _load ./sys/profiles;
     homeProfiles = _load ./home;
-    vars = import ./vars;
+    vars = haumea.lib.load {
+      src = ./vars;
+      inputs.lib = nixpkgs.lib;
+      transformer = haumea.lib.transformers.liftDefault;
+    };
     l = nixpkgs.lib;
     b = builtins;
   in

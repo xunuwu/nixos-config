@@ -1,58 +1,51 @@
 {
-  pkgs,
   config,
   lib,
+  vars,
   ...
-}: {
+}: let
+  peers = vars.hosts.rackserv.wireguardPeers;
+in {
   networking.firewall = let
-    forwardPorts = {
-      "10.0.0.2" =
-        [24001 24002 24003]
-        |> map (n: {
-          protocols = ["tcp"];
-          port = n;
-        });
-      "10.0.0.3" =
-        lib.range 23000 23010
-        |> map (n: {
-          protocols = ["tcp" "udp"];
-          port = n;
-        });
-      "10.0.0.4" = [
-        {
-          protocols = ["tcp"];
-          port = 22000;
-        }
-      ];
-    };
     externalIp = "172.245.52.19";
     b = builtins;
-    portsList = b.attrValues forwardPorts |> b.concatLists;
-    portsAndIpsList = lib.mapAttrsToList (n: v: map (x: x // {destinationIp = n;}) v) forwardPorts |> b.concatLists;
+    isIpv4 = ip: b.match "([0-9]{1,3}\.){3}[0-9]{1,3}" ip != null;
+    forPortIps = f:
+      lib.concatStrings (
+        b.concatMap (
+          peer:
+            lib.cartesianProduct {
+              IP = peer.IPs;
+              port = peer.OpenPorts;
+            }
+            |> b.filter (x: isIpv4 x.IP)
+            |> map f
+        )
+        peers
+      );
+    getPortsWithProtocol = protocol:
+      b.concatMap (peer:
+        peer.OpenPorts
+        |> b.filter (portInfo: portInfo.protocol == protocol)
+        |> map (portInfo: portInfo.port))
+      peers;
   in {
-    allowedTCPPorts = b.filter (x: b.elem "tcp" x.protocols) portsList |> map (x: x.port);
-    allowedUDPPorts = [51820] ++ (b.filter (x: b.elem "udp" x.protocols) portsList |> map (x: x.port));
-    extraCommands =
-      portsAndIpsList
-      |> map (x:
-        x.protocols
-        |> map (protocol: ''
-          iptables -t nat -A PREROUTING -p ${protocol} -d ${externalIp} --dport ${toString x.port} -j DNAT --to-destination ${x.destinationIp}
-          iptables -t nat -A POSTROUTING -p ${protocol} -d ${x.destinationIp} --dport ${toString x.port} -j SNAT --to-source 172.245.52.19
-        ''))
-      |> b.concatLists
-      |> b.concatStringsSep "\n";
-
-    extraStopCommands =
-      portsAndIpsList
-      |> map (x:
-        x.protocols
-        |> map (protocol: ''
-          iptables -t nat -D PREROUTING  -p ${protocol} -d ${externalIp} --dport ${toString x.port} -j DNAT --to-destination ${x.destinationIp} || true
-          iptables -t nat -D POSTROUTING -p ${protocol} -d ${x.destinationIp} --dport ${toString x.port} -j SNAT --to-source 172.245.52.19
-        ''))
-      |> b.concatLists
-      |> b.concatStringsSep "\n";
+    allowedTCPPorts = getPortsWithProtocol "tcp";
+    allowedUDPPorts = getPortsWithProtocol "udp";
+    extraCommands = forPortIps ({
+      IP,
+      port,
+    }: ''
+      iptables -t nat -A PREROUTING -p ${port.protocol} -d ${externalIp} --dport ${toString port.port} -j DNAT --to-destination ${IP}
+      iptables -t nat -A POSTROUTING -p ${port.protocol} -d ${IP} --dport ${toString port.port} -j SNAT --to-source ${externalIp}
+    '');
+    extraStopCommands = forPortIps ({
+      IP,
+      port,
+    }: ''
+      iptables -t nat -D PREROUTING -p ${port.protocol} -d ${externalIp} --dport ${toString port.port} -j DNAT --to-destination ${IP} || true
+      iptables -t nat -D POSTROUTING -p ${port.protocol} -d ${IP} --dport ${toString port.port} -j SNAT --to-source ${externalIp} || true
+    '');
 
     interfaces.wg0 = {
       allowedUDPPorts = [53];
@@ -72,23 +65,12 @@
         PrivateKeyFile = config.sops.secrets.wireguard-privatekey.path;
         RouteTable = "main";
       };
-      wireguardPeers = [
-        {
-          # hopper
-          PublicKey = "P5W5/m9VnWcbdR6e3rs4Yars4Qb2rPjkRmCAbgja4Ug=";
-          AllowedIPs = ["10.0.0.2" "fd12:1e51:ca23::2"];
-        }
-        {
-          # nixdesk
-          PublicKey = "DMauL/fv08yXvVtyStsUfg/OM+ZJwMNvguQ59X/KU2Q=";
-          AllowedIPs = ["10.0.0.3" "fd12:1e51:ca23::3"];
-        }
-        {
-          # alka
-          PublicKey = "Q90dKQtQTu8RLgkPau7/Y5fY3PVstP0bL6ey3zrdS18=";
-          AllowedIPs = ["10.0.0.4" "fd12:1e51:ca23::3"];
-        }
-      ];
+      wireguardPeers =
+        map (peer: {
+          inherit (peer) PublicKey;
+          AllowedIPs = peer.IPs;
+        })
+        peers;
     };
   };
 
