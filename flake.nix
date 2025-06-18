@@ -112,5 +112,8 @@
 
     own-website.url = "github:xunuwu/xunuwu.xyz";
     own-website.inputs.nixpkgs.follows = "nixpkgs";
+
+    crosshair-overlay.url = "git+https://git.xunuwu.xyz/xun/crosshair-overlay";
+    crosshair-overlay.inputs.nixpkgs.follows = "nixpkgs";
   };
 }

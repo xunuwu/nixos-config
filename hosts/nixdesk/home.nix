@@ -156,6 +156,12 @@
     prismlauncher
     inputs.sobercookie.packages.${pkgs.system}.default
     self.packages.${pkgs.system}.krunker
+    (writeScriptBin "crosshair-overlay" ''
+      ${lib.getExe bubblewrap} \
+        --ro-bind / / \
+        --chdir "$XDG_PICTURES_DIR" \
+        -- ${inputs.crosshair-overlay.packages.${pkgs.system}.default}/bin/crosshair-overlay $@
+    '')
   ];
 
   home = {
