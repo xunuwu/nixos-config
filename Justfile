@@ -1,9 +1,7 @@
-hostname := `hostname`
-
 local OPERATION *FLAGS:
   nixos-rebuild \
-  --flake .#{{hostname}} \
-  --use-remote-sudo \
+  --flake .# \
+  --sudo \
   {{FLAGS}} \
   {{OPERATION}}
 
@@ -12,9 +10,9 @@ updatekeys:
 
 remote OPERATION HOST REMOTEHOST *FLAGS:
   nixos-rebuild \
-  --fast \
+  --no-reexec \
   --flake .#{{HOST}} \
   --target-host {{REMOTEHOST}} \
-  --use-remote-sudo \
+  --sudo \
   {{FLAGS}} \
   {{OPERATION}}
