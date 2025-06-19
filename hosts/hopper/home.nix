@@ -2,6 +2,7 @@
   homeProfiles,
   lib,
   pkgs,
+  inputs,
   ...
 }: {
   imports = with homeProfiles; [
@@ -30,6 +31,7 @@
     qpwgraph
 
     moonlight-qt
+    inputs.sobercookie.packages.${pkgs.system}.default
   ];
 
   home = {
