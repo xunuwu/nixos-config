@@ -155,7 +155,7 @@
     rpcs3 # ps3 emu
     prismlauncher
     inputs.sobercookie.packages.${pkgs.system}.default
-    self.packages.${pkgs.system}.krunker
+    krunker
     (writeScriptBin "crosshair-overlay" ''
       ${lib.getExe bubblewrap} \
         --ro-bind / / \

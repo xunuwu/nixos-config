@@ -117,6 +117,7 @@
         "rider"
         "idea-ultimate"
         "android-studio-stable"
+        "krunker"
 
         "stremio-shell"
         "stremio-server"
