@@ -85,6 +85,12 @@ in {
               icon = "miniflux";
             };
           }
+          {
+            "forgejo" = {
+              href = "https://git.${domain}";
+              icon = "forgejo";
+            };
+          }
         ];
       }
     ];
