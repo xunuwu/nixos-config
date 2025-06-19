@@ -144,7 +144,6 @@
     picard
 
     # media
-    stremio
     feishin
     foliate
 

@@ -29,7 +29,6 @@
     pwvucontrol
     qpwgraph
 
-    stremio
     moonlight-qt
   ];
 

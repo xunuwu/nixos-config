@@ -118,9 +118,6 @@
         "idea-ultimate"
         "android-studio-stable"
         "krunker"
-
-        "stremio-shell"
-        "stremio-server"
       ];
     android_sdk.accept_license = true;
   };

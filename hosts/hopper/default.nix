@@ -45,6 +45,8 @@
       nix.nix
       nix.gc
 
+      services.flatpak
+
       network.tailscale
       network.avahi
       network.networkd
@@ -55,9 +57,6 @@
       builtins.elem (lib.getName pkg) [
         "nvidia-x11"
         "nvidia-settings"
-
-        "stremio-shell"
-        "stremio-server"
       ];
   };
 
