@@ -10,9 +10,16 @@
     scrapeConfigs = [
       {
         job_name = "node";
-        static_configs = lib.singleton {
-          targets = ["127.0.0.1:${toString config.services.prometheus.exporters.node.port}"];
-        };
+        static_configs = [
+          {
+            targets = ["127.0.0.1:9100"];
+            labels.alias = "hopper";
+          }
+          {
+            targets = ["rackserv:9100"];
+            labels.alias = "rackserv";
+          }
+        ];
       }
       {
         job_name = "tailscale_client";
@@ -22,9 +29,16 @@
       }
       {
         job_name = "caddy";
-        static_configs = lib.singleton {
-          targets = ["${config.vpnNamespaces."wg".namespaceAddress}:2019"];
-        };
+        static_configs = [
+          {
+            targets = ["${config.vpnNamespaces."wg".namespaceAddress}:2019"];
+            labels.alias = "hopper";
+          }
+          {
+            targets = ["rackserv:2019"];
+            labels.alias = "rackserv";
+          }
+        ];
       }
       {
         job_name = "slskd";
@@ -35,6 +49,12 @@
           source_labels = ["__name__"];
           regex = "node_.*";
           action = "drop";
+        };
+      }
+      {
+        job_name = "forgejo";
+        static_configs = lib.singleton {
+          targets = ["rackserv:9615"];
         };
       }
     ];

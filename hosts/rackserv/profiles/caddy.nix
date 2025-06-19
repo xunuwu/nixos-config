@@ -22,9 +22,20 @@ in {
     };
   };
 
+  # systemd.services.caddy.environment.CADDY_ADMIN = "${vars.tailnet.rackserv}:2019";
   services.caddy = {
     enable = true;
-    virtualHosts = {
+    globalConfig = ''
+      metrics {
+        per_host
+      }
+      admin :2019 {
+        origins 127.0.0.1 100.64.0.0/10
+      }
+    '';
+    virtualHosts = let
+      forgejoPort = toString config.services.forgejo.settings.server.HTTP_PORT;
+    in {
       misc = {
         hostName = "${domain}";
         serverAliases = ["*.${domain}"];
@@ -37,12 +48,21 @@ in {
         hostName = "git.${domain}";
         useACMEHost = domain;
         extraConfig = ''
-          reverse_proxy localhost:${toString config.services.forgejo.settings.server.HTTP_PORT}
+          respond /metrics 403
+          reverse_proxy localhost:${forgejoPort}
         '';
       };
-      other = {
+      forgejoMetrics = {
+        hostName = ":9615";
         extraConfig = ''
-          respond 404
+          @blocked {
+            not {
+              client_ip ${vars.tailnet.hopper}
+              path /metrics
+            }
+          }
+          respond @blocked 403
+          reverse_proxy localhost:${forgejoPort}
         '';
       };
     };

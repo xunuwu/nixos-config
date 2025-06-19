@@ -21,7 +21,9 @@ in {
   services.caddy = {
     enable = true;
     globalConfig = ''
-      metrics
+      metrics {
+        per_host
+      }
       servers {
         trusted_proxies static 10.0.0.1
       }

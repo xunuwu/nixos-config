@@ -11,6 +11,11 @@
         HTTP_PORT = 3000;
         HTTP_ADDR = "127.0.0.1";
       };
+      metrics = {
+        ENABLED = true;
+        ENABLED_ISSUE_BY_LABEL = true;
+        ENABLED_ISSUE_BY_REPOSITORY = true;
+      };
       service.DISABLE_REGISTRATION = true;
     };
   };
