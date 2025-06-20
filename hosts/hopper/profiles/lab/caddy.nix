@@ -59,6 +59,7 @@ in {
       dash = mkPrivateEntry "dash" "${bridge}:${toString config.services.homepage-dashboard.listenPort}";
       absPriv = mkPrivateEntry "abs" "${bridge}:${toString config.services.audiobookshelf.port}";
       glances = mkPrivateEntry "glances" "${bridge}:${toString config.services.glances.port}";
+      alertmanager = mkPrivateEntry "alerts" "${bridge}:${toString config.services.prometheus.alertmanager.port}";
 
       base = {
         hostName = "${domain}:80";

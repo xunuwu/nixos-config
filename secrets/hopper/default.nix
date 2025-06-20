@@ -5,6 +5,13 @@
       format = "binary";
       sopsFile = ./wireguard;
     };
+    discord-webhook = {
+      format = "binary";
+      owner = "alertmanager";
+      group = "alertmanager";
+      sopsFile = ./discord-webhook;
+      restartUnits = ["alertmanager.service"];
+    };
     slskd = {
       format = "binary";
       sopsFile = ./slskd;

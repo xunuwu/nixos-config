@@ -68,6 +68,12 @@ in {
             };
           }
           {
+            "alertmanager" = {
+              href = "https://alerts.hopper.priv.${domain}";
+              icon = "prometheus";
+            };
+          }
+          {
             "glances" = {
               href = "https://glances.hopper.priv.${domain}";
               icon = "glances";
