@@ -20,6 +20,7 @@
     openssh.authorizedKeys.keys = with vars.sshKeys; [
       xun_nixdesk
       xun_redmi
+      deck_steamdeck
     ];
   };
 }
