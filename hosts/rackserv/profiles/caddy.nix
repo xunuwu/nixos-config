@@ -38,9 +38,16 @@ in {
     virtualHosts = let
       forgejoPort = toString config.services.forgejo.settings.server.HTTP_PORT;
     in {
-      misc = {
-        hostName = "*.${domain}";
+      hopper = {
+        hostName = "";
+        serverAliases = [
+          "navidrome.${domain}"
+          "vw.${domain}"
+          "abs.${domain}"
+          "rss.${domain}"
+        ];
         useACMEHost = domain;
+        logFormat = "output file ${config.services.caddy.logDir}/access-hopper.log";
         extraConfig = ''
           reverse_proxy ${hopper}
         '';
