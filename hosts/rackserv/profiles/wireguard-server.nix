@@ -31,7 +31,7 @@ in {
       peers;
   in {
     allowedTCPPorts = getPortsWithProtocol "tcp";
-    allowedUDPPorts = getPortsWithProtocol "udp";
+    allowedUDPPorts = [51820] ++ getPortsWithProtocol "udp";
     extraCommands = forPortIps ({
       IP,
       port,
