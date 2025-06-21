@@ -861,15 +861,15 @@
       "locked": {
         "lastModified": 1749197856,
         "narHash": "sha256-Vk9HO8RMe8fsDCzFQJlp4hAUDFMrduOMDmh6ZifiVHA=",
-        "owner": "xunuwu",
-        "repo": "xunuwu.xyz",
+        "ref": "refs/heads/main",
         "rev": "3943ddd64bf04e3631d39f110723f1aee27c3a82",
-        "type": "github"
+        "revCount": 7,
+        "type": "git",
+        "url": "https://git.xunuwu.xyz/xun/xunuwu.xyz"
       },
       "original": {
-        "owner": "xunuwu",
-        "repo": "xunuwu.xyz",
-        "type": "github"
+        "type": "git",
+        "url": "https://git.xunuwu.xyz/xun/xunuwu.xyz"
       }
     },
     "roblox-playtime": {

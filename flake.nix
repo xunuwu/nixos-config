@@ -110,7 +110,7 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
-    own-website.url = "github:xunuwu/xunuwu.xyz";
+    own-website.url = "git+https://git.xunuwu.xyz/xun/xunuwu.xyz";
     own-website.inputs.nixpkgs.follows = "nixpkgs";
 
     crosshair-overlay.url = "git+https://git.xunuwu.xyz/xun/crosshair-overlay";
