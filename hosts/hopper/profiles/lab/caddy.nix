@@ -1,8 +1,6 @@
 {
   config,
   vars,
-  inputs,
-  pkgs,
   ...
 }: let
   inherit (vars) domain;
@@ -60,14 +58,6 @@ in {
       absPriv = mkPrivateEntry "abs" "${bridge}:${toString config.services.audiobookshelf.port}";
       glances = mkPrivateEntry "glances" "${bridge}:${toString config.services.glances.port}";
       alertmanager = mkPrivateEntry "alerts" "${bridge}:${toString config.services.prometheus.alertmanager.port}";
-
-      base = {
-        hostName = "${domain}:80";
-        extraConfig = ''
-          root * ${inputs.own-website.packages.${pkgs.system}.default}
-          file_server
-        '';
-      };
 
       other = {
         hostName = "*.${domain}:80";

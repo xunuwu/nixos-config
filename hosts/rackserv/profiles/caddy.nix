@@ -1,6 +1,8 @@
 {
   vars,
   config,
+  pkgs,
+  inputs,
   ...
 }: let
   inherit (vars) domain;
@@ -37,11 +39,18 @@ in {
       forgejoPort = toString config.services.forgejo.settings.server.HTTP_PORT;
     in {
       misc = {
-        hostName = "${domain}";
-        serverAliases = ["*.${domain}"];
+        hostName = "*.${domain}";
         useACMEHost = domain;
         extraConfig = ''
           reverse_proxy ${hopper}
+        '';
+      };
+      base = {
+        hostName = "${domain}";
+        useACMEHost = domain;
+        extraConfig = ''
+          root * ${inputs.own-website.packages.${pkgs.system}.default}
+          file_server
         '';
       };
       forgejo = {
