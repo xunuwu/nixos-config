@@ -69,6 +69,7 @@
       programs.openrgb
       programs.tools
       programs.thunar
+      programs.wireshark
 
       services.psd
       services.dbus-broker

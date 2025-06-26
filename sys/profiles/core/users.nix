@@ -15,6 +15,7 @@
       "video"
       "render"
       "audio"
+      "wireshark"
     ];
 
     openssh.authorizedKeys.keys = with vars.sshKeys; [
