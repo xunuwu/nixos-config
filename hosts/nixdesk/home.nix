@@ -71,6 +71,11 @@
     exec obs --startreplaybuffer --disable-shutdown-check --minimize-to-tray
   '';
 
+  wayland.windowManager.sway.config.input."type:pointer" = {
+    accel_profile = "flat";
+    pointer_accel = "-0.7";
+  };
+
   wayland.windowManager.sway.config.output = {
     "DP-3" = {
       mode = "1920x1080@165Hz";
