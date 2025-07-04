@@ -1,3 +1,3 @@
 {pkgs,...}: {
-    home.packages = [pkgs.gleam];
+    home.packages = [pkgs.gleam pkgs.erlang];
 }
