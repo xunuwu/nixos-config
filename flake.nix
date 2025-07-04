@@ -30,7 +30,11 @@
           l.nixosSystem {
             modules = [
               ./hosts/${hostname}
-              ./secrets/${hostname}
+              (
+                if b.pathExists ./secrets/${hostname}
+                then ./secrets/${hostname}
+                else {}
+              )
               inputs.sops-nix.nixosModules.sops
             ];
             specialArgs = {
@@ -106,6 +110,8 @@
     roblox-playtime.inputs.nixpkgs.follows = "nixpkgs";
 
     impermanence.url = "github:nix-community/impermanence";
+
+    nixos-wsl.url = "github:nix-community/nixos-wsl";
 
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
