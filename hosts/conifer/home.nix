@@ -27,6 +27,7 @@
 
     develop.langs.c
     develop.langs.nix
+    develop.langs.gleam
   ];
 
   programs = {
