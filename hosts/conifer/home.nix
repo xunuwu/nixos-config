@@ -3,6 +3,7 @@
   lib,
   pkgs,
   inputs,
+  vars,
   ...
 }: {
   imports = with homeProfiles; [
@@ -45,6 +46,10 @@
     username = "xun";
     homeDirectory = "/home/xun";
     extraOutputsToInstall = ["doc" "devdoc"];
+  };
+
+  programs.git.extraConfig.credential."https://git.${vars.domain}" = {
+    helper = "/mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe";
   };
 
   programs.home-manager.enable = true;
