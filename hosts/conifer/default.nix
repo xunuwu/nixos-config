@@ -30,6 +30,7 @@
       core.tools
       core.compat
 
+      programs.zsh
       programs.fish
 
       nix.nix
