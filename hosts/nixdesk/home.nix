@@ -49,6 +49,7 @@
     develop.langs.lua
     develop.langs.c
     develop.langs.csharp
+    develop.langs.gleam
 
     # programs
     programs.discord
