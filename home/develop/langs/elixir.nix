@@ -1,5 +1,5 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    elixir_1_17
+    elixir_1_18
   ];
 }
