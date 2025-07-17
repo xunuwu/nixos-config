@@ -7,7 +7,7 @@
   pname = "Cartograph-CF";
   version = "0.1";
   src = fetchFromGitHub {
-    owner = "xiyaowong";
+    owner = "Nasaee";
     repo = "Cartograph-CF";
     rev = "619de85c103dbd5c150e1d5df039357f8ac2ed52";
     hash = "sha256-NVqHxLQZnHb0lMjODkaDwSoglGPkUVJHL1xTmASoER4=";

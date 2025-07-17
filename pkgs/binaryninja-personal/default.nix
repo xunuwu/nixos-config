@@ -10,6 +10,7 @@
   fontconfig,
   qt6,
   dbus,
+  libxml2,
   python3,
   wayland,
   makeDesktopItem,
@@ -27,7 +28,7 @@
   };
   crack = requireFile {
     name = "libbinaryninjacore.so.1";
-    sha256 = "6bff56e25e55eb701f00ba294f8d5f0cd169d350412bcbfe4fea7a8feb1b3022";
+    sha256 = "5d03d63e226cf7295270c003651c690766915cad5bbc42c4830d80517e3f005e";
     message = "add cracked libbinaryninjacore.so.1 to the nix store with command \"nix-store --add-fixed sha256 libbinaryninjacore.so.1\"";
   };
 in
@@ -56,12 +57,15 @@ in
       python3
     ];
 
+    preFixup = ''
+      mkdir -p $out/lib
+      ln -s ${lib.getLib libxml2}/lib/libxml2.so $out/lib/libxml2.so.2
+    '';
+
     src = requireFile {
       name = "binaryninja_personal_linux.zip";
       url = "https://binary.ninja/recover/";
-
-      # https://auth.lol/hashes || https://binary.ninja/js/hashes.js
-      sha256 = "770be9e7e76f4b083aa767f8f2ad6fdd3dddbe247658a84905a7f625402f49bf";
+      sha256 = "073d5dc59e67dabb8aa8c419385b2a0dc17831f108d73def4934e4cade563c87";
     };
 
     dontWrapQtApps = true;
