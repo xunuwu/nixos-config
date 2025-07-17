@@ -6,6 +6,7 @@
     ./audiobookshelf.nix
     ./caddy.nix
     ./dnsmasq.nix
+    ./garage.nix
     ./glances.nix
     ./homepage.nix
     ./minecraft.nix

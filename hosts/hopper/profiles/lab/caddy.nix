@@ -49,6 +49,8 @@ in {
       vaultwarden = mkPublicEntry "vw" "${bridge}:${toString config.services.vaultwarden.config.ROCKET_PORT}";
       abs = mkPublicEntry "abs" "${bridge}:${toString config.services.audiobookshelf.port}";
       miniflux = mkPublicEntry "rss" "${bridge}:18632";
+      s3 = mkPublicEntry "s3" "unix//run/garage/s3.sock";
+      s3-2 = mkPublicEntry "*.s3" "unix//run/garage/s3.sock";
 
       navidrome2 = mkPrivateEntry "navidrome" "${bridge}:${toString config.services.navidrome.settings.Port}";
       slskd = mkPrivateEntry "slskd" "localhost:${toString config.services.slskd.settings.web.port}";
@@ -58,6 +60,7 @@ in {
       absPriv = mkPrivateEntry "abs" "${bridge}:${toString config.services.audiobookshelf.port}";
       glances = mkPrivateEntry "glances" "${bridge}:${toString config.services.glances.port}";
       alertmanager = mkPrivateEntry "alerts" "${bridge}:${toString config.services.prometheus.alertmanager.port}";
+      s3-web = mkPrivateEntry "s3-web" "unix//run/garage/web.sock";
 
       other = {
         hostName = "*.${domain}:80";

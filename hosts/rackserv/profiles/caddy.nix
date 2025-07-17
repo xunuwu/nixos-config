@@ -16,7 +16,7 @@ in {
     certs = {
       "${domain}" = {
         domain = "${domain}";
-        extraDomainNames = ["*.${domain}"];
+        extraDomainNames = ["*.${domain}" "*.s3.${domain}"];
         dnsProvider = "cloudflare";
         reloadServices = ["caddy.service"];
         credentialFiles.CF_DNS_API_TOKEN_FILE = config.sops.secrets.cloudflare.path;
@@ -45,6 +45,8 @@ in {
           "vw.${domain}"
           "abs.${domain}"
           "rss.${domain}"
+          "s3.${domain}"
+          "*.s3.${domain}"
         ];
         useACMEHost = domain;
         logFormat = "output file ${config.services.caddy.logDir}/access-hopper.log";
