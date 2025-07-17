@@ -3,6 +3,8 @@
   lib,
   ...
 }: {
+  systemd.services.dnsmasq.serviceConfig.after = ["tailscale"];
+
   services.dnsmasq = {
     enable = true;
     resolveLocalQueries = false;
