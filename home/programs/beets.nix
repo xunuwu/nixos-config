@@ -26,7 +26,7 @@ in {
 
       lyrics = {
         synced = true; # prefer synced
-        sources = ["lrclib" "genius" "google" "tekstowo"];
+        sources = ["lrclib" "genius" "google"];
       };
 
       paths = {
