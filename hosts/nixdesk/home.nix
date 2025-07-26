@@ -152,6 +152,7 @@
     # media
     feishin
     foliate
+    kdePackages.okular
 
     # games
     heroic
