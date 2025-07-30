@@ -144,6 +144,7 @@
 
     # system things
     kdePackages.dolphin
+    ddcui
 
     # music
     puddletag

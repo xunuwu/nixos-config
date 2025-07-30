@@ -12,6 +12,8 @@
     inputs.hardware.nixosModules.gigabyte-b550
   ];
 
+  hardware.i2c.enable = true;
+
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
     initrd = {
