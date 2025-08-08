@@ -21,7 +21,7 @@
 
       s3_web = {
         bind_addr = "/run/garage/web.sock";
-        root_domain = "s3-web.hopper.priv.${vars.domain}";
+        root_domain = ".s3-web.hopper.priv.${vars.domain}";
       };
     };
   };

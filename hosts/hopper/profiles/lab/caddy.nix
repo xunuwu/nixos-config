@@ -61,6 +61,7 @@ in {
       glances = mkPrivateEntry "glances" "${bridge}:${toString config.services.glances.port}";
       alertmanager = mkPrivateEntry "alerts" "${bridge}:${toString config.services.prometheus.alertmanager.port}";
       s3-web = mkPrivateEntry "s3-web" "unix//run/garage/web.sock";
+      s3-web2 = mkPrivateEntry "*.s3-web" "unix//run/garage/web.sock";
 
       other = {
         hostName = "*.${domain}:80";
