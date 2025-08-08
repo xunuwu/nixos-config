@@ -112,6 +112,13 @@
           targets = ["rackserv:9615"];
         };
       }
+
+      {
+        job_name = "garage";
+        static_configs = lib.singleton {
+          targets = ["localhost:3903"];
+        };
+      }
     ];
     exporters = {
       node = {

@@ -23,6 +23,8 @@
         bind_addr = "/run/garage/web.sock";
         root_domain = ".s3-web.hopper.priv.${vars.domain}";
       };
+
+      admin.api_bind_addr = "127.0.0.1:3903";
     };
   };
 
