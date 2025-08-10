@@ -20,5 +20,6 @@
     yt-dlp
     inotify-tools
     dig
+    python3
   ];
 }
