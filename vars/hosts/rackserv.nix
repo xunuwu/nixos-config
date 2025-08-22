@@ -39,5 +39,11 @@
         }
       ];
     }
+    {
+      # schoolpc
+      IPs = ["10.0.0.5" "fd12:1e51:ca25::5"];
+      PublicKey = "XHKbSIf3qsvOFPkLKGspov1o7nAFAvduagdn9w9i+hg=";
+      OpenPorts = [];
+    }
   ];
 }
