@@ -22,6 +22,7 @@
       xun_nixdesk
       xun_redmi
       deck_steamdeck
+      xun_schoolpc
     ];
   };
 }
