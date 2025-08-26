@@ -92,6 +92,8 @@
       programs.reverse-engineering
     ]);
 
+  services.lact.enable = true; # gpu control thing
+
   services.locate.prunePaths = lib.mkOptionDefault ["/home/xun/backup"];
 
   # for running waydroid as root, needed for cage-xtmapper
