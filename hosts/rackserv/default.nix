@@ -14,6 +14,7 @@
       ./profiles/backups.nix
       ./profiles/caddy.nix
       ./profiles/forgejo.nix
+      ./profiles/nebula.nix
       ./profiles/prometheus.nix
     ]
     ++ (with systemProfiles; [

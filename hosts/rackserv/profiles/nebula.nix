@@ -1,0 +1,26 @@
+{config, ...}: {
+  networking.firewall.allowedTCPPorts = [4343];
+  services.nebula.networks.xunmesh = {
+    enable = true;
+    isLighthouse = true;
+    cert = config.sops.secrets.nebula-cert.path;
+    key = config.sops.secrets.nebula-key.path;
+    ca = config.sops.secrets.nebula-ca-cert.path;
+    firewall = {
+      inbound = [
+        {
+          host = "any";
+          port = "any";
+          proto = "any";
+        }
+      ];
+      outbound = [
+        {
+          host = "any";
+          port = "any";
+          proto = "any";
+        }
+      ];
+    };
+  };
+}

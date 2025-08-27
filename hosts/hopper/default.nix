@@ -50,6 +50,7 @@
       network.tailscale
       network.avahi
       network.networkd
+      network.nebula
     ]);
 
   nixpkgs.config = {

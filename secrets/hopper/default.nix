@@ -1,6 +1,13 @@
 ## TODO use defaultSopsFile mayb
 {config, ...}: {
-  sops.secrets = {
+  sops.secrets = let
+    loadYamlKey = key: sopsFile: overrides:
+      {
+        inherit sopsFile key;
+        format = "yaml";
+      }
+      // overrides;
+  in {
     wireguard = {
       format = "binary";
       sopsFile = ./wireguard;
@@ -50,6 +57,18 @@
       format = "binary";
       sopsFile = ./samba-pass;
       mode = "0600";
+    };
+    nebula-cert = loadYamlKey "nebula-cert" ./nebula.yaml {
+      group = "nebula-xunmesh";
+      mode = "0644";
+    };
+    nebula-key = loadYamlKey "nebula-key" ./nebula.yaml {
+      group = "nebula-xunmesh";
+      mode = "0644";
+    };
+    nebula-ca-cert = loadYamlKey "nebula-ca-cert" ./nebula.yaml {
+      group = "nebula-xunmesh";
+      mode = "0644";
     };
   };
 }

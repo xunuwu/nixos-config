@@ -57,6 +57,7 @@
       network.localsend
       network.tailscale
       network.goldberg
+      network.nebula
 
       desktop.sway
 
