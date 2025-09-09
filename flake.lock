@@ -913,11 +913,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1750164640,
-        "narHash": "sha256-50JV0gzn64VaJJoXfl6qC9BXEst5PoVf3zxQD+hOAro=",
+        "lastModified": 1757239136,
+        "narHash": "sha256-3LPKuZ26NK+UrOnB/d34iM651D9lASep71i/uDWx8fs=",
         "owner": "xunuwu",
         "repo": "sobercookie",
-        "rev": "cb6cbee3faf89190788c60f936aac71e7490a3f1",
+        "rev": "d6dcc68b71584725bbd074ca1d3f37000a6eb985",
         "type": "github"
       },
       "original": {
