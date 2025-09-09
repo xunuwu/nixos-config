@@ -6,6 +6,7 @@
     cert = config.sops.secrets.nebula-cert.path;
     key = config.sops.secrets.nebula-key.path;
     ca = config.sops.secrets.nebula-ca-cert.path;
+    listen.port = 3131;
     firewall = {
       inbound = [
         {

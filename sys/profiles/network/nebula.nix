@@ -2,11 +2,12 @@
   services.nebula.networks.xunmesh = {
     enable = true;
     staticHostMap = {
-      "30.0.0.1" = ["172.245.52.19:4242"];
+      "30.0.0.1" = ["172.245.52.19:3131"];
     };
     cert = config.sops.secrets.nebula-cert.path;
     key = config.sops.secrets.nebula-key.path;
     ca = config.sops.secrets.nebula-ca-cert.path;
+    listen.port = 3131;
     firewall = {
       inbound = [
         {
