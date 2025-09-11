@@ -30,4 +30,6 @@
       punchy.punch = true;
     };
   };
+
+  networking.firewall.trustedInterfaces = ["nebula.xunmesh"]; # bypass nixos firewall
 }

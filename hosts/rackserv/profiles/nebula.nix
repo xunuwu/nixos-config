@@ -1,5 +1,5 @@
 {config, ...}: {
-  networking.firewall.allowedTCPPorts = [4343];
+  networking.firewall.allowedTCPPorts = [3131];
   services.nebula.networks.xunmesh = {
     enable = true;
     isLighthouse = true;
