@@ -6,7 +6,7 @@
   services.vaultwarden = {
     enable = true;
     config = {
-      DOMAIN = "https://${config.services.caddy.virtualHosts.vaultwarden.hostName}";
+      DOMAIN = "https://vw.xunuwu.xyz";
       ROCKET_ADDRESS = "0.0.0.0";
       ROCKET_PORT = 35381;
       ROCKET_LOG = "critical";
