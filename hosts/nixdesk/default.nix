@@ -51,6 +51,7 @@
       hardware.steam-hardware
       hardware.bluetooth
       hardware.qmk
+      hardware.g920
 
       network.networkd
       network.avahi
