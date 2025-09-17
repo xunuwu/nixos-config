@@ -37,6 +37,7 @@
 
     # development
     develop.common
+    develop.exercism
     develop.docs
 
     develop.langs.haskell
