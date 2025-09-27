@@ -16,6 +16,7 @@
       "render"
       "audio"
       "wireshark"
+      "rtkit"
     ];
 
     openssh.authorizedKeys.keys = with vars.sshKeys; [
