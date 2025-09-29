@@ -22,12 +22,12 @@
       };
       "Nix Packages" = {
         urls = mkUrl "https://search.nixos.org/packages?channel=unstable&query={searchTerms}";
-        icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+        icon = "https://nixos.org/favicon.svg";
         definedAliases = ["@np"];
       };
       "NixOS Options" = {
         urls = mkUrl "https://search.nixos.org/options?channel=unstable&query={searchTerms}";
-        icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+        icon = "https://nixos.org/favicon.svg";
         definedAliases = ["@no"];
       };
       "GitHub" = {
