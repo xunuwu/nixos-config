@@ -26,6 +26,7 @@
     develop.docs
 
     develop.langs.c
+    develop.langs.go
     develop.langs.nix
     develop.langs.rust
     develop.langs.gleam
