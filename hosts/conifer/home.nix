@@ -19,6 +19,7 @@
     cli.comma
 
     programs.nvim
+    programs.emacs
 
     desktop.xdg-portals
 
