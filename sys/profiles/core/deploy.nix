@@ -20,6 +20,7 @@
 
     openssh.authorizedKeys.keys = with vars.sshKeys; [
       xun_nixdesk
+      xun_schoolpc
       xun_redmi
       alka_alkpc
     ];
