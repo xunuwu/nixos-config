@@ -31,7 +31,7 @@ in {
       peers;
   in {
     allowedTCPPorts = getPortsWithProtocol "tcp";
-    allowedUDPPorts = [51820] ++ getPortsWithProtocol "udp";
+    allowedUDPPorts = [51820 1234] ++ getPortsWithProtocol "udp";
     extraCommands = forPortIps ({
       IP,
       port,
@@ -72,6 +72,7 @@ in {
         })
         peers;
     };
+    "50-wg1" = lib.recursiveUpdate config.systemd.network.netdevs."50-wg0" {wireguardConig.ListenPort = 1234;};
   };
 
   systemd.network.networks.wg0 = {
