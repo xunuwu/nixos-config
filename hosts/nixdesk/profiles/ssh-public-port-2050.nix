@@ -2,6 +2,7 @@
   systemd.services.ssh-port2050-natpmp = {
     bindsTo = ["sshd.socket"];
     after = ["sshd.socket"];
+    wantedBy = ["multi-user.target"];
     serviceConfig.Restart = "on-failure";
     serviceConfig.ExecStart = pkgs.writeScript "ssh-port2050-natpmp" ''
       #!${pkgs.bash}/bin/bash
