@@ -14,7 +14,6 @@
       ./profiles/wireguard.nix
       ./profiles/restic-server.nix
       ./profiles/autologin.nix
-      ./profiles/ssh-public-port-2050.nix
 
       inputs.impermanence.nixosModules.impermanence
       inputs.stylix.nixosModules.stylix
@@ -109,6 +108,16 @@
       </busconfig>
     '')
   ];
+
+  own.natpmp-portforward = {
+    enable = true;
+    mappings = [
+      {
+        public = 2050;
+        local = 22;
+      }
+    ];
+  };
 
   nixpkgs.config = {
     # rocmSupport = true;

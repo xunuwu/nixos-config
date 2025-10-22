@@ -8,23 +8,25 @@
 in {
   options.own.natpmp-portforward = {
     enable = lib.mkEnableOption "enable natpmp port forwarding service";
-    mappings = lib.types.listOf (lib.types.submodule {
-      options = {
-        public = lib.mkOption {
-          type = lib.types.port;
+    mappings = lib.mkOption {
+      type = lib.types.listOf (lib.types.submodule {
+        options = {
+          public = lib.mkOption {
+            type = lib.types.port;
+          };
+          local = lib.mkOption {
+            type = lib.types.port;
+          };
+          protocol = lib.mkOption {
+            default = "tcp";
+            type = lib.types.enum [
+              "tcp"
+              "udp"
+            ];
+          };
         };
-        private = lib.mkOption {
-          type = lib.types.port;
-        };
-        protocol = lib.mkOption {
-          default = "tcp";
-          type = lib.types.enum [
-            "tcp"
-            "udp"
-          ];
-        };
-      };
-    });
+      });
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -35,10 +37,10 @@ in {
         ExecStart = pkgs.writeScript "natpmp-portforward" ''
           #!${pkgs.bash}/bin/bash
 
-          "${lib.concatMapStrings (x: ''
-              ${pkgs.libnatpmp}/bin/natpmpc -a ${x.public} ${x.private} ${x.protocol} 60
+          ${lib.concatMapStrings (x: ''
+              ${pkgs.libnatpmp}/bin/natpmpc -a ${toString x.public} ${toString x.local} ${x.protocol} 180
             '')
-            cfg.mappings}"
+            cfg.mappings}
         '';
       };
     };
