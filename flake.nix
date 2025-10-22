@@ -30,6 +30,7 @@
           l.nixosSystem {
             modules = [
               ./hosts/${hostname}
+              ./modules/default.nix
               (
                 if b.pathExists ./secrets/${hostname}
                 then ./secrets/${hostname}
