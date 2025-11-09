@@ -7,9 +7,13 @@
     git-credential-oauth
   ];
 
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+  };
+
   programs.git = {
     enable = true;
-    delta.enable = true;
     lfs.enable = true;
 
     ignores = ["*~" ".direnv"];
@@ -19,14 +23,15 @@
       signByDefault = true;
     };
 
-    extraConfig = {
+    settings = {
       gpg.format = "ssh";
       push.autoSetupRemote = true;
       pull.rebase = true;
       rebase.autostash = true;
+      user = {
+        name = "xunuwu";
+        email = "xunuwu@gmail.com";
+      };
     };
-
-    userEmail = "xunuwu@gmail.com";
-    userName = "xunuwu";
   };
 }
