@@ -134,11 +134,6 @@
         "android-studio-stable"
         "krunker"
       ];
-
-    permittedInsecurePackages = [
-      "electron-36.9.5" # for feishin
-    ];
-
     android_sdk.accept_license = true;
   };
 

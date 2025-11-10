@@ -4,6 +4,6 @@
     haskell-language-server
     cabal-install
     hlint
-    # haskellPackages.retrie
+    haskellPackages.retrie
   ];
 }

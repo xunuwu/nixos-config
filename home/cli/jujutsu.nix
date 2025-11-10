@@ -3,8 +3,8 @@
     enable = true;
     settings = {
       user = {
-        email = config.programs.git.settings.user.email;
-        name = config.programs.git.settings.user.name;
+        email = config.programs.git.userEmail;
+        name = config.programs.git.userName;
       };
       signing = {
         behavior = "own";

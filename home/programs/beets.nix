@@ -4,7 +4,7 @@
 in {
   programs.beets = {
     enable = true;
-    package = pkgs.beets;
+    package = pkgs.beets-unstable;
     settings = {
       directory = "${musicDir}/beets";
       library = "${beetsDir}/beets.db";

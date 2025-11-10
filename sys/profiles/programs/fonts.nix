@@ -9,7 +9,7 @@
       dejavu_fonts
       font-awesome
       noto-fonts
-      noto-fonts-color-emoji
+      noto-fonts-emoji
       source-code-pro
       noto-fonts-cjk-sans
       iosevka

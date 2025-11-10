@@ -46,8 +46,8 @@ in
       unzip
       wayland
       libGL
+      qt6.full
       qt6.qtbase
-      qt6.qttools
       stdenv.cc.cc.lib
       glib
       fontconfig
