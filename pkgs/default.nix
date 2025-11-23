@@ -5,5 +5,6 @@
     cartograph-cf = pkgs.callPackage ./cartograph-cf {};
     keyboard-state = pkgs.callPackage ./keyboard-state {};
     audio-abtest = pkgs.callPackage ./audio-abtest {};
+    miao-battery-percentage = pkgs.callPackage ./miao-battery-percentage {};
   };
 }

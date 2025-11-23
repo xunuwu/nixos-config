@@ -22,6 +22,7 @@
         ];
         modules-right = [
           "custom/keyboard-state"
+          "custom/miao-battery-percentage"
           "tray"
           "clock"
         ];
@@ -30,6 +31,11 @@
         };
         "sway/window" = {
           max-length = 80;
+        };
+        "custom/miao-battery-percentage" = {
+          return-type = "json";
+          exec = "${lib.getExe self.packages.${pkgs.system}.miao-battery-percentage}";
+          restart-interval = "60";
         };
         "custom/keyboard-state" = {
           return-type = "json";
