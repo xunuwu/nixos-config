@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   # hardware.usb-modeswitch.enable = true;
-  hardware.xpadneo.enable = true;
+  # hardware.xpadneo.enable = true;
 
   environment.systemPackages = with pkgs; [
     oversteer
