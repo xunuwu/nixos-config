@@ -41,7 +41,7 @@
       core.tools
       core.compat
       core.boot
-      # core.docs
+      core.docs
       core.gvfs
 
       nix.nix
