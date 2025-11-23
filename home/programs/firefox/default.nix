@@ -30,6 +30,7 @@
       ];
     };
     profiles.xun = {
+      # extensions.force = true;
       extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
         ublock-origin
         # (lib.mkIf (config.xun.desktop.colorscheme == "dark") darkreader)

@@ -12,11 +12,12 @@
     };
 
     targets = {
+      firefox.enable = true;
+      # firefox.colorTheme.enable = true;
       firefox.profileNames = ["xun"];
       gtk.enable = true;
       qt.enable = true;
       foot.enable = true;
-      firefox.enable = true;
       swaync.enable = true;
     };
   };
