@@ -45,6 +45,7 @@
     develop.langs.js
     develop.langs.rust
     develop.langs.elixir
+    develop.langs.python
     develop.langs.nix
     develop.langs.zig
     develop.langs.lua
