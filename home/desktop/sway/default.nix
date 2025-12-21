@@ -150,6 +150,14 @@
     };
     extraConfig = ''
       bindcode 202 exec ${lib.getExe pkgs.obs-cmd} replay save # F24/numpad 1 on my ID75
+      exec ${pkgs.writers.writeBash "default-workspaces" ''
+        swaymsg -t get_outputs \
+        | ${lib.getExe pkgs.jq} -re '.[].name' \
+        | xargs -I {} ${pkgs.writers.writeBash "workspace-set-default" ''
+          ID=$(echo $1 | ${lib.getExe pkgs.perl} -ne '$s=0;for(split//){$s+=ord}print"$s"')
+          swaymsg workspace ''${ID}1:1 output "$1" && swaymsg workspace number ''${ID}1:1
+        ''} {}
+      ''}
     '';
   };
 }
