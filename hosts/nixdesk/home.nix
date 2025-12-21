@@ -71,7 +71,7 @@
   ];
 
   wayland.windowManager.sway.extraConfig = ''
-    exec obs --startreplaybuffer --disable-shutdown-check --minimize-to-tray
+    exec rm -r ~/.config/obs-studio/.sentinel && obs --startreplaybuffer --minimize-to-tray
   '';
 
   wayland.windowManager.sway.config.input."type:pointer" = {
