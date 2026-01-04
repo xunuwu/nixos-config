@@ -50,7 +50,7 @@
     develop.langs.zig
     develop.langs.lua
     develop.langs.c
-    # develop.langs.csharp
+    develop.langs.csharp
     develop.langs.gleam
 
     # programs
