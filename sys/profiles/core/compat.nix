@@ -51,6 +51,8 @@
     xorg.libxkbfile
     xorg.libxshmfence
     zlib
+
+    glfw
   ];
 in {
   programs.appimage = {

@@ -139,6 +139,8 @@
 
   environment.persistence."/persist".enable = false;
 
+  boot.kernel.sysctl."fs.inotify.max_user_watches" = 99999999;
+
   networking.interfaces.eno1.wakeOnLan.enable = true;
 
   networking.hostName = "nixdesk";

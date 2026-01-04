@@ -28,7 +28,7 @@
       core.users
       core.locale
       core.tools
-      core.compat
+      # core.compat
 
       programs.zsh
       programs.fish
