@@ -120,7 +120,7 @@
     jjui
     vscodium-fhs
     android-studio
-    # jetbrains.rider
+    jetbrains.rider
     # jetbrains.idea-ultimate
 
     # communication
