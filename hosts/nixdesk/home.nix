@@ -121,6 +121,11 @@
     vscodium-fhs
     android-studio
     jetbrains.rider
+    (pkgs.buildFHSEnv {
+      name = "silk-fhs";
+      runScript = "bash";
+      targetPkgs = pkgs: with pkgs; [glfw assimp];
+    })
     # jetbrains.idea-ultimate
 
     # communication
