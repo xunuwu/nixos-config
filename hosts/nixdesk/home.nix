@@ -121,6 +121,7 @@
     vscodium-fhs
     android-studio
     jetbrains.rider
+    glfw
     # jetbrains.idea-ultimate
 
     # communication
