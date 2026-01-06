@@ -143,6 +143,8 @@
 
   networking.interfaces.eno1.wakeOnLan.enable = true;
 
+  programs.sysdig.enable = true;
+
   networking.hostName = "nixdesk";
   system.stateVersion = "23.11";
 }
