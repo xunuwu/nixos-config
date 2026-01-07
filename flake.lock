@@ -916,11 +916,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1762705707,
-        "narHash": "sha256-741N/dCDUmyhSHE3jlefkDKVGeNKmaLNRNnBm3+R4nY=",
+        "lastModified": 1767663088,
+        "narHash": "sha256-nlMgpyq01oGDUBAccmtbft/ru3U3RBq5qQKltoy0krE=",
         "owner": "xunuwu",
         "repo": "sobercookie",
-        "rev": "d67fbf33df1f5a37b630075301b66b4167cec10a",
+        "rev": "d95c5340381d37ab304a2eb5076bbd8b16ea3e57",
         "type": "github"
       },
       "original": {
