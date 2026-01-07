@@ -22,6 +22,7 @@
       xun_nixdesk
       xun_schoolpc
       xun_redmi
+      xun_oneplus
       alka_alkpc
     ];
   };
