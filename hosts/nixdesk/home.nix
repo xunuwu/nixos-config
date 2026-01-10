@@ -125,7 +125,12 @@
     (pkgs.buildFHSEnv {
       name = "silk-fhs";
       runScript = "bash";
-      targetPkgs = pkgs: with pkgs; [glfw assimp];
+      targetPkgs = pkgs:
+        with pkgs; [
+          glfw
+          assimp
+          wgpu-native
+        ];
     })
     # jetbrains.idea-ultimate
 

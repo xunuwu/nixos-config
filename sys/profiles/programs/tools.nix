@@ -14,6 +14,7 @@
     fd # find replacement
     graphviz-nox
     p7zip
+    zip
     unar
     jq
     openssl # for generating passwords
