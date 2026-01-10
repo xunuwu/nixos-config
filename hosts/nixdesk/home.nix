@@ -121,6 +121,7 @@
     vscodium-fhs
     android-studio
     jetbrains.rider
+    jetbrains.clion
     (pkgs.buildFHSEnv {
       name = "silk-fhs";
       runScript = "bash";

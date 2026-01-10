@@ -130,6 +130,7 @@
         "discord-ptb"
         "obsidian"
         "rider"
+        "clion"
         "idea-ultimate"
         "android-studio-stable"
         "krunker"
