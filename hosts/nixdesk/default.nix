@@ -10,6 +10,7 @@
     [
       ./hardware.nix
       ./profiles/hibernate-boot.nix
+      ./profiles/devshells.nix
       ./profiles/samba-mount.nix
       ./profiles/wireguard.nix
       ./profiles/restic-server.nix

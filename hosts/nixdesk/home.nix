@@ -122,16 +122,6 @@
     android-studio
     jetbrains.rider
     jetbrains.clion
-    (pkgs.buildFHSEnv {
-      name = "silk-fhs";
-      runScript = "bash";
-      targetPkgs = pkgs:
-        with pkgs; [
-          glfw
-          assimp
-          wgpu-native
-        ];
-    })
     # jetbrains.idea-ultimate
 
     # communication
