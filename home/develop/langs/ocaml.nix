@@ -1,0 +1,3 @@
+{
+  programs.opam.enable = true;
+}

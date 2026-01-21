@@ -49,6 +49,7 @@
     develop.langs.nix
     develop.langs.zig
     develop.langs.lua
+    develop.langs.ocaml
     develop.langs.c
     develop.langs.csharp
     develop.langs.gleam
