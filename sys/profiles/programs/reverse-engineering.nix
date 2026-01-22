@@ -5,14 +5,15 @@
   ...
 }: {
   environment.systemPackages = with pkgs; [
-    (ghidra.withExtensions (ps:
-      with ps; [
-        gnudisassembler
-        machinelearning
-      ]))
+    ghidra
+    # (ghidra.withExtensions (ps:
+    #   with ps; [
+    #     gnudisassembler
+    #     machinelearning
+    #   ]))
 
-    self.packages.${pkgs.system}.binaryninja-personal
-    self.packages.${pkgs.system}.ida-pro
+    self.packages.${pkgs.stdenv.hostPlatform.system}.binaryninja-personal
+    self.packages.${pkgs.stdenv.hostPlatform.system}.ida-pro
     gdb
   ];
 

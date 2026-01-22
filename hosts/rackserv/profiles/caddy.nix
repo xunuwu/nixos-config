@@ -58,7 +58,7 @@ in {
         hostName = "${domain}";
         useACMEHost = domain;
         extraConfig = ''
-          root * ${inputs.own-website.packages.${pkgs.system}.default}
+          root * ${inputs.own-website.packages.${pkgs.stdenv.hostPlatform.system}.default}
           file_server
         '';
       };

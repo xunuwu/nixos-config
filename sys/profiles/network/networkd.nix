@@ -5,7 +5,9 @@
   };
   services.resolved = {
     enable = true;
-    dnssec = "true";
-    domains = ["~."];
+    settings.Resolve = {
+      DNSSEC = "true";
+      Domains = ["~."];
+    };
   };
 }

@@ -25,7 +25,7 @@
       nerd-fonts.blex-mono
       nerd-fonts._0xproto
 
-      self.packages.${pkgs.system}.cartograph-cf
+      self.packages.${pkgs.stdenv.hostPlatform.system}.cartograph-cf
     ];
 
     # causes more issues than it solves

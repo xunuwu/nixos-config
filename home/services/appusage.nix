@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  home.packages = [inputs.wayland-appusage.packages.${pkgs.system}.appusage];
+  home.packages = [inputs.wayland-appusage.packages.${pkgs.stdenv.hostPlatform.system}.appusage];
 
   systemd.user.services.appusage = {
     Unit = {
@@ -16,7 +16,7 @@
     Service = {
       Type = "simple";
       Restart = "on-failure";
-      ExecStart = "${inputs.wayland-appusage.packages.${pkgs.system}.appusage-daemon}/bin/appusage-daemon";
+      ExecStart = "${inputs.wayland-appusage.packages.${pkgs.stdenv.hostPlatform.system}.appusage-daemon}/bin/appusage-daemon";
       RestartSec = "5s";
     };
   };

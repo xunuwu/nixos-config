@@ -34,12 +34,12 @@
         };
         "custom/miao-battery-percentage" = {
           return-type = "json";
-          exec = "${lib.getExe self.packages.${pkgs.system}.miao-battery-percentage}";
+          exec = "${lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.miao-battery-percentage}";
           restart-interval = "60";
         };
         "custom/keyboard-state" = {
           return-type = "json";
-          exec = "${lib.getExe self.packages.${pkgs.system}.keyboard-state}";
+          exec = "${lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.keyboard-state}";
           restart-interval = "60";
         };
         clock = {

@@ -9,7 +9,7 @@
     openFirewall = true;
     servers.owo = {
       enable = true;
-      package = inputs.nix-minecraft.legacyPackages.${pkgs.system}.fabricServers.fabric-1_21_5;
+      package = inputs.nix-minecraft.legacyPackages.${pkgs.stdenv.hostPlatform.system}.fabricServers.fabric-1_21_5;
       serverProperties = {
         max-players = 5;
         motd = "owo";

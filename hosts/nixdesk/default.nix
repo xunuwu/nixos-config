@@ -67,7 +67,6 @@
       programs.fonts
       programs.home-manager
       # programs.qt
-      programs.adb
       programs.gpg
       programs.openrgb
       programs.tools

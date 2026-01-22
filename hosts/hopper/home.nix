@@ -31,7 +31,7 @@
     qpwgraph
 
     moonlight-qt
-    inputs.sobercookie.packages.${pkgs.system}.default
+    inputs.sobercookie.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   home = {

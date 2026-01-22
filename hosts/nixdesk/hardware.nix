@@ -15,14 +15,14 @@
   hardware.i2c.enable = true;
 
   boot = {
-    kernelPatches = lib.singleton {
-      name = "ebpf-config";
-      patch = null;
-      structuredExtraConfig = with lib.kernel; {
-        BPF_KPROBE_OVERRIDE = yes;
-        FUNCTION_ERROR_INJECTION = yes;
-      };
-    };
+    # kernelPatches = lib.singleton {
+    #   name = "ebpf-config";
+    #   patch = null;
+    #   structuredExtraConfig = with lib.kernel; {
+    #     BPF_KPROBE_OVERRIDE = yes;
+    #     FUNCTION_ERROR_INJECTION = yes;
+    #   };
+    # };
     # using lts for now
     # kernelPackages = pkgs.linuxPackages_latest;
     initrd = {

@@ -123,6 +123,7 @@
     android-studio
     jetbrains.rider
     jetbrains.clion
+    android-tools
     # jetbrains.idea-ultimate
 
     # communication
@@ -165,13 +166,13 @@
     ryubing # switch emu
     rpcs3 # ps3 emu
     prismlauncher
-    inputs.sobercookie.packages.${pkgs.system}.default
+    inputs.sobercookie.packages.${pkgs.stdenv.hostPlatform.system}.default
     krunker
     (writeScriptBin "crosshair-overlay" ''
       ${lib.getExe bubblewrap} \
         --ro-bind / / \
         --chdir "$XDG_PICTURES_DIR" \
-        -- ${inputs.crosshair-overlay.packages.${pkgs.system}.default}/bin/crosshair-overlay $@
+        -- ${inputs.crosshair-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/crosshair-overlay $@
     '')
   ];
 

@@ -5,7 +5,7 @@
   ];
 
   stylix = {
-    iconTheme = {
+    icons = {
       enable = true;
       package = pkgs.morewaita-icon-theme;
       dark = "MoreWaita";
