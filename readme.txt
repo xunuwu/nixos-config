@@ -7,5 +7,5 @@ hosts:
   rackserv - cheap 2gb vps
 
 stack:
-  sops-nix for secrets, currently stored in git repo and encrypted with ssh keys, might move to hashicorp vault/openbao eventually
+  sops-nix for secrets
   deployments with nixos-rebuild (see Justfile), it works ig
