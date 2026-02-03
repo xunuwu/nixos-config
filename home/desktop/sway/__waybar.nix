@@ -32,11 +32,11 @@
         "sway/window" = {
           max-length = 80;
         };
-        "custom/miao-battery-percentage" = {
-          return-type = "json";
-          exec = "${lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.miao-battery-percentage}";
-          restart-interval = "60";
-        };
+        # "custom/miao-battery-percentage" = {
+        #   return-type = "json";
+        #   exec = "${lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.miao-battery-percentage}";
+        #   restart-interval = "60";
+        # };
         "custom/keyboard-state" = {
           return-type = "json";
           exec = "${lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.keyboard-state}";
