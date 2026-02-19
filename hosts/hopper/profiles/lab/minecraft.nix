@@ -30,6 +30,7 @@ in {
   users.groups.minecraft-createpack = {};
 
   networking.firewall.allowedTCPPorts = [25565];
+  networking.firewall.allowedUDPPorts = [24454];
 
   systemd.tmpfiles.rules = [
     "d /srv/minecraft            0755 root                 root                 - -"
