@@ -7,7 +7,7 @@
   programs.waybar = {
     enable = true;
     package = pkgs.waybar.overrideAttrs (final: prev: {
-      patches = [./waybar-workspace.patch];
+      # patches = [./waybar-workspace.patch];
     });
     settings = [
       {

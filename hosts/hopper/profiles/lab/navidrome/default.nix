@@ -7,10 +7,10 @@
 
   services.navidrome = {
     enable = true;
-    package = pkgs.navidrome.overrideAttrs {
-      patches = [./scrobbleAlbumArtist.patch];
-      doCheck = false;
-    };
+    # package = pkgs.navidrome.overrideAttrs {
+    #   patches = [./scrobbleAlbumArtist.patch];
+    #   doCheck = false;
+    # };
     settings = {
       MusicFolder = "/media/library/music";
       Address = config.vpnNamespaces."wg".bridgeAddress;

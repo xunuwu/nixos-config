@@ -70,6 +70,7 @@
     };
     "/home" = {
       device = "/dev/disk/by-uuid/1297e638-f2ff-49a2-a362-314ac7eeaabc";
+      neededForBoot = true;
       fsType = "btrfs";
       options = ["subvol=home" "compress=zstd"];
     };

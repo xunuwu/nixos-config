@@ -7,8 +7,38 @@
     enable = true;
     eula = true;
     openFirewall = true;
-    servers.owo = {
+    servers.createpack = let
+      modpackZip = pkgs.fetchurl {
+        url = "https://git.xunuwu.xyz/xun/nixos-config/releases/download/create-ultimate-bundle-thing/Create%20Ultimate%20Selection%202%20MC%201.21.1-5.2.0.zip";
+        name = "Create Ultimate Selection 2 MC 1.21.1-5.2.0.zip";
+        hash = "sha256-+ykE2GE5lWQVLfcKyleKmQ+GXC+yN54yIgh7mPxxj4g="; # Replace with actual hash: run `nix-prefetch-url --name 'Create Ultimate Selection 2 MC 1.21.1-5.2.0.zip' 'https://www.curseforge.com/minecraft/modpacks/create-ultimate-selection-2/download/7634594/file'` and paste the output here
+      };
+      baseModpack = inputs.nix-minecraft.legacyPackages.${pkgs.stdenv.hostPlatform.system}.fetchPackwizModpack {
+        src = ./create-ultimate-selection-2;
+        packHash = "sha256-0i4RWfJLWayYkefzeePbQY48nr/TdbX/sUVFfppkKvM="; # Leave empty initially; update with the correct value after the first failed build (see instructions below)
+      };
+      modpack = baseModpack.overrideAttrs (old: {
+        buildPhase =
+          ''
+            cp ${modpackZip} "Create Ultimate Selection 2 MC 1.21.1-5.2.0.zip"
+          ''
+          + old.buildPhase;
+      });
+    in {
       enable = true;
+      package = inputs.nix-minecraft.legacyPackages.${pkgs.stdenv.hostPlatform.system}.neoforgeServers.neoforge-1_21_1;
+      serverProperties = {
+        motd = "createpack!!";
+        max-players = 5;
+        difficulty = "normal";
+        allow-flight = true;
+        view-distance = 16;
+      };
+      jvmOpts = "-Xms1024M -Xmx6144M";
+      symlinks.mods = "${modpack}/mods";
+    };
+    servers.owo = {
+      enable = false;
       package = inputs.nix-minecraft.legacyPackages.${pkgs.stdenv.hostPlatform.system}.fabricServers.fabric-1_21_5;
       serverProperties = {
         max-players = 5;

@@ -1,0 +1,12 @@
+name = "Packwiz Create Ultimate Selection"
+version = "1.0.0"
+pack-format = "packwiz:1.1.0"
+
+[index]
+file = "index.toml"
+hash-format = "sha256"
+hash = "c1e5db361e3f6a0150a60e69742ea490985603d455146b1498075cfb2f718a55"
+
+[versions]
+minecraft = "1.21.1"
+neoforge = "21.1.219"

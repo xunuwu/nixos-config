@@ -4,7 +4,7 @@
     man.generateCaches = false; # this does slow down builds by quite a lot
   };
   environment.systemPackages = with pkgs; [
-    linux-manual
+    # linux-manual
     man-pages
     man-pages-posix
   ];

@@ -132,6 +132,7 @@
         "rider"
         "clion"
         "idea-ultimate"
+        "android-studio"
         "android-studio-stable"
         "krunker"
       ];

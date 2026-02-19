@@ -1,0 +1,6 @@
+hash-format = "sha256"
+
+[[files]]
+file = "create-ultimate-selection-2.pw.toml"
+hash = "9ab2c65f33afcf236a0f406422cc1a6b7c6989f7da57a49f967699259d6e4e3e"
+metafile = true

@@ -1,0 +1,13 @@
+name = "Create Ultimate Selection 2 – Create Quests | Create Addons [1.21.1]"
+filename = "Create Ultimate Selection 2 MC 1.21.1-5.2.0.zip"
+side = "both"
+
+[download]
+hash-format = "sha1"
+hash = "f1bb7067d9a58492d1634d0ff5f15bee68ed1f7b"
+mode = "metadata:curseforge"
+
+[update]
+[update.curseforge]
+file-id = 7634594
+project-id = 1324409
