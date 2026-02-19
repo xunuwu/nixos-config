@@ -8,10 +8,10 @@
     ];
     ## Fixes gamescope (NOTE: no clue what this means)
     extraPackages = with pkgs; [
-      xorg.libXcursor
-      xorg.libXi
-      xorg.libXinerama
-      xorg.libXScrnSaver
+      libXcursor
+      libxi
+      libxinerama
+      libxscrnsaver
       libpng
       libpulseaudio
       libvorbis
