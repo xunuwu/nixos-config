@@ -3,84 +3,25 @@
   pkgs,
   ...
 }: let
-  # neoforgeVersion = "21.1.219";
-  # vanillaServer = pkgs.fetchurl {
-  #   url = "https://piston-data.mojang.com/v1/objects/59353fb40c36d304f2035d51e7d6e6baa98dc05c/server.jar";
-  #   name = "minecraft_server.1.21.1.jar";
-  #   hash = "sha256-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX="; # Replace with actual hash: run `nix-prefetch-url 'https://piston-data.mojang.com/v1/objects/59353fb40c36d304f2035d51e7d6e6baa98dc05c/server.jar' --name 'minecraft_server.1.21.1.jar'`
-  # };
-  # neoforgeInstaller = pkgs.fetchurl {
-  #   url = "https://maven.neoforged.net/releases/net/neoforged/neoforge/${neoforgeVersion}/neoforge-${neoforgeVersion}-installer.jar";
-  #   hash = "sha256-FA3w+hf9Q4hIBR7Po9CRCBUVrRK/40+hJkBQN7oB3kQ="; # Replace with actual hash: run `nix-prefetch-url 'https://maven.neoforged.net/releases/net/neoforged/neoforge/21.1.219/neoforge-21.1.219-installer.jar'`
-  # };
-  # modpackZip = pkgs.fetchurl {
-  #   url = "https://git.xunuwu.xyz/xun/nixos-config/releases/download/create-ultimate-bundle-thing/Create%20Ultimate%20Selection%202%20MC%201.21.1-5.2.0.zip";
-  #   name = "Create Ultimate Selection 2 MC 1.21.1-5.2.0.zip";
-  #   hash = "sha256-+ykE2GE5lWQVLfcKyleKmQ+GXC+yN54yIgh7mPxxj4g="; # Replace with actual hash: run `nix-prefetch-url --name 'Create Ultimate Selection 2 MC 1.21.1-5.2.0.zip' 'https://www.curseforge.com/minecraft/modpacks/create-ultimate-selection-2/download/7634594/file'` and paste the output here
-  # };
   modpackZip = pkgs.fetchurl {
     url = "https://git.xunuwu.xyz/xun/nixos-config/releases/download/create-ultimate-thing-full/Create%20Ultimate%20Selection%202%20Serverpack%20MC%201.21.1-5.3.0.zip";
     name = "Create Ultimate Selection 2 MC 1.21.1-5.3.0.zip";
-    # hash = ""; # Replace with actual hash: run `nix-prefetch-url --name 'Create Ultimate Selection 2 MC 1.21.1-5.2.0.zip' 'https://www.curseforge.com/minecraft/modpacks/create-ultimate-selection-2/download/7634594/file'` and paste the output here
     hash = "sha256-xDChlZWivNNjYnmSCUIyrxfvqXAHrbvql7jyEDvVXvA=";
   };
-  # baseModpack = inputs.nix-minecraft.legacyPackages.${pkgs.stdenv.hostPlatform.system}.fetchPackwizModpack {
-  #   src = ./create-ultimate-selection-2;
-  #   packHash = "sha256-0i4RWfJLWayYkefzeePbQY48nr/TdbX/sUVFfppkKvM="; # Leave empty initially; update with the correct value after the first failed build (see instructions below)
-  # };
-  # modpack = baseModpack.overrideAttrs (old: {
-  #   buildPhase =
-  #     ''
-  #       cp ${modpackZip} "Create Ultimate Selection 2 MC 1.21.1-5.2.0.zip"
-  #     ''
-  #     + old.buildPhase;
-  # });
   neoforge = inputs.nix-minecraft.legacyPackages.${pkgs.stdenv.hostPlatform.system}.neoforgeServers.neoforge-1_21_1;
   serverPackage = pkgs.stdenv.mkDerivation {
     name = "minecraft-createpack-server";
     nativeBuildInputs = [pkgs.unzip];
     dontUnpack = true;
     installPhase = ''
-      # mkdir -p $out
-      # cp -r ${neoforge}/* $out
-      # unzip ${modpackZip} -d temp
-      # cp -r temp/overrides/* $out/
-      # rm -rf temp
-
       mkdir -p $out
-      # 1. Base NeoForge from nix-minecraft
       cp -r ${neoforge}/* $out/
 
-      # 2. Overlay the full official server pack (this brings ALL mods + libraries)
       unzip ${modpackZip} -d temp
       cp -r temp/* $out/ 2>/dev/null || true
       rm -rf temp
     '';
   };
-  # serverPackage = pkgs.stdenv.mkDerivation {
-  #   name = "minecraft-createpack-server";
-  #   src = modpackZip;
-  #   # nativeBuildInputs = [pkgs.unzip pkgs.jdk21 pkgs.breakpointHook];
-  #   nativeBuildInputs = [pkgs.unzip pkgs.jdk21];
-  #   dontPatch = true;
-  #   buildPhase = ''
-  #     mkdir server
-  #   #   unzip ${modpackZip}
-  #     cp -r overrides/* server/
-  #   '';
-  #   # buildPhase = ''
-  #   #   mkdir server
-  #   #   cd server
-  #   #   java -jar ${neoforgeInstaller} --installServer
-  #   #   cd ..
-  #   #   unzip ${modpackZip}
-  #   #   cp -r overrides/* server/
-  #   # '';
-  #   installPhase = ''
-  #     mkdir -p $out
-  #     cp -r server/* $out
-  #   '';
-  # };
 in {
   users.users.minecraft-createpack = {
     isSystemUser = true;
@@ -105,74 +46,29 @@ in {
       WorkingDirectory = "/srv/minecraft/createpack";
       Restart = "always";
       RestartSec = "5s";
-      # ExecStart = "${pkgs.jdk21}/bin/java -Xms1024M -Xmx6144M -jar ${serverPackage}/neoforge-1.21.1-21.1.219.jar nogui";
       ExecStart = ''
         ${pkgs.jdk21}/bin/java \
           @user_jvm_args.txt \
           @libraries/net/neoforged/neoforge/21.1.219/unix_args.txt \
           nogui
       '';
-      # ExecStart = "${pkgs.bash}/bin/bash ${serverPackage}/run.sh nogui";
     };
-    # preStart = ''
-    #   set -euo pipefail
-    #
-    #   echo "=== minecraft-createpack preStart running as $(whoami) in $(pwd) ==="
-    #
-    #   # Preserve world across restarts
-    #   if [ -d world ]; then
-    #     mv world ../world-tmp || true
-    #   fi
-    #
-    #   # Clean slate + copy fresh files from the derivation
-    #   rm -rf ./* .[!.]* ..?* || true
-    #   cp -r ${serverPackage}/* .
-    #
-    #   # Restore world
-    #   if [ -d ../world-tmp ]; then
-    #     mv ../world-tmp world
-    #   fi
-    #
-    #   chmod -R u+rwX .
-    #   chown -R minecraft-createpack:minecraft-createpack .
-    #
-    #   echo "eula=true" > eula.txt
-    #
-    #   cat > server.properties <<EOF
-    #   motd=createpack!!
-    #   max-players=5
-    #   difficulty=normal
-    #   allow-flight=true
-    #   view-distance=16
-    #   EOF
-    #
-    #   # NeoForge 1.21+ uses this file for JVM flags
-    #   cat > user_jvm_args.txt <<EOF
-    #   -Xms1024M
-    #   -Xmx6144M
-    #   EOF
-    #
-    #   echo "preStart finished successfully"
-    # '';
     preStart = ''
       set -euo pipefail
       echo "=== minecraft-createpack preStart ==="
 
-      # Preserve user data
       for dir in world logs crash-reports backups screenshots; do
         if [ -d "$dir" ]; then
           mv "$dir" "../$dir-tmp" 2>/dev/null || true
         fi
       done
 
-      # Gentle sync — only updates static server files, never touches your world
       ${pkgs.rsync}/bin/rsync -a --delete \
         --exclude='world' --exclude='logs' --exclude='crash-reports' \
         --exclude='backups' --exclude='screenshots' \
         --exclude='user_jvm_args.txt' --exclude='server.properties' --exclude='eula.txt' \
         ${serverPackage}/ ./
 
-      # Restore user data
       for dir in world logs crash-reports backups screenshots; do
         if [ -d "../$dir-tmp" ]; then
           mv "../$dir-tmp" "$dir"
@@ -206,19 +102,6 @@ in {
     eula = true;
     openFirewall = true;
     managementSystem.systemd-socket.enable = true;
-    # servers.createpack = {
-    #   enable = true;
-    #   package = inputs.nix-minecraft.legacyPackages.${pkgs.stdenv.hostPlatform.system}.neoforgeServers.neoforge-1_21_1;
-    #   serverProperties = {
-    #     motd = "createpack!!";
-    #     max-players = 5;
-    #     difficulty = "normal";
-    #     allow-flight = true;
-    #     view-distance = 16;
-    #   };
-    #   jvmOpts = "-Xms1024M -Xmx6144M";
-    #   symlinks.mods = "${modpack}/mods";
-    # };
     servers.owo = {
       enable = false;
       package = inputs.nix-minecraft.legacyPackages.${pkgs.stdenv.hostPlatform.system}.fabricServers.fabric-1_21_5;
