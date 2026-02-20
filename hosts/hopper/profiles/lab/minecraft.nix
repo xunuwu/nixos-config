@@ -91,7 +91,7 @@ in {
 
       cat > user_jvm_args.txt <<'EOF'
       -Xms1024M
-      -Xmx6144M
+      -Xmx4096M
       EOF
 
       echo "=== preStart finished ==="
