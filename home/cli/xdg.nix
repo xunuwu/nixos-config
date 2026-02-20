@@ -20,7 +20,7 @@ in {
       publicShare = home + "/share";
       videos = home + "/vids";
       extraConfig = {
-        XDG_SCREENSHOTS_DIR = config.xdg.userDirs.pictures + "/screenshots";
+        SCREENSHOTS = config.xdg.userDirs.pictures + "/screenshots";
       };
     };
   };
