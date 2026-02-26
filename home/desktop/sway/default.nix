@@ -50,6 +50,7 @@
   wayland.windowManager.sway = {
     enable = true;
     checkConfig = true; # doesnt work with custom wallpaper
+    systemd.dbusImplementation = "broker"; # TODO maybe read from system config
     extraSessionCommands = ''
       export SDL_VIDEODRIVER=wayland,x11,windows
 
