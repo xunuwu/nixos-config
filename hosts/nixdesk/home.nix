@@ -161,6 +161,7 @@
     kdePackages.okular
 
     # games
+    ruffle
     heroic
     lutris
     ryubing # switch emu
