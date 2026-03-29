@@ -20,11 +20,11 @@
 
     signing = {
       key = "${config.home.homeDirectory}/.ssh/id_ed25519";
+      format = "ssh";
       signByDefault = true;
     };
 
     settings = {
-      gpg.format = "ssh";
       push.autoSetupRemote = true;
       pull.rebase = true;
       rebase.autostash = true;

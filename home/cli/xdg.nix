@@ -19,6 +19,7 @@ in {
       pictures = home + "/pics";
       publicShare = home + "/share";
       videos = home + "/vids";
+      setSessionVariables = true;
       extraConfig = {
         SCREENSHOTS = config.xdg.userDirs.pictures + "/screenshots";
       };
