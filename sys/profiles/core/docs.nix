@@ -1,7 +1,9 @@
 {pkgs, ...}: {
   documentation = {
     dev.enable = true;
-    man.generateCaches = false; # this does slow down builds by quite a lot
+
+    man.cache.enable = true;
+    man.cache.generateAtRuntime = true;
   };
   environment.systemPackages = with pkgs; [
     # linux-manual
