@@ -38,6 +38,8 @@ in {
     "Z /srv/minecraft/createpack -    minecraft-createpack minecraft-createpack - -"
   ];
   systemd.services.minecraft-createpack = {
+    enable = false;
+
     description = "Minecraft Create Ultimate Selection 2 Server";
     wantedBy = ["multi-user.target"];
     after = ["network.target"];
