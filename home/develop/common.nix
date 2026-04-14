@@ -6,6 +6,6 @@
     gnumake
     ninja
     pkg-config
-    nodePackages.prettier
+    prettier
   ];
 }
