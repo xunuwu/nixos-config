@@ -124,6 +124,7 @@
     jetbrains.rider
     jetbrains.clion
     android-tools
+    openjdk17
     # jetbrains.idea-ultimate
 
     # communication
