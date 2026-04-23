@@ -150,6 +150,7 @@
     # system things
     kdePackages.dolphin
     ddcui
+    scrcpy
 
     # music
     puddletag
