@@ -165,7 +165,7 @@
     # games
     ruffle
     heroic
-    lutris
+    # lutris ## TODO reenable when lutris build is fixed!!
     ryubing # switch emu
     rpcs3 # ps3 emu
     prismlauncher

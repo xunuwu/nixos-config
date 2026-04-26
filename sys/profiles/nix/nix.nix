@@ -14,6 +14,7 @@
       keep-derivations = true;
       accept-flake-config = true;
       use-xdg-base-directories = true;
+      lint-url-literals = "fatal";
 
       flake-registry = builtins.toFile "none.json" (builtins.toJSON {
         flakes = [];
@@ -24,7 +25,6 @@
         "flakes"
         "nix-command"
         "pipe-operators"
-        "no-url-literals"
         "ca-derivations"
       ];
 
