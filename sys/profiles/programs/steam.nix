@@ -18,6 +18,7 @@
       stdenv.cc.cc.lib
       libkrb5
       keyutils
+      webkitgtk_6_0
     ];
   };
 }
