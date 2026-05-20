@@ -125,7 +125,7 @@
     jetbrains.clion
     android-tools
     openjdk17
-    # jetbrains.idea-ultimate
+    jetbrains.idea
 
     # communication
     element-desktop

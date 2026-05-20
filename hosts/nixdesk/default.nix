@@ -131,7 +131,7 @@
         "obsidian"
         "rider"
         "clion"
-        "idea-ultimate"
+        "idea"
         "android-studio"
         "android-studio-stable"
         "krunker"
