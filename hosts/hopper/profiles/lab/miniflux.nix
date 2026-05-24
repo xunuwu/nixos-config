@@ -7,8 +7,8 @@
     enable = true;
     adminCredentialsFile = config.sops.secrets.miniflux.path;
     config = {
-      BASE_URL = "https://miniflux.${vars.domain}";
-      LISTEN_ADDR = "${config.vpnNamespaces."wg".bridgeAddress}:18632";
+      BASE_URL = "https://rss.${vars.domain}";
+      LISTEN_ADDR = "127.0.0.1:18632";
     };
   };
 }

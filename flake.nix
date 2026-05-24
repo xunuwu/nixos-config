@@ -56,7 +56,6 @@
             just
             home-manager
             sops
-            nebula
           ];
         };
 

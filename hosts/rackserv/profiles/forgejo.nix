@@ -1,6 +1,6 @@
 {vars, ...}: {
   services.forgejo = {
-    enable = true;
+    enable = false;
     database.type = "postgres";
     lfs.enable = true;
     settings = {

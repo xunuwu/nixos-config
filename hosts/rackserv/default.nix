@@ -9,13 +9,13 @@
       inputs.impermanence.nixosModules.impermanence
       inputs.disko.nixosModules.disko
       ./disks.nix
-      ./profiles/fail2ban.nix
-      ./profiles/wireguard-server.nix
+      # ./profiles/fail2ban.nix
+      # ./profiles/wireguard-server.nix
       ./profiles/backups.nix
-      ./profiles/caddy.nix
+      # ./profiles/caddy.nix
       ./profiles/forgejo.nix
-      ./profiles/nebula.nix
-      ./profiles/prometheus.nix
+      # ./profiles/nebula.nix
+      # ./profiles/prometheus.nix
     ]
     ++ (with systemProfiles; [
       core.security

@@ -14,7 +14,7 @@
 
       ./hardware.nix
       ./profiles/lab
-      ./profiles/roblox-playtime.nix
+      # ./profiles/roblox-playtime.nix
       ./profiles/desktop.nix
       ./profiles/persistent.nix
 
@@ -50,7 +50,6 @@
       network.tailscale
       network.avahi
       network.networkd
-      network.nebula
     ]);
 
   nixpkgs.config = {

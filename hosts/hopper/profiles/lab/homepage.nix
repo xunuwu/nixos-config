@@ -4,7 +4,6 @@
   ...
 }: let
   inherit (vars) domain;
-  bridge = config.vpnNamespaces."wg".bridgeAddress;
 in {
   services.homepage-dashboard = {
     enable = true;
@@ -26,14 +25,14 @@ in {
       {
         "Downloading" = [
           {
-            "transmission" = {
-              href = "https://transmission.hopper.priv.${domain}";
-              icon = "transmission";
-              widget = {
-                type = "transmission";
-                url = "http://${config.vpnNamespaces."wg".namespaceAddress}:${toString config.services.transmission.settings.rpc-port}";
-              };
-            };
+            # "transmission" = {
+            #   href = "https://transmission.hopper.priv.${domain}";
+            #   icon = "transmission";
+            #   widget = {
+            #     type = "transmission";
+            #     url = "http://${config.vpnNamespaces."wg".namespaceAddress}:${toString config.services.transmission.settings.rpc-port}";
+            #   };
+            # };
           }
           {
             "slskd" = {

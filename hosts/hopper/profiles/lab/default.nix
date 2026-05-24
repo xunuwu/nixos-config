@@ -6,7 +6,8 @@
     ./audiobookshelf.nix
     ./caddy.nix
     ./dnsmasq.nix
-    ./garage.nix
+    # ./garage.nix
+    ./forgejo.nix
     ./glances.nix
     ./homepage.nix
     ./minecraft.nix
@@ -16,9 +17,9 @@
     ./restic.nix
     ./samba.nix
     ./slskd.nix
-    ./transmission.nix
+    # ./transmission.nix
     ./vaultwarden.nix
-    ./vpn-namespace.nix
+    # ./vpn-namespace.nix
   ];
 
   users.groups.media = {};

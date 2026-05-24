@@ -15,17 +15,5 @@
       format = "binary";
       sopsFile = ./samba;
     };
-    nebula-cert = loadYamlKey "nebula-cert" ./nebula.yaml {
-      group = "nebula-xunmesh";
-      mode = "0644";
-    };
-    nebula-key = loadYamlKey "nebula-key" ./nebula.yaml {
-      group = "nebula-xunmesh";
-      mode = "0644";
-    };
-    nebula-ca-cert = loadYamlKey "nebula-ca-cert" ./nebula.yaml {
-      group = "nebula-xunmesh";
-      mode = "0644";
-    };
   };
 }

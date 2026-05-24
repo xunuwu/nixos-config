@@ -3,12 +3,19 @@
   pkgs,
   ...
 }: {
-  systemd.services.slskd.vpnConfinement = {
-    enable = true;
-    vpnNamespace = "wg";
-  };
-
   users.users.slskd.extraGroups = ["media"];
+
+  networking.firewall.allowedTCPPorts = [24001];
+
+  own.natpmp-portforward = {
+    enable = true;
+    mappings = [
+      {
+        public = 24001;
+        local = 24001;
+      }
+    ];
+  };
 
   services.slskd = {
     enable = true;

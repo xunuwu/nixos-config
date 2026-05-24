@@ -13,7 +13,7 @@
     # };
     settings = {
       MusicFolder = "/media/library/music";
-      Address = config.vpnNamespaces."wg".bridgeAddress;
+      Port = 4533;
       EnableSharing = true;
     };
   };

@@ -70,10 +70,10 @@
             targets = ["127.0.0.1:9100"];
             labels.alias = "hopper";
           }
-          {
-            targets = ["rackserv:9100"];
-            labels.alias = "rackserv";
-          }
+          # {
+          #   targets = ["rackserv:9100"];
+          #   labels.alias = "rackserv";
+          # }
         ];
       }
       {
@@ -86,19 +86,20 @@
         job_name = "caddy";
         static_configs = [
           {
-            targets = ["${config.vpnNamespaces."wg".namespaceAddress}:2019"];
+            targets = ["localhost:2019"];
             labels.alias = "hopper";
           }
-          {
-            targets = ["rackserv:2019"];
-            labels.alias = "rackserv";
-          }
+          # {
+          #   targets = ["rackserv:2019"];
+          #   labels.alias = "rackserv";
+          # }
         ];
       }
+      ## TEMP | TMP | TODO
       {
         job_name = "slskd";
         static_configs = lib.singleton {
-          targets = ["${config.vpnNamespaces."wg".namespaceAddress}:${toString config.services.slskd.settings.web.port}"];
+          targets = ["localhost:${toString config.services.slskd.settings.web.port}"];
         };
         metric_relabel_configs = lib.singleton {
           source_labels = ["__name__"];
@@ -109,16 +110,15 @@
       {
         job_name = "forgejo";
         static_configs = lib.singleton {
-          targets = ["rackserv:9615"];
+          targets = ["localhost:${toString config.services.forgejo.settings.server.HTTP_PORT}"];
         };
       }
-
-      {
-        job_name = "garage";
-        static_configs = lib.singleton {
-          targets = ["localhost:3903"];
-        };
-      }
+      # {
+      #   job_name = "garage";
+      #   static_configs = lib.singleton {
+      #     targets = ["localhost:3903"];
+      #   };
+      # }
     ];
     exporters = {
       node = {

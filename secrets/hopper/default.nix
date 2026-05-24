@@ -47,28 +47,16 @@
       format = "binary";
       sopsFile = ./miniflux;
     };
-    roblox-playtime = {
-      format = "binary";
-      sopsFile = ./roblox-playtime;
-      owner = "roblox-playtime";
-      group = "roblox-playtime";
-    };
+    # roblox-playtime = {
+    #   format = "binary";
+    #   sopsFile = ./roblox-playtime;
+    #   owner = "roblox-playtime";
+    #   group = "roblox-playtime";
+    # };
     samba-pass = {
       format = "binary";
       sopsFile = ./samba-pass;
       mode = "0600";
-    };
-    nebula-cert = loadYamlKey "nebula-cert" ./nebula.yaml {
-      group = "nebula-xunmesh";
-      mode = "0644";
-    };
-    nebula-key = loadYamlKey "nebula-key" ./nebula.yaml {
-      group = "nebula-xunmesh";
-      mode = "0644";
-    };
-    nebula-ca-cert = loadYamlKey "nebula-ca-cert" ./nebula.yaml {
-      group = "nebula-xunmesh";
-      mode = "0644";
     };
   };
 }
