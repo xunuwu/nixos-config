@@ -17,8 +17,8 @@ in {
     reverseProxy = true;
 
     email.domains = ["*"];
+    cookie.domain = ".xunuwu.xyz";
     extraConfig = {
-      cookie-domain = ".xunuwu.xyz";
       whitelist-domain = "*.hopper.priv.xunuwu.xyz";
       github-user = ["xunuwu"]; # all allowed users
     };
