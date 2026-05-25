@@ -8,7 +8,6 @@
   imports =
     [
       inputs.hardware.nixosModules.common-cpu-intel
-      inputs.vpn-confinement.nixosModules.default
       inputs.nix-minecraft.nixosModules.minecraft-servers
       inputs.impermanence.nixosModules.impermanence
 

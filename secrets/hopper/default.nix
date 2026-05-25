@@ -58,5 +58,9 @@
       sopsFile = ./samba-pass;
       mode = "0600";
     };
+    oauth2-proxy = {
+      format = "binary";
+      sopsFile = ./oauth2-proxy;
+    };
   };
 }

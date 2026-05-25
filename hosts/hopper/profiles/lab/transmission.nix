@@ -4,11 +4,6 @@
   vars,
   ...
 }: {
-  systemd.services.transmission.vpnConfinement = {
-    enable = true;
-    vpnNamespace = "wg";
-  };
-
   services.transmission = {
     enable = true;
     package = pkgs.transmission_4;
@@ -27,7 +22,6 @@
       rpc-whitelist-enabled = true;
       rpc-whitelist = "127.0.0.1,192.168.\*.\*,100.\*.\*.\*";
     };
-    # credentialsFile = config.sops.secrets.transmission.path;
   };
 
   environment.persistence."/persist".directories = ["/var/lib/transmission"];

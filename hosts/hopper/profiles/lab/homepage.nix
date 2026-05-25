@@ -25,16 +25,6 @@ in {
       {
         "Downloading" = [
           {
-            # "transmission" = {
-            #   href = "https://transmission.hopper.priv.${domain}";
-            #   icon = "transmission";
-            #   widget = {
-            #     type = "transmission";
-            #     url = "http://${config.vpnNamespaces."wg".namespaceAddress}:${toString config.services.transmission.settings.rpc-port}";
-            #   };
-            # };
-          }
-          {
             "slskd" = {
               href = "https://slskd.hopper.priv.${domain}";
               icon = "slskd";

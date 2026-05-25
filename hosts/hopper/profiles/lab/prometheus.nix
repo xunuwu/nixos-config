@@ -70,10 +70,6 @@
             targets = ["127.0.0.1:9100"];
             labels.alias = "hopper";
           }
-          # {
-          #   targets = ["rackserv:9100"];
-          #   labels.alias = "rackserv";
-          # }
         ];
       }
       {
@@ -89,13 +85,8 @@
             targets = ["localhost:2019"];
             labels.alias = "hopper";
           }
-          # {
-          #   targets = ["rackserv:2019"];
-          #   labels.alias = "rackserv";
-          # }
         ];
       }
-      ## TEMP | TMP | TODO
       {
         job_name = "slskd";
         static_configs = lib.singleton {
@@ -113,12 +104,12 @@
           targets = ["localhost:${toString config.services.forgejo.settings.server.HTTP_PORT}"];
         };
       }
-      # {
-      #   job_name = "garage";
-      #   static_configs = lib.singleton {
-      #     targets = ["localhost:3903"];
-      #   };
-      # }
+      {
+        job_name = "restic";
+        static_configs = lib.singleton {
+          targets = ["localhost:${toString config.services.prometheus.exporters.restic.port}"];
+        };
+      }
     ];
     exporters = {
       node = {
@@ -130,5 +121,4 @@
   };
 
   environment.persistence."/persist".directories = ["/var/lib/prometheus2"];
-  services.restic.backups.hopper.paths = ["/var/lib/prometheus2"];
 }
