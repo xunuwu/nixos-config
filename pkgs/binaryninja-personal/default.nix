@@ -30,6 +30,7 @@
     name = "libbinaryninjacore.so.1";
     sha256 = "5d03d63e226cf7295270c003651c690766915cad5bbc42c4830d80517e3f005e";
     message = "add cracked libbinaryninjacore.so.1 to the nix store with command \"nix-store --add-fixed sha256 libbinaryninjacore.so.1\"";
+    meta.license = [];
   };
 in
   stdenv.mkDerivation {
@@ -66,6 +67,7 @@ in
       name = "binaryninja_personal_linux.zip";
       url = "https://binary.ninja/recover/";
       sha256 = "073d5dc59e67dabb8aa8c419385b2a0dc17831f108d73def4934e4cade563c87";
+      meta.license = [];
     };
 
     dontWrapQtApps = true;

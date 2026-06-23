@@ -56,6 +56,7 @@
       builtins.elem (lib.getName pkg) [
         "nvidia-x11"
         "nvidia-settings"
+        "nvidia-kernel-modules"
       ];
   };
 

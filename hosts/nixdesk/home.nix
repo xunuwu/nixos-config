@@ -140,7 +140,7 @@
 
     # passwords
     keepassxc
-    bitwarden-desktop
+    # bitwarden-desktop
 
     # creating
     krita
@@ -167,7 +167,7 @@
     heroic
     # lutris ## TODO reenable when lutris build is fixed!!
     ryubing # switch emu
-    rpcs3 # ps3 emu
+    # rpcs3 # ps3 emu ## TODO perhaps reenable if they make hydra build it again
     prismlauncher
     inputs.sobercookie.packages.${pkgs.stdenv.hostPlatform.system}.default
     krunker

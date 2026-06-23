@@ -14,7 +14,7 @@
   libGL,
   libkrb5,
   libsecret,
-  libsForQt5,
+  qt5,
   libunwind,
   libxkbcommon,
   makeDesktopItem,
@@ -44,6 +44,7 @@
     name = "crack_ida90_beta.py";
     url = "https://rutracker.org/forum/viewtopic.php?t=6560957";
     sha256 = "337775c3bfbec7e95a2d28ef88ecc4ae0a2dc775ea5fcdbeb8ab7b7771decf59";
+    meta.license = [];
   };
 in
   stdenv.mkDerivation rec {
@@ -54,6 +55,7 @@ in
       name = "idapro_90_x64linux.run";
       url = "https://rutracker.org/forum/viewtopic.php?t=6560957";
       sha256 = "0b12a798f0e2ab7c5b7a795eb275136af7fce88356fddefd7f7776c6aa588372";
+      meta.license = [];
     };
 
     icon = fetchurl {
@@ -79,7 +81,7 @@ in
       makeWrapper
       copyDesktopItems
       autoPatchelfHook
-      libsForQt5.wrapQtAppsHook
+      qt5.wrapQtAppsHook
       unzip
       python3
     ];
@@ -99,8 +101,8 @@ in
       libGL
       libkrb5
       libsecret
-      libsForQt5.qtbase
-      libsForQt5.qt5.qtwayland
+      qt5.qtbase
+      qt5.qtwayland
       libunwind
       libxkbcommon
       openssl
