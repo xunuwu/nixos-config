@@ -5,7 +5,7 @@
     ./acme.nix
     ./audiobookshelf.nix
     ./caddy.nix
-    ./dnsmasq.nix
+    # ./dnsmasq.nix
     ./forgejo.nix
     ./glances.nix
     ./homepage.nix
