@@ -1,11 +1,11 @@
 {config, ...}: {
-  services.prometheus.exporters.restic = let
-    resticConf = config.services.restic.backups.hopper;
-  in {
-    enable = true;
-    inherit (resticConf) repository passwordFile;
-    refreshInterval = 3600; # 1 hour
-  };
+  # services.prometheus.exporters.restic = let
+  #   resticConf = config.services.restic.backups.hopper;
+  # in {
+  #   enable = true;
+  #   inherit (resticConf) repository passwordFile;
+  #   refreshInterval = 3600; # 1 hour
+  # };
 
   services.restic.backups.hopper = {
     initialize = true;

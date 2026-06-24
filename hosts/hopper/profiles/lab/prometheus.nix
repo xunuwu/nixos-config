@@ -104,12 +104,12 @@
           targets = ["localhost:${toString config.services.forgejo.settings.server.HTTP_PORT}"];
         };
       }
-      {
-        job_name = "restic";
-        static_configs = lib.singleton {
-          targets = ["localhost:${toString config.services.prometheus.exporters.restic.port}"];
-        };
-      }
+      # {
+      #   job_name = "restic";
+      #   static_configs = lib.singleton {
+      #     targets = ["localhost:${toString config.services.prometheus.exporters.restic.port}"];
+      #   };
+      # }
     ];
     exporters = {
       node = {
