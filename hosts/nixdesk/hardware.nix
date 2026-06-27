@@ -97,6 +97,8 @@
 
   hardware.enableRedistributableFirmware = true;
 
+  hardware.amdgpu.opencl.enable = true;
+
   services.xserver.videoDrivers = ["amdgpu"];
 
   nixpkgs.hostPlatform.system = "x86_64-linux";

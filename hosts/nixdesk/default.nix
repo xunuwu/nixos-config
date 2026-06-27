@@ -4,6 +4,7 @@
   inputs,
   systemProfiles,
   specialArgs,
+  self,
   ...
 }: {
   imports =
@@ -92,6 +93,10 @@
       programs.reverse-engineering
     ]);
 
+  environment.systemPackages = [
+    self.packages.${pkgs.stdenv.hostPlatform.system}.davinci-resolve
+  ];
+
   services.lact.enable = true; # gpu control thing
 
   services.locate.prunePaths = lib.mkOptionDefault ["/home/xun/backup"];
@@ -121,6 +126,7 @@
     # rocmSupport = true;
     allowUnfreePredicate = pkg:
       builtins.elem (lib.getName pkg) [
+        "davinci-resolve-studio"
         "apple_cursor"
         "steam"
         "steam-unwrapped"

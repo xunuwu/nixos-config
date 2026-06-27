@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   packages = {
+    davinci-resolve = pkgs.callPackage ./davinci-resolve {};
     binaryninja-personal = pkgs.qt6Packages.callPackage ./binaryninja-personal {};
     ida-pro = pkgs.callPackage ./ida-pro {};
     cartograph-cf = pkgs.callPackage ./cartograph-cf {};
