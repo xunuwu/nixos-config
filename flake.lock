@@ -838,11 +838,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1749197856,
-        "narHash": "sha256-Vk9HO8RMe8fsDCzFQJlp4hAUDFMrduOMDmh6ZifiVHA=",
+        "lastModified": 1783749715,
+        "narHash": "sha256-7o2tSzmB9io5+mhP32pQFPQIWh2zDqLbh1iqd7LjdNw=",
         "ref": "refs/heads/main",
-        "rev": "3943ddd64bf04e3631d39f110723f1aee27c3a82",
-        "revCount": 7,
+        "rev": "0bb8e857fe1d71dafcef3b7526c7a3bfbfc3426d",
+        "revCount": 9,
         "type": "git",
         "url": "https://git.xunuwu.xyz/xun/xunuwu.xyz"
       },
