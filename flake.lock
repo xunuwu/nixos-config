@@ -891,10 +891,31 @@
         "nvim-config": "nvim-config",
         "own-website": "own-website",
         "roblox-playtime": "roblox-playtime",
+        "sls-steam": "sls-steam",
         "sobercookie": "sobercookie",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
         "wayland-appusage": "wayland-appusage"
+      }
+    },
+    "sls-steam": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1784138783,
+        "narHash": "sha256-sQDwDAIZDUILLle+mcD8pux/kgiv2Ozeh7Y9F6GTkrQ=",
+        "owner": "AceSLS",
+        "repo": "SLSsteam",
+        "rev": "9cc2ff2e57ae71620614c580d54195bb1d4b6d43",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AceSLS",
+        "repo": "SLSsteam",
+        "type": "github"
       }
     },
     "sobercookie": {

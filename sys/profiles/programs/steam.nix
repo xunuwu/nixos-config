@@ -1,6 +1,19 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   programs.steam = {
     enable = true;
+    package = pkgs.steam.override {
+      extraEnv = {
+        LD_AUDIT = "${
+          inputs.sls-steam.packages.${pkgs.stdenv.hostPlatform.system}.sls-steam
+        }/library-inject.so:${
+          inputs.sls-steam.packages.${pkgs.stdenv.hostPlatform.system}.sls-steam
+        }/SLSsteam.so";
+      };
+    };
     remotePlay.openFirewall = true;
     localNetworkGameTransfers.openFirewall = true;
     extraCompatPackages = with pkgs; [

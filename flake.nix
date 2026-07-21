@@ -119,5 +119,8 @@
 
     crosshair-overlay.url = "git+https://git.xunuwu.xyz/xun/crosshair-overlay";
     crosshair-overlay.inputs.nixpkgs.follows = "nixpkgs";
+
+    sls-steam.url = "github:AceSLS/SLSsteam";
+    sls-steam.inputs.nixpkgs.follows = "nixpkgs";
   };
 }
