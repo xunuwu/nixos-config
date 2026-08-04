@@ -3,7 +3,7 @@
     enable = true;
     # package = pkgs.ungoogled-chromium;
     extensions = [
-      {id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";} # ublock origin
+      {id = "ddkjiahejlhfcafbddmgiahcphecmpfh";} # ublock origin lite
     ];
   };
 }
