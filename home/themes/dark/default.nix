@@ -19,6 +19,8 @@
       qt.enable = true;
       foot.enable = true;
       swaync.enable = true;
+      gnome.enable = true;
+      kde.enable = true;
     };
   };
 }
