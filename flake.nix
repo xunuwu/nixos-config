@@ -75,7 +75,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nvim-config.url = "github:xunuwu/nvim-config";
-    # nvim-config.inputs.nixpkgs.follows = "nixpkgs";
+    nvim-config.inputs.nixpkgs.follows = "nixpkgs";
 
     stylix.url = "github:nix-community/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
