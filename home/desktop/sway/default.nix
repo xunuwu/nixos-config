@@ -65,9 +65,6 @@
       modifier = "Mod4";
       input."type:keyboard".xkb_layout = osConfig.services.xserver.xkb.layout;
       bars = []; # i use waybar instead
-      window = {
-        titlebar = false;
-      };
       floating.criteria = [
         {
           app_id = "org.keepassxc.KeePassXC";
