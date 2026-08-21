@@ -3,6 +3,6 @@
     wineWow64Packages.stagingFull
     bubblewrap
     fuse-overlayfs
-    dwarfs
+    # dwarfs
   ];
 }
