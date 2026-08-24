@@ -22,5 +22,6 @@
     inotify-tools
     dig
     python3
+    evtest
   ];
 }
