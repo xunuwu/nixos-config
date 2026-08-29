@@ -124,24 +124,25 @@
 
   nixpkgs.config = {
     # rocmSupport = true;
-    allowUnfreePredicate = pkg:
-      builtins.elem (lib.getName pkg) [
-        "davinci-resolve-studio"
-        "apple_cursor"
-        "steam"
-        "steam-unwrapped"
-        "discord"
-        "discord-unwrapped"
-        "discord-ptb"
-        "discord-ptb-unwrapped"
-        "obsidian"
-        "rider"
-        "clion"
-        "idea"
-        "android-studio"
-        "android-studio-stable"
-        "krunker"
-      ];
+    allowUnfreePredicate = _: true;
+    # allowUnfreePredicate = pkg:
+    #   builtins.elem (lib.getName pkg) [
+    #     "davinci-resolve-studio"
+    #     "apple_cursor"
+    #     "steam"
+    #     "steam-unwrapped"
+    #     "discord"
+    #     "discord-unwrapped"
+    #     "discord-ptb"
+    #     "discord-ptb-unwrapped"
+    #     "obsidian"
+    #     "rider"
+    #     "clion"
+    #     "idea"
+    #     "android-studio"
+    #     "android-studio-stable"
+    #     "krunker"
+    #   ];
     android_sdk.accept_license = true;
   };
 

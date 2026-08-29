@@ -169,6 +169,7 @@
     ryubing # switch emu
     # rpcs3 # ps3 emu ## TODO perhaps reenable if they make hydra build it again
     prismlauncher
+    osu-lazer-bin
     inputs.sobercookie.packages.${pkgs.stdenv.hostPlatform.system}.default
     krunker
     (writeScriptBin "crosshair-overlay" ''
