@@ -51,6 +51,16 @@
       network.networkd
     ]);
 
+  own.natpmp-portforward = {
+    enable = true;
+    mappings = [
+      {
+        public = 2051;
+        local = 22;
+      }
+    ];
+  };
+
   nixpkgs.config = {
     allowUnfreePredicate = pkg:
       builtins.elem (lib.getName pkg) [
