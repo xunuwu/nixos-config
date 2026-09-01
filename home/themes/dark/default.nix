@@ -16,11 +16,21 @@
       # firefox.colorTheme.enable = true;
       firefox.profileNames = ["xun"];
       gtk.enable = true;
-      qt.enable = true;
+      qt.enable = false;
       foot.enable = true;
       swaync.enable = true;
       gnome.enable = true;
-      kde.enable = true;
+      kde.enable = false;
+    };
+  };
+
+  qt = {
+    enable = true;
+    platformTheme.name = "kde";
+    style.name = "breeze";
+    kde.settings.kdeglobals = {
+      General.ColorScheme = "BreezeDark";
+      KDE.colorScheme = "BreezeDark";
     };
   };
 }

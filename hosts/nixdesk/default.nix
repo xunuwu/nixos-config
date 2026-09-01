@@ -65,7 +65,7 @@
       programs.dconf
       programs.fonts
       programs.home-manager
-      # programs.qt
+      programs.qt
       programs.gpg
       programs.openrgb
       programs.tools
