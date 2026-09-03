@@ -87,7 +87,7 @@
       # allow_tearing = "yes";
       # bg = "${inputs.wallpaper.outPath} fill";
     };
-    "HDMI-A-1" = {
+    "HDMI-A-3" = {
       position = "0 0";
     };
   };
