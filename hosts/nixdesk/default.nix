@@ -53,6 +53,7 @@
       hardware.bluetooth
       hardware.qmk
       hardware.g920
+      hardware.intel-arc
 
       network.networkd
       network.avahi
