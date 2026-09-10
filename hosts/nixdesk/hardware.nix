@@ -24,7 +24,7 @@
     #   };
     # };
     # using lts for now
-    # kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_latest;
     initrd = {
       verbose = false;
       availableKernelModules = [
