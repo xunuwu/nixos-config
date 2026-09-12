@@ -113,15 +113,15 @@
     '')
   ];
 
-  own.natpmp-portforward = {
-    enable = true;
-    mappings = [
-      {
-        public = 2050;
-        local = 22;
-      }
-    ];
-  };
+  # own.natpmp-portforward = {
+  #   enable = true;
+  #   mappings = [
+  #     {
+  #       public = 2050;
+  #       local = 22;
+  #     }
+  #   ];
+  # };
 
   nixpkgs.config = {
     # rocmSupport = true;
