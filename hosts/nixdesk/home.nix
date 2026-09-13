@@ -81,7 +81,7 @@
   };
 
   wayland.windowManager.sway.config.output = {
-    "DP-3" = {
+    "DP-1" = {
       mode = "1920x1080@165Hz";
       position = "1920 0";
       # allow_tearing = "yes";
