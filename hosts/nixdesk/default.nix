@@ -12,7 +12,7 @@
       ./hardware.nix
       ./profiles/hibernate-boot.nix
       ./profiles/devshells.nix
-      ./profiles/samba-mount.nix
+      # ./profiles/samba-mount.nix
       ./profiles/restic-server.nix
       ./profiles/autologin.nix
 
