@@ -123,6 +123,13 @@
   #   ];
   # };
 
+  # phone tether priority
+  systemd.network.networks."10-phone-tether" = {
+    matchConfig.Name = "enp2s0f0u2";
+    networkConfig.DHCP = true;
+    dhcpV4Config.RouteMetric = 100;
+  };
+
   nixpkgs.config = {
     # rocmSupport = true;
     allowUnfreePredicate = _: true;
