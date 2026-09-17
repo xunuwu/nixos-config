@@ -15,6 +15,7 @@
       # ./profiles/samba-mount.nix
       ./profiles/restic-server.nix
       ./profiles/autologin.nix
+      ./profiles/ethrun.nix
 
       inputs.impermanence.nixosModules.impermanence
       inputs.stylix.nixosModules.stylix
