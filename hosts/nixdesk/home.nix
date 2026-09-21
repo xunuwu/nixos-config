@@ -126,6 +126,7 @@
     android-tools
     openjdk17
     jetbrains.idea
+    caddy
 
     # communication
     element-desktop
