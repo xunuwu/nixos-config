@@ -3,11 +3,36 @@
   lib,
   ...
 }: {
+  security.polkit.extraConfig = ''
+    polkit.addRule(function(action, subject) {
+       if (
+         (action.id === "org.freedesktop.systemd1.manage-units" ||
+          action.id.startsWith("org.freedesktop.machine1.")) &&
+         subject.isInGroup("wheel")
+       ) {
+         return polkit.Result.YES;
+       }
+     });
+  '';
+
   environment.systemPackages = lib.singleton (pkgs.writeShellApplication {
     name = "ethrun";
-    runtimeInputs = [pkgs.iproute2];
+    runtimeInputs = [pkgs.systemd pkgs.iproute2 pkgs.util-linux pkgs.coreutils];
     text = ''
-      exec sudo -E ip netns exec ethrun-netns sudo -Eu "$USER" "$@"
+      # exec sudo -E ip netns exec ethrun-netns sudo -Eu "$USER" "@"
+
+      saved_path=$PATH
+
+      args=(--pipe)
+      while IFS= read -r -d "" entry; do
+        name=''${entry%%=*}
+        [ "$name" = PATH ] && continue
+        args+=(--setenv="$name")
+      done < /proc/self/environ
+
+      exec run0 "''${args[@]}" -- \
+        ip netns exec ethrun-netns runuser -p -u "$USER" -- \
+        env "PATH=$saved_path" "$@"
     '';
   });
 
@@ -32,6 +57,12 @@
       ExecStart = pkgs.writeShellScript "ethrun-netns-start" ''
         set -euo pipefail
 
+        mkdir -p /etc/netns/${ns}
+        cat > /etc/netns/${ns}/resolv.conf <<EOF
+        nameserver 1.1.1.1
+        nameserver 9.9.9.9
+        EOF
+
         ip netns add ${ns} || true
         ip netns exec ${ns} ip link set lo up
         ip link add ${mvlan-if} link ${host-if} type macvlan mode bridge
@@ -48,6 +79,7 @@
 
         ip netns exec ${ns} pkill -f dhcpcd || true
         ip netns delete ${ns} || true
+        rm -rf /etc/netns/${ns}
       '';
     };
   };
