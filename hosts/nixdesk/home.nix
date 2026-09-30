@@ -127,6 +127,8 @@
     openjdk17
     jetbrains.idea
     caddy
+    flatpak-builder
+    flatpak-builder-tools
 
     # communication
     element-desktop
