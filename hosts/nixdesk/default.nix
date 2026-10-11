@@ -74,7 +74,6 @@
       programs.thunar
       programs.wireshark
 
-      services.psd
       services.dbus-broker
       services.pipewire
       services.podman
