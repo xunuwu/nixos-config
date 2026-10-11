@@ -159,6 +159,8 @@
 
   boot.kernel.sysctl."fs.inotify.max_user_watches" = 99999999;
 
+  systemd.settings.Manager.DefaultTimeoutStopSec = "10s"; # prevents long wait at shutdown
+
   networking.interfaces.eno1.wakeOnLan.enable = true;
 
   programs.sysdig.enable = true;

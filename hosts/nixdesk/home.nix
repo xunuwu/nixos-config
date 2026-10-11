@@ -71,9 +71,9 @@
     services.polkit-agent
   ];
 
-  wayland.windowManager.sway.extraConfig = ''
-    exec rm -r ~/.config/obs-studio/.sentinel && obs --startreplaybuffer --minimize-to-tray
-  '';
+  # wayland.windowManager.sway.extraConfig = ''
+  #   exec rm -r ~/.config/obs-studio/.sentinel && obs --startreplaybuffer --minimize-to-tray
+  # '';
 
   wayland.windowManager.sway.config.input."type:pointer" = {
     accel_profile = "flat";
