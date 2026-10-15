@@ -3,5 +3,8 @@
     htop
     btop
     vim
+    neovim
+    git
+    tmux
   ];
 }

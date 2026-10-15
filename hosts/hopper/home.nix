@@ -8,6 +8,7 @@
   imports = with homeProfiles; [
     cli.xdg
     cli.comma
+    cli.tmux
 
     programs.nvim
     programs.foot
