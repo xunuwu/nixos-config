@@ -39,6 +39,11 @@
       format = "binary";
       sopsFile = ./restic-password;
     };
+    restic-env = {
+      format = "binary";
+      sopsFile = ./restic-env;
+      ## TODO PERMS HERE??
+    };
     vaultwarden-env = {
       format = "binary";
       sopsFile = ./vaultwarden-env;

@@ -19,6 +19,4 @@
       service.DISABLE_REGISTRATION = true;
     };
   };
-
-  services.restic.backups.hopper.paths = ["/var/lib/forgejo/dump"];
 }

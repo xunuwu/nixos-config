@@ -9,6 +9,7 @@
       "/var/lib/nixos"
       "/var/lib/bluetooth"
       "/var/lib/postgresql"
+      "/var/lib/forgejo"
     ];
     files = [
       "/etc/machine-id"
