@@ -1,4 +1,5 @@
 config files for my puters
+hosted on https://git.xunuwu.xyz/xun/nixos-config, github version might be out of date
 
 hosts:
   nixdesk  - desktop (5600x, 6700 xt, 16gb, 2tb)
