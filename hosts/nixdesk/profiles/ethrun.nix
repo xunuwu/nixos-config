@@ -63,21 +63,24 @@
         nameserver 9.9.9.9
         EOF
 
+        ip link del ${mvlan-if} 2>/dev/null || true
+        ip netns delete ${ns} 2>/dev/null || true
+
         ip netns add ${ns} || true
         ip netns exec ${ns} ip link set lo up
+
         ip link add ${mvlan-if} link ${host-if} type macvlan mode bridge
+        ip link set ${mvlan-if} address 02:23:51:2b:b1:36
         ip link set ${mvlan-if} netns ${ns}
         ip netns exec ${ns} ip link set ${mvlan-if} up
 
-        sleep 1
-
-        ip netns exec ${ns} dhcpcd
+        ip netns exec ${ns} ip addr add 192.168.50.110/24 dev ${mvlan-if}
+        ip netns exec ${ns} ip route add default via 192.168.50.1
       '';
 
       ExecStop = pkgs.writeShellScript "ethrun-netns-stop" ''
         set -euo pipefail
 
-        ip netns exec ${ns} pkill -f dhcpcd || true
         ip netns delete ${ns} || true
         rm -rf /etc/netns/${ns}
       '';
